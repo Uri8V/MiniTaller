@@ -13,8 +13,8 @@ namespace MiniTaller.Servicios.Interfaces
         void Guardar(Telefonos telefono);
         void Borrar(int telefonoId);
         bool Existe(Telefonos telefono);
-        int GetCantidad(int? IdCliente, string texto = null);
-        List<TelefonosDto> GetTelefonosPorPagina(int registrosPorPagina, int paginaActual, int? IdCliente, string texto = null);
+        int GetCantidad(int? IdCliente, int? IdTipoDeTelefono);
+        List<TelefonosDto> GetTelefonosPorPagina(int registrosPorPagina, int paginaActual, int? IdCliente, int? IdTipoDeTelefono);
         Telefonos GetTelefonoPorId(int IdTelefono);
     }
 }

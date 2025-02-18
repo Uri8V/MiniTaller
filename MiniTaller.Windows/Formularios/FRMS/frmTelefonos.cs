@@ -3,6 +3,7 @@ using MiniTaller.Entidades.Entidades;
 using MiniTaller.Servicios.Interfaces;
 using MiniTaller.Servicios.Servicios;
 using MiniTaller.Windows.Formularios.FRMSAE;
+using MiniTaller.Windows.Formularios.FRMSFILTROS;
 using MiniTaller.Windows.Helpers;
 using System;
 using System.Collections.Generic;
@@ -31,40 +32,29 @@ namespace MiniTaller.Windows.Formularios.FRMS
         int registros = 0;
         int paginas = 0;
         int registrosPorPagina = 3;
-
         int? empleado = null;
         int? cliente = null;
-        string Texto = null;
-
+        int? tipoDeTelefono = null;
         private void toolStripButtonActualizar_Click(object sender, EventArgs e)
         {
             empleado = null;
             cliente = null;
-            Texto = null;
+            tipoDeTelefono = null;
             RecargarGrilla();
             HabilitarBotones();
         }
-
         private void RecargarGrilla()
         {
-            registros = _servicio.GetCantidad(cliente, Texto);
+            registros = _servicio.GetCantidad(cliente, tipoDeTelefono);
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             MostrarPaginado();
         }
-
         private void MostrarPaginado()
         {
-            if (empleado != null || cliente != null || Texto != null)
-            {
-                lista = _servicio.GetTelefonosPorPagina(registrosPorPagina, paginaActual, cliente, Texto);
-            }
-            else
-            {
-                lista = _servicio.GetTelefonosPorPagina(registrosPorPagina, paginaActual, cliente, Texto);
-            }
+
+            lista = _servicio.GetTelefonosPorPagina(registrosPorPagina, paginaActual, cliente, tipoDeTelefono);
             MostrarDatosEnGrilla();
         }
-
         private void MostrarDatosEnGrilla()
         {
             GridHelpers.LimpiarGrilla(dgvDatos);
@@ -78,7 +68,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             lblPaginas.Text = paginas.ToString();
             lblPaginaActual.Text = paginaActual.ToString();
         }
-
         private void HabilitarBotones()
         {
             toolStripButtonFiltrar.BackColor = SystemColors.Control;
@@ -105,7 +94,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             MostrarPaginado();
 
         }
-
         private void btnAnterior_Click(object sender, EventArgs e)
         {
             if (paginaActual == 1)
@@ -115,19 +103,16 @@ namespace MiniTaller.Windows.Formularios.FRMS
             paginaActual--;
             MostrarPaginado();
         }
-
         private void btnUltimo_Click(object sender, EventArgs e)
         {
             paginaActual = paginas;
             MostrarPaginado();
         }
-
         private void btnPrimero_Click(object sender, EventArgs e)
         {
             paginaActual = 1;
             MostrarPaginado();
         }
-
         private void frmTelefonos_Load(object sender, EventArgs e)
         {
             RecargarGrilla();
@@ -155,7 +140,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 MessageBox.Show("El telefono ya existe!!!", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void toolStripButtonBorrar_Click(object sender, EventArgs e)
         {
             if (dgvDatos.SelectedRows.Count == 0)
@@ -166,12 +150,11 @@ namespace MiniTaller.Windows.Formularios.FRMS
             TelefonosDto telefonoABorrar = (TelefonosDto)r.Tag;
             DialogResult dr = MessageBox.Show($"¿Desea eliminar el Telefono: {telefonoABorrar.Apellido} {telefonoABorrar.Nombre}({telefonoABorrar.Documento} {telefonoABorrar.CUIT}), {telefonoABorrar.Telefono}?", "Confirmar Selcción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No) { return; }
-            //Falta metodo de objeto relacionado
+            //No es necesario el metodo EstaRelacionado() porque esta tabla no se relaciona con nada
             GridHelpers.QuitarFila(dgvDatos, r);
             _servicio.Borrar(telefonoABorrar.IdTelefono);
             RecargarGrilla();
         }
-
         private void toolStripButtonEditar_Click(object sender, EventArgs e)
         {
             if (dgvDatos.SelectedRows.Count == 0)
@@ -199,14 +182,14 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 {
                     if (telefono != null)
                     {
+                        Clientes c = _serviciosClientes.GetClientePorId(telefono.IdCliente);
                         //Crear el dto
                         telefonoDto.IdTelefono = telefono.IdTelefono;
                         telefonoDto.Telefono = telefono.Telefono;
-                        telefonoDto.TipoTelefono = telefono.TipoTelefono;
-
-                        telefonoDto.Apellido = _serviciosClientes.GetClientePorId(telefono.IdCliente).Apellido;
-                        telefonoDto.Nombre = _serviciosClientes.GetClientePorId(telefono.IdCliente).Nombre;
-                        telefonoDto.Documento = _serviciosClientes.GetClientePorId(telefono.IdCliente).Documento;
+                        telefonoDto.Tipo = telefono.TipoDeTelefono.Tipo;//ACOMODAR!!!!
+                        telefonoDto.Apellido = c.Apellido;
+                        telefonoDto.Nombre = c.Nombre;
+                        telefonoDto.Documento = c.Documento;
 
                         GridHelpers.SetearFila(r, telefonoDto);
                         _servicio.Guardar(telefono);
@@ -214,7 +197,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     else
                     {
                         //Recupero la copia del dto
-                        GridHelpers.SetearFila(r, telefono);
+                        GridHelpers.SetearFila(r,CopiaTelefono);
 
                     }
 
@@ -230,7 +213,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 throw;
             }
         }
-
         private void DesabilitarBotones()
         {
             toolStripButtonFiltrar.BackColor = Color.DarkViolet;
@@ -254,23 +236,38 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
 
         }
-
-        //private void tipoDeTelefonoToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    frmSeleccionarPorNombre frm = new frmSeleccionarPorNombre();
-        //    DialogResult dr = frm.ShowDialog(this);
-        //    if (dr == DialogResult.Cancel)
-        //    {
-        //        return;
-        //    }
-        //    var texto = frm.GetTexto();
-        //    registros = _servicio.GetCantidad(null, null, texto);
-        //    Texto = texto;
-        //    paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
-        //    paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);
-        //    MostrarPaginado();
-        //    DesabilitarBotones();
-        //}
+        private void tipoDeTelefonoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSeleccionarTipoDeTelefono frm = new frmSeleccionarTipoDeTelefono();
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+            var tipo = frm.GetTipo();
+            registros = _servicio.GetCantidad(null, tipo.IdTipoDeTelefono);
+            tipoDeTelefono = tipo.IdTipoDeTelefono;
+            paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
+            paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);
+            MostrarPaginado();
+            DesabilitarBotones();
+        }
+        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSeleccionarCliente frm = new frmSeleccionarCliente();
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+            var clienteSeleccionado = frm.GetCliente();
+            registros = _servicio.GetCantidad(clienteSeleccionado.IdCliente, null);
+            cliente = clienteSeleccionado.IdCliente;
+            paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
+            paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);
+            MostrarPaginado();
+            DesabilitarBotones();
+        }
         private void BuscarCliente(List<TelefonosDto> serviciosVehiculosDto, string texto)
         {
             var listaFiltrada = serviciosVehiculosDto;
@@ -281,12 +278,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
             GridHelpers.MostrarDatosEnGrilla<TelefonosDto>(dgvDatos, listaFiltrada);
         }
-
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
             toolStripTextBox1.Text = "";
         }
-
         private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
         {
             var texto = toolStripTextBox1.Text;

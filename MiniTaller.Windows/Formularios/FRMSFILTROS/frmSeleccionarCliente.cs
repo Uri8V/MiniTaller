@@ -1,5 +1,4 @@
-﻿using MiniTaller.Entidades.ComboDto;
-using MiniTaller.Entidades.Entidades;
+﻿using MiniTaller.Entidades.Entidades;
 using MiniTaller.Servicios.Interfaces;
 using MiniTaller.Servicios.Servicios;
 using MiniTaller.Windows.Formularios.FRMS;
@@ -16,32 +15,32 @@ using System.Windows.Forms;
 
 namespace MiniTaller.Windows.Formularios.FRMSFILTROS
 {
-    public partial class frmSeleccionarCliente : Form
+    public partial class frmSeleccionarCliente: Form
     {
         public frmSeleccionarCliente()
         {
             InitializeComponent();
-            _serviciosClientes=new ServicioDeClientes();
+            _servicioDeClientes = new ServicioDeClientes();
         }
+        private readonly IServicioDeClientes _servicioDeClientes;
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
         }
         private Clientes clientes;
-        private IServicioDeClientes _serviciosClientes;
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             if (ValidaDatos())
             {
                 if (!checkBoxEmpresa.Checked)
                 {
-                    var Clientecombo = (ClientesComboDto)comboCliente.SelectedItem;
-                    clientes = _serviciosClientes.GetClientePorId(Clientecombo.IdCliente);
+                    var clientePersona = _servicioDeClientes.GetClientePorId((int)comboCliente.SelectedValue);
+                    clientes = clientePersona;
                 }
                 else
                 {
-                    var ClienteEmpresacombo = (ClientesComboDto)comboEmpresa.SelectedItem;
-                    clientes = _serviciosClientes.GetClientePorId(ClienteEmpresacombo.IdCliente);
+                    var clienteEmpresa = _servicioDeClientes.GetClientePorId((int)comboEmpresa.SelectedValue);
+                    clientes = clienteEmpresa;
                 }
                 DialogResult = DialogResult.OK;
             }

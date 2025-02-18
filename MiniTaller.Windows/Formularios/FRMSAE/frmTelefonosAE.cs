@@ -21,17 +21,20 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         {
             InitializeComponent();
             _serviciosClientes = new ServicioDeClientes();
+            _servicioDeTipoDeTelefono= new ServicioDeTipoDeTelefono();
         }
         private IServicioDeClientes _serviciosClientes;
+        private IServicioDeTipoDeTelefono _servicioDeTipoDeTelefono;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             ComboHelper.CargarComboClientesPersonas(ref comboClientes);
             ComboHelper.CargarComboClientesEmpresas(ref comboEmpresa);
+            ComboHelper.CargarComboTipoDeTelefono(ref comboBoxTipoDeTelefono);
             if (telefonos != null)
             {
                 txtTelefono.Text = telefonos.Telefono;
-                txtTipoDeTelefono.Text = telefonos.TipoTelefono;
+                comboBoxTipoDeTelefono.SelectedValue = telefonos.IdTipoDeTelefono;
 
                 if (telefonos.IdCliente != 0)
                 {
@@ -85,10 +88,10 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 valido = false;
                 errorProvider1.SetError(txtTelefono, "Debe ingresar un Telefono");
             }
-            if (string.IsNullOrEmpty(txtTipoDeTelefono.Text))
+            if (comboBoxTipoDeTelefono.SelectedIndex==0)
             {
                 valido = false;
-                errorProvider1.SetError(txtTipoDeTelefono, "Debe ingresar un Tipo De Telefono");
+                errorProvider1.SetError(comboBoxTipoDeTelefono, "Debe seleccionar un Tipo De Telefono");
             }
             if (checkBoxEmpresa.Checked == true)
             {
@@ -135,7 +138,8 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     telefonos = new Telefonos();
                 }
                 telefonos.Telefono = txtTelefono.Text;
-                telefonos.TipoTelefono = txtTipoDeTelefono.Text;
+                telefonos.TipoDeTelefono = (TiposDeTelefono)comboBoxTipoDeTelefono.SelectedItem;
+                telefonos.IdTipoDeTelefono=(int)comboBoxTipoDeTelefono.SelectedValue;
                 if (checkBoxEmpresa.Checked == false)
                 {
                     telefonos.Cliente = _serviciosClientes.GetClientePorId(comboClientes.SelectedIndex);
@@ -166,5 +170,15 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             }
         }
 
+        private void btnAgregarTipoDeTelefono_Click(object sender, EventArgs e)
+        {
+            frmTipoDeTelefono frm = new frmTipoDeTelefono();
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                ComboHelper.CargarComboTipoDeTelefono(ref comboBoxTipoDeTelefono);
+                return;
+            }
+        }
     }
 }

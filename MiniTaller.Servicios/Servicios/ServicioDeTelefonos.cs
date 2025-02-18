@@ -45,11 +45,11 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public int GetCantidad(int? IdCliente, string texto = null)
+        public int GetCantidad(int? IdCliente, int? IdTipoDeTelefono)
         {
             try
             {
-                return _repo.GetCantidad(IdCliente, texto);
+                return _repo.GetCantidad(IdCliente, IdTipoDeTelefono);
             }
             catch (Exception)
             {
@@ -71,11 +71,11 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public List<TelefonosDto> GetTelefonosPorPagina(int registrosPorPagina, int paginaActual, int? IdCliente, string texto = null)
+        public List<TelefonosDto> GetTelefonosPorPagina(int registrosPorPagina, int paginaActual, int? IdCliente, int? IdTipoDeTelefono)
         {
             try
             {
-                return _repo.GetTelefonosPorPagina(registrosPorPagina, paginaActual, IdCliente, texto);
+                return _repo.GetTelefonosPorPagina(registrosPorPagina, paginaActual, IdCliente, IdTipoDeTelefono);
             }
             catch (Exception)
             {

@@ -65,5 +65,15 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             }
             return validar;
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTipoDePago_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

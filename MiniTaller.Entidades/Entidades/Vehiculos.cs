@@ -10,6 +10,7 @@ namespace MiniTaller.Entidades.Entidades
     {
         public int IdVehiculo { get; set; }
         public string Patente { get; set; }
+        public string Kilometros { get; set; }
         public int IdModelo { get; set; }
         public Modelos Modelo { get; set; }
         public int  IdTipoVehiculo { get; set; }

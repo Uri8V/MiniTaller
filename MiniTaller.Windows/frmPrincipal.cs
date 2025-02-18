@@ -87,5 +87,17 @@ namespace MiniTaller.Windows
             frmVehiculosServicios frm= new frmVehiculosServicios();
             frm.ShowDialog(this);
         }
+
+        private void btnTiposDeTelefono_Click(object sender, EventArgs e)
+        {
+            frmTipoDeTelefono frm= new frmTipoDeTelefono();
+            frm.ShowDialog(this);
+        }
+
+        private void btnObservaciones_Click(object sender, EventArgs e)
+        {
+            frmObservaciones frm = new frmObservaciones();
+            frm.ShowDialog(this);
+        }
     }
 }

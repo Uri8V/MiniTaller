@@ -76,6 +76,12 @@
     <Compile Include="Formularios\FRMSAE\frmModelosAE.Designer.cs">
       <DependentUpon>frmModelosAE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FRMSAE\frmObservacionesAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMSAE\frmObservacionesAE.Designer.cs">
+      <DependentUpon>frmObservacionesAE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FRMSAE\frmServiciosAE.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,12 @@
     </Compile>
     <Compile Include="Formularios\FRMSAE\frmTipoDePagoAE.Designer.cs">
       <DependentUpon>frmTipoDePagoAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FRMSAE\frmTipoDeTelefonoAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMSAE\frmTipoDeTelefonoAE.Designer.cs">
+      <DependentUpon>frmTipoDeTelefonoAE.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\FRMSAE\frmTipoDeVehiculoAE.cs">
       <SubType>Form</SubType>
@@ -117,6 +129,12 @@
     </Compile>
     <Compile Include="Formularios\FRMSAE\frmVehiculosServiciosAE.Designer.cs">
       <DependentUpon>frmVehiculosServiciosAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FRMSFILTROS\frmSeleccionarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMSFILTROS\frmSeleccionarCliente.Designer.cs">
+      <DependentUpon>frmSeleccionarCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\FRMSFILTROS\frmSeleccionarFecha.cs">
       <SubType>Form</SubType>
@@ -154,6 +172,12 @@
     <Compile Include="Formularios\FRMSFILTROS\frmSeleccionarTipoDePago.Designer.cs">
       <DependentUpon>frmSeleccionarTipoDePago.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FRMSFILTROS\frmSeleccionarTipoDeTelefono.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMSFILTROS\frmSeleccionarTipoDeTelefono.Designer.cs">
+      <DependentUpon>frmSeleccionarTipoDeTelefono.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FRMSFILTROS\frmSeleccionarTipoVehiculo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +214,12 @@
     <Compile Include="Formularios\FRMS\frmModelos.Designer.cs">
       <DependentUpon>frmModelos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FRMS\frmObservaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMS\frmObservaciones.Designer.cs">
+      <DependentUpon>frmObservaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FRMS\frmServicios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +237,12 @@
     </Compile>
     <Compile Include="Formularios\FRMS\frmTipoDePago.Designer.cs">
       <DependentUpon>frmTipoDePago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FRMS\frmTipoDeTelefono.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMS\frmTipoDeTelefono.Designer.cs">
+      <DependentUpon>frmTipoDeTelefono.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\FRMS\frmTipoDeVehiculo.cs">
       <SubType>Form</SubType>
@@ -242,6 +278,7 @@
     <Compile Include="Helpers\formHelper.cs" />
     <Compile Include="Helpers\GridHelpers.cs" />
     <Compile Include="Helpers\ImprimirHelper.cs" />
+    <Compile Include="Helpers\ValidadorPatente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formularios\FRMSAE\frmClientesAE.resx">
@@ -253,6 +290,9 @@
     <EmbeddedResource Include="Formularios\FRMSAE\frmModelosAE.resx">
       <DependentUpon>frmModelosAE.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FRMSAE\frmObservacionesAE.resx">
+      <DependentUpon>frmObservacionesAE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMSAE\frmServiciosAE.resx">
       <DependentUpon>frmServiciosAE.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMSAE\frmTipoDePagoAE.resx">
       <DependentUpon>frmTipoDePagoAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FRMSAE\frmTipoDeTelefonoAE.resx">
+      <DependentUpon>frmTipoDeTelefonoAE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMSAE\frmTipoDeVehiculoAE.resx">
       <DependentUpon>frmTipoDeVehiculoAE.cs</DependentUpon>
@@ -273,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMSAE\frmVehiculosServiciosAE.resx">
       <DependentUpon>frmVehiculosServiciosAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FRMSFILTROS\frmSeleccionarCliente.resx">
+      <DependentUpon>frmSeleccionarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMSFILTROS\frmSeleccionarFecha.resx">
       <DependentUpon>frmSeleccionarFecha.cs</DependentUpon>
@@ -292,6 +338,9 @@
     <EmbeddedResource Include="Formularios\FRMSFILTROS\frmSeleccionarTipoDePago.resx">
       <DependentUpon>frmSeleccionarTipoDePago.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FRMSFILTROS\frmSeleccionarTipoDeTelefono.resx">
+      <DependentUpon>frmSeleccionarTipoDeTelefono.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMSFILTROS\frmSeleccionarTipoVehiculo.resx">
       <DependentUpon>frmSeleccionarTipoVehiculo.cs</DependentUpon>
     </EmbeddedResource>
@@ -310,6 +359,9 @@
     <EmbeddedResource Include="Formularios\FRMS\frmModelos.resx">
       <DependentUpon>frmModelos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FRMS\frmObservaciones.resx">
+      <DependentUpon>frmObservaciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMS\frmServicios.resx">
       <DependentUpon>frmServicios.cs</DependentUpon>
     </EmbeddedResource>
@@ -318,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMS\frmTipoDePago.resx">
       <DependentUpon>frmTipoDePago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FRMS\frmTipoDeTelefono.resx">
+      <DependentUpon>frmTipoDeTelefono.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMS\frmTipoDeVehiculo.resx">
       <DependentUpon>frmTipoDeVehiculo.cs</DependentUpon>
@@ -440,6 +495,8 @@
       <Name>MiniTaller.Servicios</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\mobiles_32px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

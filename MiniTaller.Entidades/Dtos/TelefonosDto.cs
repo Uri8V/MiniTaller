@@ -11,7 +11,7 @@ namespace MiniTaller.Entidades.Dtos
     {
         public int IdTelefono { get; set; }
         public string Telefono { get; set; }
-        public string TipoTelefono { get; set; }
+        public string Tipo { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Documento { get; set; }

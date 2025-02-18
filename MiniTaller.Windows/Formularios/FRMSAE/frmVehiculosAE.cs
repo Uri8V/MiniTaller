@@ -33,6 +33,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             if (vehiculos != null)
             {
                 txtPatente.Text = vehiculos.Patente;
+                txtKilometros.Text = vehiculos.Kilometros;
                 comboModelo.SelectedValue = vehiculos.IdModelo;
                 comboTipoVehiculo.SelectedValue = vehiculos.IdTipoVehiculo;
             }
@@ -63,6 +64,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     vehiculos = new Vehiculos();
                 }
                 vehiculos.Patente = txtPatente.Text;
+                vehiculos.Kilometros = txtKilometros.Text;
                 vehiculos.TipoDeVehiculo = (TiposDeVehiculos)comboTipoVehiculo.SelectedItem;
                 vehiculos.IdTipoVehiculo = (int)comboTipoVehiculo.SelectedValue;
                 ModelosComboDto modeloaSeleccionado = (ModelosComboDto)comboModelo.SelectedItem;
@@ -72,7 +74,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 DialogResult = DialogResult.OK;
             }
         }
-
+        
         private bool ValidarDatos()
         {
             errorProvider1.Clear();
@@ -81,6 +83,16 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             {
                 errorProvider1.SetError(txtPatente, "Debe ingresar una patente");
                 valid = false;
+            }
+            else if (ValidadorPatente.Validar(txtPatente.Text) == false)
+            {
+                valid = false;
+                errorProvider1.SetError(txtPatente, "La patente agregada no es valida");
+            }
+            if (string.IsNullOrEmpty(txtKilometros.Text))
+            {
+                valid = false;
+                errorProvider1.SetError(txtKilometros, "Debe ingresar un Kilometraje");
             }
             if (comboModelo.SelectedIndex == 0)
             {

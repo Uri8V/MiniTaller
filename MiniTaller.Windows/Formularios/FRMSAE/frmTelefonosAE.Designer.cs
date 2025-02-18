@@ -36,12 +36,13 @@
             this.comboClientes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtTipoDeTelefono = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.comboBoxTipoDeTelefono = new System.Windows.Forms.ComboBox();
+            this.btnAgregarTipoDeTelefono = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +70,7 @@
             // 
             this.comboEmpresa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboEmpresa.FormattingEnabled = true;
-            this.comboEmpresa.Location = new System.Drawing.Point(166, 95);
+            this.comboEmpresa.Location = new System.Drawing.Point(162, 95);
             this.comboEmpresa.Name = "comboEmpresa";
             this.comboEmpresa.Size = new System.Drawing.Size(209, 21);
             this.comboEmpresa.TabIndex = 37;
@@ -96,7 +97,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(284, 24);
+            this.label2.Location = new System.Drawing.Point(182, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 31;
@@ -111,17 +112,10 @@
             this.label4.TabIndex = 29;
             this.label4.Text = "Clientes:";
             // 
-            // txtTipoDeTelefono
-            // 
-            this.txtTipoDeTelefono.Location = new System.Drawing.Point(381, 21);
-            this.txtTipoDeTelefono.Name = "txtTipoDeTelefono";
-            this.txtTipoDeTelefono.Size = new System.Drawing.Size(100, 20);
-            this.txtTipoDeTelefono.TabIndex = 30;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 24);
+            this.label1.Location = new System.Drawing.Point(6, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 27;
@@ -129,14 +123,14 @@
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(87, 21);
+            this.txtTelefono.Location = new System.Drawing.Point(64, 25);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(100, 20);
             this.txtTelefono.TabIndex = 26;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(235, 142);
+            this.btnCancelar.Location = new System.Drawing.Point(291, 135);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 49);
             this.btnCancelar.TabIndex = 24;
@@ -146,7 +140,7 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(100, 142);
+            this.btnConfirmar.Location = new System.Drawing.Point(168, 135);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(87, 49);
             this.btnConfirmar.TabIndex = 25;
@@ -158,12 +152,33 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // comboBoxTipoDeTelefono
+            // 
+            this.comboBoxTipoDeTelefono.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTipoDeTelefono.FormattingEnabled = true;
+            this.comboBoxTipoDeTelefono.Location = new System.Drawing.Point(279, 25);
+            this.comboBoxTipoDeTelefono.Name = "comboBoxTipoDeTelefono";
+            this.comboBoxTipoDeTelefono.Size = new System.Drawing.Size(194, 21);
+            this.comboBoxTipoDeTelefono.TabIndex = 40;
+            // 
+            // btnAgregarTipoDeTelefono
+            // 
+            this.btnAgregarTipoDeTelefono.Image = global::MiniTaller.Windows.Properties.Resources.add_32px;
+            this.btnAgregarTipoDeTelefono.Location = new System.Drawing.Point(479, 11);
+            this.btnAgregarTipoDeTelefono.Name = "btnAgregarTipoDeTelefono";
+            this.btnAgregarTipoDeTelefono.Size = new System.Drawing.Size(53, 47);
+            this.btnAgregarTipoDeTelefono.TabIndex = 41;
+            this.btnAgregarTipoDeTelefono.UseVisualStyleBackColor = true;
+            this.btnAgregarTipoDeTelefono.Click += new System.EventHandler(this.btnAgregarTipoDeTelefono_Click);
+            // 
             // frmTelefonosAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 196);
+            this.ClientSize = new System.Drawing.Size(542, 196);
             this.ControlBox = false;
+            this.Controls.Add(this.btnAgregarTipoDeTelefono);
+            this.Controls.Add(this.comboBoxTipoDeTelefono);
             this.Controls.Add(this.checkBoxEmpresa);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboEmpresa);
@@ -171,12 +186,10 @@
             this.Controls.Add(this.comboClientes);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtTipoDeTelefono);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
-            this.MaximumSize = new System.Drawing.Size(515, 235);
             this.MinimumSize = new System.Drawing.Size(515, 235);
             this.Name = "frmTelefonosAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -197,11 +210,12 @@
         private System.Windows.Forms.ComboBox comboClientes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtTipoDeTelefono;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ComboBox comboBoxTipoDeTelefono;
+        private System.Windows.Forms.Button btnAgregarTipoDeTelefono;
     }
 }

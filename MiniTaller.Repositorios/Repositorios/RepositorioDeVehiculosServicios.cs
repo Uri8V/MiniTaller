@@ -31,12 +31,12 @@ namespace MiniTaller.Repositorios.Repositorios
             }
         }
 
-        public void Borrar(int IdVehiculoServicios)
+        public void Borrar(int IdVehiculoServicio)
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string deleteQuery = "DELETE FROM VehiculosServicios WHERE IdVehiculosSevicios=@IdVehiculosSevicios";
-                conn.Execute(deleteQuery, new { IdVehiculosSevicios = IdVehiculoServicios });
+                string deleteQuery = "DELETE FROM VehiculosServicios WHERE IdVehiculoServicio=@IdVehiculoServicio";
+                conn.Execute(deleteQuery, new { IdVehiculoServicio = IdVehiculoServicio });
             }
         }
 
@@ -151,7 +151,7 @@ namespace MiniTaller.Repositorios.Repositorios
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
                 StringBuilder selectQuery = new StringBuilder();
-                selectQuery.AppendLine("SELECT vs.IdVehiculoServicio, v.Patente, s.Servicio, s.Debe as DebeServicio, c.Apellido, c.Nombre,c.Documento,c.CUIT,vs.Descripcion,vs.Debe,vs.Haber,vs.Fecha");
+                selectQuery.AppendLine("SELECT vs.IdVehiculoServicio, v.Patente, v.Kilometros, s.Servicio, s.Debe as DebeServicio, c.Apellido, c.Nombre,c.Documento,c.CUIT,vs.Descripcion,vs.Debe,vs.Haber,vs.Fecha");
 
                 selectQuery.AppendLine("FROM VehiculosServicios vs");
                 selectQuery.AppendLine("INNER JOIN Vehiculos v ON v.IdVehiculo=vs.IdVehiculo");

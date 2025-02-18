@@ -10,7 +10,8 @@ namespace MiniTaller.Entidades.Entidades
     {
         public int IdTelefono { get; set; }
         public string Telefono { get; set; }
-        public string TipoTelefono { get; set; }
+        public int IdTipoDeTelefono { get; set; }
+        public TiposDeTelefono TipoDeTelefono { get; set; }
         public int IdCliente { get; set; }
         public Clientes Cliente { get; set; }
     }

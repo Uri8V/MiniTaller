@@ -26,8 +26,8 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"INSERT INTO Vehiculos (Patente, IdModelo, IdTipoVehiculo) 
-                                    Values (UPPER(@Patente), @IdModelo, @IdTipoVehiculo); SELECT SCOPE_IDENTITY();";
+                string selectQuery = @"INSERT INTO Vehiculos (Patente, Kilometros,IdModelo, IdTipoVehiculo) 
+                                    Values (UPPER(@Patente), @Kilometros, @IdModelo, @IdTipoVehiculo); SELECT SCOPE_IDENTITY();";
                 int id = conn.ExecuteScalar<int>(selectQuery, vehiculos);
                 vehiculos.IdVehiculo = id;
             }
@@ -46,7 +46,7 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string updateQuery = @"UPDATE Vehiculos SET Patente=UPPER(@Patente), IdModelo=@IdModelo, IdTipoVehiculo=@IdTipoVehiculo
+                string updateQuery = @"UPDATE Vehiculos SET Patente=UPPER(@Patente), Kilometros=@Kilometros, IdModelo=@IdModelo, IdTipoVehiculo=@IdTipoVehiculo
                 WHERE IdVehiculo=@IdVehiculo";
                 conn.Execute(updateQuery, vehiculos);
             }
@@ -134,7 +134,7 @@ namespace MiniTaller.Repositorios.Repositorios
             Vehiculos vehiculo = null;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT IdVehiculo, Patente, IdTipoVehiculo, IdModelo 
+                string selectQuery = @"SELECT IdVehiculo, Patente, Kilometros, IdTipoVehiculo, IdModelo 
                     FROM Vehiculos WHERE IdVehiculo=@IdVehiculo";
                 vehiculo = conn.QuerySingleOrDefault<Vehiculos>(selectQuery,
                     new { IdVehiculo = IdVehiculo });
@@ -151,7 +151,7 @@ namespace MiniTaller.Repositorios.Repositorios
                 selectQuery.AppendLine("SELECT");
                 selectQuery.AppendLine("v.IdVehiculo,");
                 selectQuery.AppendLine("v.Patente,");
-                //selectQuery.AppendLine("v.Kilometros,");
+                selectQuery.AppendLine("v.Kilometros,");
                 selectQuery.AppendLine("t.Tipo,");
                 selectQuery.AppendLine("m.Modelo");
                 selectQuery.AppendLine("FROM Vehiculos v");

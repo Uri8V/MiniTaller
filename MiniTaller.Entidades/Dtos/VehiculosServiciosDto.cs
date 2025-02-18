@@ -21,6 +21,7 @@ namespace MiniTaller.Entidades.Dtos
         public decimal Debe { get; set; }
         public decimal Haber { get; set; }
         public DateTime Fecha { get; set; }
+        public string Kilometros { get; set; }
 
         public object Clone()
         {

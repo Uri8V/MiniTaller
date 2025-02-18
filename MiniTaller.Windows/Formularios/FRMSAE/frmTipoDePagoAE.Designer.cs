@@ -44,6 +44,7 @@
             this.txtTipoDePago.Name = "txtTipoDePago";
             this.txtTipoDePago.Size = new System.Drawing.Size(211, 20);
             this.txtTipoDePago.TabIndex = 10;
+            this.txtTipoDePago.TextChanged += new System.EventHandler(this.txtTipoDePago_TextChanged);
             // 
             // label1
             // 
@@ -53,6 +54,7 @@
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Tipo de Pago:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnCerrar
             // 

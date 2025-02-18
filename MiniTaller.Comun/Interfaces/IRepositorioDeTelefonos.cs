@@ -15,8 +15,8 @@ namespace MiniTaller.Comun.Interfaces
         void Borrar(int telefonoId);
         void Editar(Telefonos telefono);
         bool Existe(Telefonos telefono);
-        int GetCantidad(int? IdCliente, string texto = null);
-        List<TelefonosDto> GetTelefonosPorPagina(int registrosPorPagina, int paginaActual, int? IdCliente, string texto = null);
+        int GetCantidad(int? IdCliente, int? IdTipoDeTelefono);
+        List<TelefonosDto> GetTelefonosPorPagina(int registrosPorPagina, int paginaActual, int? IdCliente, int? IdTipoDeTelefono);
         Telefonos GetTelefonoPorId(int IdTelefono);
     }
 }

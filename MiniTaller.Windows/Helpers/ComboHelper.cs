@@ -17,6 +17,21 @@ namespace MiniTaller.Windows.Helpers
 {
     public class ComboHelper
     {
+        public static void CargarComboTipoDeTelefono(ref ComboBox combo)
+        {
+            IServicioDeTipoDeTelefono serviciosTiposDeTelefono = new ServicioDeTipoDeTelefono();
+            var lista = serviciosTiposDeTelefono.GetTiposDeTelefono();
+            var defaultTipo = new TiposDeTelefono()
+            {
+                IdTipoDeTelefono = 0,
+                Tipo = "Seleccione el Tipo de Telefono"
+            };
+            lista.Insert(0, defaultTipo);
+            combo.DataSource = lista;
+            combo.DisplayMember = "Tipo";
+            combo.ValueMember = "IdTipoDeTelefono";
+            combo.SelectedIndex = 0;
+        }
         public static void CargarComboTipoCliente(ref ComboBox combo)
         {
             IServicioDeTipoCliente serviciosTipoCliente = new ServicioDeTipoCliente();

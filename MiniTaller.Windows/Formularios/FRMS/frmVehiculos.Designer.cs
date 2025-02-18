@@ -30,9 +30,6 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.colPatente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTipoDeVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnUltimo = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnAnterior = new System.Windows.Forms.Button();
@@ -53,6 +50,10 @@
             this.modeloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoDeVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButtonActualizar = new System.Windows.Forms.ToolStripButton();
+            this.colPatente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTipoDeVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKilometros = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -96,7 +97,8 @@
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPatente,
             this.colTipoDeVehiculo,
-            this.colModelo});
+            this.colModelo,
+            this.colKilometros});
             this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDatos.Location = new System.Drawing.Point(0, 0);
             this.dgvDatos.MultiSelect = false;
@@ -105,27 +107,6 @@
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(700, 324);
             this.dgvDatos.TabIndex = 2;
-            // 
-            // colPatente
-            // 
-            this.colPatente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPatente.HeaderText = "Patente";
-            this.colPatente.Name = "colPatente";
-            this.colPatente.ReadOnly = true;
-            // 
-            // colTipoDeVehiculo
-            // 
-            this.colTipoDeVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colTipoDeVehiculo.HeaderText = "Tipo de Vehiculo";
-            this.colTipoDeVehiculo.Name = "colTipoDeVehiculo";
-            this.colTipoDeVehiculo.ReadOnly = true;
-            // 
-            // colModelo
-            // 
-            this.colModelo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colModelo.HeaderText = "Modelo";
-            this.colModelo.Name = "colModelo";
-            this.colModelo.ReadOnly = true;
             // 
             // btnUltimo
             // 
@@ -328,6 +309,34 @@
             this.toolStripButtonActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonActualizar.Click += new System.EventHandler(this.toolStripButtonActualizar_Click);
             // 
+            // colPatente
+            // 
+            this.colPatente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPatente.HeaderText = "Patente";
+            this.colPatente.Name = "colPatente";
+            this.colPatente.ReadOnly = true;
+            // 
+            // colTipoDeVehiculo
+            // 
+            this.colTipoDeVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colTipoDeVehiculo.HeaderText = "Tipo de Vehiculo";
+            this.colTipoDeVehiculo.Name = "colTipoDeVehiculo";
+            this.colTipoDeVehiculo.ReadOnly = true;
+            // 
+            // colModelo
+            // 
+            this.colModelo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colModelo.HeaderText = "Modelo";
+            this.colModelo.Name = "colModelo";
+            this.colModelo.ReadOnly = true;
+            // 
+            // colKilometros
+            // 
+            this.colKilometros.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colKilometros.HeaderText = "Kilometros";
+            this.colKilometros.Name = "colKilometros";
+            this.colKilometros.ReadOnly = true;
+            // 
             // frmVehiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,5 +391,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colPatente;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipoDeVehiculo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colModelo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colKilometros;
     }
 }

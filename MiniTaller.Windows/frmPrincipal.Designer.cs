@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnTiposDetelefonos = new System.Windows.Forms.Button();
             this.btnTiposClientes = new System.Windows.Forms.Button();
             this.btnTipoDePago = new System.Windows.Forms.Button();
             this.btnTelefonos = new System.Windows.Forms.Button();
@@ -39,7 +40,21 @@
             this.btnModelos = new System.Windows.Forms.Button();
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnObservaciones = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnTiposDetelefonos
+            // 
+            this.btnTiposDetelefonos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTiposDetelefonos.Image = global::MiniTaller.Windows.Properties.Resources.mobiles_32px;
+            this.btnTiposDetelefonos.Location = new System.Drawing.Point(12, 222);
+            this.btnTiposDetelefonos.Name = "btnTiposDetelefonos";
+            this.btnTiposDetelefonos.Size = new System.Drawing.Size(109, 65);
+            this.btnTiposDetelefonos.TabIndex = 18;
+            this.btnTiposDetelefonos.Text = "Tipos De Telefono";
+            this.btnTiposDetelefonos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnTiposDetelefonos.UseVisualStyleBackColor = true;
+            this.btnTiposDetelefonos.Click += new System.EventHandler(this.btnTiposDeTelefono_Click);
             // 
             // btnTiposClientes
             // 
@@ -185,12 +200,27 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // btnObservaciones
+            // 
+            this.btnObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObservaciones.Image = global::MiniTaller.Windows.Properties.Resources.search_32px;
+            this.btnObservaciones.Location = new System.Drawing.Point(240, 249);
+            this.btnObservaciones.Name = "btnObservaciones";
+            this.btnObservaciones.Size = new System.Drawing.Size(110, 68);
+            this.btnObservaciones.TabIndex = 19;
+            this.btnObservaciones.Text = "Observaciones a Vehiculos";
+            this.btnObservaciones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnObservaciones.UseVisualStyleBackColor = true;
+            this.btnObservaciones.Click += new System.EventHandler(this.btnObservaciones_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(548, 337);
             this.ControlBox = false;
+            this.Controls.Add(this.btnObservaciones);
+            this.Controls.Add(this.btnTiposDetelefonos);
             this.Controls.Add(this.btnTiposClientes);
             this.Controls.Add(this.btnTipoDePago);
             this.Controls.Add(this.btnTelefonos);
@@ -224,6 +254,8 @@
         private System.Windows.Forms.Button btnModelos;
         private System.Windows.Forms.Button btnMarcas;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnTiposDetelefonos;
+        private System.Windows.Forms.Button btnObservaciones;
     }
 }
 

@@ -40,13 +40,15 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtKilometros = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAgregarTipoVehiculo
             // 
             this.btnAgregarTipoVehiculo.Image = global::MiniTaller.Windows.Properties.Resources.add_32px;
-            this.btnAgregarTipoVehiculo.Location = new System.Drawing.Point(372, 130);
+            this.btnAgregarTipoVehiculo.Location = new System.Drawing.Point(371, 103);
             this.btnAgregarTipoVehiculo.Name = "btnAgregarTipoVehiculo";
             this.btnAgregarTipoVehiculo.Size = new System.Drawing.Size(48, 42);
             this.btnAgregarTipoVehiculo.TabIndex = 22;
@@ -56,7 +58,7 @@
             // btnAgregarModelo
             // 
             this.btnAgregarModelo.Image = global::MiniTaller.Windows.Properties.Resources.add_32px;
-            this.btnAgregarModelo.Location = new System.Drawing.Point(372, 58);
+            this.btnAgregarModelo.Location = new System.Drawing.Point(371, 46);
             this.btnAgregarModelo.Name = "btnAgregarModelo";
             this.btnAgregarModelo.Size = new System.Drawing.Size(48, 42);
             this.btnAgregarModelo.TabIndex = 23;
@@ -67,7 +69,7 @@
             // 
             this.comboTipoVehiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTipoVehiculo.FormattingEnabled = true;
-            this.comboTipoVehiculo.Location = new System.Drawing.Point(172, 142);
+            this.comboTipoVehiculo.Location = new System.Drawing.Point(171, 115);
             this.comboTipoVehiculo.Name = "comboTipoVehiculo";
             this.comboTipoVehiculo.Size = new System.Drawing.Size(176, 21);
             this.comboTipoVehiculo.TabIndex = 20;
@@ -76,14 +78,14 @@
             // 
             this.comboModelo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboModelo.FormattingEnabled = true;
-            this.comboModelo.Location = new System.Drawing.Point(172, 70);
+            this.comboModelo.Location = new System.Drawing.Point(171, 58);
             this.comboModelo.Name = "comboModelo";
             this.comboModelo.Size = new System.Drawing.Size(176, 21);
             this.comboModelo.TabIndex = 21;
             // 
             // txtPatente
             // 
-            this.txtPatente.Location = new System.Drawing.Point(112, 11);
+            this.txtPatente.Location = new System.Drawing.Point(103, 11);
             this.txtPatente.Name = "txtPatente";
             this.txtPatente.Size = new System.Drawing.Size(100, 20);
             this.txtPatente.TabIndex = 19;
@@ -91,7 +93,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 145);
+            this.label4.Location = new System.Drawing.Point(8, 118);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(157, 13);
             this.label4.TabIndex = 14;
@@ -100,7 +102,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 73);
+            this.label2.Location = new System.Drawing.Point(8, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(112, 13);
             this.label2.TabIndex = 15;
@@ -109,7 +111,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 14);
+            this.label1.Location = new System.Drawing.Point(4, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(93, 13);
             this.label1.TabIndex = 17;
@@ -117,7 +119,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(251, 189);
+            this.btnCancelar.Location = new System.Drawing.Point(250, 162);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(85, 51);
             this.btnCancelar.TabIndex = 12;
@@ -127,7 +129,7 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(104, 189);
+            this.btnConfirmar.Location = new System.Drawing.Point(103, 162);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(92, 51);
             this.btnConfirmar.TabIndex = 13;
@@ -139,12 +141,30 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // txtKilometros
+            // 
+            this.txtKilometros.Location = new System.Drawing.Point(322, 11);
+            this.txtKilometros.Name = "txtKilometros";
+            this.txtKilometros.Size = new System.Drawing.Size(100, 20);
+            this.txtKilometros.TabIndex = 25;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(209, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 13);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Ingrese el Kilometraje";
+            // 
             // frmVehiculosAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 255);
+            this.ClientSize = new System.Drawing.Size(428, 221);
             this.ControlBox = false;
+            this.Controls.Add(this.txtKilometros);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAgregarTipoVehiculo);
             this.Controls.Add(this.btnAgregarModelo);
             this.Controls.Add(this.comboTipoVehiculo);
@@ -155,8 +175,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
-            this.MaximumSize = new System.Drawing.Size(450, 294);
-            this.MinimumSize = new System.Drawing.Size(450, 294);
+            this.MaximumSize = new System.Drawing.Size(444, 260);
+            this.MinimumSize = new System.Drawing.Size(444, 260);
             this.Name = "frmVehiculosAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmVehiculosAE";
@@ -179,5 +199,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox txtKilometros;
+        private System.Windows.Forms.Label label3;
     }
 }

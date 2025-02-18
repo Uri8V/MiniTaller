@@ -50,6 +50,8 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 54);
+            this.splitContainer1.MaximumSize = new System.Drawing.Size(273, 125);
+            this.splitContainer1.MinimumSize = new System.Drawing.Size(273, 125);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -61,8 +63,9 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.txtCantidadTiposPago);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 396);
-            this.splitContainer1.SplitterDistance = 326;
+            this.splitContainer1.Panel2.Enabled = false;
+            this.splitContainer1.Size = new System.Drawing.Size(273, 125);
+            this.splitContainer1.SplitterDistance = 67;
             this.splitContainer1.TabIndex = 5;
             // 
             // dgvDatos
@@ -78,7 +81,7 @@
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDatos.Size = new System.Drawing.Size(800, 326);
+            this.dgvDatos.Size = new System.Drawing.Size(273, 67);
             this.dgvDatos.TabIndex = 0;
             // 
             // colTipoPago
@@ -116,7 +119,7 @@
             this.toolStripButtonEditar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 54);
+            this.toolStrip1.Size = new System.Drawing.Size(273, 54);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -169,10 +172,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(273, 179);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
+            this.MaximumSize = new System.Drawing.Size(289, 218);
+            this.MinimumSize = new System.Drawing.Size(289, 218);
             this.Name = "frmTipoDePago";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTipoDePago";

@@ -61,9 +61,11 @@
     <Compile Include="Repositorios\RepositorioDeClientes.cs" />
     <Compile Include="Repositorios\RepositorioDeMarcas.cs" />
     <Compile Include="Repositorios\RepositorioDeModelos.cs" />
+    <Compile Include="Repositorios\RepositorioDeObservaciones.cs" />
     <Compile Include="Repositorios\RepositorioDeServicios.cs" />
     <Compile Include="Repositorios\RepositorioDeTelefonos.cs" />
     <Compile Include="Repositorios\RepositorioDeTipoDeCliente.cs" />
+    <Compile Include="Repositorios\RepositorioDeTipoDeTelefono.cs" />
     <Compile Include="Repositorios\RepositorioDeTiposDePagos.cs" />
     <Compile Include="Repositorios\RepositorioDeTiposDeVehiculos.cs" />
     <Compile Include="Repositorios\RepositorioDeVehiculos.cs" />

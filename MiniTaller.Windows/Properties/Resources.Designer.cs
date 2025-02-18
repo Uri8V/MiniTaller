@@ -193,6 +193,16 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mobiles_32px {
+            get {
+                object obj = ResourceManager.GetObject("mobiles_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap models_32_px {
             get {
                 object obj = ResourceManager.GetObject("models_32_px", resourceCulture);

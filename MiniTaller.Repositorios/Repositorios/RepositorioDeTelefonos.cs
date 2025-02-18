@@ -25,8 +25,8 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"INSERT INTO Telefonos (IdCliente, Telefono, TipoTelefono) 
-                                    Values (@IdCliente, @Telefono, @TipoTelefono); SELECT SCOPE_IDENTITY();";
+                string selectQuery = @"INSERT INTO Telefonos (IdCliente, Telefono, IdTipoDeTelefono) 
+                                    Values (@IdCliente, @Telefono, @IdTipoDeTelefono); SELECT SCOPE_IDENTITY();";
                 int id = conn.ExecuteScalar<int>(selectQuery, telefono);
                 telefono.IdTelefono = id;
             }
@@ -45,7 +45,7 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string updateQuery = @"UPDATE Telefonos SET IdCliente=@IdCliente, Telefono=@Telefono, TipoTelefono=@TipoTelefono 
+                string updateQuery = @"UPDATE Telefonos SET IdCliente=@IdCliente, Telefono=@Telefono, IdTipoDeTelefono=@IdTipoDeTelefono 
                 WHERE IdTelefono=@IdTelefono";
                 conn.Execute(updateQuery, telefono);
             }
@@ -60,44 +60,43 @@ namespace MiniTaller.Repositorios.Repositorios
                 if (telefono.IdTelefono == 0)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM Telefonos 
-                            WHERE Telefono=@Telefono AND TipoTelefono=@TipoTelefono AND IdCliente=@IdCliente";
+                            WHERE Telefono=@Telefono AND IdTipoDeTelefono=@IdTipoDeTelefono AND IdCliente=@IdCliente";
                     cantidad = conn.ExecuteScalar<int>(
-                        selectQuery, new { Telefono = telefono.Telefono, TipoTelefono = telefono.TipoTelefono, IdCliente = telefono.IdCliente });
+                        selectQuery, new { Telefono = telefono.Telefono, IdTipoDeTelefono = telefono.IdTipoDeTelefono, IdCliente = telefono.IdCliente });
 
                 }
                 else
                 {
                     selectQuery = @"SELECT COUNT(*) FROM Telefonos 
-                            WHERE Telefono=@Telefono AND TipoTelefono=@TipoTelefono AND IdCliente=@IdCliente AND IdTelefono!=@IdTelefono";
+                            WHERE Telefono=@Telefono AND IdTipoDeTelefono=@IdTipoDeTelefono AND IdCliente=@IdCliente AND IdTelefono!=@IdTelefono";
                     cantidad = conn.ExecuteScalar<int>(
-                        selectQuery, new { Telefono = telefono.Telefono, TipoTelefono = telefono.TipoTelefono, IdCliente = telefono.IdCliente, IdTelefono = telefono.IdTelefono });
+                        selectQuery, new { Telefono = telefono.Telefono, IdTipoDeTelefono = telefono.IdTipoDeTelefono, IdCliente = telefono.IdCliente, IdTelefono = telefono.IdTelefono });
                 }
             }
             return cantidad > 0;
         }
 
-        public int GetCantidad(int? IdCliente, string texto = null)
+        public int GetCantidad(int? IdCliente, int? IdTipoDeTelefono)
         {
             int cantidad = 0;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
                 string selectQuery;
-                if (IdCliente == null && texto == null)
+                if (IdCliente == null && IdTipoDeTelefono == null)
                 {
                     selectQuery = "SELECT COUNT(*) FROM Telefonos";
                     cantidad = conn.ExecuteScalar<int>(selectQuery);
                 }
-                else if  (texto == null && IdCliente!=null)
+                else if  (IdTipoDeTelefono == null && IdCliente!=null)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM Telefonos 
                         WHERE IdCliente=@IdCliente";
                     cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdCliente = IdCliente });
                 }
-                else if(IdCliente==null&& texto!=null)
+                else if(IdCliente==null && IdTipoDeTelefono != null)
                 {
-                    selectQuery = "SELECT COUNT(*) FROM Telefonos WHERE TipoTelefono LIKE @texto ";
-                    texto = $"%{texto}%";
-                    cantidad = conn.ExecuteScalar<int>(selectQuery, new { texto });
+                    selectQuery = "SELECT COUNT(*) FROM Telefonos WHERE IdTipoDeTelefono=@IdTipoDeTelefono ";
+                    cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdTipoDeTelefono= IdTipoDeTelefono });
                 }
             }
             return cantidad;
@@ -109,7 +108,7 @@ namespace MiniTaller.Repositorios.Repositorios
             Telefonos telefonos = null;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT IdTelefono, IdCliente, Telefono, TipoTelefono 
+                string selectQuery = @"SELECT IdTelefono, IdCliente, Telefono, IdTipoDeTelefono 
                     FROM Telefonos WHERE IdTelefono=@IdTelefono";
                 telefonos = conn.QuerySingleOrDefault<Telefonos>(selectQuery,
                     new { IdTelefono = IdTelefono });
@@ -117,27 +116,27 @@ namespace MiniTaller.Repositorios.Repositorios
             return telefonos;
         }
 
-        public List<TelefonosDto> GetTelefonosPorPagina(int registrosPorPagina, int paginaActual, int? IdCliente, string texto = null)
+        public List<TelefonosDto> GetTelefonosPorPagina(int registrosPorPagina, int paginaActual, int? IdCliente, int? IdTipoDeTelefono)
         {
             List<TelefonosDto> lista = new List<TelefonosDto>();
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
                 StringBuilder selectQuery = new StringBuilder();
-                selectQuery.AppendLine("SELECT t.IdTelefono, c.CUIT, c.Documento, c.Nombre, c.Apellido, t.Telefono, t.TipoTelefono");
+                selectQuery.AppendLine("SELECT t.IdTelefono, c.CUIT, c.Documento, c.Nombre, c.Apellido, t.Telefono, tt.Tipo");
                 selectQuery.AppendLine("FROM Telefonos t");
                 selectQuery.AppendLine("INNER JOIN Clientes c ON c.IdCliente = t.IdCliente");
+                selectQuery.AppendLine("INNER JOIN TiposDeTelefono tt ON t.IdTipoDeTelefono=tt.IdTipoDeTelefono");
 
-                if (IdCliente != null  || texto != null)
+                if (IdCliente != null  || IdTipoDeTelefono != null)
                 {
-                    selectQuery.AppendLine("WHERE c.IdCLiente = @clienteid OR t.TipoTelefono LIKE @texto ");
+                    selectQuery.AppendLine("WHERE c.IdCLiente = @IdCliente OR tt.IdTipoDeTelefono=@IdTipoDeTelefono ");
                 }
                 selectQuery.AppendLine("ORDER BY c.Apellido");
                 selectQuery.AppendLine("OFFSET @cantidadRegistros ROWS FETCH NEXT @CantidadPorPagina ROWS ONLY");
 
-                texto = $"%{texto}%";
                 var parametros = new
                 {
-                    texto,
+                    IdTipoDeTelefono,
                     IdCliente,
                     cantidadRegistros = registrosPorPagina * (paginaActual - 1),
                     cantidadPorPagina = registrosPorPagina

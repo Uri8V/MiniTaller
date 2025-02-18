@@ -11,6 +11,7 @@ namespace MiniTaller.Entidades.Dtos
     {
         public int IdVehiculo { get; set; }
         public string Patente { get; set; }
+        public string Kilometros { get; set; }
         public string Modelo { get; set; }
         public string Tipo { get; set; }
         public object Clone()

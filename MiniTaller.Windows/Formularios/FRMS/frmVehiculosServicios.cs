@@ -75,14 +75,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
 
         private void MostrarPaginado()
         {
-            if (IdVehiculo == null && IDMovimiento == null && IdCliente == null && fecha == null)
-            {
-                lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha);
-            }
-            else
-            {
-                lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha);
-            }
+           lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha);
             MostrarDatosEnGrilla();
         }
 
@@ -374,5 +367,9 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
         }
 
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            toolStripTextBox1.Text = "";
+        }
     }
 }

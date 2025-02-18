@@ -40,6 +40,9 @@ namespace MiniTaller.Windows.Helpers
                 case TiposClientes tipos:
                     r.Cells[0].Value = tipos.Tipo;
                     break;
+                case TiposDeTelefono tipos:
+                    r.Cells[0].Value = tipos.Tipo;
+                    break;
                 case ServiciosDto servicio:
                     r.Cells[0].Value = servicio.Servicio;
                     r.Cells[1].Value = servicio.Debe;
@@ -61,6 +64,7 @@ namespace MiniTaller.Windows.Helpers
                     r.Cells[0].Value = vehiculo.Patente;
                     r.Cells[1].Value = vehiculo.Tipo;
                     r.Cells[2].Value = vehiculo.Modelo;
+                    r.Cells[3].Value = vehiculo.Kilometros;
                     break;
                 case TelefonosDto telefono:
 
@@ -73,7 +77,7 @@ namespace MiniTaller.Windows.Helpers
                         r.Cells[0].Value = $"{telefono.Apellido.ToUpper()}, {telefono.Nombre} ({telefono.CUIT})";
                     }
                     r.Cells[1].Value = telefono.Telefono;
-                    r.Cells[2].Value = telefono.TipoTelefono;
+                    r.Cells[2].Value = telefono.Tipo;
 
                     break;
                 case VehiculosServiciosDto servicios:
@@ -99,6 +103,13 @@ namespace MiniTaller.Windows.Helpers
                     {
                         r.Cells[6].Value = "Aún no se realizó el Servicio";
                     }
+                    r.Cells[7].Value = servicios.Kilometros;
+                    break;
+                case ObservacionDto observacionDto:
+                    r.Cells[0].Value = observacionDto.Vehiculo;
+                    r.Cells[1].Value = observacionDto.Cliente;
+                    r.Cells[2].Value = observacionDto.Observacion;
+                    r.Cells[3].Value = observacionDto.Fecha.ToShortDateString();
                     break;
             }
             r.Tag = obj;
