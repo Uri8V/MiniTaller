@@ -10,9 +10,9 @@ namespace MiniTaller.Entidades.Dtos
     public class ImagenesDto
     {
 
-        [DisplayName("Imagen")]
-        public string imageURL { get; set; }
-        public IFormFile? ImageFile { get; set; }
-        public string? ReturnUrl { get; set; }
+        //[DisplayName("Imagen")]
+        //public string imageURL { get; set; }
+        //public IFormFile? ImageFile { get; set; }
+        //public string? ReturnUrl { get; set; }
     }
 }
