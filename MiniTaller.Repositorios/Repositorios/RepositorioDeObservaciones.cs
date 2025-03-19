@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using MiniTaller.Comun.Interfaces;
+using MiniTaller.Entidades.ComboDto;
 using MiniTaller.Entidades.Dtos;
 using MiniTaller.Entidades.Entidades;
 using System;
@@ -48,6 +49,18 @@ namespace MiniTaller.Repositorios.Repositorios
                 WHERE IdObservacion=@IdObservacion";
                 conn.Execute(updateQuery, Observacion);
             }
+        }
+
+        public bool EstaRelacionado(Observaciones Observacion)
+        {
+            int cantidad = 0;
+            using (var conn = new SqlConnection(cadenaDeConexion))
+            {
+
+                string selectQuery = @"SELECT COUNT(*) FROM Imagenes WHERE IdObservacion=@IdObservacion";
+                cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdObservacion = Observacion.IdObservacion });
+            }
+            return cantidad > 0;
         }
 
         public bool Existe(Observaciones Observacion)
@@ -106,6 +119,26 @@ namespace MiniTaller.Repositorios.Repositorios
                 }
             }
             return cantidad;
+        }
+
+        public List<ObservacionesComboDto> GetObservacionesCombo()
+        {
+            List<ObservacionesComboDto> lista = new List<ObservacionesComboDto>();
+            using (var conn= new SqlConnection(cadenaDeConexion))
+            {
+                var selectQuery = @"  WITH cte AS (
+    SELECT 
+        o.IdObservacion, 
+        CONCAT(v.Patente, ' | ', UPPER(c.Apellido), ', ', UPPER(c.Nombre), ' (', c.Documento, c.CUIT, ')') AS Info,
+        ROW_NUMBER() OVER (PARTITION BY v.Patente, c.Apellido, c.Nombre, c.Documento, c.CUIT ORDER BY o.IdObservacion ASC) AS rn
+    FROM Observaciones o
+    INNER JOIN Vehiculos v ON o.IdVehiculo = v.IdVehiculo
+    INNER JOIN Clientes c ON c.IdCliente = o.IdCliente
+)
+SELECT IdObservacion, Info FROM cte WHERE rn = 1;";
+                lista = conn.Query<ObservacionesComboDto>(selectQuery).ToList();
+            }
+            return lista;
         }
 
         public List<ObservacionDto> GetVehiculoObservacionPorClienteYVehiculo(int IdCliente, int IdVehiculo)

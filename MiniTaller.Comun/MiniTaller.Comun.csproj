@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IRepositorioDeClientes.cs" />
+    <Compile Include="Interfaces\IRepositorioDeImagenes.cs" />
     <Compile Include="Interfaces\IRepositorioDeMarcas.cs" />
     <Compile Include="Interfaces\IRepositorioDeModelos.cs" />
     <Compile Include="Interfaces\IRepositorioDeObservaciones.cs" />

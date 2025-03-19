@@ -47,6 +47,7 @@
             this.colCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colObservacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colImagenes = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnUltimo = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnAnterior = new System.Windows.Forms.Button();
@@ -149,14 +150,14 @@
             // vehiculoToolStripMenuItem
             // 
             this.vehiculoToolStripMenuItem.Name = "vehiculoToolStripMenuItem";
-            this.vehiculoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vehiculoToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.vehiculoToolStripMenuItem.Text = "Vehiculo";
             this.vehiculoToolStripMenuItem.Click += new System.EventHandler(this.vehiculoToolStripMenuItem_Click);
             // 
             // fechaToolStripMenuItem
             // 
             this.fechaToolStripMenuItem.Name = "fechaToolStripMenuItem";
-            this.fechaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fechaToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.fechaToolStripMenuItem.Text = "Fecha";
             this.fechaToolStripMenuItem.Click += new System.EventHandler(this.fechaToolStripMenuItem_Click);
             // 
@@ -227,7 +228,8 @@
             this.colVehiculo,
             this.colCliente,
             this.colObservacion,
-            this.colFecha});
+            this.colFecha,
+            this.colImagenes});
             this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDatos.Location = new System.Drawing.Point(0, 0);
             this.dgvDatos.MultiSelect = false;
@@ -238,6 +240,7 @@
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(926, 414);
             this.dgvDatos.TabIndex = 1;
+            this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             // 
             // colVehiculo
             // 
@@ -269,6 +272,13 @@
             this.colFecha.MaxInputLength = 100;
             this.colFecha.Name = "colFecha";
             this.colFecha.ReadOnly = true;
+            // 
+            // colImagenes
+            // 
+            this.colImagenes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colImagenes.HeaderText = "";
+            this.colImagenes.Name = "colImagenes";
+            this.colImagenes.ReadOnly = true;
             // 
             // btnUltimo
             // 
@@ -422,5 +432,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn colObservacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
+        private System.Windows.Forms.DataGridViewButtonColumn colImagenes;
     }
 }

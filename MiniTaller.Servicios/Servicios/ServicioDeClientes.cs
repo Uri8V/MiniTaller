@@ -124,6 +124,19 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
+        public string GetInfo(int IdCliente)
+        {
+            try
+            {
+                return _repo.GetInfo(IdCliente);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public void Guardar(Clientes cliente)
         {
             try

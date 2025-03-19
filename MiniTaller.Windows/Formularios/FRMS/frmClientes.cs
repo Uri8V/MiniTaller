@@ -33,7 +33,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         int paginaActual = 1;
         int registros = 0;
         int paginas = 0;
-        int registrosPorPagina = 6;
+        int registrosPorPagina = 1;
 
         int? tipo = null;
 

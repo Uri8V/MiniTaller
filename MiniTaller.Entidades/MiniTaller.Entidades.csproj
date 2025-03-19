@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="ComboDto\ClientesComboDto.cs" />
     <Compile Include="ComboDto\ModelosComboDto.cs" />
+    <Compile Include="ComboDto\ObservacionesComboDto.cs" />
     <Compile Include="ComboDto\ServiciosComboDto.cs" />
     <Compile Include="ComboDto\TelefonosComboDto.cs" />
     <Compile Include="ComboDto\VehiculosComboDto.cs" />
+    <Compile Include="ComboDto\VehiculoServicioComboDto.cs" />
     <Compile Include="Dtos\ClientesDto.cs" />
     <Compile Include="Dtos\ImagenesDto.cs" />
     <Compile Include="Dtos\ModelosDto.cs" />

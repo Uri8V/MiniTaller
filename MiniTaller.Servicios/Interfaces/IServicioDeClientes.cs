@@ -20,5 +20,6 @@ namespace MiniTaller.Servicios.Interfaces
         Clientes GetClientePorId(int IdCliente);
         List<ClientesComboDto> GetClientesCombos();
         List<ClientesComboDto> GetClientesCombosEmpresa();
+        string GetInfo(int IdCliente);
     }
 }

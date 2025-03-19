@@ -125,7 +125,7 @@
             // 
             this.btnVehiculosServicios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVehiculosServicios.Image = global::MiniTaller.Windows.Properties.Resources.Done_32px;
-            this.btnVehiculosServicios.Location = new System.Drawing.Point(240, 168);
+            this.btnVehiculosServicios.Location = new System.Drawing.Point(188, 183);
             this.btnVehiculosServicios.Name = "btnVehiculosServicios";
             this.btnVehiculosServicios.Size = new System.Drawing.Size(110, 68);
             this.btnVehiculosServicios.TabIndex = 9;
@@ -204,7 +204,7 @@
             // 
             this.btnObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnObservaciones.Image = global::MiniTaller.Windows.Properties.Resources.search_32px;
-            this.btnObservaciones.Location = new System.Drawing.Point(240, 249);
+            this.btnObservaciones.Location = new System.Drawing.Point(304, 183);
             this.btnObservaciones.Name = "btnObservaciones";
             this.btnObservaciones.Size = new System.Drawing.Size(110, 68);
             this.btnObservaciones.TabIndex = 19;

@@ -170,5 +170,36 @@ namespace MiniTaller.Windows.Helpers
             combo.ValueMember = "IdServicio";
             combo.SelectedIndex = 0;
         }
+        internal static void CargarComboServiciosVehiculos(ref ComboBox combo)
+        {
+            IServicioDeVehiculosServicios serviciosVehiculos = new ServicioDeVehiculosServicios();
+            var lista = serviciosVehiculos.GetServiciosCombo();
+            var defaultservicio = new VehiculoServicioComboDto()
+            {
+                IdVehiculoServicio = 0,
+                Info = "Seleccione el Servicio"
+            };
+            lista.Insert(0, defaultservicio);
+            combo.DataSource = lista;
+            combo.DisplayMember = "Info";
+            combo.ValueMember = "IdVehiculoServicio";
+            combo.SelectedIndex = 0;
+        }
+
+        internal static void CargarComboObservaciones(ref ComboBox combo)
+        {
+            IServicioDeObservaciones observaciones = new ServicioDeObservaciones();
+            var lista = observaciones.GetObservacionesCombos();
+            var defaultservicio = new ObservacionesComboDto()
+            {
+                IdObservacion = 0,
+                Info = "Seleccione la Observacion"
+            };
+            lista.Insert(0, defaultservicio);
+            combo.DataSource = lista;
+            combo.DisplayMember = "Info";
+            combo.ValueMember = "IdObservacion";
+            combo.SelectedIndex = 0;
+        }
     }
 }

@@ -9,10 +9,13 @@ namespace MiniTaller.Entidades.Dtos
 {
     public class ImagenesDto
     {
-
-        //[DisplayName("Imagen")]
-        //public string imageURL { get; set; }
-        //public IFormFile? ImageFile { get; set; }
-        //public string? ReturnUrl { get; set; }
+        public int IdImage { get; set; }
+        public byte[] imageURL { get; set; }
+        public string Info { get; set; }
+        public string Patente { get; set; }
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

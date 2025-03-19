@@ -8,11 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using iTextSharp.tool.xml.html;
 
 namespace MiniTaller.Windows.Helpers
 {
     public class GridHelpers
     {
+        public static void ByteArrayToIMage(ImagenesDto item, DataGridViewRow row)
+        {
+            // Convertir bytes a imagen
+            using (MemoryStream ms = new MemoryStream(item.imageURL))
+            {
+                row.Cells["Imagen"].Value = System.Drawing.Image.FromStream(ms);
+            }
+            row.Tag = item;
+        }
         public static void LimpiarGrilla(DataGridView dgv)
         {
             dgv.Rows.Clear();
@@ -115,16 +126,15 @@ namespace MiniTaller.Windows.Helpers
             r.Tag = obj;
 
         }
+    
         public static void AgregarFila(DataGridView dgv, DataGridViewRow r)
         {
             dgv.Rows.Add(r);
         }
-
         public static void QuitarFila(DataGridView dgv, DataGridViewRow r)
         {
             dgv.Rows.Remove(r);
         }
-
         internal static void MostrarDatosEnGrilla<T>(DataGridView dgv, List<T> lista)
         {
             GridHelpers.LimpiarGrilla(dgv);
@@ -134,6 +144,25 @@ namespace MiniTaller.Windows.Helpers
                 GridHelpers.SetearFila(r, obj);
                 GridHelpers.AgregarFila(dgv, r);
             }
+        }
+        public static void ConstruirColumnaImage(DataGridView dataGridView1)
+        {
+            DataGridViewImageColumn imgColumn = new DataGridViewImageColumn
+            {
+                Name = "Imagen",
+                HeaderText = "Imagen",
+                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+
+            };
+            dataGridView1.Columns.Add(imgColumn);
+        }
+
+        public static DataGridViewRow ContruirFIlas(DataGridView dataGridView1)
+        {
+            int rowIndex = dataGridView1.Rows.Add();
+            DataGridViewRow row = dataGridView1.Rows[rowIndex];
+            return row;
         }
     }
 }

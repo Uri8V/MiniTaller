@@ -9,7 +9,8 @@ namespace MiniTaller.Entidades.Entidades
     public class Imagenes
     {
         public int IdImage { get; set; }
-        public int IdObservacion { get; set; }
-        public string imageURL { get; set; }
+        public int? IdObservacion { get; set; }
+        public int? IdVehiculoServicio { get; set; }
+        public byte[] imageURL { get; set; }
     }
 }

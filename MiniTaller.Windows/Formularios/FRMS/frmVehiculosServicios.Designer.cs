@@ -40,14 +40,6 @@
             this.lblRegistros = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.colVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDebe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHaber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colKilometros = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStripButtonCerrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAgregar = new System.Windows.Forms.ToolStripButton();
@@ -63,6 +55,15 @@
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButtonImprimir = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.colVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDebe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHaber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKilometros = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colImagenes = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -184,7 +185,8 @@
             this.colHaber,
             this.colDescripcion,
             this.colFecha,
-            this.colKilometros});
+            this.colKilometros,
+            this.colImagenes});
             this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDatos.Location = new System.Drawing.Point(0, 0);
             this.dgvDatos.MultiSelect = false;
@@ -195,62 +197,7 @@
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(800, 334);
             this.dgvDatos.TabIndex = 1;
-            // 
-            // colVehiculo
-            // 
-            this.colVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colVehiculo.HeaderText = "Vehiculo";
-            this.colVehiculo.Name = "colVehiculo";
-            this.colVehiculo.ReadOnly = true;
-            // 
-            // colCliente
-            // 
-            this.colCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCliente.HeaderText = "Cliente";
-            this.colCliente.Name = "colCliente";
-            this.colCliente.ReadOnly = true;
-            // 
-            // colServicio
-            // 
-            this.colServicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colServicio.HeaderText = "Servicio";
-            this.colServicio.Name = "colServicio";
-            this.colServicio.ReadOnly = true;
-            // 
-            // colDebe
-            // 
-            this.colDebe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDebe.HeaderText = "Debe";
-            this.colDebe.Name = "colDebe";
-            this.colDebe.ReadOnly = true;
-            // 
-            // colHaber
-            // 
-            this.colHaber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colHaber.HeaderText = "Haber";
-            this.colHaber.Name = "colHaber";
-            this.colHaber.ReadOnly = true;
-            // 
-            // colDescripcion
-            // 
-            this.colDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDescripcion.HeaderText = "Descripcion";
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.ReadOnly = true;
-            // 
-            // colFecha
-            // 
-            this.colFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colFecha.HeaderText = "Fecha";
-            this.colFecha.Name = "colFecha";
-            this.colFecha.ReadOnly = true;
-            // 
-            // colKilometros
-            // 
-            this.colKilometros.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colKilometros.HeaderText = "Kilometros";
-            this.colKilometros.Name = "colKilometros";
-            this.colKilometros.ReadOnly = true;
+            this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             // 
             // splitContainer1
             // 
@@ -423,6 +370,70 @@
             this.toolStrip1.TabIndex = 9;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // colVehiculo
+            // 
+            this.colVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colVehiculo.HeaderText = "Vehiculo";
+            this.colVehiculo.Name = "colVehiculo";
+            this.colVehiculo.ReadOnly = true;
+            // 
+            // colCliente
+            // 
+            this.colCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colCliente.HeaderText = "Cliente";
+            this.colCliente.Name = "colCliente";
+            this.colCliente.ReadOnly = true;
+            // 
+            // colServicio
+            // 
+            this.colServicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colServicio.HeaderText = "Servicio";
+            this.colServicio.Name = "colServicio";
+            this.colServicio.ReadOnly = true;
+            // 
+            // colDebe
+            // 
+            this.colDebe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDebe.HeaderText = "Debe";
+            this.colDebe.Name = "colDebe";
+            this.colDebe.ReadOnly = true;
+            // 
+            // colHaber
+            // 
+            this.colHaber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colHaber.HeaderText = "Haber";
+            this.colHaber.Name = "colHaber";
+            this.colHaber.ReadOnly = true;
+            // 
+            // colDescripcion
+            // 
+            this.colDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDescripcion.HeaderText = "Descripcion";
+            this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.ReadOnly = true;
+            // 
+            // colFecha
+            // 
+            this.colFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colFecha.HeaderText = "Fecha";
+            this.colFecha.Name = "colFecha";
+            this.colFecha.ReadOnly = true;
+            // 
+            // colKilometros
+            // 
+            this.colKilometros.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colKilometros.HeaderText = "Kilometros";
+            this.colKilometros.Name = "colKilometros";
+            this.colKilometros.ReadOnly = true;
+            // 
+            // colImagenes
+            // 
+            this.colImagenes.HeaderText = "Imagenes";
+            this.colImagenes.Name = "colImagenes";
+            this.colImagenes.ReadOnly = true;
+            this.colImagenes.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colImagenes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // frmVehiculosServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -461,14 +472,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dgvDatos;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colVehiculo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colServicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDebe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colHaber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDescripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colKilometros;
         private System.Windows.Forms.ToolStripButton toolStripButtonCerrar;
         private System.Windows.Forms.ToolStripButton toolStripButtonAgregar;
         private System.Windows.Forms.ToolStripButton toolStripButtonBorrar;
@@ -483,5 +486,14 @@
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripButton toolStripButtonImprimir;
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVehiculo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colServicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDebe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colHaber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colKilometros;
+        private System.Windows.Forms.DataGridViewButtonColumn colImagenes;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using MiniTaller.Comun.Interfaces;
+using MiniTaller.Entidades.ComboDto;
 using MiniTaller.Entidades.Dtos;
 using MiniTaller.Entidades.Entidades;
 using System;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MiniTaller.Repositorios.Repositorios
 {
-    public class RepositorioDeVehiculosServicios:IRepositorioDeVehiculosServicios
+    public class RepositorioDeVehiculosServicios : IRepositorioDeVehiculosServicios
     {
         private readonly string cadenaDeConexion;
         public RepositorioDeVehiculosServicios()
@@ -50,6 +51,18 @@ namespace MiniTaller.Repositorios.Repositorios
             }
         }
 
+        public bool EstaRelacionado(VehiculosServicios vehiculosServicios)
+        {
+            int cantidad = 0;
+            using (var conn = new SqlConnection(cadenaDeConexion))
+            {
+
+                string selectQuery = @"SELECT COUNT(*) FROM Imagenes WHERE IdVehiculoServicio=@IdVehiculoServicio";
+                cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdVehiculoServicio = vehiculosServicios.IdVehiculoServicio});
+            }
+            return cantidad > 0;
+        }
+
         public bool Existe(VehiculosServicios vehiculosServicios)
         {
             var cantidad = 0;
@@ -68,7 +81,7 @@ namespace MiniTaller.Repositorios.Repositorios
                     selectQuery = @"SELECT COUNT(*) FROM VehiculosServicios 
                 WHERE IdVehiculo=@IdVehiculo AND IdServicio=@IdServicio AND IdCliente=@IdCliente AND Fecha=@Fecha AND   Haber=@Haber AND IdVehiculoServicio!=@IdVehiculoServicio";
                     cantidad = conn.ExecuteScalar<int>(
-                        selectQuery, new { IdVehiculo = vehiculosServicios.IdVehiculo, IdServicio = vehiculosServicios.IdServicio, IdCliente = vehiculosServicios.IdCliente, Fecha = vehiculosServicios.Fecha, Haber=vehiculosServicios.Haber, IdVehiculoServicio = vehiculosServicios.IdVehiculoServicio });
+                        selectQuery, new { IdVehiculo = vehiculosServicios.IdVehiculo, IdServicio = vehiculosServicios.IdServicio, IdCliente = vehiculosServicios.IdCliente, Fecha = vehiculosServicios.Fecha, Haber = vehiculosServicios.Haber, IdVehiculoServicio = vehiculosServicios.IdVehiculoServicio });
                 }
             }
             return cantidad > 0;
@@ -112,6 +125,27 @@ namespace MiniTaller.Repositorios.Repositorios
             }
             return cantidad;
 
+        }
+
+        public List<VehiculoServicioComboDto> GetServiciosCombo()
+        {
+            List<VehiculoServicioComboDto> lista = new List<VehiculoServicioComboDto>();
+            using (var conn = new SqlConnection(cadenaDeConexion))
+            {
+                string selectQuery = @"  WITH cte AS (
+    SELECT 
+        vs.IdVehiculoServicio, 
+        CONCAT(v.Patente, ' | ', UPPER(c.Apellido), ', ', UPPER(c.Nombre), ' (', c.Documento, c.CUIT, ')') AS Info,
+        ROW_NUMBER() OVER (PARTITION BY v.Patente, c.Apellido, c.Nombre, c.Documento, c.CUIT ORDER BY vs.IdVehiculoServicio ASC) AS rn
+    FROM [MiniTaller].[dbo].[VehiculosServicios] vs
+    INNER JOIN Vehiculos v ON vs.IdVehiculo = v.IdVehiculo
+    INNER JOIN Clientes c ON c.IdCliente = vs.IdCliente
+)
+SELECT IdVehiculoServicio, Info FROM cte WHERE rn = 1;
+";
+                lista = conn.Query<VehiculoServicioComboDto>(selectQuery).ToList();
+            }
+            return lista;
         }
 
         public List<VehiculosServiciosDto> GetVehiculoServicioPorCliente(string CUITDocumento)

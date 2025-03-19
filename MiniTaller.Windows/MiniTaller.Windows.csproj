@@ -64,6 +64,12 @@
     <Compile Include="Formularios\FRMSAE\frmClientesAE.Designer.cs">
       <DependentUpon>frmClientesAE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FRMSAE\frmImagenesAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMSAE\frmImagenesAE.Designer.cs">
+      <DependentUpon>frmImagenesAE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FRMSAE\frmMarcasAE.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,12 @@
     <Compile Include="Formularios\FRMS\frmClientes.Designer.cs">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FRMS\frmImagenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMS\frmImagenes.Designer.cs">
+      <DependentUpon>frmImagenes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FRMS\frmImprimirServicios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,6 +296,9 @@
     <EmbeddedResource Include="Formularios\FRMSAE\frmClientesAE.resx">
       <DependentUpon>frmClientesAE.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FRMSAE\frmImagenesAE.resx">
+      <DependentUpon>frmImagenesAE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMSAE\frmMarcasAE.resx">
       <DependentUpon>frmMarcasAE.cs</DependentUpon>
     </EmbeddedResource>
@@ -349,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMS\frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FRMS\frmImagenes.resx">
+      <DependentUpon>frmImagenes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMS\frmImprimirServicios.resx">
       <DependentUpon>frmImprimirServicios.cs</DependentUpon>
@@ -497,6 +515,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mobiles_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Captura de pantalla 2025-02-18 222823.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo_gallery_32px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

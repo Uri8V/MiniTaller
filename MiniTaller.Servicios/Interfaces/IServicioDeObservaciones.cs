@@ -1,4 +1,5 @@
-﻿using MiniTaller.Entidades.Dtos;
+﻿using MiniTaller.Entidades.ComboDto;
+using MiniTaller.Entidades.Dtos;
 using MiniTaller.Entidades.Entidades;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace MiniTaller.Servicios.Interfaces
     {
         void Guardar(Observaciones Observacion);
         void Borrar(int IdObservacion);
+        bool EstaRelacionado(Observaciones Observacion);
         bool Existe(Observaciones Observacion);
         int GetCantidad(int? IdVehiculo, int? IdCliente, DateTime? Fecha);
         List<ObservacionDto> GetVehiculoObservacionPorPagina(int registrosPorPagina, int paginaActual, int? IdVehiculo, int? IdCliente, DateTime? Fecha);
         Observaciones GetVehiculoObservacionPorId(int IdObservacion);
         List<ObservacionDto> GetVehiculoObservacionPorClienteYVehiculo(int idCLiente, int idVehiculo);
+        List<ObservacionesComboDto> GetObservacionesCombos();
     }
 }

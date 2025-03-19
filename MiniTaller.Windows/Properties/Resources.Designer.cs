@@ -93,6 +93,16 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Captura_de_pantalla_2025_02_18_222823 {
+            get {
+                object obj = ResourceManager.GetObject("Captura de pantalla 2025-02-18 222823", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap car_32px {
             get {
                 object obj = ResourceManager.GetObject("car_32px", resourceCulture);
@@ -236,6 +246,16 @@ namespace MiniTaller.Windows.Properties {
         internal static System.Drawing.Bitmap phone_32px {
             get {
                 object obj = ResourceManager.GetObject("phone_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap photo_gallery_32px {
+            get {
+                object obj = ResourceManager.GetObject("photo_gallery_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

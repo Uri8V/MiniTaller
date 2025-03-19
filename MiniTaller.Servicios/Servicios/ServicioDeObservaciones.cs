@@ -1,4 +1,5 @@
 ﻿using MiniTaller.Comun.Interfaces;
+using MiniTaller.Entidades.ComboDto;
 using MiniTaller.Entidades.Dtos;
 using MiniTaller.Entidades.Entidades;
 using MiniTaller.Repositorios.Repositorios;
@@ -32,6 +33,19 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
+        public bool EstaRelacionado(Observaciones Observacion)
+        {
+            try
+            {
+                return _repositorioDeObservaciones.EstaRelacionado(Observacion);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public bool Existe(Observaciones Observacion)
         {
             try
@@ -50,6 +64,19 @@ namespace MiniTaller.Servicios.Servicios
             try
             {
                return _repositorioDeObservaciones.GetCantidad(IdVehiculo,IdCliente,Fecha);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<ObservacionesComboDto> GetObservacionesCombos()
+        {
+            try
+            {
+                return _repositorioDeObservaciones.GetObservacionesCombo();
             }
             catch (Exception)
             {

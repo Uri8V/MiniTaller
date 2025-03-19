@@ -35,10 +35,9 @@ namespace MiniTaller.Windows.Formularios.FRMS
 
         private void frmVehiculosServicios_Load(object sender, EventArgs e)
         {
-            RecargarGrilla();
             lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha);
             BuscarCliente(lista, texto);
-            GridHelpers.MostrarDatosEnGrilla<VehiculosServiciosDto>(dgvDatos, lista);
+            RecargarGrilla();
         }
         string texto = "";
         private List<VehiculosServiciosDto> lista;
@@ -65,20 +64,17 @@ namespace MiniTaller.Windows.Formularios.FRMS
             RecargarGrilla();
             HabilitarBotones();
         }
-
         private void RecargarGrilla()
         {
             registros = _servicio.GetCantidad(null, null, null, null);
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             MostrarPaginado();
         }
-
         private void MostrarPaginado()
         {
            lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha);
             MostrarDatosEnGrilla();
         }
-
         private void MostrarDatosEnGrilla()
         {
             GridHelpers.LimpiarGrilla(dgvDatos);
@@ -86,13 +82,13 @@ namespace MiniTaller.Windows.Formularios.FRMS
             {
                 DataGridViewRow r = GridHelpers.ConstruirFila(dgvDatos);
                 GridHelpers.SetearFila(r, item);
+                r.Cells[8].Value = "Ver Imagenes";
                 GridHelpers.AgregarFila(dgvDatos, r);
             }
             lblRegistros.Text = registros.ToString();
             lblPaginas.Text = paginas.ToString();
             lblPaginaActual.Text = paginaActual.ToString();
         }
-
         private void HabilitarBotones()
         {
             toolStripDropDownButtonFiltrar.BackColor = SystemColors.Control;
@@ -107,7 +103,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             btnUltimo.Enabled = true;
 
         }
-
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             if (paginaActual == paginas)
@@ -118,7 +113,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             MostrarPaginado();
 
         }
-
         private void btnAnterior_Click(object sender, EventArgs e)
         {
             if (paginaActual == 1)
@@ -128,13 +122,11 @@ namespace MiniTaller.Windows.Formularios.FRMS
             paginaActual--;
             MostrarPaginado();
         }
-
         private void btnUltimo_Click(object sender, EventArgs e)
         {
             paginaActual = paginas;
             MostrarPaginado();
         }
-
         private void btnPrimero_Click(object sender, EventArgs e)
         {
             paginaActual = 1;
@@ -163,7 +155,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 MessageBox.Show("El servicio ya existe!!!", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void toolStripButtonBorrar_Click(object sender, EventArgs e)
         {
             if (dgvDatos.SelectedRows.Count == 0)
@@ -172,14 +163,21 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
             var r = dgvDatos.SelectedRows[0];
             VehiculosServiciosDto ServicioABorrar = (VehiculosServiciosDto)r.Tag;
+            var servicio = _servicio.GetVehiculoServicioPorId(ServicioABorrar.IdVehiculoServicio);
             DialogResult dr = MessageBox.Show($"¿Desea eliminar el Servicio {ServicioABorrar.Servicio} del Cliente {ServicioABorrar.Apellido.ToUpper()}, {ServicioABorrar.Nombre} ({ServicioABorrar.Documento} {ServicioABorrar.CUIT}) con el vehiculo de la patente ({ServicioABorrar.Patente}) el cual debe (${ServicioABorrar.DebeServicio})?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No) { return; }
             //Falta metodo de objeto relacionado
-            GridHelpers.QuitarFila(dgvDatos, r);
-            _servicio.Borrar(ServicioABorrar.IdVehiculoServicio);
-            RecargarGrilla();
+            if (!_servicio.EstaRelacionado(servicio))
+            {
+                GridHelpers.QuitarFila(dgvDatos, r);
+                _servicio.Borrar(ServicioABorrar.IdVehiculoServicio);
+                RecargarGrilla(); 
+            }
+            else
+            {
+                MessageBox.Show("El servicio del vehiculo esta relacionada", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
-
         private void toolStripButtonEditar_Click(object sender, EventArgs e)
         {
             if (dgvDatos.SelectedRows.Count == 0)
@@ -265,7 +263,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 btnUltimo.Enabled = true;
             }
         }
-
         private void fechaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmSeleccionarFecha frm = new frmSeleccionarFecha();
@@ -279,7 +276,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             MostrarPaginado();
             DesabilitarBotones();
         }
-
         private void serviciosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmSeleccionarServicios frm = new frmSeleccionarServicios();
@@ -293,7 +289,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             MostrarPaginado();
             DesabilitarBotones();
         }
-
         private void vehiculoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmSeleccionarVehiculo frm = new frmSeleccionarVehiculo();
@@ -307,7 +302,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             MostrarPaginado();
             DesabilitarBotones();
         }
-
         private void BuscarCliente(List<VehiculosServiciosDto> serviciosVehiculosDto, string texto)
         {
             var listaFiltrada = serviciosVehiculosDto;
@@ -318,34 +312,27 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
             GridHelpers.MostrarDatosEnGrilla<VehiculosServiciosDto>(dgvDatos, listaFiltrada);
         }
-
         private void dgvDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
+            if (e.ColumnIndex == 8)
             {
-                toolStripButtonImprimir.Enabled = false;
-                return;
+                if (dgvDatos.SelectedRows.Count == 0) { return; }
+                var r = dgvDatos.SelectedRows[0];
+                VehiculosServiciosDto VehiSer = (VehiculosServiciosDto)r.Tag;
+                var VehiculoServicio = _servicio.GetVehiculoServicioPorId(VehiSer.IdVehiculoServicio);
+                if (VehiculoServicio is null)
+                {
+                    return;
+                }
+                frmImagenes frm = new frmImagenes(null,VehiculoServicio);
+                DialogResult dr = frm.ShowDialog(this);
             }
-            var r = dgvDatos.Rows[e.RowIndex];
-            VehiculosServiciosDto vehiculosServiciosDto = (VehiculosServiciosDto)r.Tag;
         }
-
-        private void dgvDatos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0)
-            {
-                return;
-            }
-            var r = dgvDatos.Rows[e.RowIndex];
-            VehiculosServiciosDto serviciosVehiculos = (VehiculosServiciosDto)r.Tag;
-        }
-
         private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
         {
             var texto = toolStripTextBox1.Text;
             BuscarCliente(lista, texto);
         }
-
         private void txtImprimir_Click(object sender, EventArgs e)
         {
             if (dgvDatos.SelectedRows.Count == 0)
@@ -366,7 +353,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 throw;
             }
         }
-
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
             toolStripTextBox1.Text = "";

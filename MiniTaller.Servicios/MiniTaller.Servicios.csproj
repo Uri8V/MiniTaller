@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IServicioDeClientes.cs" />
+    <Compile Include="Interfaces\IServicioDeImagenes.cs" />
     <Compile Include="Interfaces\IServicioDeMarcas.cs" />
     <Compile Include="Interfaces\IServicioDeModelos.cs" />
     <Compile Include="Interfaces\IServicioDeObservaciones.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Interfaces\IServicioDeVehiculosServicios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\ServicioDeClientes.cs" />
+    <Compile Include="Servicios\ServicioDeImagenes.cs" />
     <Compile Include="Servicios\ServicioDeMarcas.cs" />
     <Compile Include="Servicios\ServicioDeModelos.cs" />
     <Compile Include="Servicios\ServicioDeObservaciones.cs" />

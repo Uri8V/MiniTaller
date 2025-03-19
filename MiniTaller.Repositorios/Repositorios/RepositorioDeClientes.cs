@@ -126,7 +126,16 @@ namespace MiniTaller.Repositorios.Repositorios
             }
             return cliente;
         }
-
+        public string GetInfo(int IdCliente)
+        {
+            string cliente;
+            using (var conn = new SqlConnection(cadenaDeConexion))
+            {
+                string selectQuery = @"SELECT CONCAT(UPPER(c.Apellido),'  ',c.Nombre,' (',c.Documento,')')AS Info FROM Clientes c WHERE c.IdCliente=@IdCliente; ";
+                cliente = conn.QueryFirstOrDefault<string>(selectQuery, new { IdCliente = IdCliente });
+            }
+            return cliente;
+        }
         public List<ClientesComboDto> GetClientesCombos()
         {
             List<ClientesComboDto> lista = new List<ClientesComboDto>();
