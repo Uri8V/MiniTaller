@@ -147,15 +147,19 @@ namespace MiniTaller.Windows.Helpers
         }
         public static void ConstruirColumnaImage(DataGridView dataGridView1)
         {
-            DataGridViewImageColumn imgColumn = new DataGridViewImageColumn
+            if (dataGridView1.Columns.Count==0) //Debe crear este if para asegurarme que la grilla solo tenga un columna
+                                                //que es donde voy a mostrar las imagenes
             {
-                Name = "Imagen",
-                HeaderText = "Imagen",
-                ImageLayout = DataGridViewImageCellLayout.Zoom,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                DataGridViewImageColumn imgColumn = new DataGridViewImageColumn
+                {
+                    Name = "Imagen",
+                    HeaderText = "Imagen",
+                    ImageLayout = DataGridViewImageCellLayout.Zoom,
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
 
-            };
-            dataGridView1.Columns.Add(imgColumn);
+                };
+                dataGridView1.Columns.Add(imgColumn); 
+            }
         }
 
         public static DataGridViewRow ContruirFIlas(DataGridView dataGridView1)

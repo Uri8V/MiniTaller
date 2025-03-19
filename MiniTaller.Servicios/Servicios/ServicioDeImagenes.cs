@@ -48,7 +48,7 @@ namespace MiniTaller.Servicios.Servicios
         public int GetCantidad(int? IdObservacion, int? IdVehiculoServico)
         {
             try
-            { //Hay un error
+            { 
                 return _repo.GetCantidad(IdObservacion, IdVehiculoServico);
             }
             catch (Exception)

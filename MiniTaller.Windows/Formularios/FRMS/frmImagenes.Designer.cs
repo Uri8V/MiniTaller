@@ -48,6 +48,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblRegistros = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnUltimo = new System.Windows.Forms.Button();
+            this.btnSiguiente = new System.Windows.Forms.Button();
+            this.btnAnterior = new System.Windows.Forms.Button();
+            this.btnPrimero = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -148,8 +152,12 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnUltimo);
+            this.splitContainer1.Panel2.Controls.Add(this.btnSiguiente);
             this.splitContainer1.Panel2.Controls.Add(this.lblPaginas);
+            this.splitContainer1.Panel2.Controls.Add(this.btnAnterior);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
+            this.splitContainer1.Panel2.Controls.Add(this.btnPrimero);
             this.splitContainer1.Panel2.Controls.Add(this.lblPaginaActual);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.lblRegistros);
@@ -290,6 +298,46 @@
             this.label5.TabIndex = 81;
             this.label5.Text = "Cantidad de Registros:";
             // 
+            // btnUltimo
+            // 
+            this.btnUltimo.Image = global::MiniTaller.Windows.Properties.Resources.Last_button_32px;
+            this.btnUltimo.Location = new System.Drawing.Point(563, 13);
+            this.btnUltimo.Name = "btnUltimo";
+            this.btnUltimo.Size = new System.Drawing.Size(75, 32);
+            this.btnUltimo.TabIndex = 83;
+            this.btnUltimo.UseVisualStyleBackColor = true;
+            this.btnUltimo.Click += new System.EventHandler(this.btnUltimo_Click);
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.Image = global::MiniTaller.Windows.Properties.Resources.next_32px;
+            this.btnSiguiente.Location = new System.Drawing.Point(482, 13);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(75, 32);
+            this.btnSiguiente.TabIndex = 84;
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.Image = global::MiniTaller.Windows.Properties.Resources.previous_32px;
+            this.btnAnterior.Location = new System.Drawing.Point(401, 13);
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(75, 32);
+            this.btnAnterior.TabIndex = 85;
+            this.btnAnterior.UseVisualStyleBackColor = true;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
+            // 
+            // btnPrimero
+            // 
+            this.btnPrimero.Image = global::MiniTaller.Windows.Properties.Resources.First_32px;
+            this.btnPrimero.Location = new System.Drawing.Point(320, 13);
+            this.btnPrimero.Name = "btnPrimero";
+            this.btnPrimero.Size = new System.Drawing.Size(75, 32);
+            this.btnPrimero.TabIndex = 86;
+            this.btnPrimero.UseVisualStyleBackColor = true;
+            this.btnPrimero.Click += new System.EventHandler(this.btnPrimero_Click);
+            // 
             // frmImagenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,5 +390,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblRegistros;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnUltimo;
+        private System.Windows.Forms.Button btnSiguiente;
+        private System.Windows.Forms.Button btnAnterior;
+        private System.Windows.Forms.Button btnPrimero;
     }
 }

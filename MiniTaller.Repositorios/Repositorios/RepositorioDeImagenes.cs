@@ -154,7 +154,7 @@ namespace MiniTaller.Repositorios.Repositorios
                 }
                 else if (IdObservacion == null && IdVehiculoServico != null)
                 {
-                    selectQuery = @"SELECT COUNT(*) FROM Observaciones 
+                    selectQuery = @"SELECT COUNT(*) FROM Imagenes 
                         WHERE (IdVehiculoServicio=@IdVehiculoServicio)";
                     cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdVehiculoServicio = IdVehiculoServico });
                 }

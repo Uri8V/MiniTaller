@@ -67,9 +67,15 @@ namespace MiniTaller.Windows.Formularios.FRMS
         {
             registros = _servicio.GetCantidad(IdObservacion, IdVehiculoServicio);
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
+            MostrarPaginado();
+        }
+
+        private void MostrarPaginado()
+        {
             lista = _servicio.GetImagenesPorPagina(registrosPorPagina, paginaActual, IdObservacion, IdVehiculoServicio);
             MostrarDatosEnGrilla();
         }
+
         private void MostrarDatosEnGrilla()
         {
             GridHelpers.LimpiarGrilla(dataGridView1);
@@ -94,6 +100,36 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 txtVehiculo.Text = _servicioDeVehiculos.GetVehiculosPorId(vehiculosServicios.IdVehiculo).Patente;
             }
         }
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            if (paginaActual == paginas)
+            {
+                return;
+            }
+            paginaActual++;
+            MostrarPaginado();
+
+        }
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (paginaActual == 1)
+            {
+                return;
+            }
+            paginaActual--;
+            MostrarPaginado();
+        }
+        private void btnUltimo_Click(object sender, EventArgs e)
+        {
+            paginaActual = paginas;
+            MostrarPaginado();
+        }
+        private void btnPrimero_Click(object sender, EventArgs e)
+        {
+            paginaActual = 1;
+            MostrarPaginado();
+        }
+
         private void toolStripButtonAgregar_Click(object sender, EventArgs e)
         {
             frmImagenesAE frm = new frmImagenesAE(observaciones, vehiculosServicios);
