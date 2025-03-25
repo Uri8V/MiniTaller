@@ -16,8 +16,8 @@ namespace MiniTaller.Comun.Interfaces
         bool EstaRelacionado(VehiculosServicios vehiculosServicios);
         void Editar(VehiculosServicios vehiculosServicios);
         bool Existe(VehiculosServicios vehiculosServicios);
-        int GetCantidad(int? IdVehiculo, int? IdServicio, int? IdCliente, DateTime? FechaServicios);
-        List<VehiculosServiciosDto> GetVehiculoServicioPorPagina(int registrosPorPagina, int paginaActual, int? IdVehiculo, int? IdMovimiento, int? IdCliente, DateTime? FechaServicios);
+        int GetCantidad(int? IdVehiculo, int? IdServicio, int? IdCliente, DateTime? FechaServicios, bool? Yapago);
+        List<VehiculosServiciosDto> GetVehiculoServicioPorPagina(int registrosPorPagina, int paginaActual, int? IdVehiculo, int? IdMovimiento, int? IdCliente, DateTime? FechaServicios, bool? Yapago);
         VehiculosServicios GetVehiculoServicioPorId(int IdVehiculoServicio);
         List<VehiculosServiciosDto> GetVehiculoServicioPorCliente(string CUITDocumento);
         List<VehiculoServicioComboDto> GetServiciosCombo();

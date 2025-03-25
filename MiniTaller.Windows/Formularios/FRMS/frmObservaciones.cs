@@ -142,7 +142,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             if (!_servicio.Existe(observaciones))
             {
                 _servicio.Guardar(observaciones);
-                MessageBox.Show("Servicio agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                MessageBox.Show("Observación agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 registros = _servicio.GetCantidad(null, null, null);
                 paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
                 MostrarPaginado();
@@ -160,7 +160,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
             var r = dgvDatos.SelectedRows[0];
             ObservacionDto ObservacionABorrar = (ObservacionDto)r.Tag;
-            DialogResult dr = MessageBox.Show($"¿Desea eliminar la observacion ({ObservacionABorrar.Observacion}) del Cliente {ObservacionABorrar.Cliente} con el vehiculo {ObservacionABorrar.Vehiculo}?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            DialogResult dr = MessageBox.Show($"¿Desea eliminar la observación ({ObservacionABorrar.Observacion}) del Cliente {ObservacionABorrar.Cliente} con el vehiculo {ObservacionABorrar.Vehiculo}?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No) { return; }
             var observacion = _servicio.GetVehiculoObservacionPorId(ObservacionABorrar.IdObservacion);
             if (!_servicio.EstaRelacionado(observacion))
@@ -316,6 +316,11 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 frmImagenes frm = new frmImagenes(obser);
                 DialogResult dr = frm.ShowDialog(this);
             }
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            toolStripTextBox1.SelectAll();
         }
     }
 }

@@ -185,6 +185,11 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 valido = false;
                 errorProvider1.SetError(txtHaber, "El haber debe ser positivo");
             }
+            else if (Haber>int.Parse(txtDebe.Text))
+            {
+                valido = false;
+                errorProvider1.SetError(txtHaber, "El haber no puede ser mayor al debe");
+            }
             if (string.IsNullOrEmpty(txtDescripcion.Text))
             {
                 valido = false;

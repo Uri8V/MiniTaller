@@ -40,12 +40,12 @@ namespace MiniTaller.Windows.Formularios.FRMS
         {
             if (vehiculosServiciosDTO.CUIT != "")
             {
-                lista = _servicios.GetVehiculoServicioPorCliente(vehiculosServiciosDTO.CUIT);
+                lista = _servicios.GetVehiculoServicioPorCliente(vehiculosServiciosDTO.CUIT).Where(p=>p.Patente==vehiculosServiciosDTO.Patente && p.Debe!=p.Haber).ToList();
 
             }
             else
             {
-                lista = _servicios.GetVehiculoServicioPorCliente(vehiculosServiciosDTO.Documento);
+                lista = _servicios.GetVehiculoServicioPorCliente(vehiculosServiciosDTO.Documento).Where(p => p.Patente == vehiculosServiciosDTO.Patente && p.Debe != p.Haber).ToList();
             }
             MostraDatosEnGrilla();
         }

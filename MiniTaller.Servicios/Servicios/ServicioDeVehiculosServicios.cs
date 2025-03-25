@@ -59,11 +59,11 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public int GetCantidad(int? IdVehiculo, int? IdServicio, int? IdCliente, DateTime? FechaServicios)
+        public int GetCantidad(int? IdVehiculo, int? IdServicio, int? IdCliente, DateTime? FechaServicios, bool? Yapago)
         {
             try
             {
-                return _repo.GetCantidad(IdVehiculo, IdServicio, IdCliente, FechaServicios);
+                return _repo.GetCantidad(IdVehiculo, IdServicio, IdCliente, FechaServicios,Yapago);
             }
             catch ( Exception)
             {
@@ -111,11 +111,11 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public List<VehiculosServiciosDto> GetVehiculoServicioPorPagina(int registrosPorPagina, int paginaActual, int? IdVehiculo, int? IdServicio, int? IdCliente, DateTime? FechaServicios)
+        public List<VehiculosServiciosDto> GetVehiculoServicioPorPagina(int registrosPorPagina, int paginaActual, int? IdVehiculo, int? IdServicio, int? IdCliente, DateTime? FechaServicios, bool? Yapago)
         {
             try
             {
-                return _repo.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IdServicio, IdCliente, FechaServicios);
+                return _repo.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IdServicio, IdCliente, FechaServicios, Yapago);
             }
             catch (Exception)
             {

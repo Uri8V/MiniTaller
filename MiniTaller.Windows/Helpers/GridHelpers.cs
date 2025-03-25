@@ -106,14 +106,7 @@ namespace MiniTaller.Windows.Helpers
                     }
                     r.Cells[4].Value = servicios.Haber;
                     r.Cells[5].Value = servicios.Descripcion;
-                    if (servicios.Fecha != new DateTime(2023, 01, 01))
-                    {
-                        r.Cells[6].Value = servicios.Fecha.ToShortDateString();
-                    }
-                    else
-                    {
-                        r.Cells[6].Value = "Aún no se realizó el Servicio";
-                    }
+                    r.Cells[6].Value = servicios.Fecha.ToShortDateString();
                     r.Cells[7].Value = servicios.Kilometros;
                     break;
                 case ObservacionDto observacionDto:
@@ -142,6 +135,14 @@ namespace MiniTaller.Windows.Helpers
             {
                 DataGridViewRow r = GridHelpers.ConstruirFila(dgv);
                 GridHelpers.SetearFila(r, obj);
+                if (dgv.Columns.Count==5)
+                {
+                    r.Cells[4].Value = "Ver Imagenes";
+                }
+                if (dgv.Columns.Count==9)
+                {
+                    r.Cells[8].Value = "Ver Imagenes";
+                }
                 GridHelpers.AgregarFila(dgv, r);
             }
         }

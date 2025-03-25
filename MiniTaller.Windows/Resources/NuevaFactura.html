@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Presupuesto del Cliente</title>
+    <style>
+        table.border {
+            border-collapse: collapse;
+        }
+
+            table.border th {
+                padding: 5px;
+                border: 1px solid black;
+            }
+
+            table.border td {
+                padding: 5px;
+                border: 1px solid black;
+            }
+    </style>
+</head>
+<body style="  width: 21cm;
+height: 29.7cm;
+margin: 30mm 45mm 30mm 45mm; 
+">
+   
+    <table style="width:100%;">
+        <tr>
+            <td style="width:20%" align="center"></td>
+            <td style="width:60%" align="center" valign="top">
+                <table>
+                    <tr><td align="center"><h4 style="margin:0px">Taller Mecanico VALENTCORT</h4></td></tr>
+                    <tr><td align="center">Direccion: 24 de Septiembre 1095</td></tr>
+                    <tr><td align="center">Telefono: 2226 53-6765</td></tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr><td colspan="3" height="30"></td></tr> <!--Genero espacios para que no este tan amontonado-->
+
+        <tr>
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <td>Cliente:</td>
+                        <td style="border-bottom:1px dashed black">@CLIENTE</td>
+                    </tr>
+
+                </table>
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:auto;">Documento:</td>
+                        <td style="width:auto;border-bottom:1px dashed black">@DOCUMENTO</td>
+                        <td width="30%"></td>
+                        <td style="width:auto;">Fecha:</td>
+                        <td style="width:auto;border-bottom:1px dashed black;">@FECHA</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr><td colspan="3" height="30"></td></tr>
+
+        <tr>
+            <td colspan="3">
+                <table class="border" style="width: 100%;height: auto; border:1px !important;">
+                    <thead>
+                        <tr style="background-color:#D8D8D8;">
+                            <th>Fecha del Servicio</th>
+                            <th>Patente</th>
+                            <th>Servicio</th>
+                            <th>Descripción</th>
+                            <th>Haber</th>
+                            <th>Debe</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:12px; text-align: right;">
+                        @FILAS
+                        <tr style="width:auto;">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div style="text-align:right;border:1px solid" >
+        <label>Total:</label>
+        <label>@TOTAL</label>
+    </div>
+</body>
+</html>

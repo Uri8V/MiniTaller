@@ -35,7 +35,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
 
         private void frmVehiculosServicios_Load(object sender, EventArgs e)
         {
-            lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha);
+            lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
             BuscarCliente(lista, texto);
             RecargarGrilla();
         }
@@ -54,25 +54,26 @@ namespace MiniTaller.Windows.Formularios.FRMS
         int? IDMovimiento = null;
         int? IdCliente = null;
         DateTime? fecha = null;
-
+        bool? Yapago = null;
         private void toolStripButtonActualizar_Click(object sender, EventArgs e)
         {
             IdVehiculo = null;
             IDMovimiento = null;
             IdCliente = null;
             fecha = null;
+            Yapago = null;
             RecargarGrilla();
             HabilitarBotones();
         }
         private void RecargarGrilla()
         {
-            registros = _servicio.GetCantidad(null, null, null, null);
+            registros = _servicio.GetCantidad(IdVehiculo,IDMovimiento, IdCliente, fecha,Yapago);
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             MostrarPaginado();
         }
         private void MostrarPaginado()
         {
-           lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha);
+           lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
             MostrarDatosEnGrilla();
         }
         private void MostrarDatosEnGrilla()
@@ -146,7 +147,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             {
                 _servicio.Guardar(Servicios);
                 MessageBox.Show("Servicio agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                registros = _servicio.GetCantidad(null, null, null, null);
+                registros = _servicio.GetCantidad(IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
                 paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
                 MostrarPaginado();
             }
@@ -269,7 +270,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             DialogResult dr = frm.ShowDialog(this);
             if (dr == DialogResult.Cancel) { return; }
             DateTime Fecha = frm.GetFecha();
-            registros = _servicio.GetCantidad(IdVehiculo, IDMovimiento, IdCliente, Fecha);
+            registros = _servicio.GetCantidad(IdVehiculo, IDMovimiento, IdCliente, Fecha, Yapago);
             fecha = Fecha;
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);
@@ -282,7 +283,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             DialogResult dr = frm.ShowDialog(this);
             if (dr == DialogResult.Cancel) { return; }
             Servicioss service = frm.GetMovimiento();
-            registros = _servicio.GetCantidad(IdVehiculo, service.IdServicio, IdCliente, fecha);
+            registros = _servicio.GetCantidad(IdVehiculo, service.IdServicio, IdCliente, fecha, Yapago);
             IDMovimiento = service.IdServicio;
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);
@@ -295,7 +296,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             DialogResult dr = frm.ShowDialog(this);
             if (dr == DialogResult.Cancel) { return; }
             Vehiculos vehiculo = frm.GetVehiculos();
-            registros = _servicio.GetCantidad(vehiculo.IdVehiculo, IDMovimiento, IdCliente, fecha);
+            registros = _servicio.GetCantidad(vehiculo.IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
             IdVehiculo = vehiculo.IdVehiculo;
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);
@@ -334,7 +335,8 @@ namespace MiniTaller.Windows.Formularios.FRMS
             BuscarCliente(lista, texto);
         }
         private void txtImprimir_Click(object sender, EventArgs e)
-        {
+        {//Para agregar un documento html que luego va a ser convertido a PDF, debo descargar los paquetes itextSharp y itextSharo.xmlworker
+        //Luego debo ir a las propiedades de la capa windows, apretar en Propiedades, recuros, agragamos un recuso ya existente
             if (dgvDatos.SelectedRows.Count == 0)
             {
                 return;
@@ -355,7 +357,17 @@ namespace MiniTaller.Windows.Formularios.FRMS
         }
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
-            toolStripTextBox1.Text = "";
+            toolStripTextBox1.SelectAll();
+        }
+
+        private void serviciosPagadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Yapago = true;
+            registros = _servicio.GetCantidad(IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
+            paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
+            paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);
+            MostrarPaginado();
+            DesabilitarBotones();
         }
     }
 }

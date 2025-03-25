@@ -522,5 +522,11 @@
   <ItemGroup>
     <None Include="Resources\photo_gallery_32px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NuevaFactura.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

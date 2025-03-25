@@ -72,16 +72,16 @@ namespace MiniTaller.Repositorios.Repositorios
                 if (servicios.IdServicio == 0)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM Servicios 
-                            WHERE Debe=@Debe AND Servicio=@Servicio AND IdTipoPago=@IdTipoPago";
+                            WHERE Servicio=@Servicio AND IdTipoPago=@IdTipoPago";
                     cantidad = conn.ExecuteScalar<int>(
-                        selectQuery, new { Debe = servicios.Debe, Servicio = servicios.Servicio, IdTipoPago = servicios.IdTipoPago });
+                        selectQuery, new { Servicio = servicios.Servicio, IdTipoPago = servicios.IdTipoPago });
                 }
                 else
                 {
                     selectQuery = @"SELECT COUNT(*) FROM Servicios 
-                WHERE Debe=@Debe AND Servicio=@Servicio AND IdTipoPago=@IdTipoPago AND IdServicio!=@IdServicio";
+                WHERE Servicio=@Servicio AND IdTipoPago=@IdTipoPago AND IdServicio!=@IdServicio";
                     cantidad = conn.ExecuteScalar<int>(
-                        selectQuery, new { Debe = servicios.Debe, Servicio = servicios.Servicio, IdTipoPago = servicios.IdTipoPago, IdServicio = servicios.IdServicio });
+                        selectQuery, new { Servicio = servicios.Servicio, IdTipoPago = servicios.IdTipoPago, IdServicio = servicios.IdServicio });
                 }
             }
             return cantidad > 0;

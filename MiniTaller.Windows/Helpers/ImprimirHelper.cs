@@ -16,9 +16,9 @@ namespace MiniTaller.Windows.Helpers
 {
     public class ImprimirHelper
     {
-        private static void GuardarPdfImagen(string completo, string PaginaHTML_Texto)
+        private static void GuardarPdfImagen(string rutaCompleto, string PaginaHTML_Texto)
         {
-            using (FileStream stream = new FileStream(completo, FileMode.Create))
+            using (FileStream stream = new FileStream(rutaCompleto, FileMode.Create))
             {
                 //Creamos un nuevo documento y lo definimos como PDF
                 Document pdfDoc = new Document(PageSize.A4, 10, 10, 10, 10);
@@ -28,14 +28,14 @@ namespace MiniTaller.Windows.Helpers
                 pdfDoc.Add(new Phrase(""));
 
                 //Agregamos la imagen del banner al documento
-                //iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.Shop,
-                //    System.Drawing.Imaging.ImageFormat.Png);
-                //img.ScaleToFit(60, 60);
-                //img.Alignment = iTextSharp.text.Image.UNDERLYING;
+                iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.Logo,
+                    System.Drawing.Imaging.ImageFormat.Jpeg);
+                img.ScaleToFit(70, 100);
+                img.Alignment = iTextSharp.text.Image.UNDERLYING;
 
-                //img.SetAbsolutePosition(10, 100);
-                //img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
-                //pdfDoc.Add(img);
+                img.SetAbsolutePosition(500, 800);
+                //img.SetAbsolutePosition(pdfDoc.Right, pdfDoc.Top -0);
+                pdfDoc.Add(img);
 
 
                 using (StringReader sr = new StringReader(PaginaHTML_Texto))
@@ -45,7 +45,7 @@ namespace MiniTaller.Windows.Helpers
 
                 pdfDoc.Close();
                 stream.Close();
-                Process.Start($"{completo}"); //Muestra el reporte
+                Process.Start($"{rutaCompleto}"); //Muestra el reporte
             }
         }
 
@@ -54,10 +54,10 @@ namespace MiniTaller.Windows.Helpers
         {
             var path = Environment.CurrentDirectory;
             var carpeta = "Servicios";
-            var completo = Path.Combine(path, carpeta);
-            if (!Directory.Exists(completo))
+            var rutaCompleto = Path.Combine(path, carpeta);
+            if (!Directory.Exists(rutaCompleto))
             {
-                Directory.CreateDirectory(completo);
+                Directory.CreateDirectory(rutaCompleto);
             }
         }
         private static int contador = 0;
@@ -68,10 +68,11 @@ namespace MiniTaller.Windows.Helpers
         {
             CrearCarpetaReportes();
             contador++; llenardatos = true; totalhaber = 0; totaldebe = 0;
+            string nombreCompleto = $"{Servicios[0].Apellido.ToUpper()}, {Servicios[0].Nombre}";
             var path = Environment.CurrentDirectory + @"\Servicios";
-            var archivo = $"{DateTime.Today.Year}{DateTime.Today.Month}{DateTime.Today.Day}.pdf";
-            var completo = Path.Combine(path, archivo);
-            string PdfFile=""/* = Properties.Resources.NuevaFactura.ToString()*/;
+            var archivo = $"{DateTime.Today.Year}{DateTime.Today.Month}{DateTime.Today.Day}-{nombreCompleto}.pdf";
+            var rutaCompleto = Path.Combine(path, archivo);
+            string PdfFile= Properties.Resources.NuevaFactura.ToString();
             PdfFile = PdfFile.Replace("@Nro", contador.ToString().PadLeft(8, '0'));
             PdfFile = PdfFile.Replace("@FECHA", DateTime.Now.ToShortDateString());
             string lineas = string.Empty;
@@ -97,14 +98,14 @@ namespace MiniTaller.Windows.Helpers
                 lineas += "<td>" + datosCliente.Servicio + "</td>";
                 lineas += "<td>" + datosCliente.Descripcion + "</td>";
                 lineas += "<td>" + datosCliente.Haber.ToString("N1") + "</td>";
-                lineas += "<td>" + (datosCliente.Debe - datosCliente.Haber).ToString("N1") + "</td>";
+                lineas += "<td>" + (datosCliente.Debe - datosCliente.Haber).ToString("N2") + "</td>";
                 lineas += "</tr>";
                 totaldebe += datosCliente.Debe;
                 totalhaber += datosCliente.Haber;
             }
             PdfFile = PdfFile.Replace("@FILAS", lineas);
-            PdfFile = PdfFile.Replace("@TOTAL", (totaldebe - totalhaber).ToString("N1"));
-            GuardarPdfImagen(completo, PdfFile);
+            PdfFile = PdfFile.Replace("@TOTAL", (totaldebe - totalhaber).ToString("N2"));
+            GuardarPdfImagen(rutaCompleto, PdfFile);
 
         }
 
