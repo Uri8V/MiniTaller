@@ -25,10 +25,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 _repo.Borrar(IdTipoDeTelefono);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Borrar", ex);
             }
         }
 
@@ -38,10 +37,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.EstaRelacionado(tipo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método EstaRelacionado", ex);
             }
         }
 
@@ -51,10 +49,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.Existe(tipo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Existe", ex);
             }
         }
 
@@ -64,10 +61,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetCantidad();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetCantidad", ex);
             }
         }
 
@@ -77,10 +73,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetTipoDeTelefonoPorId(tipoId);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetTipoDeTelefonoPorId", ex);
             }
         }
 
@@ -90,10 +85,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetTiposDeTelefono();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetTiposDeTelefono", ex);
             }
         }
 
@@ -110,10 +104,9 @@ namespace MiniTaller.Servicios.Servicios
                     _repo.Editar(tipo);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Guardar", ex);
             }
         }
     }

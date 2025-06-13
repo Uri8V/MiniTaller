@@ -24,10 +24,9 @@ namespace MiniTaller.Servicio.Servicios
             {
                 _repo.Borrar(MarcaId);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Borrar", ex);
             }
         }
 
@@ -37,10 +36,9 @@ namespace MiniTaller.Servicio.Servicios
             {
                 return _repo.EstaRelacionado(marca);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método EstaRelacionado", ex);
             }
         }
 
@@ -50,10 +48,9 @@ namespace MiniTaller.Servicio.Servicios
             {
                 return _repo.Existe(marca);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Existe", ex);
             }
         }
 
@@ -63,10 +60,9 @@ namespace MiniTaller.Servicio.Servicios
             {
                 return _repo.GetCantidad();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetCantidad", ex);
             }
         }
 
@@ -76,10 +72,9 @@ namespace MiniTaller.Servicio.Servicios
             {
                 return _repo.GetMarcaPorId(marcaId);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetMarcaPorId", ex);
             }
         }
 
@@ -89,10 +84,9 @@ namespace MiniTaller.Servicio.Servicios
             {
                 return _repo.GetMarcas();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetMarcas", ex);
             }
         }
 
@@ -109,10 +103,9 @@ namespace MiniTaller.Servicio.Servicios
                     _repo.Editar(marca);    
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Guardar", ex);
             }
         }
     }

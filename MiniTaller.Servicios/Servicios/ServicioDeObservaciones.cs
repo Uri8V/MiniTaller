@@ -26,10 +26,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 _repositorioDeObservaciones.Borrar(IdObservacion);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Borrar", ex);
             }
         }
 
@@ -39,10 +38,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repositorioDeObservaciones.EstaRelacionado(Observacion);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método EstaRelacionada", ex);
             }
         }
 
@@ -52,10 +50,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repositorioDeObservaciones.Existe(Observacion);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Existe", ex);
             }
         }
 
@@ -65,10 +62,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                return _repositorioDeObservaciones.GetCantidad(IdVehiculo,IdCliente,Fecha);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetCantidad", ex);
             }
         }
 
@@ -78,10 +74,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repositorioDeObservaciones.GetObservacionesCombo();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetObservacionesCombos", ex);
             }
         }
 
@@ -91,10 +86,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repositorioDeObservaciones.GetVehiculoObservacionPorClienteYVehiculo(idCLiente,idVehiculo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetVehiculoObservacionPorClienteYVehiculo", ex);
             }
         }
 
@@ -104,10 +98,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repositorioDeObservaciones.GetVehiculoObservacionPorId(IdObservacion);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetVehivuloObservacionPorId", ex);
             }
         }
 
@@ -117,10 +110,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repositorioDeObservaciones.GetVehiculoObservacionPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IdCliente, Fecha);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetVehiculoObservacionPorPagina", ex);
             }
         }
 
@@ -137,10 +129,9 @@ namespace MiniTaller.Servicios.Servicios
                     _repositorioDeObservaciones.Editar(Observacion);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Guardar", ex);
             }
         }
     }

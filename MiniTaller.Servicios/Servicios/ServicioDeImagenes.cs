@@ -25,10 +25,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 _repo.Borrar(IdImage);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Borrar", ex);
             }
         }
 
@@ -38,10 +37,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.Existe(img);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Existe", ex);
             }
         }
 
@@ -51,10 +49,9 @@ namespace MiniTaller.Servicios.Servicios
             { 
                 return _repo.GetCantidad(IdObservacion, IdVehiculoServico);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetCantidad", ex);
             }
         }
 
@@ -64,10 +61,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetImagenesPorPagina(registrosPorPagina, paginaActual, IdObservacion, IdVehiculoServicio);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetImaginesPorPagina", ex);
             }
         }
 
@@ -77,10 +73,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetImagenPorId(marcaId);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetImagenPorId", ex);
             }
         }
 
@@ -97,10 +92,9 @@ namespace MiniTaller.Servicios.Servicios
                     _repo.Editar(img);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Guardar", ex);
             }
         }
     }

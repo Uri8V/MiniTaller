@@ -26,10 +26,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 _repo.Borrar(IdCliente);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Borrar", ex);
             }
         }
 
@@ -39,10 +38,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.EstaRelacionada(cliente);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método EstaRelacionada", ex);
             }
         }
 
@@ -52,10 +50,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.Existe(cliente);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Existe", ex);
             }
         }
 
@@ -65,10 +62,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetCantidad(IdCliente);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetCantidad", ex);
             }
         }
 
@@ -78,10 +74,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetClientePorId(IdCliente);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetClientePorId",ex);
             }
         }
 
@@ -91,10 +86,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetClientesCombos();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetClientesCombos", ex);
             }
         }
 
@@ -104,10 +98,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetClientesCombosEmpresa();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetClientsCombosEmpresas", ex);
             }
         }
 
@@ -117,10 +110,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetClientesPorPagina(registrosPorPagina, paginaActual, IdTipoCliente);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetClientesPorPagina", ex);
             }
         }
 
@@ -130,10 +122,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetInfo(IdCliente);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetInfo", ex);
             }
         }
 
@@ -150,10 +141,9 @@ namespace MiniTaller.Servicios.Servicios
                     _repo.Editar(cliente);  
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Guardar", ex);
             }
         }
     }

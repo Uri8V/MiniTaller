@@ -23,10 +23,9 @@ namespace MiniTaller.Servicio.Servicios
             {
                 _repo.Borrar(TipoDeClienteId);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Borrar", ex);
             }
         }
 
@@ -36,10 +35,9 @@ namespace MiniTaller.Servicio.Servicios
             {
                 return _repo.EstaRelacionado(tipo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método EstaRelacionado", ex);
             }
         }
 
@@ -49,10 +47,9 @@ namespace MiniTaller.Servicio.Servicios
             {
                 return _repo.Existe(tipo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Existe", ex);
             }
         }
 
@@ -62,28 +59,41 @@ namespace MiniTaller.Servicio.Servicios
             {
                 return _repo.GetCantidad();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetCantidad", ex);
             }
         }
 
         public TiposClientes GetTipoClientePorId(int tipoId)
         {
-            return _repo.GetTipoClientePorId(tipoId);
+            try
+            {
+                return _repo.GetTipoClientePorId(tipoId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Oh no algo no salio bien en el método GetTipoClientePorId", ex);
+            }
         }
 
         public List<TiposClientes> GetTiposDeClientes()
         {
-           return _repo.GetTiposDeClientes();   
+            try
+            {
+                return _repo.GetTiposDeClientes();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Oh no algo no salio bien en el método GetTiposDeClientes", ex);
+            }
         }
 
         public void Guardar(TiposClientes tipo)
         {
             try
             {
-                if (tipo.IdTipoCliente==0)
+                if (tipo.IdTipoCliente == 0)
                 {
                     _repo.Agregar(tipo);
                 }
@@ -92,10 +102,9 @@ namespace MiniTaller.Servicio.Servicios
                     _repo.Editar(tipo);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Guardar", ex);
             }
         }
     }

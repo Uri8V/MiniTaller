@@ -26,10 +26,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 _repo.Borrar(IdVehiculoServicio);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Borrar", ex);
             }
         }
 
@@ -39,10 +38,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.EstaRelacionado(vehiculosServicios);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método EstaRelacionado", ex);
             }
         }
 
@@ -52,10 +50,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.Existe(vehiculosServicios);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Existe", ex);
             }
         }
 
@@ -65,10 +62,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetCantidad(IdVehiculo, IdServicio, IdCliente, FechaServicios,Yapago);
             }
-            catch ( Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetCantidad", ex);
             }
         }
 
@@ -78,10 +74,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetServiciosCombo();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetServiciosCombo", ex);
             }
         }
 
@@ -91,10 +86,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetVehiculoServicioPorCliente(CUITDocumento);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetehiculoServicioPorCliente", ex);
             }
         }
 
@@ -104,10 +98,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetVehiculoServicioPorId(IdVehiculoServicio);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetVehiculoServicioPorId", ex);
             }
         }
 
@@ -117,10 +110,9 @@ namespace MiniTaller.Servicios.Servicios
             {
                 return _repo.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IdServicio, IdCliente, FechaServicios, Yapago);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método GetVehiculoServicioPorPagina", ex);
             }
         }
 
@@ -137,10 +129,9 @@ namespace MiniTaller.Servicios.Servicios
                     _repo.Editar(vehiculosServicios);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Oh no algo no salio bien en el método Guardar", ex);
             }
         }
     }
