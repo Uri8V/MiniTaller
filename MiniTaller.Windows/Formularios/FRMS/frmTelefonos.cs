@@ -207,10 +207,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     MessageBox.Show("El telefono ya existe!!!", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 GridHelpers.SetearFila(r, CopiaTelefono);
-                throw;
+                MessageBox.Show(ex.Message, "UPS, ALGO SALIO MAL CON LA EDICIÓN", MessageBoxButtons.OK);
             }
         }
         private void DesabilitarBotones()

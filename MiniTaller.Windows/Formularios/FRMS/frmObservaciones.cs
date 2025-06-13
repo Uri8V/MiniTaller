@@ -225,10 +225,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     MessageBox.Show("La observación ya existe!!!", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 GridHelpers.SetearFila(r, CopiaObservacion);
-                throw;
+                MessageBox.Show(ex.Message, "UPS, ALGO SALIO MAL CON LA EDICIÓN", MessageBoxButtons.OK);
             }
         }
         private void DesabilitarBotones()

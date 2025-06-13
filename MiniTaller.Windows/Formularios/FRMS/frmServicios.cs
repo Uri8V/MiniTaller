@@ -220,10 +220,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     MessageBox.Show("El Servicio ya existe!!!!", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 GridHelpers.SetearFila(r, CopiaServicio);
-                throw;
+                MessageBox.Show(ex.Message, "UPS, ALGO SALIO MAL CON LA EDICIÓN", MessageBoxButtons.OK);
             }
         }
 

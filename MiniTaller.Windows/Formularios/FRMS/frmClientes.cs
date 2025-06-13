@@ -222,10 +222,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     MessageBox.Show("El Cliente ya existe", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 GridHelpers.SetearFila(r, CopiaCliente);
-                throw;
+                MessageBox.Show(ex.Message,"UPS, ALGO SALIO MAL CON LA EDICIÓN",MessageBoxButtons.OK);
             }
         }
 

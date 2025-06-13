@@ -235,10 +235,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     MessageBox.Show("El servicio ya existe!!!", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 GridHelpers.SetearFila(r, CopiaServicio);
-                throw;
+                MessageBox.Show(ex.Message, "UPS, ALGO SALIO MAL CON LA EDICIÓN", MessageBoxButtons.OK);
             }
         }
         private void DesabilitarBotones()
@@ -349,10 +349,9 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 DialogResult dr = frm.ShowDialog(this);
                 if (dr == DialogResult.Cancel) { return; }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show(ex.Message, "UPS, ALGO SALIO MAL CON LA IMPRESIÓN", MessageBoxButtons.OK);
             }
         }
         private void toolStripTextBox1_Click(object sender, EventArgs e)

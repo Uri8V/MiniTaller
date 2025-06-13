@@ -218,10 +218,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     MessageBox.Show("El modelo ya existe!!!", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 GridHelpers.SetearFila(r, CopiaModelo);
-                throw;
+                MessageBox.Show(ex.Message, "UPS, ALGO SALIO MAL CON LA EDICIÓN", MessageBoxButtons.OK);
             }
         }
         private void toolStripButtonFiltrar_Click(object sender, EventArgs e)

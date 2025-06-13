@@ -105,9 +105,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
         }
 
@@ -144,7 +142,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             {
                 GridHelpers.SetearFila(r, tipoCopia);
                 MessageBox.Show(ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
 

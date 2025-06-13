@@ -107,9 +107,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
         }
 
