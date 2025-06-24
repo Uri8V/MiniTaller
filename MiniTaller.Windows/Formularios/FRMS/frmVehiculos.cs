@@ -35,7 +35,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         int paginaActual = 1;
         int registros = 0;
         int paginas = 0;
-        int registrosPorPagina =1;
+        int registrosPorPagina =50;
 
         int? tipo = null;
         int? modelo = null;
@@ -281,5 +281,25 @@ namespace MiniTaller.Windows.Formularios.FRMS
             DesabilitarBotones();
         }
 
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            toolStripTextBox1.SelectAll();
+        }
+
+        private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            var texto = toolStripTextBox1.Text;
+            BuscarVehiculos(lista, texto);
+        }
+        private void BuscarVehiculos(List<VehiculosDto> VehiculosDto, string texto)
+        {
+            var listaFiltrada = VehiculosDto;
+            if (texto.Length != 0)
+            {
+                Func<VehiculosDto, bool> condicion = c => c.Patente.Contains(texto.ToUpper()) || c.Modelo.Contains(texto.ToUpper()) || c.VIN.Contains(texto.ToUpper()) || c.ECU.Contains(texto.ToUpper()) || c.PINCode.Contains(texto.ToUpper()) || c.Tipo.Contains(texto.ToUpper());
+                listaFiltrada = VehiculosDto.Where(condicion).ToList();
+            }
+            GridHelpers.MostrarDatosEnGrilla<VehiculosDto>(dgvDatos, listaFiltrada);
+        }
     }
 }

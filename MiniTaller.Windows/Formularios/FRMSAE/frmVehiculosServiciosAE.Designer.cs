@@ -265,7 +265,9 @@
             // comboVehiculo
             // 
             this.comboVehiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboVehiculo.DropDownWidth = 200;
             this.comboVehiculo.FormattingEnabled = true;
+            this.comboVehiculo.IntegralHeight = false;
             this.comboVehiculo.Location = new System.Drawing.Point(114, 119);
             this.comboVehiculo.Name = "comboVehiculo";
             this.comboVehiculo.Size = new System.Drawing.Size(322, 21);

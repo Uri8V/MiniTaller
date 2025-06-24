@@ -14,6 +14,9 @@ namespace MiniTaller.Entidades.Dtos
         public string Kilometros { get; set; }
         public string Modelo { get; set; }
         public string Tipo { get; set; }
+        public string PINCode { get; set; }
+        public string ECU { get; set; }
+        public string VIN { get; set; }
         public object Clone()
         {
             return this.MemberwiseClone();

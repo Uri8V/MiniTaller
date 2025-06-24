@@ -33,8 +33,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         int paginaActual = 1;
         int registros = 0;
         int paginas = 0;
-        int registrosPorPagina = 3;
-
+        int registrosPorPagina = 50;
         int? marca = null;
 
 
@@ -270,5 +269,25 @@ namespace MiniTaller.Windows.Formularios.FRMS
 
         }
 
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            toolStripTextBox1.SelectAll();
+        }
+
+        private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            var texto = toolStripTextBox1.Text;
+            BuscarModelos(lista, texto);
+        }
+        private void BuscarModelos(List<ModelosDto> serviciosVehiculosDto, string texto)
+        {
+            var listaFiltrada = serviciosVehiculosDto;
+            if (texto.Length != 0)
+            {
+                Func<ModelosDto, bool> condicion = c => c.Modelo.ToUpper().Contains(texto.ToUpper());
+                listaFiltrada = serviciosVehiculosDto.Where(condicion).ToList();
+            }
+            GridHelpers.MostrarDatosEnGrilla<ModelosDto>(dgvDatos, listaFiltrada);
+        }
     }
 }

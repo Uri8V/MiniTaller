@@ -26,8 +26,8 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"INSERT INTO Vehiculos (Patente, Kilometros,IdModelo, IdTipoVehiculo) 
-                                    Values (UPPER(@Patente), @Kilometros, @IdModelo, @IdTipoVehiculo); SELECT SCOPE_IDENTITY();";
+                string selectQuery = @"INSERT INTO Vehiculos (Patente, Kilometros,IdModelo, IdTipoVehiculo,ECU, VIN, PINCode) 
+                                    Values (UPPER(@Patente), @Kilometros, @IdModelo, @IdTipoVehiculo, @ECU, @VIN, @PINCode); SELECT SCOPE_IDENTITY();";
                 int id = conn.ExecuteScalar<int>(selectQuery, vehiculos);
                 vehiculos.IdVehiculo = id;
             }
@@ -46,7 +46,7 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string updateQuery = @"UPDATE Vehiculos SET Patente=UPPER(@Patente), Kilometros=@Kilometros, IdModelo=@IdModelo, IdTipoVehiculo=@IdTipoVehiculo
+                string updateQuery = @"UPDATE Vehiculos SET Patente=UPPER(@Patente), Kilometros=@Kilometros, IdModelo=@IdModelo, IdTipoVehiculo=@IdTipoVehiculo, ECU=@ECU,VIN=@VIN,PINCode=@PINCode
                 WHERE IdVehiculo=@IdVehiculo";
                 conn.Execute(updateQuery, vehiculos);
             }
@@ -119,7 +119,7 @@ namespace MiniTaller.Repositorios.Repositorios
             List<VehiculosComboDto> lista;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT v.IdVehiculo, CONCAT(UPPER(v.Patente),' | Tipo Vehiculo: ',t.Tipo,' | Modelo: ', m.Modelo) AS Info FROM Vehiculos v
+                string selectQuery = @"SELECT v.IdVehiculo, CONCAT(UPPER(v.Patente),' | Tipo Vehiculo: ',t.Tipo,' | Modelo: ', m.Modelo,' | VIN: ',v.VIN,' | ECU: ',v.ECU, ' | PIN Code: ',v.PINCode ) AS Info FROM Vehiculos v
                                        INNER JOIN TiposDeVehiculos t ON v.IdTipoVehiculo=t.IdTipoVehiculo
                                        INNER JOIN Modelos m ON m.IdModelo=v.IdModelo
                                        ORDER BY v.Patente";
@@ -134,7 +134,7 @@ namespace MiniTaller.Repositorios.Repositorios
             Vehiculos vehiculo = null;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT IdVehiculo, Patente, Kilometros, IdTipoVehiculo, IdModelo 
+                string selectQuery = @"SELECT IdVehiculo, Patente, Kilometros, IdTipoVehiculo, IdModelo, ECU,PINCode,VIN 
                     FROM Vehiculos WHERE IdVehiculo=@IdVehiculo";
                 vehiculo = conn.QuerySingleOrDefault<Vehiculos>(selectQuery,
                     new { IdVehiculo = IdVehiculo });
@@ -152,6 +152,9 @@ namespace MiniTaller.Repositorios.Repositorios
                 selectQuery.AppendLine("v.IdVehiculo,");
                 selectQuery.AppendLine("v.Patente,");
                 selectQuery.AppendLine("v.Kilometros,");
+                selectQuery.AppendLine("v.VIN,");
+                selectQuery.AppendLine("v.ECU,");
+                selectQuery.AppendLine("v.PINCode,");
                 selectQuery.AppendLine("t.Tipo,");
                 selectQuery.AppendLine("m.Modelo");
                 selectQuery.AppendLine("FROM Vehiculos v");

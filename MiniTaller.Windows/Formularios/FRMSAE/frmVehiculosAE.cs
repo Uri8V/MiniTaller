@@ -36,6 +36,9 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 txtKilometros.Text = vehiculos.Kilometros;
                 comboModelo.SelectedValue = vehiculos.IdModelo;
                 comboTipoVehiculo.SelectedValue = vehiculos.IdTipoVehiculo;
+                txtVIN.Text = vehiculos.VIN;
+                txtPINCODE.Text=vehiculos.PINCode;
+                txtECU.Text = vehiculos.ECU;
             }
         }
         private Vehiculos vehiculos;
@@ -70,7 +73,9 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 ModelosComboDto modeloaSeleccionado = (ModelosComboDto)comboModelo.SelectedItem;
                 vehiculos.Modelo = _sericioDeModelos.GetModelosPorId(modeloaSeleccionado.IdModelo);
                 vehiculos.IdModelo = (int)comboModelo.SelectedValue;
-
+                vehiculos.ECU = txtECU.Text;
+                vehiculos.VIN=txtVIN.Text;
+                vehiculos.PINCode=txtPINCODE.Text;
                 DialogResult = DialogResult.OK;
             }
         }
@@ -103,6 +108,11 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             {
                 errorProvider1.SetError(comboTipoVehiculo, "Debe seleccionar un tipo de Vehiculo");
                 valid = false;
+            }
+            if (string.IsNullOrEmpty(txtVIN.Text))
+            {
+                valid = false;
+                errorProvider1.SetError(txtVIN, "Debe ingresar el VIN");
             }
             return valid;
         }

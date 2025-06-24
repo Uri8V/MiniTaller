@@ -15,5 +15,8 @@ namespace MiniTaller.Entidades.Entidades
         public Modelos Modelo { get; set; }
         public int  IdTipoVehiculo { get; set; }
         public TiposDeVehiculos TipoDeVehiculo { get; set; }
+        public string PINCode { get; set; }
+        public string ECU {get; set; }
+        public string VIN { get; set; }
     }
 }

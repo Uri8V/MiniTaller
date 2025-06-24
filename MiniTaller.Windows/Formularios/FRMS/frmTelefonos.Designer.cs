@@ -138,6 +138,7 @@
             this.dgvDatos.MultiSelect = false;
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
+            this.dgvDatos.RowHeadersVisible = false;
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(800, 338);
             this.dgvDatos.TabIndex = 1;
@@ -308,14 +309,14 @@
             // clienteToolStripMenuItem
             // 
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.clienteToolStripMenuItem.Text = "Cliente";
             this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
             // 
             // tipoDeTelefonoToolStripMenuItem
             // 
             this.tipoDeTelefonoToolStripMenuItem.Name = "tipoDeTelefonoToolStripMenuItem";
-            this.tipoDeTelefonoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tipoDeTelefonoToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.tipoDeTelefonoToolStripMenuItem.Text = "Tipo de Telefono";
             this.tipoDeTelefonoToolStripMenuItem.Click += new System.EventHandler(this.tipoDeTelefonoToolStripMenuItem_Click);
             // 

@@ -102,6 +102,7 @@
             this.dgvDatos.MultiSelect = false;
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
+            this.dgvDatos.RowHeadersVisible = false;
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(800, 339);
             this.dgvDatos.TabIndex = 1;
@@ -321,9 +322,13 @@
             // 
             // toolStripTextBox1
             // 
+            this.toolStripTextBox1.AccessibleDescription = "";
             this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStripTextBox1.MaxLength = 50;
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(150, 54);
+            this.toolStripTextBox1.Tag = "";
+            this.toolStripTextBox1.ToolTipText = "Buscador de Servicios";
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
             // 

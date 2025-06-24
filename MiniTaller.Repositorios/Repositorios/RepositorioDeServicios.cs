@@ -114,7 +114,7 @@ namespace MiniTaller.Repositorios.Repositorios
             List<ServiciosComboDto> lista;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT s.IdServicio, CONCAT(s.Servicio, ' | ', s.Debe, ' $ ',' | ', t.Tipo ) AS Info
+                string selectQuery = @"SELECT s.IdServicio, CONCAT(s.Servicio,' | ', s.Debe, '$',' | ', t.Tipo ) AS Info
                                        FROM Servicios s
                                        INNER JOIN TiposDePagos t ON s.IdTipoPago=t.IdTipoPago
                                        ORDER BY s.Servicio";

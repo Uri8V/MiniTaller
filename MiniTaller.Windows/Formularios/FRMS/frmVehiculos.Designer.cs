@@ -28,8 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.colPatente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTipoDeVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKilometros = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEcu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPINCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnUltimo = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnAnterior = new System.Windows.Forms.Button();
@@ -50,10 +58,8 @@
             this.modeloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoDeVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButtonActualizar = new System.Windows.Forms.ToolStripButton();
-            this.colPatente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTipoDeVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colKilometros = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -85,7 +91,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.lblRegistros);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
-            this.splitContainer1.Size = new System.Drawing.Size(700, 396);
+            this.splitContainer1.Size = new System.Drawing.Size(579, 396);
             this.splitContainer1.SplitterDistance = 324;
             this.splitContainer1.TabIndex = 7;
             // 
@@ -93,25 +99,83 @@
             // 
             this.dgvDatos.AllowUserToAddRows = false;
             this.dgvDatos.AllowUserToDeleteRows = false;
+            this.dgvDatos.AllowUserToResizeColumns = false;
+            this.dgvDatos.AllowUserToResizeRows = false;
+            this.dgvDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPatente,
             this.colTipoDeVehiculo,
             this.colModelo,
-            this.colKilometros});
+            this.colKilometros,
+            this.colEcu,
+            this.colVIN,
+            this.colPINCode});
             this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDatos.Location = new System.Drawing.Point(0, 0);
             this.dgvDatos.MultiSelect = false;
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
+            this.dgvDatos.RowHeadersVisible = false;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDatos.Size = new System.Drawing.Size(700, 324);
+            this.dgvDatos.Size = new System.Drawing.Size(579, 324);
             this.dgvDatos.TabIndex = 2;
+            // 
+            // colPatente
+            // 
+            this.colPatente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPatente.HeaderText = "Patente";
+            this.colPatente.Name = "colPatente";
+            this.colPatente.ReadOnly = true;
+            // 
+            // colTipoDeVehiculo
+            // 
+            this.colTipoDeVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colTipoDeVehiculo.HeaderText = "Tipo de Vehiculo";
+            this.colTipoDeVehiculo.Name = "colTipoDeVehiculo";
+            this.colTipoDeVehiculo.ReadOnly = true;
+            // 
+            // colModelo
+            // 
+            this.colModelo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colModelo.HeaderText = "Modelo";
+            this.colModelo.Name = "colModelo";
+            this.colModelo.ReadOnly = true;
+            // 
+            // colKilometros
+            // 
+            this.colKilometros.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colKilometros.HeaderText = "Kilometros";
+            this.colKilometros.Name = "colKilometros";
+            this.colKilometros.ReadOnly = true;
+            // 
+            // colEcu
+            // 
+            this.colEcu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colEcu.HeaderText = "ECU";
+            this.colEcu.Name = "colEcu";
+            this.colEcu.ReadOnly = true;
+            // 
+            // colVIN
+            // 
+            this.colVIN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colVIN.HeaderText = "VIN";
+            this.colVIN.Name = "colVIN";
+            this.colVIN.ReadOnly = true;
+            // 
+            // colPINCode
+            // 
+            this.colPINCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPINCode.HeaderText = "PIN Code";
+            this.colPINCode.Name = "colPINCode";
+            this.colPINCode.ReadOnly = true;
             // 
             // btnUltimo
             // 
             this.btnUltimo.Image = global::MiniTaller.Windows.Properties.Resources.Last_button_32px;
-            this.btnUltimo.Location = new System.Drawing.Point(604, 15);
+            this.btnUltimo.Location = new System.Drawing.Point(494, 15);
             this.btnUltimo.Name = "btnUltimo";
             this.btnUltimo.Size = new System.Drawing.Size(75, 32);
             this.btnUltimo.TabIndex = 89;
@@ -121,7 +185,7 @@
             // btnSiguiente
             // 
             this.btnSiguiente.Image = global::MiniTaller.Windows.Properties.Resources.next_32px;
-            this.btnSiguiente.Location = new System.Drawing.Point(523, 15);
+            this.btnSiguiente.Location = new System.Drawing.Point(413, 15);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(75, 32);
             this.btnSiguiente.TabIndex = 90;
@@ -131,7 +195,7 @@
             // btnAnterior
             // 
             this.btnAnterior.Image = global::MiniTaller.Windows.Properties.Resources.previous_32px;
-            this.btnAnterior.Location = new System.Drawing.Point(442, 15);
+            this.btnAnterior.Location = new System.Drawing.Point(332, 15);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(75, 32);
             this.btnAnterior.TabIndex = 91;
@@ -141,7 +205,7 @@
             // btnPrimero
             // 
             this.btnPrimero.Image = global::MiniTaller.Windows.Properties.Resources.First_32px;
-            this.btnPrimero.Location = new System.Drawing.Point(361, 15);
+            this.btnPrimero.Location = new System.Drawing.Point(251, 15);
             this.btnPrimero.Name = "btnPrimero";
             this.btnPrimero.Size = new System.Drawing.Size(75, 32);
             this.btnPrimero.TabIndex = 92;
@@ -152,7 +216,7 @@
             // 
             this.lblPaginas.AutoSize = true;
             this.lblPaginas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaginas.Location = new System.Drawing.Point(303, 40);
+            this.lblPaginas.Location = new System.Drawing.Point(193, 40);
             this.lblPaginas.Name = "lblPaginas";
             this.lblPaginas.Size = new System.Drawing.Size(14, 13);
             this.lblPaginas.TabIndex = 86;
@@ -161,7 +225,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(269, 40);
+            this.label4.Location = new System.Drawing.Point(159, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(19, 13);
             this.label4.TabIndex = 83;
@@ -171,7 +235,7 @@
             // 
             this.lblPaginaActual.AutoSize = true;
             this.lblPaginaActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaginaActual.Location = new System.Drawing.Point(243, 40);
+            this.lblPaginaActual.Location = new System.Drawing.Point(133, 40);
             this.lblPaginaActual.Name = "lblPaginaActual";
             this.lblPaginaActual.Size = new System.Drawing.Size(14, 13);
             this.lblPaginaActual.TabIndex = 87;
@@ -180,7 +244,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(193, 40);
+            this.label2.Location = new System.Drawing.Point(83, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 84;
@@ -190,7 +254,7 @@
             // 
             this.lblRegistros.AutoSize = true;
             this.lblRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistros.Location = new System.Drawing.Point(243, 15);
+            this.lblRegistros.Location = new System.Drawing.Point(133, 15);
             this.lblRegistros.Name = "lblRegistros";
             this.lblRegistros.Size = new System.Drawing.Size(14, 13);
             this.lblRegistros.TabIndex = 88;
@@ -199,7 +263,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(122, 15);
+            this.label3.Location = new System.Drawing.Point(12, 15);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(114, 13);
             this.label3.TabIndex = 85;
@@ -214,10 +278,12 @@
             this.toolStripButtonEditar,
             this.toolStripSeparator1,
             this.toolStripButtonFiltrar,
-            this.toolStripButtonActualizar});
+            this.toolStripButtonActualizar,
+            this.toolStripSeparator2,
+            this.toolStripTextBox1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(700, 54);
+            this.toolStrip1.Size = new System.Drawing.Size(579, 54);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -309,44 +375,30 @@
             this.toolStripButtonActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonActualizar.Click += new System.EventHandler(this.toolStripButtonActualizar_Click);
             // 
-            // colPatente
+            // toolStripSeparator2
             // 
-            this.colPatente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPatente.HeaderText = "Patente";
-            this.colPatente.Name = "colPatente";
-            this.colPatente.ReadOnly = true;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 54);
             // 
-            // colTipoDeVehiculo
+            // toolStripTextBox1
             // 
-            this.colTipoDeVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colTipoDeVehiculo.HeaderText = "Tipo de Vehiculo";
-            this.colTipoDeVehiculo.Name = "colTipoDeVehiculo";
-            this.colTipoDeVehiculo.ReadOnly = true;
-            // 
-            // colModelo
-            // 
-            this.colModelo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colModelo.HeaderText = "Modelo";
-            this.colModelo.Name = "colModelo";
-            this.colModelo.ReadOnly = true;
-            // 
-            // colKilometros
-            // 
-            this.colKilometros.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colKilometros.HeaderText = "Kilometros";
-            this.colKilometros.Name = "colKilometros";
-            this.colKilometros.ReadOnly = true;
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 54);
+            this.toolStripTextBox1.ToolTipText = "Buscador de Vehiculos por Patente / Tipo / Modelo / ECU / VIN / PIN CODE";
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
+            this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
             // 
             // frmVehiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 450);
+            this.ClientSize = new System.Drawing.Size(579, 450);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
-            this.MaximumSize = new System.Drawing.Size(716, 489);
-            this.MinimumSize = new System.Drawing.Size(716, 489);
+            this.MaximumSize = new System.Drawing.Size(595, 489);
+            this.MinimumSize = new System.Drawing.Size(595, 489);
             this.Name = "frmVehiculos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmVehiculos";
@@ -392,5 +444,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipoDeVehiculo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colModelo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colKilometros;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEcu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVIN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPINCode;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
     }
 }

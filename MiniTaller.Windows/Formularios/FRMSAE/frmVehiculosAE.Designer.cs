@@ -42,6 +42,12 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtKilometros = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtECU = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtVIN = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtPINCODE = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,7 +125,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(250, 162);
+            this.btnCancelar.Location = new System.Drawing.Point(247, 231);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(85, 51);
             this.btnCancelar.TabIndex = 12;
@@ -129,7 +135,7 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(103, 162);
+            this.btnConfirmar.Location = new System.Drawing.Point(100, 231);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(92, 51);
             this.btnConfirmar.TabIndex = 13;
@@ -157,12 +163,67 @@
             this.label3.TabIndex = 24;
             this.label3.Text = "Ingrese el Kilometraje";
             // 
+            // txtECU
+            // 
+            this.txtECU.Location = new System.Drawing.Point(103, 153);
+            this.txtECU.Name = "txtECU";
+            this.txtECU.Size = new System.Drawing.Size(172, 20);
+            this.txtECU.TabIndex = 27;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(4, 156);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Ingrese la ECU:";
+            // 
+            // txtVIN
+            // 
+            this.txtVIN.Location = new System.Drawing.Point(103, 179);
+            this.txtVIN.Name = "txtVIN";
+            this.txtVIN.Size = new System.Drawing.Size(213, 20);
+            this.txtVIN.TabIndex = 29;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(4, 182);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 13);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Ingrese la VIN:";
+            // 
+            // txtPINCODE
+            // 
+            this.txtPINCODE.Location = new System.Drawing.Point(115, 208);
+            this.txtPINCODE.Name = "txtPINCODE";
+            this.txtPINCODE.Size = new System.Drawing.Size(160, 20);
+            this.txtPINCODE.TabIndex = 31;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 208);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(105, 13);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Ingrese el PIN Code:";
+            // 
             // frmVehiculosAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 221);
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.ClientSize = new System.Drawing.Size(453, 294);
             this.ControlBox = false;
+            this.Controls.Add(this.txtPINCODE);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtVIN);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtECU);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtKilometros);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAgregarTipoVehiculo);
@@ -175,8 +236,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
-            this.MaximumSize = new System.Drawing.Size(444, 260);
-            this.MinimumSize = new System.Drawing.Size(444, 260);
+            this.MaximumSize = new System.Drawing.Size(469, 333);
+            this.MinimumSize = new System.Drawing.Size(469, 333);
             this.Name = "frmVehiculosAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmVehiculosAE";
@@ -201,5 +262,11 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox txtKilometros;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtPINCODE;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtVIN;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtECU;
+        private System.Windows.Forms.Label label5;
     }
 }

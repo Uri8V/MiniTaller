@@ -45,7 +45,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         int paginaActual = 1;
         int registros = 0;
         int paginas = 0;
-        int registrosPorPagina = 4;
+        int registrosPorPagina = 50;
 
         int? IdVehiculo = null;
         int? IDMovimiento = null;

@@ -59,11 +59,14 @@
             // 
             // comboServicios
             // 
+            this.comboServicios.DropDownHeight = 200;
             this.comboServicios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboServicios.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboServicios.FormattingEnabled = true;
-            this.comboServicios.Location = new System.Drawing.Point(150, 18);
+            this.comboServicios.IntegralHeight = false;
+            this.comboServicios.Location = new System.Drawing.Point(130, 23);
             this.comboServicios.Name = "comboServicios";
-            this.comboServicios.Size = new System.Drawing.Size(175, 21);
+            this.comboServicios.Size = new System.Drawing.Size(207, 21);
             this.comboServicios.TabIndex = 21;
             // 
             // btnConfirmar

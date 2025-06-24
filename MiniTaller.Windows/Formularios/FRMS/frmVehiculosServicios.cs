@@ -48,7 +48,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         int paginaActual = 1;
         int registros = 0;
         int paginas = 0;
-        int registrosPorPagina = 4;
+        int registrosPorPagina = 100;
 
         int? IdVehiculo = null;
         int? IDMovimiento = null;
@@ -366,7 +366,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);
             MostrarPaginado();
-            DesabilitarBotones();
         }
     }
 }

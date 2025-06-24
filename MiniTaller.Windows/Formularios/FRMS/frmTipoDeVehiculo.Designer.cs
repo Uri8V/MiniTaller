@@ -61,8 +61,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.txtCantidadTipos);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 396);
-            this.splitContainer1.SplitterDistance = 321;
+            this.splitContainer1.Size = new System.Drawing.Size(260, 243);
+            this.splitContainer1.SplitterDistance = 196;
             this.splitContainer1.TabIndex = 5;
             // 
             // dgvDatos
@@ -77,8 +77,9 @@
             this.dgvDatos.MultiSelect = false;
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
+            this.dgvDatos.RowHeadersVisible = false;
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDatos.Size = new System.Drawing.Size(800, 321);
+            this.dgvDatos.Size = new System.Drawing.Size(260, 196);
             this.dgvDatos.TabIndex = 0;
             // 
             // colTipoVehiculo
@@ -92,7 +93,7 @@
             // 
             this.txtCantidadTipos.Enabled = false;
             this.txtCantidadTipos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadTipos.Location = new System.Drawing.Point(156, 33);
+            this.txtCantidadTipos.Location = new System.Drawing.Point(116, 3);
             this.txtCantidadTipos.Name = "txtCantidadTipos";
             this.txtCantidadTipos.Size = new System.Drawing.Size(61, 20);
             this.txtCantidadTipos.TabIndex = 1;
@@ -101,7 +102,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 36);
+            this.label1.Location = new System.Drawing.Point(12, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 0;
@@ -116,7 +117,7 @@
             this.toolStripButtonEditar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 54);
+            this.toolStrip1.Size = new System.Drawing.Size(260, 54);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -169,7 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(260, 297);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);

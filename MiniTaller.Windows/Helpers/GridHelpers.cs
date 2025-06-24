@@ -76,6 +76,9 @@ namespace MiniTaller.Windows.Helpers
                     r.Cells[1].Value = vehiculo.Tipo;
                     r.Cells[2].Value = vehiculo.Modelo;
                     r.Cells[3].Value = vehiculo.Kilometros;
+                    r.Cells[4].Value = vehiculo.ECU==""?"ECU aùn no encontrada":vehiculo.ECU;
+                    r.Cells[5].Value = vehiculo.VIN;
+                    r.Cells[6].Value = vehiculo.PINCode==""?"PIN CODE aùn no encontrada": vehiculo.PINCode;
                     break;
                 case TelefonosDto telefono:
 
