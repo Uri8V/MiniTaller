@@ -152,5 +152,10 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         {
             imagen = imagenes;
         }
+
+        private void frmImagenesAE_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
     }
 }

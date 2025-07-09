@@ -20,10 +20,10 @@ namespace MiniTaller.Windows.Formularios.FRMSFILTROS
         public frmSeleccionarServicios()
         {
             InitializeComponent();
-            _servicioServicio = new ServiciosDeServicios();
+            _servicioServicio = new ServicioDeServiciosTiposDePago();
         }
-        private IServicioDeServicios _servicioServicio;
-        private Servicioss service;
+        private IServicioDeServiciosTiposDePago _servicioServicio;
+        private ServicioTipoDePago service;
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
@@ -32,7 +32,7 @@ namespace MiniTaller.Windows.Formularios.FRMSFILTROS
         {
             if (ValidaDatos())
             {
-                service = _servicioServicio.GetServiciosPorId((int)comboServicios.SelectedValue);
+                service = _servicioServicio.GetServicioTipoDePagoPorId((int)comboServicios.SelectedValue);
                 DialogResult = DialogResult.OK;
             }
         }
@@ -51,21 +51,21 @@ namespace MiniTaller.Windows.Formularios.FRMSFILTROS
 
         private void frmSeleccionarServicios_Load(object sender, EventArgs e)
         {
-            ComboHelper.CargarComboServicios(ref comboServicios);
+            ComboHelper.CargarComboServiciosTipoDePago(ref comboServicios);
         }
 
         private void btnAgregarServicios_Click(object sender, EventArgs e)
         {
-            frmServicios frm = new frmServicios();
+            frmServiciosTiposDePago frm = new frmServiciosTiposDePago();
             DialogResult dr = frm.ShowDialog(this);
             if (dr == DialogResult.Cancel)
             {
-                ComboHelper.CargarComboServicios(ref comboServicios);
+                ComboHelper.CargarComboServiciosTipoDePago(ref comboServicios);
                 return;
             }
         }
 
-        internal Servicioss GetMovimiento()
+        internal ServicioTipoDePago GetMovimiento()
         {
             return service;
         }

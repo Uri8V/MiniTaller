@@ -141,7 +141,7 @@ namespace MiniTaller.Repositorios.Repositorios
             List<ClientesComboDto> lista = new List<ClientesComboDto>();
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT c.IdCliente, CONCAT(UPPER(c.Apellido),'  ',c.Nombre,' (',c.Documento,')')AS Info FROM Clientes c WHERE c.CUIT=''; ";
+                string selectQuery = @"SELECT c.IdCliente, CONCAT(UPPER(c.Apellido),' ',c.Nombre,' (',c.Documento,')')AS Info FROM Clientes c WHERE c.CUIT=''";
                 lista = conn.Query<ClientesComboDto>(selectQuery).ToList();
             }
             return lista;
@@ -152,7 +152,7 @@ namespace MiniTaller.Repositorios.Repositorios
             List<ClientesComboDto> lista = new List<ClientesComboDto>();
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT c.IdCliente, CONCAT(UPPER(c.Apellido),'  ',c.Nombre,' (',c.CUIT,')')AS Info FROM Clientes c WHERE c.Documento=''; ";
+                string selectQuery = @"SELECT c.IdCliente, CONCAT(UPPER(c.Apellido),' ',c.Nombre,' (',c.CUIT,')')AS Info FROM Clientes c WHERE c.Documento=''";
                 lista = conn.Query<ClientesComboDto>(selectQuery).ToList();
             }
             return lista;

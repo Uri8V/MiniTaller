@@ -26,6 +26,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             InitializeComponent();
             _servicio = new ServicioDeClientes();
             _servicioTipoCliente = new ServicioDeTipoCliente();
+            this.WindowState = FormWindowState.Maximized;
         }
         private List<ClientesDto> lista;
         private IServicioDeClientes _servicio;
@@ -277,12 +278,12 @@ namespace MiniTaller.Windows.Formularios.FRMS
 
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
-            toolStripTextBox1.Text = "";
+            toolStripTextBox2.Text = "";
         }
 
         private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
         {
-            var texto = toolStripTextBox1.Text;
+            var texto = toolStripTextBox2.Text;
             BuscarCliente(lista, texto);
         }
         private void BuscarCliente(List<ClientesDto> serviciosVehiculosDto, string texto)

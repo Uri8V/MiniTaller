@@ -40,50 +40,68 @@
             // 
             // btnAgregarTipoDeTelefono
             // 
-            this.btnAgregarTipoDeTelefono.Image = global::MiniTaller.Windows.Properties.Resources.add_32px;
-            this.btnAgregarTipoDeTelefono.Location = new System.Drawing.Point(364, 13);
+            this.btnAgregarTipoDeTelefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(140)))), ((int)(((byte)(71)))));
+            this.btnAgregarTipoDeTelefono.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarTipoDeTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnAgregarTipoDeTelefono.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
+            this.btnAgregarTipoDeTelefono.Location = new System.Drawing.Point(662, 12);
             this.btnAgregarTipoDeTelefono.Name = "btnAgregarTipoDeTelefono";
-            this.btnAgregarTipoDeTelefono.Size = new System.Drawing.Size(50, 43);
-            this.btnAgregarTipoDeTelefono.TabIndex = 20;
-            this.btnAgregarTipoDeTelefono.UseVisualStyleBackColor = true;
+            this.btnAgregarTipoDeTelefono.Size = new System.Drawing.Size(62, 51);
+            this.btnAgregarTipoDeTelefono.TabIndex = 1;
+            this.btnAgregarTipoDeTelefono.Tag = "Agregar Tipo de Telefono";
+            this.btnAgregarTipoDeTelefono.UseVisualStyleBackColor = false;
             this.btnAgregarTipoDeTelefono.Click += new System.EventHandler(this.btnAgregarTipoDeTelefono_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 28);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label1.Location = new System.Drawing.Point(9, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 13);
+            this.label1.Size = new System.Drawing.Size(285, 24);
             this.label1.TabIndex = 19;
             this.label1.Text = "Seleccionar el Tipo de Telefono:";
             // 
             // comboBoxTipoDeTelefono
             // 
+            this.comboBoxTipoDeTelefono.AllowDrop = true;
+            this.comboBoxTipoDeTelefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
             this.comboBoxTipoDeTelefono.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTipoDeTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.comboBoxTipoDeTelefono.FormattingEnabled = true;
-            this.comboBoxTipoDeTelefono.Location = new System.Drawing.Point(174, 25);
+            this.comboBoxTipoDeTelefono.IntegralHeight = false;
+            this.comboBoxTipoDeTelefono.Location = new System.Drawing.Point(300, 22);
+            this.comboBoxTipoDeTelefono.MaxDropDownItems = 20;
             this.comboBoxTipoDeTelefono.Name = "comboBoxTipoDeTelefono";
-            this.comboBoxTipoDeTelefono.Size = new System.Drawing.Size(175, 21);
-            this.comboBoxTipoDeTelefono.TabIndex = 18;
+            this.comboBoxTipoDeTelefono.Size = new System.Drawing.Size(356, 32);
+            this.comboBoxTipoDeTelefono.TabIndex = 0;
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(99, 70);
+            this.btnConfirmar.AllowDrop = true;
+            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnConfirmar.Location = new System.Drawing.Point(213, 93);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(87, 23);
-            this.btnConfirmar.TabIndex = 16;
+            this.btnConfirmar.Size = new System.Drawing.Size(148, 42);
+            this.btnConfirmar.TabIndex = 2;
             this.btnConfirmar.Text = "CONFIRMAR";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(261, 70);
+            this.btnCancelar.AllowDrop = true;
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnCancelar.Location = new System.Drawing.Point(433, 93);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 17;
+            this.btnCancelar.Size = new System.Drawing.Size(148, 42);
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "CANCELAR";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // errorProvider1
@@ -94,13 +112,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(423, 105);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(72)))), ((int)(((byte)(59)))));
+            this.ClientSize = new System.Drawing.Size(736, 147);
             this.ControlBox = false;
             this.Controls.Add(this.btnAgregarTipoDeTelefono);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxTipoDeTelefono);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimumSize = new System.Drawing.Size(670, 147);
             this.Name = "frmSeleccionarTipoDeTelefono";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSeleccionarTipoDeTelefono";

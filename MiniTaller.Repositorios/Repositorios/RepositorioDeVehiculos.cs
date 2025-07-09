@@ -165,7 +165,7 @@ namespace MiniTaller.Repositorios.Repositorios
                 {
                     selectQuery.AppendLine("WHERE  m.IdModelo= @IdModelo OR t.IdTipoVehiculo = @IdTipoVehiculo ");
                 }
-                selectQuery.AppendLine("ORDER BY t.Tipo, m.Modelo");
+                selectQuery.AppendLine("ORDER BY v.Patente");
                 selectQuery.AppendLine("OFFSET @cantidadRegistros ROWS FETCH NEXT @CantidadPorPagina ROWS ONLY");
 
                 var parametros = new

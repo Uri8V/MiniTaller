@@ -39,39 +39,48 @@
             // 
             // txtMarca
             // 
-            this.txtMarca.Location = new System.Drawing.Point(107, 24);
+            this.txtMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.txtMarca.Location = new System.Drawing.Point(196, 28);
             this.txtMarca.MaxLength = 100;
             this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(211, 20);
-            this.txtMarca.TabIndex = 6;
+            this.txtMarca.Size = new System.Drawing.Size(224, 35);
+            this.txtMarca.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 31);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(11, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.Size = new System.Drawing.Size(179, 29);
             this.label1.TabIndex = 5;
             this.label1.Text = "Nombre Marca:";
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(183, 83);
+            this.btnCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(59)))), ((int)(((byte)(57)))));
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.btnCerrar.Location = new System.Drawing.Point(233, 92);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(96, 23);
-            this.btnCerrar.TabIndex = 3;
+            this.btnCerrar.Size = new System.Drawing.Size(169, 64);
+            this.btnCerrar.TabIndex = 2;
             this.btnCerrar.Text = "CERRAR";
-            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(39, 83);
+            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
+            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.btnConfirmar.Location = new System.Drawing.Point(29, 92);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(96, 23);
-            this.btnConfirmar.TabIndex = 4;
+            this.btnConfirmar.Size = new System.Drawing.Size(169, 64);
+            this.btnConfirmar.TabIndex = 1;
             this.btnConfirmar.Text = "CONFIRMAR";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // errorProvider1
@@ -82,14 +91,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 125);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(41)))), ((int)(((byte)(43)))));
+            this.ClientSize = new System.Drawing.Size(446, 187);
             this.ControlBox = false;
             this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnConfirmar);
-            this.MaximumSize = new System.Drawing.Size(363, 164);
-            this.MinimumSize = new System.Drawing.Size(363, 164);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimumSize = new System.Drawing.Size(446, 187);
             this.Name = "frmMarcasAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMarcasAE";

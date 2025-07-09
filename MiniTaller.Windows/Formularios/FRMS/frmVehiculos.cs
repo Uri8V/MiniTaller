@@ -27,6 +27,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             _servicio= new ServicioDeVehiculos();
             _servicioModelos= new ServicioDeModelos();
             _servicioTipoVehiculo = new ServicioDeTipoVehiculo();
+            this.WindowState = FormWindowState.Maximized;
         }
         private List<VehiculosDto> lista;
         private IServicioDeVehiculos _servicio;
@@ -207,6 +208,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                         vehiculoDto.Tipo = _servicioTipoVehiculo.GetTipoDeVehiculoPorId(vehiculos.IdTipoVehiculo).Tipo;
                         GridHelpers.SetearFila(r, vehiculoDto);
                         _servicio.Guardar(vehiculos);
+                        RecargarGrilla();
                     }
                     else
                     {
@@ -296,7 +298,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             var listaFiltrada = VehiculosDto;
             if (texto.Length != 0)
             {
-                Func<VehiculosDto, bool> condicion = c => c.Patente.Contains(texto.ToUpper()) || c.Modelo.Contains(texto.ToUpper()) || c.VIN.Contains(texto.ToUpper()) || c.ECU.Contains(texto.ToUpper()) || c.PINCode.Contains(texto.ToUpper()) || c.Tipo.Contains(texto.ToUpper());
+                Func<VehiculosDto, bool> condicion = c => c.Patente.Contains(texto.ToUpper()) || c.Modelo.Contains(texto.ToUpper()) || c.VIN.Contains(texto.ToUpper()) || c.ECU.Contains(texto.ToUpper()) || c.PINCode.Contains(texto.ToUpper());
                 listaFiltrada = VehiculosDto.Where(condicion).ToList();
             }
             GridHelpers.MostrarDatosEnGrilla<VehiculosDto>(dgvDatos, listaFiltrada);

@@ -23,18 +23,25 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             _servicio = new ServiciosDeServicios();
             _servicioCliente = new ServicioDeClientes();
             _servicioVehiculo = new ServicioDeVehiculos();
+            _servicioServicioTipoGato= new ServicioDeServiciosTiposDePago();
+            rtxtDescripcion.KeyDown += rtxtDescripcion_KeyDown;
+            this.WindowState = FormWindowState.Maximized;
         }
         private IServicioDeServicios _servicio;
         private IServicioDeClientes _servicioCliente;
         private IServicioDeVehiculos _servicioVehiculo;
+        private IServicioDeServiciosTiposDePago _servicioServicioTipoGato;
         private VehiculosServicios servicios;
+        private bool modoListaActiva = false;
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            dateTimePickerFecha.Value = DateTime.Now.Date;
             ComboHelper.CargarComboClientesEmpresas(ref comboEmpresa);
             ComboHelper.CargarComboClientesPersonas(ref comboCliente);
             ComboHelper.CargarComboVehiculos(ref comboVehiculo);
-            ComboHelper.CargarComboServicios(ref comboServicio);
+            ComboHelper.CargarComboServiciosTipoDePago(ref comboServicio);
             if (servicios != null)
             {
                 if (_servicioCliente.GetClientePorId(servicios.IdCliente).CUIT != "")
@@ -53,10 +60,10 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     comboEmpresa.SelectedIndex = 0;
                     comboCliente.SelectedValue = servicios.IdCliente;
                 }
-                comboServicio.SelectedValue = servicios.IdServicio;
-                txtDebe.Text = _servicio.GetServiciosPorId(servicios.IdServicio).Debe.ToString();
+                comboServicio.SelectedValue = servicios.IdServicioTipoDePago;
+                txtDebe.Text = _servicioServicioTipoGato.GetServicioTipoDePagoPorId(servicios.IdServicioTipoDePago).Precio.ToString();
                 comboVehiculo.SelectedValue = servicios.IdVehiculo;
-                txtDescripcion.Text = servicios.Descripcion;
+                rtxtDescripcion.Rtf = servicios.Descripcion;
                 txtHaber.Text = servicios.Haber.ToString();
                 dateTimePickerFecha.Value = servicios.Fecha.Date;
             }
@@ -83,7 +90,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 comboEmpresa.Enabled = false;
                 comboCliente.Enabled = true;
             }
-            dateTimePickerFecha.Value= DateTime.Now.Date;
+            
         }
 
         private void checkBoxEmpresa_CheckedChanged(object sender, EventArgs e)
@@ -119,15 +126,15 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     servicios.Cliente = _servicioCliente.GetClientePorId((int)comboCliente.SelectedValue);
                     servicios.IdCliente = (int)comboCliente.SelectedValue;
                 }
-                servicios.Servicio = _servicio.GetServiciosPorId((int)comboServicio.SelectedValue);
-                servicios.IdServicio = (int)comboServicio.SelectedValue;
+                servicios.Servicio = _servicioServicioTipoGato.GetServicioTipoDePagoPorId((int)comboServicio.SelectedValue);
+                servicios.IdServicioTipoDePago = (int)comboServicio.SelectedValue;
 
                 servicios.Vehiculo = _servicioVehiculo.GetVehiculosPorId((int)comboVehiculo.SelectedValue);
                 servicios.IdVehiculo = (int)comboVehiculo.SelectedValue;
 
                 servicios.Debe = Decimal.Parse(txtDebe.Text);
                 servicios.Haber = Decimal.Parse(txtHaber.Text);
-                servicios.Descripcion = txtDescripcion.Text;
+                servicios.Descripcion = rtxtDescripcion.Rtf;
 
                 servicios.Fecha = dateTimePickerFecha.Value;
 
@@ -165,16 +172,6 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 valido = false;
                 errorProvider1.SetError(comboVehiculo, "Debe selccionar un Vehiculo");
             }
-            //if(!int.TryParse(txtDebe.Text, out int Debe))
-            //{
-            //    valido = false;
-            //    errorProvider1.SetError(txtDebe, "Debe poner cuanto debe");
-            //}
-            //else if (Debe < 0)
-            //{
-            //    valido = false;
-            //    errorProvider1.SetError(txtDebe, "Lo que debe ser positivo");
-            //}
             if (!int.TryParse(txtHaber.Text, out int Haber))
             {
                 valido = false;
@@ -185,15 +182,15 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 valido = false;
                 errorProvider1.SetError(txtHaber, "El haber debe ser positivo");
             }
-            else if (Haber>int.Parse(txtDebe.Text))
+            else if (Haber>Decimal.Parse(txtDebe.Text))
             {
                 valido = false;
                 errorProvider1.SetError(txtHaber, "El haber no puede ser mayor al debe");
             }
-            if (string.IsNullOrEmpty(txtDescripcion.Text))
+            if (string.IsNullOrEmpty(rtxtDescripcion.Text))
             {
                 valido = false;
-                errorProvider1.SetError(txtDescripcion, "Debe ingresar una Descripción");
+                errorProvider1.SetError(rtxtDescripcion, "Debe ingresar una Descripción");
             }
             if (dateTimePickerFecha.Value.Date < new DateTime(2023, 1, 1))
             {
@@ -241,10 +238,86 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         {
             if (comboServicio.SelectedIndex != 0)
             {
-                txtDebe.Text = (_servicio.GetServiciosPorId((int)comboServicio.SelectedValue).Debe).ToString();
+                txtDebe.Text = (_servicioServicioTipoGato.GetServicioTipoDePagoPorId((int)comboServicio.SelectedValue).Precio).ToString();
+            }
+        }
+        private void toolStripButtonNegrita_Click(object sender, EventArgs e)
+        {
+            var currentFont = rtxtDescripcion.SelectionFont ?? rtxtDescripcion.Font;
+            var newStyle = currentFont.Style ^ FontStyle.Bold;
+            rtxtDescripcion.SelectionFont = new Font(currentFont, newStyle);
+        }
+
+        private void toolStripButtonCursiva_Click(object sender, EventArgs e)
+        {
+            var currentFont = rtxtDescripcion.SelectionFont ?? rtxtDescripcion.Font;
+            var newStyle = currentFont.Style ^ FontStyle.Italic;
+            rtxtDescripcion.SelectionFont = new Font(currentFont, newStyle);
+        }
+
+        private void toolStripButtonSubrayar_Click(object sender, EventArgs e)
+        {
+            var currentFont = rtxtDescripcion.SelectionFont ?? rtxtDescripcion.Font;
+            var newStyle = currentFont.Style ^ FontStyle.Underline;
+            rtxtDescripcion.SelectionFont = new Font(currentFont, newStyle);
+        }
+
+        private void toolStripButtonTamaño_Click(object sender, EventArgs e)
+        {
+            using (var fontDialog = new FontDialog())
+            {
+                fontDialog.Font = rtxtDescripcion.SelectionFont ?? rtxtDescripcion.Font;
+                if (fontDialog.ShowDialog() == DialogResult.OK)
+                {
+                    rtxtDescripcion.SelectionFont = fontDialog.Font;
+                }
             }
         }
 
+        private void toolStripButtonColores_Click(object sender, EventArgs e)
+        {
+            using (var colorDialog = new ColorDialog())
+            {
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    rtxtDescripcion.SelectionColor = colorDialog.Color;
+                }
+            }
+        }
 
+        private void toolStripButtonItems_Click(object sender, EventArgs e)
+        {
+            modoListaActiva = true;
+            rtxtDescripcion.SelectionBullet = true;
+            rtxtDescripcion.SelectedText = "";
+        }
+
+        private void rtxtDescripcion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!modoListaActiva) return; // solo responde si la lista fue activada
+
+            // Solo intervenimos si Enter fue presionado y el cursor está en una línea con bullet
+            if (e.KeyCode == Keys.Enter && rtxtDescripcion.SelectionBullet)
+            {
+                var lineIndex = rtxtDescripcion.GetLineFromCharIndex(rtxtDescripcion.SelectionStart);
+                var currentLine = rtxtDescripcion.Lines.ElementAtOrDefault(lineIndex)?.Trim();
+
+                // Si está en una línea vacía, desactivamos viñetas
+                if (string.IsNullOrWhiteSpace(currentLine))
+                {
+                    // Si el usuario presionó Enter sobre una línea vacía, salimos del modo lista
+                    rtxtDescripcion.SelectionBullet = false;
+                    modoListaActiva = false;
+
+                }
+                else
+                {
+                    // Si aún está escribiendo ítems, nos aseguramos de mantener el modo activo
+                    rtxtDescripcion.SelectionBullet = true;
+                }
+            }
+
+
+        }
     }
 }

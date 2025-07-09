@@ -25,7 +25,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         {
             InitializeComponent();
             _servicio = new ServiciosDeServicios();
-            _serviciosTipoDePago = new ServicioDeTipoPago();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void frmServicios_Load(object sender, EventArgs e)
@@ -36,34 +36,30 @@ namespace MiniTaller.Windows.Formularios.FRMS
         {
             Close();
         }
-        private List<ServiciosDto> lista;
+        private List<Servicioss> lista;
         private IServicioDeServicios _servicio;
-        private IServicioDeTipoPago _serviciosTipoDePago;
         int paginaActual = 1;
         int registros = 0;
         int paginas = 0;
         int registrosPorPagina = 100;
 
-        int? IdTipoDePago = null;
-
 
         private void toolStripButtonActualizar_Click(object sender, EventArgs e)
         {
-            IdTipoDePago = null;
             RecargarGrilla();
             HabilitarBotones();
         }
 
         private void RecargarGrilla()
         {
-            registros = _servicio.GetCantidad(null);
+            registros = _servicio.GetCantidad();
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             MostrarPaginado();
         }
 
         private void MostrarPaginado()
         {
-            lista = _servicio.GetServiciosPorPagina(registrosPorPagina, paginaActual, IdTipoDePago);
+            lista = _servicio.GetServiciosPorPagina(registrosPorPagina, paginaActual);
             MostrarDatosEnGrilla();
         }
 
@@ -83,11 +79,9 @@ namespace MiniTaller.Windows.Formularios.FRMS
 
         private void HabilitarBotones()
         {
-            toolStripButtonFiltrar.BackColor = SystemColors.Control;
             toolStripButtonEditar.Enabled = true;
             toolStripButtonBorrar.Enabled = true;
             toolStripButtonAgregar.Enabled = true;
-            toolStripButtonFiltrar.Enabled = true;
             btnAnterior.Enabled = true;
             btnPrimero.Enabled = true;
             btnSiguiente.Enabled = true;
@@ -102,7 +96,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
             paginaActual++;
             MostrarPaginado();
-
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
@@ -135,12 +128,11 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 return;
             }
             var Servicio = frm.GetServicios();
-            //preguntar si existe
             if (!_servicio.Existe(Servicio))
             {
                 _servicio.Guardar(Servicio);
                 MessageBox.Show("Servicio agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                registros = _servicio.GetCantidad(null);
+                registros = _servicio.GetCantidad();
                 paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
                 MostrarPaginado();
             }
@@ -157,12 +149,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 return;
             }
             var r = dgvDatos.SelectedRows[0];
-            ServiciosDto ServicioABorrar = (ServiciosDto)r.Tag;
-            DialogResult dr = MessageBox.Show($"¿Desea eliminar el Servicio de: {ServicioABorrar.Servicio} del cual debe (${ServicioABorrar.Debe})?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            Servicioss ServicioABorrar = (Servicioss)r.Tag;
+            DialogResult dr = MessageBox.Show($"¿Desea eliminar el Servicio: {ServicioABorrar.Servicio} ?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No) { return; }
-            Servicioss Servicioaborrar = _servicio.GetServiciosPorId(ServicioABorrar.IdServicio);
-            //Falta metodo de objeto relacionado
-            if (!_servicio.EstaRelacionada(Servicioaborrar))
+            if (!_servicio.EstaRelacionada(ServicioABorrar))
             {
                 GridHelpers.QuitarFila(dgvDatos, r);
                 _servicio.Borrar(ServicioABorrar.IdServicio);
@@ -181,42 +171,37 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 return;
             }
             var r = dgvDatos.SelectedRows[0];
-            ServiciosDto ServicioDto = (ServiciosDto)r.Tag;
-            ServiciosDto CopiaServicio = (ServiciosDto)ServicioDto.Clone();
-
-            Servicioss Servicios = _servicio.GetServiciosPorId(ServicioDto.IdServicio);
+            Servicioss Servicio = (Servicioss)r.Tag;
+            Servicioss CopiaServicio = (Servicioss)Servicio.Clone();
             try
             {
                 frmServiciosAE frm = new frmServiciosAE() { Text = "Editar Servicio" };
-                frm.SetServicio(Servicios);
+                frm.SetServicio(Servicio);
                 DialogResult dr = frm.ShowDialog(this);
                 if (dr == DialogResult.Cancel)
                 {
                     GridHelpers.SetearFila(r, CopiaServicio);
-
                     return;
                 }
-                Servicios = frm.GetServicios();
-                if (!_servicio.Existe(Servicios))
+                Servicio = frm.GetServicios();
+                if (!_servicio.Existe(Servicio))
                 {
-                    if (Servicios != null)
+                    if (Servicio != null)
                     {
-                        //Crear el dto
-                        ServicioDto.IdServicio = Servicios.IdServicio;
-                        ServicioDto.Servicio = Servicios.Servicio;
-                        ServicioDto.Debe = Servicios.Debe;
-                        ServicioDto.Tipo = _serviciosTipoDePago.GetTipoDePagoPorId(Servicios.IdTipoPago).Tipo;
-                        GridHelpers.SetearFila(r, ServicioDto);
-                        _servicio.Guardar(Servicios);
+                        GridHelpers.SetearFila(r, Servicio);
+                        _servicio.Guardar(Servicio);
+                        MostrarPaginado();
+                        MessageBox.Show("Servicio editado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         //Recupero la copia del dto
-                        GridHelpers.SetearFila(r, Servicios);
+                        GridHelpers.SetearFila(r, Servicio);
                     }
                 }
                 else
                 {
+                    GridHelpers.SetearFila(r,CopiaServicio);
                     MessageBox.Show("El Servicio ya existe!!!!", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -227,30 +212,11 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
         }
 
-        private void toolStripButtonFiltrar_Click(object sender, EventArgs e)
-        {
-            frmSeleccionarTipoDePago frm = new frmSeleccionarTipoDePago();
-            DialogResult dr = frm.ShowDialog(this);
-            if (dr == DialogResult.Cancel)
-            {
-                HabilitarBotones();
-                return;
-            }
-            var tipoPago = frm.GetTipoPago();
-            registros = _servicio.GetCantidad(tipoPago.IdTipoPago);
-            IdTipoDePago = tipoPago.IdTipoPago;
-            paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
-            paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);
-            MostrarPaginado();
-            DesabilitarBotones();
-        }
         private void DesabilitarBotones()
         {
-            toolStripButtonFiltrar.BackColor = Color.DarkViolet;
             toolStripButtonEditar.Enabled = false;
             toolStripButtonBorrar.Enabled = false;
             toolStripButtonAgregar.Enabled = false;
-            toolStripButtonFiltrar.Enabled = false;
             if (paginas == 1)
             {
                 btnAnterior.Enabled = false;
@@ -269,7 +235,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
 
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
-            toolStripTextBox1.Text = "";
+            toolStripTextBox1.SelectAll();
         }
 
         private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
@@ -277,15 +243,15 @@ namespace MiniTaller.Windows.Formularios.FRMS
             var texto = toolStripTextBox1.Text;
             BuscarCliente(lista, texto);
         }
-        private void BuscarCliente(List<ServiciosDto> serviciosVehiculosDto, string texto)
+        private void BuscarCliente(List<Servicioss> serviciosVehiculosDto, string texto)
         {
             var listaFiltrada = serviciosVehiculosDto;
             if (texto.Length != 0)
             {
-                Func<ServiciosDto, bool> condicion = c => c.Servicio.ToUpper().Contains(texto.ToUpper());
+                Func<Servicioss, bool> condicion = c => c.Servicio.ToUpper().Contains(texto.ToUpper());
                 listaFiltrada = serviciosVehiculosDto.Where(condicion).ToList();
             }
-            GridHelpers.MostrarDatosEnGrilla<ServiciosDto>(dgvDatos, listaFiltrada);
+            GridHelpers.MostrarDatosEnGrilla<Servicioss>(dgvDatos, listaFiltrada);
         }
     }
 }

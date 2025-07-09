@@ -33,8 +33,6 @@ namespace MiniTaller.Windows.Helpers
             combo.DisplayMember = "Tipo";
             combo.ValueMember = "IdTipoDeTelefono";
             combo.SelectedIndex = 0;
-            ActivarDibujoPersonalizado<TiposDeTelefono>(combo, v => v.Tipo);
-            AjustarDropDownWidth<TiposDeTelefono>(combo, v => v.Tipo);
         }
         public static void CargarComboTipoCliente(ref ComboBox combo)
         {
@@ -50,8 +48,6 @@ namespace MiniTaller.Windows.Helpers
             combo.DisplayMember = "Tipo";
             combo.ValueMember = "IdTipoCliente";
             combo.SelectedIndex = 0;
-            ActivarDibujoPersonalizado<TiposClientes>(combo, v => v.Tipo);
-            AjustarDropDownWidth<TiposClientes>(combo, v => v.Tipo);
         }
         public static void CargarComboTipoDePago(ref ComboBox combo)
         {
@@ -67,8 +63,6 @@ namespace MiniTaller.Windows.Helpers
             combo.DisplayMember = "Tipo";
             combo.ValueMember = "IdTipoPago";
             combo.SelectedIndex = 0;
-            ActivarDibujoPersonalizado<TiposDePagos>(combo, v => v.Tipo);
-            AjustarDropDownWidth<TiposDePagos>(combo, v => v.Tipo);
         }
         public static void CargarComboMarcas(ref ComboBox combo)
         {
@@ -84,8 +78,6 @@ namespace MiniTaller.Windows.Helpers
             combo.DisplayMember = "Marca";
             combo.ValueMember = "IdMarca";
             combo.SelectedIndex = 0;
-            ActivarDibujoPersonalizado<Marcas>(combo, v => v.Marca);
-            AjustarDropDownWidth<Marcas>(combo, v => v.Marca);
         }
         internal static void CargarComboTipoVehiculo(ref ComboBox combo)
         {
@@ -101,8 +93,6 @@ namespace MiniTaller.Windows.Helpers
             combo.DisplayMember = "Tipo";
             combo.ValueMember = "IdTipoVehiculo";
             combo.SelectedIndex = 0;
-            ActivarDibujoPersonalizado<TiposDeVehiculos>(combo, v => v.Tipo);
-            AjustarDropDownWidth<TiposDeVehiculos>(combo, v => v.Tipo);
         }
 
         internal static void CargarComboModelo(ref ComboBox combo)
@@ -120,7 +110,6 @@ namespace MiniTaller.Windows.Helpers
             combo.ValueMember = "IdModelo";
             combo.SelectedIndex = 0;
             ActivarDibujoPersonalizado<ModelosComboDto>(combo, v => v.Info);
-            AjustarDropDownWidth<ModelosComboDto>(combo, v => v.Info);
         }
 
         public static void CargarComboClientesPersonas(ref ComboBox combo)
@@ -138,7 +127,6 @@ namespace MiniTaller.Windows.Helpers
             combo.ValueMember = "IdCliente";
             combo.SelectedIndex = 0;
             ActivarDibujoPersonalizado<ClientesComboDto>(combo, v => v.Info);
-            AjustarDropDownWidth<ClientesComboDto>(combo, v => v.Info);
         }
         public static void CargarComboClientesEmpresas(ref ComboBox combo)
         {
@@ -155,7 +143,6 @@ namespace MiniTaller.Windows.Helpers
             combo.ValueMember = "IdCliente";
             combo.SelectedIndex = 0;
             ActivarDibujoPersonalizado<ClientesComboDto>(combo, v => v.Info);
-            AjustarDropDownWidth<ClientesComboDto>(combo, v => v.Info);
         }
         internal static void CargarComboVehiculos(ref ComboBox combo)
         {
@@ -172,26 +159,22 @@ namespace MiniTaller.Windows.Helpers
             combo.ValueMember = "IdVehiculo";
             combo.SelectedIndex = 0;
             ActivarDibujoPersonalizado<VehiculosComboDto>(combo, v => v.Info);
-            AjustarDropDownWidth<VehiculosComboDto>(combo, v => v.Info);
-            AjustarDropDownAltura(combo, cantidadVisible: 10);
         }
 
         internal static void CargarComboServicios(ref ComboBox combo)
         {
             IServicioDeServicios serviciosMovimientos = new ServiciosDeServicios();
             var lista = serviciosMovimientos.GetServiciosCombos();
-            var defaultEmpleado = new ServiciosComboDto()
+            var defaultEmpleado = new Servicioss()
             {
                 IdServicio = 0,
-                Info = "Seleccione el Servicio"
+                Servicio = "Seleccione el Servicio"
             };
             lista.Insert(0, defaultEmpleado);
             combo.DataSource = lista;
-            combo.DisplayMember = "Info";
+            combo.DisplayMember = "Servicio";
             combo.ValueMember = "IdServicio";
             combo.SelectedIndex = 0;
-            ActivarDibujoPersonalizado<ServiciosComboDto>(combo, v => v.Info);
-            AjustarDropDownWidth<ServiciosComboDto>(combo, v => v.Info);
         }
         internal static void CargarComboServiciosVehiculos(ref ComboBox combo)
         {
@@ -208,7 +191,6 @@ namespace MiniTaller.Windows.Helpers
             combo.ValueMember = "IdVehiculoServicio";
             combo.SelectedIndex = 0;
             ActivarDibujoPersonalizado<VehiculoServicioComboDto>(combo, v => v.Info);
-            AjustarDropDownWidth<VehiculoServicioComboDto>(combo, v=>v.Info);
 
         }
 
@@ -227,82 +209,77 @@ namespace MiniTaller.Windows.Helpers
             combo.ValueMember = "IdObservacion";
             combo.SelectedIndex = 0;
             ActivarDibujoPersonalizado<ObservacionesComboDto>(combo, v => v.Info);
-            AjustarDropDownWidth<ObservacionesComboDto>(combo,v=>v.Info);
         }
-        internal static void AjustarDropDownWidth<T>(ComboBox combo, Func<T, string> obtenerTexto)
-        {
-            int anchoMaximo = combo.DropDownWidth;
-            using (Graphics g = combo.CreateGraphics())
-            {
-                foreach (var item in combo.Items)
-                {
-                    string texto = item is T t ? obtenerTexto(t) : item.ToString();
-                    SizeF size = g.MeasureString(texto, combo.Font);
-                    int anchoTexto = (int)size.Width + SystemInformation.VerticalScrollBarWidth;
-
-                    if (anchoTexto > anchoMaximo)
-                        anchoMaximo = anchoTexto;
-                }
-            }
-            combo.DropDownWidth = anchoMaximo;
-        }
-        public static void AjustarDropDownAltura(ComboBox combo, int cantidadVisible = 10)
-        {
-            int alturaTotal = 0;
-
-            using (Graphics g = combo.CreateGraphics())
-            {
-                for (int i = 0; i < Math.Min(combo.Items.Count, cantidadVisible); i++)
-                {
-                    if (combo.Items[i] is VehiculosComboDto vehiculo)
-                    {
-                        string texto = vehiculo.Info;
-                        SizeF size = g.MeasureString(texto, combo.Font, 400); // 400 = ancho preferido
-                        alturaTotal += (int)size.Height;
-                    }
-                }
-            }
-
-            combo.IntegralHeight = false;
-            combo.DropDownHeight = alturaTotal + 10; // margen extra para scroll
-        }
-
         public static void ActivarDibujoPersonalizado<T>(ComboBox comboBox, Func<T, string> propiedadVisible)
         {
             comboBox.DrawMode = DrawMode.OwnerDrawVariable;
 
             comboBox.MeasureItem += (s, e) =>
             {
-                if (e.Index < 0) return;
+                if (e.Index < 0 || e.Index >= comboBox.Items.Count) return;
 
                 T item = (T)comboBox.Items[e.Index];
                 string texto = propiedadVisible(item);
 
                 Font font = comboBox.Font;
-                int width = comboBox.DropDownWidth;
+                int anchoDisponible = comboBox.DropDownWidth;
 
-                Size size = TextRenderer.MeasureText(texto, font, new Size(width, 0), TextFormatFlags.WordBreak);
-                e.ItemHeight = size.Height;
-                Debug.WriteLine($"Item {e.Index} altura: {e.ItemHeight}");
+                // Mide el texto con ajuste por salto de línea
+                Size medida = TextRenderer.MeasureText(
+                    texto, font, new Size(anchoDisponible, 0),
+                    TextFormatFlags.WordBreak | TextFormatFlags.NoPadding
+                );
+
+                e.ItemHeight = (int)(medida.Height * 1.2); // espacio extra para que no se corte
             };
 
             comboBox.DrawItem += (s, e) =>
             {
-                if (e.Index < 0) return;
+                if (e.Index < 0 || e.Index >= comboBox.Items.Count) return;
 
                 e.DrawBackground();
 
                 T item = (T)comboBox.Items[e.Index];
                 string texto = propiedadVisible(item);
 
-                Color color = (e.State & DrawItemState.Selected) == DrawItemState.Selected
+                Color colorTexto = (e.State & DrawItemState.Selected) == DrawItemState.Selected
                     ? SystemColors.HighlightText
                     : SystemColors.ControlText;
 
-                TextRenderer.DrawText(e.Graphics, texto, comboBox.Font, e.Bounds, color, TextFormatFlags.WordBreak);
+                Rectangle paddedBounds = new Rectangle(
+                    e.Bounds.X + 2,
+                    e.Bounds.Y + 2,
+                    e.Bounds.Width - 4,
+                    e.Bounds.Height - 4
+                );
+
+                TextRenderer.DrawText(
+                    e.Graphics,
+                    texto,
+                    comboBox.Font,
+                    paddedBounds,
+                    colorTexto,
+                    TextFormatFlags.WordBreak
+                );
+
                 e.DrawFocusRectangle();
             };
         }
-    
-}
+        internal static void CargarComboServiciosTipoDePago(ref ComboBox combo)
+        {
+            IServicioDeServiciosTiposDePago service = new ServicioDeServiciosTiposDePago();
+            var lista = service.GetServiciosTiposDePagoCombo();
+            var defaultservicio = new ServicioTipoDePagoComboDto()
+            {
+                IdServicioTipoDePago = 0,
+                Info = "Seleccione el Servicio"
+            };
+            lista.Insert(0, defaultservicio);
+            combo.DataSource = lista;
+            combo.DisplayMember = "Info";
+            combo.ValueMember = "IdServicioTipoDePago";
+            combo.SelectedIndex = 0;
+            ActivarDibujoPersonalizado<ServicioTipoDePagoComboDto>(combo, v => v.Info);
+        }
+    }
 }

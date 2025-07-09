@@ -22,6 +22,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             InitializeComponent();
             _serviciosClientes = new ServicioDeClientes();
             _servicioDeTipoDeTelefono= new ServicioDeTipoDeTelefono();
+            this.WindowState= FormWindowState.Maximized;
         }
         private IServicioDeClientes _serviciosClientes;
         private IServicioDeTipoDeTelefono _servicioDeTipoDeTelefono;

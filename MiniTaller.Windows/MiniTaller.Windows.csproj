@@ -45,6 +45,30 @@
     <Reference Include="itextsharp.xmlworker, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itextsharp.xmlworker.5.5.13.4\lib\net461\itextsharp.xmlworker.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Grid.Base, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Grid.Base.20.4.0.38\lib\net46\Syncfusion.Grid.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Grid.Windows, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Grid.Windows.20.4.0.38\lib\net46\Syncfusion.Grid.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.20.4.0.38\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Base, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.Base.20.4.0.38\lib\net46\Syncfusion.Shared.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Windows, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.Windows.20.4.0.38\lib\net46\Syncfusion.Shared.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SpellChecker.Base, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SpellChecker.Base.20.4.0.38\lib\net46\Syncfusion.SpellChecker.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Tools.Base, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Tools.Base.20.4.0.38\lib\net46\Syncfusion.Tools.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Tools.Windows, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Tools.Windows.20.4.0.38\lib\net46\Syncfusion.Tools.Windows.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -93,6 +117,12 @@
     </Compile>
     <Compile Include="Formularios\FRMSAE\frmServiciosAE.Designer.cs">
       <DependentUpon>frmServiciosAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FRMSAE\frmServiciosTiposDePagoAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMSAE\frmServiciosTiposDePagoAE.Designer.cs">
+      <DependentUpon>frmServiciosTiposDePagoAE.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\FRMSAE\frmTelefonosAE.cs">
       <SubType>Form</SubType>
@@ -238,6 +268,12 @@
     <Compile Include="Formularios\FRMS\frmServicios.Designer.cs">
       <DependentUpon>frmServicios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FRMS\frmServiciosTiposDePago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMS\frmServiciosTiposDePago.Designer.cs">
+      <DependentUpon>frmServiciosTiposDePago.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FRMS\frmTelefonos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -311,6 +347,9 @@
     <EmbeddedResource Include="Formularios\FRMSAE\frmServiciosAE.resx">
       <DependentUpon>frmServiciosAE.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FRMSAE\frmServiciosTiposDePagoAE.resx">
+      <DependentUpon>frmServiciosTiposDePagoAE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMSAE\frmTelefonosAE.resx">
       <DependentUpon>frmTelefonosAE.cs</DependentUpon>
     </EmbeddedResource>
@@ -383,6 +422,9 @@
     <EmbeddedResource Include="Formularios\FRMS\frmServicios.resx">
       <DependentUpon>frmServicios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FRMS\frmServiciosTiposDePago.resx">
+      <DependentUpon>frmServiciosTiposDePago.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMS\frmTelefonos.resx">
       <DependentUpon>frmTelefonos.cs</DependentUpon>
     </EmbeddedResource>
@@ -409,19 +451,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -430,78 +472,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Close_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\add_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Brand_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\car_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\customer_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Delete Key_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Done_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\edit_property_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\filter_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\models_32_px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\search_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TypeOfCar_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\refresh_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\print_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\hourglass_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\initiate_money_transfer_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\First_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Last_button_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\next_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\phone_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\previous_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\people_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\wayofpay_32px.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MiniTaller.Entidades\MiniTaller.Entidades.csproj">
@@ -514,12 +484,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mobiles_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Captura de pantalla 2025-02-18 222823.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\photo_gallery_32px.png" />
   </ItemGroup>
   <ItemGroup>
@@ -527,6 +491,108 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Logo.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Colores_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cursiva_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Negrita_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Subrayar_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tamaño_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bulleted_list_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_window_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_math_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remove_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fast Forward_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rewind_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sort_left_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sort_right_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chevrolet_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car_50px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\people_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\service_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\services_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick_box_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\types_of_cellphones_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\types_of_vehicule_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\way_of_pay_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\salir_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toy_car_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_50px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

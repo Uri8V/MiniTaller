@@ -16,10 +16,10 @@ namespace MiniTaller.Comun.Interfaces
         void Editar(Servicioss servicios);
         bool Existe(Servicioss servicios);
         bool EstaRelacionada(Servicioss servicios);
-        int GetCantidad(int? IdTipoPago);
-        List<ServiciosDto> GetServiciosPorPagina(int registrosPorPagina, int paginaActual, int? IdTipoDePago);
+        int GetCantidad();
+        List<Servicioss> GetServiciosPorPagina(int registrosPorPagina, int paginaActual);
         Servicioss GetServiciosPorId(int IdServicio);
-        List<ServiciosComboDto> GetServiciosCombos();
+        List<Servicioss> GetServiciosCombos();
 
     }
 }

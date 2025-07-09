@@ -96,15 +96,15 @@ namespace MiniTaller.Windows.Helpers
                 }
                 lineas += "<td>" + datosCliente.Patente + "</td>";
                 lineas += "<td>" + datosCliente.Servicio + "</td>";
-                lineas += "<td>" + datosCliente.Descripcion + "</td>";
-                lineas += "<td>" + datosCliente.Haber.ToString("N1") + "</td>";
-                lineas += "<td>" + (datosCliente.Debe - datosCliente.Haber).ToString("N2") + "</td>";
+                lineas += "<td>" + GridHelpers.ATextoPlano(datosCliente.Descripcion) + "</td>";
+                lineas += "<td>" + datosCliente.Haber.ToString() + "</td>";
+                lineas += "<td>" + (datosCliente.Debe - datosCliente.Haber).ToString() + "</td>";
                 lineas += "</tr>";
                 totaldebe += datosCliente.Debe;
                 totalhaber += datosCliente.Haber;
             }
             PdfFile = PdfFile.Replace("@FILAS", lineas);
-            PdfFile = PdfFile.Replace("@TOTAL", (totaldebe - totalhaber).ToString("N2"));
+            PdfFile = PdfFile.Replace("@TOTAL", (totaldebe - totalhaber).ToString());
             GuardarPdfImagen(rutaCompleto, PdfFile);
 
         }

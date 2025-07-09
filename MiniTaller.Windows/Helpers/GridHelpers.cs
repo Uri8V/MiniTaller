@@ -13,6 +13,7 @@ using iTextSharp.tool.xml.html;
 
 namespace MiniTaller.Windows.Helpers
 {
+    //💡 Importante: EnableHeadersVisualStyles = false es clave, porque si está en true, Windows ignora tus estilos y usa los predeterminados del sistema operativo.
     public class GridHelpers
     {
         public static void ByteArrayToIMage(ImagenesDto item, DataGridViewRow row)
@@ -54,10 +55,8 @@ namespace MiniTaller.Windows.Helpers
                 case TiposDeTelefono tipos:
                     r.Cells[0].Value = tipos.Tipo;
                     break;
-                case ServiciosDto servicio:
+                case Servicioss servicio:
                     r.Cells[0].Value = servicio.Servicio;
-                    r.Cells[1].Value = servicio.Debe;
-                    r.Cells[2].Value = servicio.Tipo;
                     break;
                 case ClientesDto clientes:
                     r.Cells[0].Value = clientes.Nombre;
@@ -94,10 +93,15 @@ namespace MiniTaller.Windows.Helpers
                     r.Cells[2].Value = telefono.Tipo;
 
                     break;
+                case ServicioTipoDePagoDto service:
+                    r.Cells[0].Value = service.servicio;
+                    r.Cells[1].Value = service.Tipo;
+                    r.Cells[2].Value = service.Precio;
+                    break;
                 case VehiculosServiciosDto servicios:
                     r.Cells[0].Value = servicios.Patente;
                     r.Cells[1].Value = $"{servicios.Apellido.ToUpper()}, {servicios.Nombre} ({servicios.Documento} {servicios.CUIT})";
-                    r.Cells[2].Value = $"{servicios.Servicio}, Debe:{servicios.DebeServicio}";
+                    r.Cells[2].Value = $"{servicios.Servicio}, Precio:{servicios.DebeServicio}";
                     r.Cells[3].Value = (servicios.Debe - servicios.Haber).ToString();
                     if (servicios.Debe - servicios.Haber <= 0)
                     {
@@ -105,24 +109,32 @@ namespace MiniTaller.Windows.Helpers
                     }
                     else
                     {
-                        r.Cells[3].Style.BackColor = Color.White;
+                        r.Cells[3].Style.BackColor = Color.Black;
                     }
                     r.Cells[4].Value = servicios.Haber;
-                    r.Cells[5].Value = servicios.Descripcion;
+                    r.Cells[5].Value = ATextoPlano(servicios.Descripcion);//Esto es para que el richtextbox no se vea en la grilla, solo se usa para convertir el RTF a texto plano
                     r.Cells[6].Value = servicios.Fecha.ToShortDateString();
                     r.Cells[7].Value = servicios.Kilometros;
                     break;
                 case ObservacionDto observacionDto:
                     r.Cells[0].Value = observacionDto.Vehiculo;
                     r.Cells[1].Value = observacionDto.Cliente;
-                    r.Cells[2].Value = observacionDto.Observacion;
+                    r.Cells[2].Value = ATextoPlano(observacionDto.Observacion);//Esto es para que el richtextbox no se vea en la grilla, solo se usa para convertir el RTF a texto plano
                     r.Cells[3].Value = observacionDto.Fecha.ToShortDateString();
                     break;
             }
             r.Tag = obj;
 
         }
-    
+        public static string ATextoPlano(string rtf)
+        {
+            using (var rtb = new RichTextBox())
+            {
+                rtb.Rtf = rtf;
+                return rtb.Text;
+            }
+        }
+
         public static void AgregarFila(DataGridView dgv, DataGridViewRow r)
         {
             dgv.Rows.Add(r);

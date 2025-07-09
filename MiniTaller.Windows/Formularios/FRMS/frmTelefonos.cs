@@ -24,6 +24,8 @@ namespace MiniTaller.Windows.Formularios.FRMS
             InitializeComponent();
             _servicio = new ServicioDeTelefonos();
             _serviciosClientes = new ServicioDeClientes();
+            this.WindowState = FormWindowState.Maximized;
+
         }
         private List<TelefonosDto> lista;
         private IServicioDeTelefonos _servicio;
@@ -183,16 +185,17 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     if (telefono != null)
                     {
                         Clientes c = _serviciosClientes.GetClientePorId(telefono.IdCliente);
-                        //Crear el dto
-                        telefonoDto.IdTelefono = telefono.IdTelefono;
-                        telefonoDto.Telefono = telefono.Telefono;
-                        telefonoDto.Tipo = telefono.TipoDeTelefono.Tipo;//ACOMODAR!!!!
-                        telefonoDto.Apellido = c.Apellido;
-                        telefonoDto.Nombre = c.Nombre;
-                        telefonoDto.Documento = c.Documento;
+                        ////Crear el dto
+                        //telefonoDto.IdTelefono = telefono.IdTelefono;
+                        //telefonoDto.Telefono = telefono.Telefono;
+                        //telefonoDto.Tipo = telefono.TipoDeTelefono.Tipo;
+                        //telefonoDto.Apellido = c.Apellido;                 
+                        //telefonoDto.Nombre = c.Nombre;
+                        //telefonoDto.Documento = c.Documento;
 
-                        GridHelpers.SetearFila(r, telefonoDto);
+                        //GridHelpers.SetearFila(r, telefonoDto);
                         _servicio.Guardar(telefono);
+                        MostrarPaginado();
                     }
                     else
                     {
@@ -280,7 +283,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         }
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
-            toolStripTextBox1.Text = "";
+            toolStripTextBox1.SelectAll();
         }
         private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
         {

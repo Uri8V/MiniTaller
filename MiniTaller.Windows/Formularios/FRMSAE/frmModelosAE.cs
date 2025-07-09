@@ -18,6 +18,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         public frmModelosAE()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
         protected override void OnLoad(EventArgs e)
         {

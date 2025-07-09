@@ -23,6 +23,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         {
             InitializeComponent();
             _servicios= new ServicioDeTipoCliente();
+            this.WindowState = FormWindowState.Maximized;
         }
         private readonly IServicioDeTipoCliente _servicios;
         private List<TiposClientes> lista;
@@ -45,10 +46,8 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 if (!_servicios.Existe(nuevaTipo))
                 {
                     _servicios.Guardar(nuevaTipo);
-                    DataGridViewRow r = GridHelpers.ConstruirFila(dgvDatos);
-                    GridHelpers.SetearFila(r, nuevaTipo);
                     MostrarCantidad();
-                    GridHelpers.AgregarFila(dgvDatos, r);
+                    MostrarDatosEnGrilla();
                     MessageBox.Show("Tipo de cliente agregado", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -132,8 +131,8 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 if (!_servicios.Existe(tipo))
                 {
                     _servicios.Guardar(tipo);
-                    GridHelpers.SetearFila(r, tipo);
-                    MessageBox.Show("Tipo de cliente editado editado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MostrarDatosEnGrilla();
+                    MessageBox.Show("Tipo de cliente editado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

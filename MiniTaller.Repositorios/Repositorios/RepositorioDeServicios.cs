@@ -25,8 +25,8 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"INSERT INTO Servicios (Servicio, Debe, IdTipoPago) 
-                                    Values (@Servicio, @Debe, @IdTipoPago); SELECT SCOPE_IDENTITY();";
+                string selectQuery = @"INSERT INTO Servicios (Servicio) 
+                                    Values (@Servicio); SELECT SCOPE_IDENTITY();";
                 int id = conn.ExecuteScalar<int>(selectQuery, servicios);
                 servicios.IdServicio = id;
             }
@@ -45,7 +45,7 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string updateQuery = @"UPDATE Servicios SET Servicio=@Servicio, Debe=@Debe, IdTipoPago=@IdTipoPago
+                string updateQuery = @"UPDATE Servicios SET Servicio=@Servicio
                 WHERE IdServicio=@IdServicio";
                 conn.Execute(updateQuery, servicios);
             }
@@ -57,7 +57,7 @@ namespace MiniTaller.Repositorios.Repositorios
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
 
-                string selectQuery = @"SELECT COUNT(*) FROM VehiculosServicios WHERE IdServicio=@IdServicio";
+                string selectQuery = @"SELECT COUNT(*) FROM ServiciosTiposDePago WHERE IdServicio=@IdServicio";
                 cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdServicio = servicios.IdServicio });
             }
             return cantidad > 0;
@@ -72,53 +72,42 @@ namespace MiniTaller.Repositorios.Repositorios
                 if (servicios.IdServicio == 0)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM Servicios 
-                            WHERE Servicio=@Servicio AND IdTipoPago=@IdTipoPago";
+                            WHERE Servicio=@Servicio";
                     cantidad = conn.ExecuteScalar<int>(
-                        selectQuery, new { Servicio = servicios.Servicio, IdTipoPago = servicios.IdTipoPago });
+                        selectQuery, new { Servicio = servicios.Servicio});
                 }
                 else
                 {
                     selectQuery = @"SELECT COUNT(*) FROM Servicios 
-                WHERE Servicio=@Servicio AND IdTipoPago=@IdTipoPago AND IdServicio!=@IdServicio";
+                WHERE Servicio=@Servicio AND IdServicio!=@IdServicio";
                     cantidad = conn.ExecuteScalar<int>(
-                        selectQuery, new { Servicio = servicios.Servicio, IdTipoPago = servicios.IdTipoPago, IdServicio = servicios.IdServicio });
+                        selectQuery, new { Servicio = servicios.Servicio, IdServicio = servicios.IdServicio });
                 }
             }
             return cantidad > 0;
         }
 
-        public int GetCantidad(int? IdTipoPago)
+        public int GetCantidad()
         {
 
             int cantidad = 0;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery;
-                if (IdTipoPago == null)
-                {
-                    selectQuery = "SELECT COUNT(*) FROM Servicios";
-                    cantidad = conn.ExecuteScalar<int>(selectQuery);
-                }
-                else
-                {
-                    selectQuery = @"SELECT COUNT(*) FROM Servicios 
-                        WHERE (IdTipopago=@IdTipoPago)";
-                    cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdTipoPago = IdTipoPago });
-                }
+                string selectQuery = "SELECT COUNT(*) FROM Servicios";
+                cantidad = conn.ExecuteScalar<int>(selectQuery);
             }
             return cantidad;
         }
 
-        public List<ServiciosComboDto> GetServiciosCombos()
+        public List<Servicioss> GetServiciosCombos()
         {
-            List<ServiciosComboDto> lista;
+            List<Servicioss> lista;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT s.IdServicio, CONCAT(s.Servicio,' | ', s.Debe, '$',' | ', t.Tipo ) AS Info
+                string selectQuery = @"SELECT s.IdServicio,s.Servicio
                                        FROM Servicios s
-                                       INNER JOIN TiposDePagos t ON s.IdTipoPago=t.IdTipoPago
                                        ORDER BY s.Servicio";
-                lista = conn.Query<ServiciosComboDto>(selectQuery).ToList();
+                lista = conn.Query<Servicioss>(selectQuery).ToList();
             }
             return lista;
         }
@@ -128,7 +117,7 @@ namespace MiniTaller.Repositorios.Repositorios
             Servicioss servicios = null;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT s.IdServicio,s.Servicio,s.Debe,s.IdTipoPago
+                string selectQuery = @"SELECT s.IdServicio,s.Servicio
                     FROM Servicios s WHERE s.IdServicio=@IdServicio";
                 servicios = conn.QuerySingleOrDefault<Servicioss>(selectQuery,
                     new { IdServicio = IdServicio });
@@ -136,28 +125,20 @@ namespace MiniTaller.Repositorios.Repositorios
             return servicios;
         }
 
-        public List<ServiciosDto> GetServiciosPorPagina(int registrosPorPagina, int paginaActual, int? IdTipoPago)
+        public List<Servicioss> GetServiciosPorPagina(int registrosPorPagina, int paginaActual)
         {
-            List<ServiciosDto> lista = new List<ServiciosDto>();
+            List<Servicioss> lista = new List<Servicioss>();
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
                 StringBuilder selectQuery = new StringBuilder();
-                selectQuery.AppendLine("SELECT s.IdServicio,s.Servicio,s.Debe, t.Tipo");
-
+                selectQuery.AppendLine("SELECT s.IdServicio,s.Servicio");
                 selectQuery.AppendLine("FROM Servicios s");
-                selectQuery.AppendLine("INNER JOIN TiposDePagos t ON t.IdTipoPago=s.IdTipoPago");
-
-                if (IdTipoPago != null)
-                {
-                    selectQuery.AppendLine("WHERE t.IdTipoPago = @IdTipoPago");
-                }
-
-                selectQuery.AppendLine("ORDER BY s.Servicio,t.Tipo");
+                selectQuery.AppendLine("ORDER BY s.Servicio");
                 selectQuery.AppendLine("OFFSET @registrosSaltados ROWS FETCH NEXT @registrosPorPagina ROWS ONLY");
 
-                var parametros = new { IdTipoPago, registrosSaltados = registrosPorPagina * (paginaActual - 1), registrosPorPagina };
+                var parametros = new {registrosSaltados = registrosPorPagina * (paginaActual - 1), registrosPorPagina };
 
-                lista = conn.Query<ServiciosDto>(selectQuery.ToString(), parametros).ToList();
+                lista = conn.Query<Servicioss>(selectQuery.ToString(), parametros).ToList();
                 return lista;
             }
 

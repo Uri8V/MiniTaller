@@ -12,10 +12,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Syncfusion.Windows.Forms.Tools;
 
 namespace MiniTaller.Windows.Formularios.FRMSAE
 {
-    public partial class frmObservacionesAE: Form
+    public partial class frmObservacionesAE : Form
     {
         public frmObservacionesAE()
         {
@@ -23,11 +24,14 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             _servicio = new ServicioDeObservaciones();
             _servicioCliente = new ServicioDeClientes();
             _servicioVehiculo = new ServicioDeVehiculos();
+            rtxtObservaciones.KeyDown += rtxtObservaciones_KeyDown;
+            this.WindowState = FormWindowState.Maximized;
         }
         private IServicioDeObservaciones _servicio;
         private IServicioDeClientes _servicioCliente;
         private IServicioDeVehiculos _servicioVehiculo;
         private Observaciones observaciones;
+        private bool modoListaActiva = false;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -53,7 +57,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     comboCliente.SelectedValue = observaciones.IdCliente;
                 }
                 comboVehiculo.SelectedValue = observaciones.IdVehiculo;
-                txtObservacion.Text = observaciones.Observacion;
+                rtxtObservaciones.Rtf = observaciones.Observacion;
                 dateTimePickerFecha.Value = observaciones.Fecha.Date;
             }
         }
@@ -119,7 +123,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 observaciones.Vehiculo = _servicioVehiculo.GetVehiculosPorId((int)comboVehiculo.SelectedValue);
                 observaciones.IdVehiculo = (int)comboVehiculo.SelectedValue;
 
-                observaciones.Observacion = txtObservacion.Text;
+                observaciones.Observacion = rtxtObservaciones.Rtf;
 
                 observaciones.Fecha = dateTimePickerFecha.Value;
 
@@ -157,7 +161,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 valido = false;
                 errorProvider1.SetError(dateTimePickerFecha, "No puede ingresar una fecha que aún no ha pasado");
             }
-            else if (dateTimePickerFecha.Value.Date < new DateTime(2023,01,01))
+            else if (dateTimePickerFecha.Value.Date < new DateTime(2023, 01, 01))
             {
                 valido = false;
                 errorProvider1.SetError(dateTimePickerFecha, "Debe ingresar una fecha superior a 01-01-2023");
@@ -187,6 +191,85 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 ComboHelper.CargarComboVehiculos(ref comboVehiculo);
                 return;
             }
+        }
+
+        private void toolStripButtonNegrita_Click(object sender, EventArgs e)
+        {
+            var currentFont = rtxtObservaciones.SelectionFont ?? rtxtObservaciones.Font;
+            var newStyle = currentFont.Style ^ FontStyle.Bold;
+            rtxtObservaciones.SelectionFont = new Font(currentFont, newStyle);
+        }
+
+        private void toolStripButtonCursiva_Click(object sender, EventArgs e)
+        {
+            var currentFont = rtxtObservaciones.SelectionFont ?? rtxtObservaciones.Font;
+            var newStyle = currentFont.Style ^ FontStyle.Italic;
+            rtxtObservaciones.SelectionFont = new Font(currentFont, newStyle);
+        }
+
+        private void toolStripButtonSubrayar_Click(object sender, EventArgs e)
+        {
+            var currentFont = rtxtObservaciones.SelectionFont ?? rtxtObservaciones.Font;
+            var newStyle = currentFont.Style ^ FontStyle.Underline;
+            rtxtObservaciones.SelectionFont = new Font(currentFont, newStyle);
+        }
+
+        private void toolStripButtonTamaño_Click(object sender, EventArgs e)
+        {
+            using (var fontDialog = new FontDialog())
+            {
+                fontDialog.Font = rtxtObservaciones.SelectionFont ?? rtxtObservaciones.Font;
+                if (fontDialog.ShowDialog() == DialogResult.OK)
+                {
+                    rtxtObservaciones.SelectionFont = fontDialog.Font;
+                }
+            }
+        }
+
+        private void toolStripButtonColores_Click(object sender, EventArgs e)
+        {
+            using (var colorDialog = new ColorDialog())
+            {
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    rtxtObservaciones.SelectionColor = colorDialog.Color;
+                }
+            }
+        }
+
+        private void toolStripButtonItems_Click(object sender, EventArgs e)
+        {
+            modoListaActiva = true;
+            rtxtObservaciones.SelectionBullet = true;
+            rtxtObservaciones.SelectedText = "";
+        }
+
+        private void rtxtObservaciones_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!modoListaActiva) return; // solo responde si la lista fue activada
+
+            // Solo intervenimos si Enter fue presionado y el cursor está en una línea con bullet
+            if (e.KeyCode == Keys.Enter && rtxtObservaciones.SelectionBullet)
+            {
+                var lineIndex = rtxtObservaciones.GetLineFromCharIndex(rtxtObservaciones.SelectionStart);
+                var currentLine = rtxtObservaciones.Lines.ElementAtOrDefault(lineIndex)?.Trim();
+              
+                // Si está en una línea vacía, desactivamos viñetas
+                if (string.IsNullOrWhiteSpace(currentLine))
+                {
+                    // Si el usuario presionó Enter sobre una línea vacía, salimos del modo lista
+                    rtxtObservaciones.SelectionBullet = false;
+                    modoListaActiva = false;
+
+                }
+                else
+                {
+                    // Si aún está escribiendo ítems, nos aseguramos de mantener el modo activo
+                    rtxtObservaciones.SelectionBullet = true;
+                }
+            }
+
+
         }
     }
 }

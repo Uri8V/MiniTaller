@@ -56,11 +56,11 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public int GetCantidad(int? IdTipoPago)
+        public int GetCantidad()
         {
             try
             {
-               return _repo.GetCantidad(IdTipoPago);
+               return _repo.GetCantidad();
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public List<ServiciosComboDto> GetServiciosCombos()
+        public List<Servicioss> GetServiciosCombos()
         {
             try
             {
@@ -92,11 +92,11 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public List<ServiciosDto> GetServiciosPorPagina(int registrosPorPagina, int paginaActual, int? IdTipoDePago)
+        public List<Servicioss> GetServiciosPorPagina(int registrosPorPagina, int paginaActual)
         {
             try
             {
-               return _repo.GetServiciosPorPagina(registrosPorPagina, paginaActual, IdTipoDePago);
+               return _repo.GetServiciosPorPagina(registrosPorPagina, paginaActual);
             }
             catch (Exception ex)
             {

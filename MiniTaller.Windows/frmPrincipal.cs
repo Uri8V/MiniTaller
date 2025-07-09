@@ -16,6 +16,7 @@ namespace MiniTaller.Windows
         public frmPrincipal()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -97,6 +98,12 @@ namespace MiniTaller.Windows
         private void btnObservaciones_Click(object sender, EventArgs e)
         {
             frmObservaciones frm = new frmObservaciones();
+            frm.ShowDialog(this);
+        }
+
+        private void btnPrecioConPrecio_Click(object sender, EventArgs e)
+        {
+            frmServiciosTiposDePago frm = new frmServiciosTiposDePago();
             frm.ShowDialog(this);
         }
     }

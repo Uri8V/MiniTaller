@@ -49,10 +49,12 @@
             // checkBoxEmpresa
             // 
             this.checkBoxEmpresa.AutoSize = true;
-            this.checkBoxEmpresa.Location = new System.Drawing.Point(16, 83);
+            this.checkBoxEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.checkBoxEmpresa.ForeColor = System.Drawing.Color.White;
+            this.checkBoxEmpresa.Location = new System.Drawing.Point(620, 171);
             this.checkBoxEmpresa.Name = "checkBoxEmpresa";
-            this.checkBoxEmpresa.Size = new System.Drawing.Size(88, 17);
-            this.checkBoxEmpresa.TabIndex = 39;
+            this.checkBoxEmpresa.Size = new System.Drawing.Size(175, 33);
+            this.checkBoxEmpresa.TabIndex = 4;
             this.checkBoxEmpresa.Text = "Es Empresa?";
             this.checkBoxEmpresa.UseVisualStyleBackColor = true;
             this.checkBoxEmpresa.CheckedChanged += new System.EventHandler(this.checkBoxEmpresa_CheckedChanged);
@@ -60,92 +62,116 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(109, 98);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(15, 200);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 13);
+            this.label5.Size = new System.Drawing.Size(116, 29);
             this.label5.TabIndex = 38;
             this.label5.Text = "Empresa:";
             // 
             // comboEmpresa
             // 
             this.comboEmpresa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboEmpresa.DropDownWidth = 500;
+            this.comboEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboEmpresa.FormattingEnabled = true;
-            this.comboEmpresa.Location = new System.Drawing.Point(162, 95);
+            this.comboEmpresa.Location = new System.Drawing.Point(137, 200);
+            this.comboEmpresa.MaxDropDownItems = 50;
             this.comboEmpresa.Name = "comboEmpresa";
-            this.comboEmpresa.Size = new System.Drawing.Size(209, 21);
-            this.comboEmpresa.TabIndex = 37;
+            this.comboEmpresa.Size = new System.Drawing.Size(471, 37);
+            this.comboEmpresa.TabIndex = 5;
             // 
             // btnAgregarCliente
             // 
-            this.btnAgregarCliente.Image = global::MiniTaller.Windows.Properties.Resources.add_32px;
-            this.btnAgregarCliente.Location = new System.Drawing.Point(403, 64);
+            this.btnAgregarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(191)))), ((int)(((byte)(96)))));
+            this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarCliente.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
+            this.btnAgregarCliente.Location = new System.Drawing.Point(801, 161);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
-            this.btnAgregarCliente.Size = new System.Drawing.Size(63, 47);
-            this.btnAgregarCliente.TabIndex = 35;
-            this.btnAgregarCliente.UseVisualStyleBackColor = true;
+            this.btnAgregarCliente.Size = new System.Drawing.Size(76, 58);
+            this.btnAgregarCliente.TabIndex = 6;
+            this.btnAgregarCliente.Tag = "Agregar Cliente";
+            this.btnAgregarCliente.UseVisualStyleBackColor = false;
             this.btnAgregarCliente.Click += new System.EventHandler(this.btnAgregarCliente_Click);
             // 
             // comboClientes
             // 
             this.comboClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboClientes.DropDownWidth = 500;
+            this.comboClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboClientes.FormattingEnabled = true;
-            this.comboClientes.Location = new System.Drawing.Point(162, 58);
+            this.comboClientes.Location = new System.Drawing.Point(128, 141);
+            this.comboClientes.MaxDropDownItems = 50;
             this.comboClientes.Name = "comboClientes";
-            this.comboClientes.Size = new System.Drawing.Size(213, 21);
-            this.comboClientes.TabIndex = 32;
+            this.comboClientes.Size = new System.Drawing.Size(480, 37);
+            this.comboClientes.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(182, 28);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(15, 80);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 13);
+            this.label2.Size = new System.Drawing.Size(206, 29);
             this.label2.TabIndex = 31;
             this.label2.Text = "Tipo de Telefono:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(109, 61);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(15, 144);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.Size = new System.Drawing.Size(107, 29);
             this.label4.TabIndex = 29;
             this.label4.Text = "Clientes:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 28);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(15, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(116, 29);
             this.label1.TabIndex = 27;
             this.label1.Text = "Telefono:";
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(64, 25);
+            this.txtTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.txtTelefono.Location = new System.Drawing.Point(137, 12);
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(100, 20);
-            this.txtTelefono.TabIndex = 26;
+            this.txtTelefono.Size = new System.Drawing.Size(278, 35);
+            this.txtTelefono.TabIndex = 0;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(291, 135);
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(59)))), ((int)(((byte)(57)))));
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.btnCancelar.Location = new System.Drawing.Point(513, 269);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 49);
-            this.btnCancelar.TabIndex = 24;
+            this.btnCancelar.Size = new System.Drawing.Size(169, 64);
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "CANCELAR";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(168, 135);
+            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
+            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.btnConfirmar.Location = new System.Drawing.Point(145, 269);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(87, 49);
-            this.btnConfirmar.TabIndex = 25;
+            this.btnConfirmar.Size = new System.Drawing.Size(169, 64);
+            this.btnConfirmar.TabIndex = 7;
             this.btnConfirmar.Text = "CONFIRMAR";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // errorProvider1
@@ -155,27 +181,33 @@
             // comboBoxTipoDeTelefono
             // 
             this.comboBoxTipoDeTelefono.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTipoDeTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboBoxTipoDeTelefono.FormattingEnabled = true;
-            this.comboBoxTipoDeTelefono.Location = new System.Drawing.Point(279, 25);
+            this.comboBoxTipoDeTelefono.Location = new System.Drawing.Point(227, 77);
+            this.comboBoxTipoDeTelefono.MaxDropDownItems = 50;
             this.comboBoxTipoDeTelefono.Name = "comboBoxTipoDeTelefono";
-            this.comboBoxTipoDeTelefono.Size = new System.Drawing.Size(194, 21);
-            this.comboBoxTipoDeTelefono.TabIndex = 40;
+            this.comboBoxTipoDeTelefono.Size = new System.Drawing.Size(381, 37);
+            this.comboBoxTipoDeTelefono.TabIndex = 1;
             // 
             // btnAgregarTipoDeTelefono
             // 
-            this.btnAgregarTipoDeTelefono.Image = global::MiniTaller.Windows.Properties.Resources.add_32px;
-            this.btnAgregarTipoDeTelefono.Location = new System.Drawing.Point(479, 11);
+            this.btnAgregarTipoDeTelefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(191)))), ((int)(((byte)(96)))));
+            this.btnAgregarTipoDeTelefono.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarTipoDeTelefono.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
+            this.btnAgregarTipoDeTelefono.Location = new System.Drawing.Point(634, 69);
             this.btnAgregarTipoDeTelefono.Name = "btnAgregarTipoDeTelefono";
-            this.btnAgregarTipoDeTelefono.Size = new System.Drawing.Size(53, 47);
-            this.btnAgregarTipoDeTelefono.TabIndex = 41;
-            this.btnAgregarTipoDeTelefono.UseVisualStyleBackColor = true;
+            this.btnAgregarTipoDeTelefono.Size = new System.Drawing.Size(76, 58);
+            this.btnAgregarTipoDeTelefono.TabIndex = 2;
+            this.btnAgregarTipoDeTelefono.Tag = "Agregar Tipo de Telefono";
+            this.btnAgregarTipoDeTelefono.UseVisualStyleBackColor = false;
             this.btnAgregarTipoDeTelefono.Click += new System.EventHandler(this.btnAgregarTipoDeTelefono_Click);
             // 
             // frmTelefonosAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 196);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(41)))), ((int)(((byte)(43)))));
+            this.ClientSize = new System.Drawing.Size(889, 360);
             this.ControlBox = false;
             this.Controls.Add(this.btnAgregarTipoDeTelefono);
             this.Controls.Add(this.comboBoxTipoDeTelefono);
@@ -190,7 +222,8 @@
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
-            this.MinimumSize = new System.Drawing.Size(515, 235);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MinimumSize = new System.Drawing.Size(823, 360);
             this.Name = "frmTelefonosAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTelefonosAE";

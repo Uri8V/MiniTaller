@@ -21,6 +21,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             InitializeComponent();
             _servicios = new ServicioDeVehiculosServicios();
             vehiculosServiciosDTO = vehiculosServiciosDto;
+            this.WindowState = FormWindowState.Maximized;
         }
         private VehiculosServiciosDto vehiculosServiciosDTO;
         private List<VehiculosServiciosDto> lista;
@@ -88,7 +89,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
             r.Cells[1].Value = item.Patente;
             r.Cells[2].Value = item.Servicio;
-            r.Cells[3].Value = item.Descripcion;
+            r.Cells[3].Value =  GridHelpers.ATextoPlano(item.Descripcion);
             r.Cells[4].Value = item.Haber.ToString();
             r.Cells[5].Value = (item.Debe - item.Haber).ToString();
         }

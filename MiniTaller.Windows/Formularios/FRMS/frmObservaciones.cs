@@ -29,6 +29,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             _serviciosVehiculos = new ServicioDeVehiculos();
             _servicioDeModelos = new ServicioDeModelos();
             _servicioDeMarcas = new ServicioDeMarcas();
+            this.WindowState = FormWindowState.Maximized; 
         }
 
         private void toolStripButtonCerrar_Click(object sender, EventArgs e)
@@ -63,7 +64,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         }
         private void RecargarGrilla()
         {
-            registros = _servicio.GetCantidad(null, null, null);
+            registros = _servicio.GetCantidad(IdVehiculo, IdCliente, fecha);
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             MostrarPaginado();
         }
@@ -160,7 +161,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
             var r = dgvDatos.SelectedRows[0];
             ObservacionDto ObservacionABorrar = (ObservacionDto)r.Tag;
-            DialogResult dr = MessageBox.Show($"¿Desea eliminar la observación ({ObservacionABorrar.Observacion}) del Cliente {ObservacionABorrar.Cliente} con el vehiculo {ObservacionABorrar.Vehiculo}?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            DialogResult dr = MessageBox.Show($"¿Desea eliminar la observación ({GridHelpers.ATextoPlano(ObservacionABorrar.Observacion)}) del Cliente {ObservacionABorrar.Cliente} con el vehiculo {ObservacionABorrar.Vehiculo}?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No) { return; }
             var observacion = _servicio.GetVehiculoObservacionPorId(ObservacionABorrar.IdObservacion);
             if (!_servicio.EstaRelacionado(observacion))
@@ -285,7 +286,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             var listaFiltrada = serviciosVehiculosDto;
             if (texto.Length != 0)
             {
-                Func<ObservacionDto, bool> condicion = c => c.Vehiculo.Contains(texto.ToUpper()) || c.Vehiculo.Contains(texto.ToUpper());
+                Func<ObservacionDto, bool> condicion = c => c.Vehiculo.Contains(texto.ToUpper()) || c.Fecha.ToShortDateString().Contains(texto.ToUpper());
                 listaFiltrada = serviciosVehiculosDto.Where(condicion).ToList();
             }
             GridHelpers.MostrarDatosEnGrilla<ObservacionDto>(dgvDatos, listaFiltrada);
@@ -321,6 +322,20 @@ namespace MiniTaller.Windows.Formularios.FRMS
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
             toolStripTextBox1.SelectAll();
+        }
+
+        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSeleccionarCliente frm = new frmSeleccionarCliente();
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel) { return; }
+            Clientes cliente = frm.GetCliente();
+            registros = _servicio.GetCantidad(IdVehiculo, cliente.IdCliente, fecha);
+            IdCliente = cliente.IdCliente;
+            paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
+            paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);
+            MostrarPaginado();
+            DesabilitarBotones();
         }
     }
 }

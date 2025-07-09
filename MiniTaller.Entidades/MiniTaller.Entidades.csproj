@@ -52,7 +52,7 @@
     <Compile Include="Dtos\ImagenesDto.cs" />
     <Compile Include="Dtos\ModelosDto.cs" />
     <Compile Include="Dtos\ObservacionDto.cs" />
-    <Compile Include="Dtos\ServiciosDto.cs" />
+    <Compile Include="Dtos\ServicioTipoDePagoDto.cs" />
     <Compile Include="Dtos\TelefonosDto.cs" />
     <Compile Include="Dtos\VehiculosDto.cs" />
     <Compile Include="Dtos\VehiculosServiciosDto.cs" />
@@ -62,6 +62,7 @@
     <Compile Include="Entidades\Modelos.cs" />
     <Compile Include="Entidades\Observaciones.cs" />
     <Compile Include="Entidades\Servicioss.cs" />
+    <Compile Include="Entidades\ServicioTipoDePago.cs" />
     <Compile Include="Entidades\Telefonos.cs" />
     <Compile Include="Entidades\TiposDePagos.cs" />
     <Compile Include="Entidades\TiposDeTelefono.cs" />

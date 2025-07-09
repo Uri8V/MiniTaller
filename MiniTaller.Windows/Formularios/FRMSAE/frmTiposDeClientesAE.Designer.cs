@@ -39,39 +39,48 @@
             // 
             // txtTipoDeCliente
             // 
-            this.txtTipoDeCliente.Location = new System.Drawing.Point(104, 29);
+            this.txtTipoDeCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.txtTipoDeCliente.Location = new System.Drawing.Point(209, 33);
             this.txtTipoDeCliente.MaxLength = 100;
             this.txtTipoDeCliente.Name = "txtTipoDeCliente";
-            this.txtTipoDeCliente.Size = new System.Drawing.Size(211, 20);
-            this.txtTipoDeCliente.TabIndex = 14;
+            this.txtTipoDeCliente.Size = new System.Drawing.Size(253, 35);
+            this.txtTipoDeCliente.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(18, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.Size = new System.Drawing.Size(185, 29);
             this.label1.TabIndex = 13;
             this.label1.Text = "Tipo de Cliente:";
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(180, 88);
+            this.btnCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(59)))), ((int)(((byte)(57)))));
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.btnCerrar.Location = new System.Drawing.Point(274, 94);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(96, 23);
-            this.btnCerrar.TabIndex = 11;
+            this.btnCerrar.Size = new System.Drawing.Size(169, 64);
+            this.btnCerrar.TabIndex = 2;
             this.btnCerrar.Text = "CERRAR";
-            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(36, 88);
+            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
+            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.btnConfirmar.Location = new System.Drawing.Point(65, 94);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(96, 23);
-            this.btnConfirmar.TabIndex = 12;
+            this.btnConfirmar.Size = new System.Drawing.Size(169, 64);
+            this.btnConfirmar.TabIndex = 1;
             this.btnConfirmar.Text = "CONFIRMAR";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // errorProvider1
@@ -82,13 +91,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 141);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(41)))), ((int)(((byte)(43)))));
+            this.ClientSize = new System.Drawing.Size(502, 180);
             this.ControlBox = false;
             this.Controls.Add(this.txtTipoDeCliente);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnConfirmar);
-            this.MaximumSize = new System.Drawing.Size(368, 180);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(368, 180);
             this.Name = "frmTiposDeClientesAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

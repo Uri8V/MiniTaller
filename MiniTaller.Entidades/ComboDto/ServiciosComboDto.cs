@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MiniTaller.Entidades.ComboDto
 {
-    public class ServiciosComboDto
+    public class ServicioTipoDePagoComboDto
     {
-        public int IdServicio { get; set; }
+        public int IdServicioTipoDePago { get; set; }
         public string Info { get; set; }
     }
 }

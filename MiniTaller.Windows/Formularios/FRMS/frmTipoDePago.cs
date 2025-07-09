@@ -21,6 +21,8 @@ namespace MiniTaller.Windows.Formularios.FRMS
         {
             InitializeComponent();
             _servicios = new ServicioDeTipoPago();
+            this.WindowState = FormWindowState.Maximized;
+
         }
         private readonly IServicioDeTipoPago _servicios;
         private List<TiposDePagos> lista;
@@ -44,10 +46,8 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 if (!_servicios.Existe(nuevaTipo))
                 {
                     _servicios.Guardar(nuevaTipo);
-                    DataGridViewRow r = GridHelpers.ConstruirFila(dgvDatos);
-                    GridHelpers.SetearFila(r, nuevaTipo);
                     MostrarCantidad();
-                    GridHelpers.AgregarFila(dgvDatos, r);
+                    MostrarDatosEnGrilla();
                     MessageBox.Show("Tipo de pago agregado", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -128,7 +128,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 if (!_servicios.Existe(tipo))
                 {
                     _servicios.Guardar(tipo);
-                    GridHelpers.SetearFila(r, tipo);
+                    MostrarDatosEnGrilla();
                     MessageBox.Show("Tipo de pago editado editado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else

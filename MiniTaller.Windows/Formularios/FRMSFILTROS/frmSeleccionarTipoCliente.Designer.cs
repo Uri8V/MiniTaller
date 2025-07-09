@@ -44,65 +44,81 @@
             // 
             // btnAgregarTipoCliente
             // 
-            this.btnAgregarTipoCliente.Image = global::MiniTaller.Windows.Properties.Resources.add_32px;
-            this.btnAgregarTipoCliente.Location = new System.Drawing.Point(345, 10);
+            this.btnAgregarTipoCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(140)))), ((int)(((byte)(71)))));
+            this.btnAgregarTipoCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarTipoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnAgregarTipoCliente.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
+            this.btnAgregarTipoCliente.Location = new System.Drawing.Point(585, 27);
             this.btnAgregarTipoCliente.Name = "btnAgregarTipoCliente";
-            this.btnAgregarTipoCliente.Size = new System.Drawing.Size(50, 43);
-            this.btnAgregarTipoCliente.TabIndex = 10;
-            this.btnAgregarTipoCliente.UseVisualStyleBackColor = true;
+            this.btnAgregarTipoCliente.Size = new System.Drawing.Size(62, 51);
+            this.btnAgregarTipoCliente.TabIndex = 1;
+            this.btnAgregarTipoCliente.Tag = "Agregar Tipo de Cliente";
+            this.btnAgregarTipoCliente.UseVisualStyleBackColor = false;
             this.btnAgregarTipoCliente.Click += new System.EventHandler(this.btnAgregarTipoCliente_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 24);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label1.Location = new System.Drawing.Point(12, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 13);
+            this.label1.Size = new System.Drawing.Size(233, 24);
             this.label1.TabIndex = 9;
             this.label1.Text = "Seleccionar el tipo Cliente:";
             // 
             // comboBoxTipoCliente
             // 
+            this.comboBoxTipoCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
             this.comboBoxTipoCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTipoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.comboBoxTipoCliente.FormattingEnabled = true;
-            this.comboBoxTipoCliente.Location = new System.Drawing.Point(152, 16);
+            this.comboBoxTipoCliente.IntegralHeight = false;
+            this.comboBoxTipoCliente.Location = new System.Drawing.Point(251, 37);
+            this.comboBoxTipoCliente.MaxDropDownItems = 20;
             this.comboBoxTipoCliente.Name = "comboBoxTipoCliente";
-            this.comboBoxTipoCliente.Size = new System.Drawing.Size(175, 21);
-            this.comboBoxTipoCliente.TabIndex = 8;
+            this.comboBoxTipoCliente.Size = new System.Drawing.Size(328, 32);
+            this.comboBoxTipoCliente.TabIndex = 0;
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(35, 66);
+            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnConfirmar.Location = new System.Drawing.Point(142, 95);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(87, 23);
-            this.btnConfirmar.TabIndex = 6;
+            this.btnConfirmar.Size = new System.Drawing.Size(148, 42);
+            this.btnConfirmar.TabIndex = 2;
             this.btnConfirmar.Text = "CONFIRMAR";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(197, 66);
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnCancelar.Location = new System.Drawing.Point(367, 95);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Size = new System.Drawing.Size(148, 42);
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "CANCELAR";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // frmSeleccionarTipoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(407, 110);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(72)))), ((int)(((byte)(59)))));
+            this.ClientSize = new System.Drawing.Size(661, 149);
             this.ControlBox = false;
             this.Controls.Add(this.btnAgregarTipoCliente);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxTipoCliente);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
-            this.MaximumSize = new System.Drawing.Size(423, 149);
-            this.MinimumSize = new System.Drawing.Size(423, 149);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimumSize = new System.Drawing.Size(561, 149);
             this.Name = "frmSeleccionarTipoCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSeleccionarTipoCliente";

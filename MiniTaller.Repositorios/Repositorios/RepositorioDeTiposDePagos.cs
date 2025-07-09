@@ -91,7 +91,7 @@ namespace MiniTaller.Repositorios.Repositorios
             int cantidad = 0;
             using (IDbConnection conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = "SELECT COUNT(*) FROM Servicios WHERE IdTipoPago=@IdTipoPago";
+                string selectQuery = "SELECT COUNT(*) FROM ServiciosTiposDePago WHERE IdTipoPago=@IdTipoPago";
                 cantidad = conn.QuerySingle<int>(selectQuery, new { IdTipoPago = tipo.IdTipoPago });
             }
             return cantidad > 0;

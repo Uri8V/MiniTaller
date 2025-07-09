@@ -22,6 +22,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         {
             InitializeComponent();
             _servicios = new ServicioDeMarcas();
+            this.WindowState = FormWindowState.Maximized;
         }
         private readonly IServicioDeMarcas _servicios;
         private List<Marcas> lista;
@@ -44,10 +45,8 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 if (!_servicios.Existe(nuevaMarca))
                 {
                     _servicios.Guardar(nuevaMarca);
-                    DataGridViewRow r = GridHelpers.ConstruirFila(dgvDatos);
-                    GridHelpers.SetearFila(r, nuevaMarca);
                     MostrarCantidad();
-                    GridHelpers.AgregarFila(dgvDatos, r);
+                    MostrarDatosEnGrilla();
                     MessageBox.Show("Marca agregado", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -135,7 +134,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 if (!_servicios.Existe(marca))
                 {
                     _servicios.Guardar(marca);
-                    GridHelpers.SetearFila(r, marca);
+                    MostrarDatosEnGrilla();
                     MessageBox.Show("Marca editado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else

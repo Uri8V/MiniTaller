@@ -29,6 +29,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             _servicioDeVehiculos = new ServicioDeVehiculos();
             this.observaciones = observaciones;
             this.vehiculosServicios = vehiculosServicios;
+            this.WindowState = FormWindowState.Maximized;
         }
         private List<ImagenesDto> lista;
         private readonly IServicioDeImagenes _servicio;
@@ -229,6 +230,11 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 GridHelpers.SetearFila(r, CopiaImagen);
                 MessageBox.Show(ex.Message, "UPS, ALGO SALIO MAL CON LA EDICIÓN", MessageBoxButtons.OK);
             }
+        }
+
+        private void toolStripButtonActualizar_Click(object sender, EventArgs e)
+        {
+            RecargarGrilla();
         }
     }
 }

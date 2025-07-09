@@ -21,12 +21,9 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            ComboHelper.CargarComboTipoDePago(ref comboBox1);
             if (Servicios != null)
             {
                 txtServicio.Text = Servicios.Servicio;
-                txtDebe.Text = Servicios.Debe.ToString();
-                comboBox1.SelectedValue = Servicios.IdTipoPago;
             }
         }
         private Servicioss Servicios;
@@ -54,9 +51,6 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     Servicios = new Servicioss();
                 }
                 Servicios.Servicio = txtServicio.Text;
-                Servicios.Debe = decimal.Parse(txtDebe.Text);
-                Servicios.IdTipoPago = (int)comboBox1.SelectedValue;
-                Servicios.TipoDePago = (TiposDePagos)comboBox1.SelectedItem;
                 DialogResult = DialogResult.OK;
             }
         }
@@ -69,21 +63,6 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             {
                 valido = false;
                 errorProvider1.SetError(txtServicio, "Debe ingresar un Servicio");
-            }
-            if (!decimal.TryParse(txtDebe.Text, out decimal Debe))
-            {
-                valido = false;
-                errorProvider1.SetError(txtDebe, "Se necesita ingresar el total a deber ");
-            }
-            else if (Debe <= 0)
-            {
-                valido = false;
-                errorProvider1.SetError(txtDebe, "El monto debe ser positivo");
-            }
-            if (comboBox1.SelectedIndex == 0)
-            {
-                valido = false;
-                errorProvider1.SetError(comboBox1, "Debe seleccionar una forma de Pago");
             }
             return valido;
         }

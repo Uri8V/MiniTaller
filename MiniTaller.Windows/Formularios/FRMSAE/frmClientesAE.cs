@@ -19,6 +19,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         public frmClientesAE()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -100,12 +101,12 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 {
                     errorProvider1.SetError(txtCUIT, "DEBE Ingresar un CUIT");
                     errorProvider1.SetError(txtDocumento, "DEBE Ingresar un Documento");
-                    MessageBox.Show("DEBE INGRESAR UN DOCUMENTO O UN CUIT", "MENSAJE INFORMATIVO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     validar = false;
                 }
                 else if (txtDocumento.TextLength > 0 && txtCUIT.TextLength > 0)
                 {
-                    MessageBox.Show("DEBE INGRESAR UN DOCUMENTO O UN CUIT", "MENSAJE INFORMATIVO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    errorProvider1.SetError(txtCUIT, "DEBE Ingresar un CUIT");
+                    errorProvider1.SetError(txtDocumento, "DEBE Ingresar un Documento");
                     validar = false;
                 }
                 if (string.IsNullOrEmpty(txtDomicilio.Text))

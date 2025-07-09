@@ -23,6 +23,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         {
             InitializeComponent();
             _sericioDeModelos=new ServicioDeModelos();
+            this.WindowState = FormWindowState.Maximized;
         }
         protected override void OnLoad(EventArgs e)
         {

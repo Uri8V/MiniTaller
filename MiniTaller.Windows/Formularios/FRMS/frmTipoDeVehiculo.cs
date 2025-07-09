@@ -21,6 +21,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         {
             InitializeComponent();
             _servicios = new ServicioDeTipoVehiculo();
+            this.WindowState = FormWindowState.Maximized;
         }
         private readonly IServicioDeTipoVehiculo _servicios;
         private List<TiposDeVehiculos> lista;
@@ -61,10 +62,8 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 if (!_servicios.Existe(nuevoTipo))
                 {
                     _servicios.Guardar(nuevoTipo);
-                    DataGridViewRow r = GridHelpers.ConstruirFila(dgvDatos);
-                    GridHelpers.SetearFila(r, nuevoTipo);
                     MostrarCantidad();
-                    GridHelpers.AgregarFila(dgvDatos, r);
+                    RecargarGrilla();
                     MessageBox.Show("Marca agregado", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -133,7 +132,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 if (!_servicios.Existe(tipo))
                 {
                     _servicios.Guardar(tipo);
-                    GridHelpers.SetearFila(r, tipo);
+                    RecargarGrilla();
                     MessageBox.Show("Tipo de Vehiculo editado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else

@@ -47,6 +47,7 @@
     <Compile Include="Interfaces\IRepositorioDeModelos.cs" />
     <Compile Include="Interfaces\IRepositorioDeObservaciones.cs" />
     <Compile Include="Interfaces\IRepositorioDeServicios.cs" />
+    <Compile Include="Interfaces\IRepositorioDeServiciosTiposDePago.cs" />
     <Compile Include="Interfaces\IRepositorioDeTelefonos.cs" />
     <Compile Include="Interfaces\IRepositorioDeTipoCliente.cs" />
     <Compile Include="Interfaces\IRepositorioDeTipoDeVehiculos.cs" />

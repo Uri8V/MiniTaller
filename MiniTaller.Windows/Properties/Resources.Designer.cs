@@ -63,9 +63,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _32px {
+        internal static System.Drawing.Bitmap add_50px {
             get {
-                object obj = ResourceManager.GetObject("_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("add_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_32px {
+        internal static System.Drawing.Bitmap bulleted_list_32px {
             get {
-                object obj = ResourceManager.GetObject("add_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("bulleted_list_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Brand_32px {
+        internal static System.Drawing.Bitmap car_50px {
             get {
-                object obj = ResourceManager.GetObject("Brand_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("car_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Captura_de_pantalla_2025_02_18_222823 {
+        internal static System.Drawing.Bitmap car_50px1 {
             get {
-                object obj = ResourceManager.GetObject("Captura de pantalla 2025-02-18 222823", resourceCulture);
+                object obj = ResourceManager.GetObject("car_50px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap car_32px {
+        internal static System.Drawing.Bitmap chevrolet_50px {
             get {
-                object obj = ResourceManager.GetObject("car_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("chevrolet_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Close_32px {
+        internal static System.Drawing.Bitmap client_50px {
             get {
-                object obj = ResourceManager.GetObject("Close_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("client_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap customer_32px {
+        internal static System.Drawing.Bitmap Close_50px {
             get {
-                object obj = ResourceManager.GetObject("customer_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("Close_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Delete_Key_32px {
+        internal static System.Drawing.Bitmap close_window_50px {
             get {
-                object obj = ResourceManager.GetObject("Delete_Key_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("close_window_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Done_32px {
+        internal static System.Drawing.Bitmap Colores_32px {
             get {
-                object obj = ResourceManager.GetObject("Done_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("Colores_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap edit_property_32px {
+        internal static System.Drawing.Bitmap Cursiva_32px {
             get {
-                object obj = ResourceManager.GetObject("edit_property_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("Cursiva_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap filter_32px {
+        internal static System.Drawing.Bitmap Fast_Forward_50px {
             get {
-                object obj = ResourceManager.GetObject("filter_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("Fast Forward_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,29 +173,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap First_32px {
+        internal static System.Drawing.Bitmap filter_50px {
             get {
-                object obj = ResourceManager.GetObject("First_32px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap initiate_money_transfer_32px {
-            get {
-                object obj = ResourceManager.GetObject("initiate_money_transfer_32px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Last_button_32px {
-            get {
-                object obj = ResourceManager.GetObject("Last_button_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("filter_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,29 +193,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mobiles_32px {
+        internal static System.Drawing.Bitmap Negrita_32px {
             get {
-                object obj = ResourceManager.GetObject("mobiles_32px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap models_32_px {
-            get {
-                object obj = ResourceManager.GetObject("models_32_px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap next_32px {
-            get {
-                object obj = ResourceManager.GetObject("next_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("Negrita_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -244,7 +204,7 @@ namespace MiniTaller.Windows.Properties {
         ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
         ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
         ///&lt;head&gt;
-        ///    &lt;title&gt;Factura del Cliente&lt;/title&gt;
+        ///    &lt;title&gt;Presupuesto del Cliente&lt;/title&gt;
         ///    &lt;style&gt;
         ///        table.border {
         ///            border-collapse: collapse;
@@ -262,8 +222,7 @@ namespace MiniTaller.Windows.Properties {
         ///    &lt;/style&gt;
         ///&lt;/head&gt;
         ///&lt;body style=&quot;  width: 21cm;
-        ///height: 29.7cm;
-        ///mar [resto de la cadena truncado]&quot;;.
+        ///height: 29.7cm;        /// [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string NuevaFactura {
             get {
@@ -274,9 +233,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap people_32px {
+        internal static System.Drawing.Bitmap pencil_50px {
             get {
-                object obj = ResourceManager.GetObject("people_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("pencil_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -284,9 +243,19 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap phone_32px {
+        internal static System.Drawing.Bitmap people_50px {
             get {
-                object obj = ResourceManager.GetObject("phone_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("people_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap phone_50px {
+            get {
+                object obj = ResourceManager.GetObject("phone_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -304,9 +273,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap previous_32px {
+        internal static System.Drawing.Bitmap plus_math_50px {
             get {
-                object obj = ResourceManager.GetObject("previous_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("plus_math_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -314,9 +283,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap print_32px {
+        internal static System.Drawing.Bitmap print_50px {
             get {
-                object obj = ResourceManager.GetObject("print_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("print_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -324,9 +293,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap refresh_32px {
+        internal static System.Drawing.Bitmap Remove_50px {
             get {
-                object obj = ResourceManager.GetObject("refresh_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("Remove_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -334,9 +303,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap search_32px {
+        internal static System.Drawing.Bitmap reset_50px {
             get {
-                object obj = ResourceManager.GetObject("search_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("reset_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -344,9 +313,9 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap TypeOfCar_32px {
+        internal static System.Drawing.Bitmap rewind_50px {
             get {
-                object obj = ResourceManager.GetObject("TypeOfCar_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("rewind_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -354,9 +323,129 @@ namespace MiniTaller.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap wayofpay_32px {
+        internal static System.Drawing.Bitmap salir_50px {
             get {
-                object obj = ResourceManager.GetObject("wayofpay_32px", resourceCulture);
+                object obj = ResourceManager.GetObject("salir_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_50px {
+            get {
+                object obj = ResourceManager.GetObject("search_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap service_50px {
+            get {
+                object obj = ResourceManager.GetObject("service_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap services_50px {
+            get {
+                object obj = ResourceManager.GetObject("services_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sort_left_50px {
+            get {
+                object obj = ResourceManager.GetObject("sort_left_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sort_right_50px {
+            get {
+                object obj = ResourceManager.GetObject("sort_right_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Subrayar_32px {
+            get {
+                object obj = ResourceManager.GetObject("Subrayar_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tamaño_32px {
+            get {
+                object obj = ResourceManager.GetObject("Tamaño_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tick_box_50px {
+            get {
+                object obj = ResourceManager.GetObject("tick_box_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toy_car_50px {
+            get {
+                object obj = ResourceManager.GetObject("toy_car_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap types_of_cellphones_50px {
+            get {
+                object obj = ResourceManager.GetObject("types_of_cellphones_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap types_of_vehicule_50px {
+            get {
+                object obj = ResourceManager.GetObject("types_of_vehicule_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap way_of_pay_50px {
+            get {
+                object obj = ResourceManager.GetObject("way_of_pay_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -26,6 +26,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             InitializeComponent();
             _servicio = new ServicioDeModelos();
             _servicioMarca = new ServicioDeMarcas();
+            this.WindowState = FormWindowState.Maximized;
         }
         private List<ModelosDto> lista;
         private IServicioDeModelos _servicio;
@@ -205,6 +206,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                         modeloDto.Marca = _servicioMarca.GetMarcaPorId(modelos.IdMarca).Marca;
                         GridHelpers.SetearFila(r, modeloDto);
                         _servicio.Guardar(modelos);
+                        MostrarPaginado();
                     }
                     else
                     {

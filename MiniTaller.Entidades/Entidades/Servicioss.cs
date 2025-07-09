@@ -10,9 +10,9 @@ namespace MiniTaller.Entidades.Entidades
     {
         public int IdServicio { get; set; }
         public string Servicio { get; set; }
-        public decimal Debe { get; set; }
-        public int IdTipoPago { get; set; }
-        public TiposDePagos TipoDePago { get; set; }
-
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

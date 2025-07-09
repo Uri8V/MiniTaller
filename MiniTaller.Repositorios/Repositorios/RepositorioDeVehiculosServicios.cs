@@ -25,8 +25,8 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"INSERT INTO VehiculosServicios (IdVehiculo,IdServicio, IdCliente, Descripcion, Debe, Haber, Fecha) 
-                                    Values (@IdVehiculo,@IdServicio, @IdCliente, @Descripcion, @Debe, @Haber, @Fecha); SELECT SCOPE_IDENTITY();";
+                string selectQuery = @"INSERT INTO VehiculosServicios (IdVehiculo,IdServicioTipoDePago, IdCliente, Descripcion, Debe, Haber, Fecha) 
+                                    Values (@IdVehiculo,@IdServicioTipoDePago, @IdCliente, @Descripcion, @Debe, @Haber, @Fecha); SELECT SCOPE_IDENTITY();";
                 int id = conn.ExecuteScalar<int>(selectQuery, vehiculosServicios);
                 vehiculosServicios.IdVehiculoServicio = id;
             }
@@ -45,7 +45,7 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string updateQuery = @"UPDATE VehiculosServicios SET IdVehiculo=@IdVehiculo,IdServicio=@IdServicio, IdCliente=@IdCliente, Descripcion=@Descripcion, Debe=@Debe, Haber=@Haber, Fecha=@Fecha
+                string updateQuery = @"UPDATE VehiculosServicios SET IdVehiculo=@IdVehiculo,IdServicioTipoDePago=@IdServicioTipoDePago, IdCliente=@IdCliente, Descripcion=@Descripcion, Debe=@Debe, Haber=@Haber, Fecha=@Fecha
                 WHERE IdVehiculoServicio=@IdVehiculoServicio";
                 conn.Execute(updateQuery, vehiculosServicios);
             }
@@ -56,9 +56,8 @@ namespace MiniTaller.Repositorios.Repositorios
             int cantidad = 0;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-
                 string selectQuery = @"SELECT COUNT(*) FROM Imagenes WHERE IdVehiculoServicio=@IdVehiculoServicio";
-                cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdVehiculoServicio = vehiculosServicios.IdVehiculoServicio});
+                cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdVehiculoServicio = vehiculosServicios.IdVehiculoServicio });
             }
             return cantidad > 0;
         }
@@ -72,57 +71,57 @@ namespace MiniTaller.Repositorios.Repositorios
                 if (vehiculosServicios.IdVehiculoServicio == 0)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM VehiculosServicios 
-                            WHERE IdVehiculo=@IdVehiculo AND IdServicio=@IdServicio AND IdCliente=@IdCliente AND Fecha=@Fecha";
+                            WHERE IdVehiculo=@IdVehiculo AND IdServicioTipoDePago=@IdServicioTipoDePago AND IdCliente=@IdCliente AND Fecha=@Fecha";
                     cantidad = conn.ExecuteScalar<int>(
-                        selectQuery, new { IdVehiculo = vehiculosServicios.IdVehiculo, IdServicio = vehiculosServicios.IdServicio, IdCliente = vehiculosServicios.IdCliente, Fecha = vehiculosServicios.Fecha });
+                        selectQuery, new { IdVehiculo = vehiculosServicios.IdVehiculo, IdServicioTipoDePago = vehiculosServicios.IdServicioTipoDePago, IdCliente = vehiculosServicios.IdCliente, Fecha = vehiculosServicios.Fecha });
                 }
                 else
                 {
                     selectQuery = @"SELECT COUNT(*) FROM VehiculosServicios 
-                WHERE IdVehiculo=@IdVehiculo AND IdServicio=@IdServicio AND IdCliente=@IdCliente AND Fecha=@Fecha AND   Haber=@Haber AND IdVehiculoServicio!=@IdVehiculoServicio";
+                WHERE IdVehiculo=@IdVehiculo AND IdServicioTipoDePago=@IdServicioTipoDePago AND IdCliente=@IdCliente AND Fecha=@Fecha AND   Haber=@Haber AND IdVehiculoServicio!=@IdVehiculoServicio";
                     cantidad = conn.ExecuteScalar<int>(
-                        selectQuery, new { IdVehiculo = vehiculosServicios.IdVehiculo, IdServicio = vehiculosServicios.IdServicio, IdCliente = vehiculosServicios.IdCliente, Fecha = vehiculosServicios.Fecha, Haber = vehiculosServicios.Haber, IdVehiculoServicio = vehiculosServicios.IdVehiculoServicio });
+                        selectQuery, new { IdVehiculo = vehiculosServicios.IdVehiculo, IdServicioTipoDePago = vehiculosServicios.IdServicioTipoDePago, IdCliente = vehiculosServicios.IdCliente, Fecha = vehiculosServicios.Fecha, Haber = vehiculosServicios.Haber, IdVehiculoServicio = vehiculosServicios.IdVehiculoServicio });
                 }
             }
             return cantidad > 0;
         }
 
-        public int GetCantidad(int? IdVehiculo, int? IdServicio, int? IdCliente, DateTime? FechaServicios, bool? Yapago)
+        public int GetCantidad(int? IdVehiculo, int? IdServicioTipoDePago, int? IdCliente, DateTime? FechaServicios, bool? Yapago)
         {
             int cantidad = 0;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
                 string selectQuery;
-                if (IdVehiculo == null && IdServicio == null && IdCliente == null && FechaServicios == null && Yapago==null)
+                if (IdVehiculo == null && IdServicioTipoDePago == null && IdCliente == null && FechaServicios == null && Yapago == null)
                 {
                     selectQuery = "SELECT COUNT(*) FROM VehiculosServicios WHERE Debe!=Haber";
                     cantidad = conn.ExecuteScalar<int>(selectQuery);
                 }
-                else if (IdVehiculo != null && IdServicio == null && IdCliente == null && FechaServicios == null && Yapago == null)
+                else if (IdVehiculo != null && IdServicioTipoDePago == null && IdCliente == null && FechaServicios == null && Yapago == null)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM VehiculosServicios 
                         WHERE (IdVehiculo=@IdVehiculo)";
                     cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdVehiculo = IdVehiculo });
                 }
-                else if (IdVehiculo == null && IdServicio != null && IdCliente == null && FechaServicios == null && Yapago == null)
+                else if (IdVehiculo == null && IdServicioTipoDePago != null && IdCliente == null && FechaServicios == null && Yapago == null)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM VehiculosServicios 
-                        WHERE (IdServicio=@IdServicio)";
-                    cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdServicio = IdServicio });
+                        WHERE (IdServicioTipoDePago=@IdServicioTipoDePago)";
+                    cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdServicioTipoDePago = IdServicioTipoDePago });
                 }
-                else if (IdVehiculo == null && IdServicio == null && IdCliente != null && FechaServicios == null && Yapago == null)
+                else if (IdVehiculo == null && IdServicioTipoDePago == null && IdCliente != null && FechaServicios == null && Yapago == null)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM VehiculosServicios 
                         WHERE (IdCliente=@IdCliente)";
                     cantidad = conn.ExecuteScalar<int>(selectQuery, new { IdCliente = IdCliente });
                 }
-                else if (IdVehiculo == null && IdServicio == null && IdCliente == null && FechaServicios != null && Yapago == null)
+                else if (IdVehiculo == null && IdServicioTipoDePago == null && IdCliente == null && FechaServicios != null && Yapago == null)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM VehiculosServicios 
                         WHERE (Fecha=CONVERT(DATE,@FechaServicios))";
                     cantidad = conn.ExecuteScalar<int>(selectQuery, new { FechaServicios = FechaServicios });
                 }
-                else if (IdVehiculo == null && IdServicio == null && IdCliente == null && FechaServicios == null && Yapago != null)
+                else if (IdVehiculo == null && IdServicioTipoDePago == null && IdCliente == null && FechaServicios == null && Yapago != null)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM VehiculosServicios 
                         WHERE Debe=Haber";
@@ -159,10 +158,11 @@ SELECT IdVehiculoServicio, Info FROM cte WHERE rn = 1;
             List<VehiculosServiciosDto> lista = new List<VehiculosServiciosDto>();
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT vs.IdVehiculoServicio, v.Patente, s.Servicio, s.Debe as DebeServicio, c.Apellido, c.Nombre,c.Documento,c.CUIT,vs.Descripcion,vs.Debe,vs.Haber,vs.Fecha
+                string selectQuery = @"SELECT vs.IdVehiculoServicio, v.Patente, s.Servicio, st.Precio as DebeServicio, c.Apellido, c.Nombre,c.Documento,c.CUIT,vs.Descripcion,vs.Debe,vs.Haber,vs.Fecha
                     FROM VehiculosServicios vs
                     INNER JOIN Vehiculos v ON v.IdVehiculo=vs.IdVehiculo
-                    INNER JOIN Servicios s ON vs.IdServicio=s.IdServicio
+                    INNER JOIN ServiciosTiposDePago st ON vs.IdServicioTipoDePago=st.IdServicioTipoDePago
+                    INNER JOIN Servicios s ON s.IdServicio=st.IdServicio
                     INNER JOIN Clientes c ON vs.IdCliente=c.IdCliente
                     WHERE c.Documento=@CUITDocumento OR c.CUIT=@CUITDocumento";
                 var parametros = new { CUITDocumento };
@@ -176,7 +176,7 @@ SELECT IdVehiculoServicio, Info FROM cte WHERE rn = 1;
             VehiculosServicios vehiculosServicios = null;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT vs.IdVehiculoServicio,vs.IdVehiculo,vs.IdServicio,vs.IdCliente,vs.Descripcion, vs.Debe, vs.Haber, vs.Fecha
+                string selectQuery = @"SELECT vs.IdVehiculoServicio,vs.IdVehiculo,vs.IdServicioTipoDePago,vs.IdCliente,vs.Descripcion, vs.Debe, vs.Haber, vs.Fecha
                     FROM VehiculosServicios vs WHERE vs.IdVehiculoServicio=@IdVehiculoServicios";
                 vehiculosServicios = conn.QuerySingleOrDefault<VehiculosServicios>(selectQuery,
                     new { IdVehiculoServicios = IdVehiculoServicio });
@@ -184,23 +184,27 @@ SELECT IdVehiculoServicio, Info FROM cte WHERE rn = 1;
             return vehiculosServicios;
         }
 
-        public List<VehiculosServiciosDto> GetVehiculoServicioPorPagina(int registrosPorPagina, int paginaActual, int? IdVehiculo, int? IdServicio, int? IdCliente, DateTime? FechaServicios, bool? Yapago)
+        public List<VehiculosServiciosDto> GetVehiculoServicioPorPagina(int registrosPorPagina, int paginaActual, int? IdVehiculo, int? IdServicioTipoDePago, int? IdCliente, DateTime? FechaServicios, bool? Yapago)
         {
 
             List<VehiculosServiciosDto> lista = new List<VehiculosServiciosDto>();
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
                 StringBuilder selectQuery = new StringBuilder();
-                selectQuery.AppendLine("SELECT vs.IdVehiculoServicio, v.Patente, v.Kilometros, s.Servicio, s.Debe as DebeServicio, c.Apellido, c.Nombre,c.Documento,c.CUIT,vs.Descripcion,vs.Debe,vs.Haber,vs.Fecha");
-
+                selectQuery.AppendLine("SELECT vs.IdVehiculoServicio, v.Patente, v.Kilometros, s.Servicio, st.Precio as DebeServicio, c.Apellido, c.Nombre,c.Documento,c.CUIT,vs.Descripcion,vs.Debe,vs.Haber,vs.Fecha");
                 selectQuery.AppendLine("FROM VehiculosServicios vs");
                 selectQuery.AppendLine("INNER JOIN Vehiculos v ON v.IdVehiculo=vs.IdVehiculo");
-                selectQuery.AppendLine("INNER JOIN Servicios s ON s.IdServicio=vs.IdServicio");
+                selectQuery.AppendLine("INNER JOIN ServiciosTiposDePago st ON st.IdServicioTipoDePago=vs.IdServicioTipoDePago");
                 selectQuery.AppendLine("INNER JOIN Clientes c ON c.IdCliente=vs.IdCliente");
+                selectQuery.AppendLine("INNER JOIN Servicios s ON st.IdServicio=s.IdServicio");
 
-                if (IdVehiculo != null || IdServicio != null || IdCliente != null || FechaServicios != null || Yapago!=null)
+                if (IdVehiculo != null || IdServicioTipoDePago != null || IdCliente != null || FechaServicios != null)
                 {
-                    selectQuery.AppendLine("WHERE vs.IdVehiculo = @IdVehiculo OR vs.IdServicio=@IdServicio OR vs.Fecha=CONVERT(DATE,@FechaServicios) OR vs.Debe=vs.Haber");
+                    selectQuery.AppendLine("WHERE vs.IdVehiculo = @IdVehiculo OR vs.IdServicioTipoDePago=@IdServicioTipoDePago OR vs.Fecha=CONVERT(DATE,@FechaServicios) OR vs.IdCliente=@IdCliente");
+                }
+                else if (Yapago != null)
+                {
+                    selectQuery.AppendLine("WHERE vs.Debe=vs.Haber");
                 }
                 else
                 {
@@ -210,7 +214,7 @@ SELECT IdVehiculoServicio, Info FROM cte WHERE rn = 1;
                 selectQuery.AppendLine("ORDER BY vs.Fecha,s.Servicio");
                 selectQuery.AppendLine("OFFSET @registrosSaltados ROWS FETCH NEXT @registrosPorPagina ROWS ONLY");
 
-                var parametros = new { IdVehiculo, IdServicio, IdCliente, FechaServicios, registrosSaltados = registrosPorPagina * (paginaActual - 1), registrosPorPagina };
+                var parametros = new { IdVehiculo, IdServicioTipoDePago, IdCliente, FechaServicios, registrosSaltados = registrosPorPagina * (paginaActual - 1), registrosPorPagina };
 
                 lista = conn.Query<VehiculosServiciosDto>(selectQuery.ToString(), parametros).ToList();
 

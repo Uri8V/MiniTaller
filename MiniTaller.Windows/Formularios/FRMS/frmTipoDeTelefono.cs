@@ -23,6 +23,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         {
             InitializeComponent();
             _servicios = new ServicioDeTipoDeTelefono();
+            this.WindowState = FormWindowState.Maximized;
         }
         private readonly IServicioDeTipoDeTelefono _servicios;
         private List<TiposDeTelefono> lista;
@@ -46,10 +47,8 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 if (!_servicios.Existe(nuevoTipo))
                 {
                     _servicios.Guardar(nuevoTipo);
-                    DataGridViewRow r = GridHelpers.ConstruirFila(dgvDatos);
-                    GridHelpers.SetearFila(r, nuevoTipo);
                     MostrarCantidad();
-                    GridHelpers.AgregarFila(dgvDatos, r);
+                    MostrarDatosEnGrilla();
                     MessageBox.Show("Tipo de Telefono agregado", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -90,7 +89,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             TiposDeTelefono tipo = (TiposDeTelefono)r.Tag;
             try
             {
-                //Se debe controlar que este relacionada
                 DialogResult dr = MessageBox.Show($"¿Desea eliminar el Tipo de Telefono: {tipo.Tipo}?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (dr == DialogResult.No) { return; }
                 if (!_servicios.EstaRelacionado(tipo))
@@ -130,7 +128,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 if (!_servicios.Existe(tipo))
                 {
                     _servicios.Guardar(tipo);
-                    GridHelpers.SetearFila(r, tipo);
+                    MostrarDatosEnGrilla();
                     MessageBox.Show("Tipo de telefono editado editado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else

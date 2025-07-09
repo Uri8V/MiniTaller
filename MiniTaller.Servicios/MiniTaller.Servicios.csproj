@@ -47,6 +47,7 @@
     <Compile Include="Interfaces\IServicioDeModelos.cs" />
     <Compile Include="Interfaces\IServicioDeObservaciones.cs" />
     <Compile Include="Interfaces\IServicioDeServicios.cs" />
+    <Compile Include="Interfaces\IServicioDeServiciosTiposDePago.cs" />
     <Compile Include="Interfaces\IServicioDeTelefonos.cs" />
     <Compile Include="Interfaces\IServicioDeTipoCliente.cs" />
     <Compile Include="Interfaces\IServicioDeTipoDeTelefono.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Servicios\ServicioDeMarcas.cs" />
     <Compile Include="Servicios\ServicioDeModelos.cs" />
     <Compile Include="Servicios\ServicioDeObservaciones.cs" />
+    <Compile Include="Servicios\ServicioDeServiciosTiposDePago.cs" />
     <Compile Include="Servicios\ServicioDeTelefonos.cs" />
     <Compile Include="Servicios\ServicioDeTipoCliente.cs" />
     <Compile Include="Servicios\ServicioDeTipoDeTelefono.cs" />
