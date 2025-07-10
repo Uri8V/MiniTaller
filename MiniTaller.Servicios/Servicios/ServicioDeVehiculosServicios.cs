@@ -5,14 +5,16 @@ using MiniTaller.Entidades.Entidades;
 using MiniTaller.Repositorios.Repositorios;
 using MiniTaller.Servicios.Interfaces;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MiniTaller.Servicios.Servicios
 {
-    public class ServicioDeVehiculosServicios:IServicioDeVehiculosServicios
+    public class ServicioDeVehiculosServicios : IServicioDeVehiculosServicios
     {
         private readonly IRepositorioDeVehiculosServicios _repo;
         public ServicioDeVehiculosServicios()
@@ -44,11 +46,11 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public bool Existe(VehiculosServicios vehiculosServicios)
+        public bool Existe(VehiculosServicios vehiculosServicios, List<ServicioTipoDePago> lista)
         {
             try
             {
-                return _repo.Existe(vehiculosServicios);
+                return _repo.Existe(vehiculosServicios, lista);
             }
             catch (Exception ex)
             {
@@ -60,7 +62,7 @@ namespace MiniTaller.Servicios.Servicios
         {
             try
             {
-                return _repo.GetCantidad(IdVehiculo, IdServicio, IdCliente, FechaServicios,Yapago);
+                return _repo.GetCantidad(IdVehiculo, IdServicio, IdCliente, FechaServicios, Yapago);
             }
             catch (Exception ex)
             {
@@ -116,17 +118,51 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public void Guardar(VehiculosServicios vehiculosServicios)
+        public void Guardar(VehiculosServicios vehiculosServicios, List<ServicioTipoDePago> lista)
         {
             try
             {
-                if (vehiculosServicios.IdVehiculoServicio==0)
+                var haber = vehiculosServicios.Haber;
+                foreach (var item in lista)
                 {
-                    _repo.Agregar(vehiculosServicios);
-                }
-                else
-                {
-                    _repo.Editar(vehiculosServicios);
+                    vehiculosServicios.IdServicioTipoDePago = item.IdServicioTipoDePago;
+                    vehiculosServicios.Debe = item.Precio;
+                    if (!Existe(vehiculosServicios, lista))
+                    {
+                        if (lista.Count > 1 || vehiculosServicios.IdVehiculoServicio == 0)
+                        {
+
+                            if (haber != 0)
+                            {
+
+                                if (vehiculosServicios.Debe < haber)
+                                {
+                                    haber -= item.Precio;
+                                    vehiculosServicios.Haber = vehiculosServicios.Debe;
+                                }
+                                else
+                                {
+                                    vehiculosServicios.Haber = haber;
+                                    haber = 0;
+                                }
+                            }
+                            else
+                            {
+                                vehiculosServicios.Haber = 0;
+                            }
+                            _repo.Agregar(vehiculosServicios);
+                            MessageBox.Show($"Se ha agregado el servicio {item.servicio.Servicio}.", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            _repo.Editar(vehiculosServicios);
+                            MessageBox.Show("Se ha editado el servicio.", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Ya se realizó este servicio: {item.servicio.Servicio} al vehiculo el día de hoy.", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
             catch (Exception ex)

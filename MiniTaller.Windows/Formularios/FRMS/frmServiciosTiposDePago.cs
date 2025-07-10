@@ -34,9 +34,9 @@ namespace MiniTaller.Windows.Formularios.FRMS
             Close();
         }
 
-        private void frmVehiculosServicios_Load(object sender, EventArgs e)
+        private void frmServiciosTiposDePago_Load(object sender, EventArgs e)
         {
-            lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdTipoPago, IdServicio);
+            lista = _servicio.GetServiciosTiposDePagoPorPagina(registrosPorPagina, paginaActual, IdTipoPago, IdServicio);
             BuscarCliente(lista, texto);
             RecargarGrilla();
         }
@@ -67,7 +67,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         }
         private void MostrarPaginado()
         {
-            lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdTipoPago, IdServicio);
+            lista = _servicio.GetServiciosTiposDePagoPorPagina(registrosPorPagina, paginaActual, IdTipoPago, IdServicio);
             MostrarDatosEnGrilla();
         }
         private void MostrarDatosEnGrilla()

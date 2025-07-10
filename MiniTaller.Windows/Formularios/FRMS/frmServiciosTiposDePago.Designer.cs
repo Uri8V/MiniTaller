@@ -416,7 +416,7 @@
             this.Name = "frmServiciosTiposDePago";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmServiciosTiposDePago";
-            this.Load += new System.EventHandler(this.frmVehiculosServicios_Load);
+            this.Load += new System.EventHandler(this.frmServiciosTiposDePago_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();

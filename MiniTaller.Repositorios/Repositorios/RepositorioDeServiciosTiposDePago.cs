@@ -202,7 +202,7 @@ namespace MiniTaller.Repositorios.Repositorios
             }
         }
 
-        public List<ServicioTipoDePagoDto> GetVehiculoServicioPorPagina(int registrosPorPagina, int paginaActual, int? IdTipoPago, int? IdServicio)
+        public List<ServicioTipoDePagoDto> GetServiciosTiposDePagoPorPagina(int registrosPorPagina, int paginaActual, int? IdTipoPago, int? IdServicio)
         {
             try
             {
@@ -233,8 +233,24 @@ namespace MiniTaller.Repositorios.Repositorios
             }
             catch (Exception ex)
             {
-                throw new Exception("OH NO, debe haber un error en el mètodo GetVehiculoServicioPorPagina del repositorio", ex);
+                throw new Exception("OH NO, debe haber un error en el mètodo GetServiciosTiposDePagoPorPagina del repositorio", ex);
             }
+        }
+
+        public List<ServicioTipoDePagoDto> GetServiciosTiposDePagoPorPagina()
+        {
+            List<ServicioTipoDePagoDto> lista = new List<ServicioTipoDePagoDto>();
+            using (var conn = new SqlConnection(cadenaDeConexion))
+            {
+                StringBuilder selectQuery = new StringBuilder();
+                selectQuery.AppendLine("SELECT st.IdServicioTipoDePago,s.Servicio,tp.Tipo,st.Precio");
+                selectQuery.AppendLine("FROM ServiciosTiposDePago st");
+                selectQuery.AppendLine("INNER JOIN TiposDePagos tp ON tp.IdTipoPago=st.IdTipoPago");
+                selectQuery.AppendLine("INNER JOIN Servicios s ON s.IdServicio=st.IdServicio");
+                selectQuery.AppendLine("ORDER BY s.Servicio");
+                lista = conn.Query<ServicioTipoDePagoDto>(selectQuery.ToString()).ToList();
+            }
+            return lista;
         }
     }
 }

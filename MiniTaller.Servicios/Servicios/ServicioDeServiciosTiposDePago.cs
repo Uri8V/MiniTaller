@@ -91,15 +91,15 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public List<ServicioTipoDePagoDto> GetVehiculoServicioPorPagina(int registrosPorPagina, int paginaActual, int? IdTipoPago, int? IdServicio)
+        public List<ServicioTipoDePagoDto> GetServiciosTiposDePagoPorPagina(int registrosPorPagina, int paginaActual, int? IdTipoPago, int? IdServicio)
         {
             try
             {
-                return _repo.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdTipoPago, IdServicio);
+                return _repo.GetServiciosTiposDePagoPorPagina(registrosPorPagina, paginaActual, IdTipoPago, IdServicio);
             }
             catch (Exception ex)
             {
-                throw new Exception("Oh no algo no salio bien en el método GetVehiculoServicioPorPagina", ex);
+                throw new Exception("Oh no algo no salio bien en el método GetServiciosTiposDePagoPorPagina", ex);
             }
         }
 
@@ -119,6 +119,19 @@ namespace MiniTaller.Servicios.Servicios
             catch (Exception ex)
             {
                 throw new Exception("Oh no algo no salio bien en el método Guardar", ex);
+            }
+        }
+
+        public List<ServicioTipoDePagoDto> GetServiciosTiposDePagoPorPagina()
+        {
+            try
+            {
+                return _repo.GetServiciosTiposDePagoPorPagina();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Oh no algo no salio bien en el método GetServiciosTiposDePagoPorPagina()", ex);
             }
         }
     }

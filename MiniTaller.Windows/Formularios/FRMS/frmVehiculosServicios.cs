@@ -51,7 +51,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         int paginaActual = 1;
         int registros = 0;
         int paginas = 0;
-        int registrosPorPagina = 100;
+        int registrosPorPagina = 50;
 
         int? IdVehiculo = null;
         int? IDMovimiento = null;
@@ -70,13 +70,13 @@ namespace MiniTaller.Windows.Formularios.FRMS
         }
         private void RecargarGrilla()
         {
-            registros = _servicio.GetCantidad(IdVehiculo,IDMovimiento, IdCliente, fecha,Yapago);
+            registros = _servicio.GetCantidad(IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             MostrarPaginado();
         }
         private void MostrarPaginado()
         {
-           lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
+            lista = _servicio.GetVehiculoServicioPorPagina(registrosPorPagina, paginaActual, IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
             MostrarDatosEnGrilla();
         }
         private void MostrarDatosEnGrilla()
@@ -144,20 +144,12 @@ namespace MiniTaller.Windows.Formularios.FRMS
             {
                 return;
             }
-            var Servicios = frm.GetServicio();
-            //preguntar si existe
-            if (!_servicio.Existe(Servicios))
-            {
-                _servicio.Guardar(Servicios);
-                MessageBox.Show("Servicio agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                registros = _servicio.GetCantidad(IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
-                paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
-                MostrarPaginado();
-            }
-            else
-            {
-                MessageBox.Show("El servicio ya existe!!!", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            var VehiculoServicio = frm.GetServicio();
+            var ListaServicios = frm.GetListaDeServicios();
+            _servicio.Guardar(VehiculoServicio, ListaServicios);
+            registros = _servicio.GetCantidad(IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
+            paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
+            MostrarPaginado();
         }
         private void toolStripButtonBorrar_Click(object sender, EventArgs e)
         {
@@ -170,12 +162,11 @@ namespace MiniTaller.Windows.Formularios.FRMS
             var servicio = _servicio.GetVehiculoServicioPorId(ServicioABorrar.IdVehiculoServicio);
             DialogResult dr = MessageBox.Show($"¿Desea eliminar el Servicio {ServicioABorrar.Servicio} del Cliente {ServicioABorrar.Apellido.ToUpper()}, {ServicioABorrar.Nombre} ({ServicioABorrar.Documento} {ServicioABorrar.CUIT}) con el vehiculo de la patente ({ServicioABorrar.Patente}) el cual debe (${ServicioABorrar.DebeServicio})?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No) { return; }
-            //Falta metodo de objeto relacionado
             if (!_servicio.EstaRelacionado(servicio))
             {
                 GridHelpers.QuitarFila(dgvDatos, r);
                 _servicio.Borrar(ServicioABorrar.IdVehiculoServicio);
-                RecargarGrilla(); 
+                RecargarGrilla();
             }
             else
             {
@@ -205,39 +196,34 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     return;
                 }
                 servicios = frm.GetServicio();
-                if (!_servicio.Existe(servicios))
+
+                if (servicios != null)
                 {
-                    if (servicios != null)
-                    {
-                        ServicioTipoDePago st= _servicioDeServiciosTiposDePago.GetServicioTipoDePagoPorId(servicios.IdServicioTipoDePago);
-                        Servicioss s = _servicioServicio.GetServiciosPorId(st.IdServicio);
-                        Clientes c = _serviciosClientes.GetClientePorId(servicios.IdCliente);
-                        //Crear el dto
-                        vehiculosServiciosDto.IdVehiculoServicio = servicios.IdVehiculoServicio;
-                        vehiculosServiciosDto.Patente = _serviciosVehiculos.GetVehiculosPorId(servicios.IdVehiculo).Patente;
-                        vehiculosServiciosDto.Servicio = s.Servicio;
-                        vehiculosServiciosDto.DebeServicio = st.Precio;
-                        vehiculosServiciosDto.Apellido = c.Apellido;
-                        vehiculosServiciosDto.Nombre = c.Nombre;
-                        vehiculosServiciosDto.CUIT = c.CUIT;
-                        vehiculosServiciosDto.Documento = c.Documento;
-                        vehiculosServiciosDto.Descripcion = servicios.Descripcion;
-                        vehiculosServiciosDto.Debe = servicios.Debe;
-                        vehiculosServiciosDto.Haber = servicios.Haber;
-                        vehiculosServiciosDto.Fecha = servicios.Fecha;
-                        GridHelpers.SetearFila(r, vehiculosServiciosDto);
-                        _servicio.Guardar(servicios);
-                        RecargarGrilla();
-                    }
-                    else
-                    {
-                        //Recupero la copia del dto
-                        GridHelpers.SetearFila(r, servicios);
-                    }
+                    ServicioTipoDePago st = _servicioDeServiciosTiposDePago.GetServicioTipoDePagoPorId(servicios.IdServicioTipoDePago);
+                    Servicioss s = _servicioServicio.GetServiciosPorId(st.IdServicio);
+                    Clientes c = _serviciosClientes.GetClientePorId(servicios.IdCliente);
+                    //Crear el dto
+                    vehiculosServiciosDto.IdVehiculoServicio = servicios.IdVehiculoServicio;
+                    vehiculosServiciosDto.Patente = _serviciosVehiculos.GetVehiculosPorId(servicios.IdVehiculo).Patente;
+                    vehiculosServiciosDto.Servicio = s.Servicio;
+                    vehiculosServiciosDto.DebeServicio = st.Precio;
+                    vehiculosServiciosDto.Apellido = c.Apellido;
+                    vehiculosServiciosDto.Nombre = c.Nombre;
+                    vehiculosServiciosDto.CUIT = c.CUIT;
+                    vehiculosServiciosDto.Documento = c.Documento;
+                    vehiculosServiciosDto.Descripcion = servicios.Descripcion;
+                    vehiculosServiciosDto.Debe = servicios.Debe;
+                    vehiculosServiciosDto.Haber = servicios.Haber;
+                    vehiculosServiciosDto.Fecha = servicios.Fecha;
+                    GridHelpers.SetearFila(r, vehiculosServiciosDto);
+                    var lista = frm.GetListaDeServicios();
+                    _servicio.Guardar(servicios,lista);
+                    RecargarGrilla();
                 }
                 else
                 {
-                    MessageBox.Show("El servicio ya existe!!!", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //Recupero la copia del dto
+                    GridHelpers.SetearFila(r, servicios);
                 }
             }
             catch (Exception ex)
@@ -313,7 +299,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             var listaFiltrada = serviciosVehiculosDto;
             if (texto.Length != 0)
             {
-                Func<VehiculosServiciosDto, bool> condicion = c => c.Fecha.ToShortDateString().Contains(texto.ToUpper())|| c.Apellido.ToUpper().Contains(texto.ToUpper()) || c.Nombre.ToUpper().Contains(texto.ToUpper()) || c.CUIT.Contains(texto.ToUpper()) || c.Documento.Contains(texto.ToUpper()) || c.Patente.Contains(texto.ToUpper());
+                Func<VehiculosServiciosDto, bool> condicion = c => c.Fecha.ToShortDateString().Contains(texto.ToUpper()) || c.Apellido.ToUpper().Contains(texto.ToUpper()) || c.Nombre.ToUpper().Contains(texto.ToUpper()) || c.CUIT.Contains(texto.ToUpper()) || c.Documento.Contains(texto.ToUpper()) || c.Patente.Contains(texto.ToUpper());
                 listaFiltrada = serviciosVehiculosDto.Where(condicion).ToList();
             }
             GridHelpers.MostrarDatosEnGrilla<VehiculosServiciosDto>(dgvDatos, listaFiltrada);
@@ -330,7 +316,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 {
                     return;
                 }
-                frmImagenes frm = new frmImagenes(null,VehiculoServicio);
+                frmImagenes frm = new frmImagenes(null, VehiculoServicio);
                 DialogResult dr = frm.ShowDialog(this);
             }
         }
@@ -341,7 +327,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         }
         private void txtImprimir_Click(object sender, EventArgs e)
         {//Para agregar un documento html que luego va a ser convertido a PDF, debo descargar los paquetes itextSharp y itextSharo.xmlworker
-        //Luego debo ir a las propiedades de la capa windows, apretar en Propiedades, recuros, agragamos un recuso ya existente
+         //Luego debo ir a las propiedades de la capa windows, apretar en Propiedades, recuros, agragamos un recuso ya existente
             if (dgvDatos.SelectedRows.Count == 0)
             {
                 return;
@@ -382,7 +368,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 return;
             }
             var clienteSeleccionado = frm.GetCliente();
-            registros = _servicio.GetCantidad(IdVehiculo,IDMovimiento,clienteSeleccionado.IdCliente,fecha,Yapago);
+            registros = _servicio.GetCantidad(IdVehiculo, IDMovimiento, clienteSeleccionado.IdCliente, fecha, Yapago);
             IdCliente = clienteSeleccionado.IdCliente;
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             paginaActual = formHelper.RetornoPrimerPagina(registrosPorPagina, paginaActual);

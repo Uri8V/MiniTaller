@@ -1,4 +1,6 @@
-﻿using MiniTaller.Entidades.Entidades;
+﻿using iTextSharp.tool.xml.html;
+using MiniTaller.Entidades.Dtos;
+using MiniTaller.Entidades.Entidades;
 using MiniTaller.Servicios.Interfaces;
 using MiniTaller.Servicios.Servicios;
 using MiniTaller.Windows.Formularios.FRMS;
@@ -20,14 +22,35 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         public frmVehiculosServiciosAE()
         {
             InitializeComponent();
-            _servicio = new ServiciosDeServicios();
+            _servicioDeServicios = new ServiciosDeServicios();
             _servicioCliente = new ServicioDeClientes();
             _servicioVehiculo = new ServicioDeVehiculos();
             _servicioServicioTipoGato= new ServicioDeServiciosTiposDePago();
+            _listaParaAgregarLosServicios = new List<ServicioTipoDePago>();
+            MostrarDatosEnGrilla();
             rtxtDescripcion.KeyDown += rtxtDescripcion_KeyDown;
             this.WindowState = FormWindowState.Maximized;
         }
-        private IServicioDeServicios _servicio;
+        private List<ServicioTipoDePagoDto> lista;
+        private List<ServicioTipoDePago> _listaParaAgregarLosServicios;
+
+        private void MostrarDatosEnGrilla()
+        {
+            lista = _servicioServicioTipoGato.GetServiciosTiposDePagoPorPagina();
+            GridHelpers.LimpiarGrilla(dgvDatos);
+            foreach (var item in lista)
+            {
+                DataGridViewRow r = GridHelpers.ConstruirFila(dgvDatos);
+                GridHelpers.SetearFila(r, item);
+                r.Cells[3].Value = "Agregar";
+                GridHelpers.AgregarFila(dgvDatos, r);
+                if (_listaParaAgregarLosServicios.Any(s=>s.IdServicioTipoDePago==item.IdServicioTipoDePago))
+                {
+                    GridHelpers.QuitarFila(dgvDatos, r);
+                }
+            }
+        }
+        private IServicioDeServicios _servicioDeServicios;
         private IServicioDeClientes _servicioCliente;
         private IServicioDeVehiculos _servicioVehiculo;
         private IServicioDeServiciosTiposDePago _servicioServicioTipoGato;
@@ -41,9 +64,19 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             ComboHelper.CargarComboClientesEmpresas(ref comboEmpresa);
             ComboHelper.CargarComboClientesPersonas(ref comboCliente);
             ComboHelper.CargarComboVehiculos(ref comboVehiculo);
-            ComboHelper.CargarComboServiciosTipoDePago(ref comboServicio);
+            splitContainer1.Visible = true;
+            lblServicio.Visible = false;
+            comboServicio.Visible = false;
+            btnAgregarServicio.Visible = false;
+            rtxtDescripcion.Size = new Size(657, 156);
             if (servicios != null)
             {
+                ComboHelper.CargarComboServiciosTipoDePago(ref comboServicio);
+                splitContainer1.Visible = false;
+                lblServicio.Visible = true;
+                comboServicio.Visible = true;
+                btnAgregarServicio.Visible = true;
+                rtxtDescripcion.Size = new Size(1145, 156);
                 if (_servicioCliente.GetClientePorId(servicios.IdCliente).CUIT != "")
                 {
                     checkBoxEmpresa.Checked = true;
@@ -126,8 +159,14 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     servicios.Cliente = _servicioCliente.GetClientePorId((int)comboCliente.SelectedValue);
                     servicios.IdCliente = (int)comboCliente.SelectedValue;
                 }
-                servicios.Servicio = _servicioServicioTipoGato.GetServicioTipoDePagoPorId((int)comboServicio.SelectedValue);
-                servicios.IdServicioTipoDePago = (int)comboServicio.SelectedValue;
+
+                if (splitContainer1.Visible==false)
+                {
+                    servicios.Servicio = _servicioServicioTipoGato.GetServicioTipoDePagoPorId((int)comboServicio.SelectedValue);
+                    servicios.IdServicioTipoDePago = (int)comboServicio.SelectedValue;
+                    
+                    _listaParaAgregarLosServicios.Add(servicios.Servicio); 
+                }
 
                 servicios.Vehiculo = _servicioVehiculo.GetVehiculosPorId((int)comboVehiculo.SelectedValue);
                 servicios.IdVehiculo = (int)comboVehiculo.SelectedValue;
@@ -146,6 +185,23 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         {
             errorProvider1.Clear();
             bool valido = true;
+            if (splitContainer1.Visible == true)
+            {
+                if (_listaParaAgregarLosServicios.Count == 0)
+                {
+                    valido = false;
+                    errorProvider1.SetError(splitContainer1, "Debe agregar al menos un Servicio");
+                }
+            }
+            else
+            {
+                if (comboServicio.SelectedIndex==0)
+                {
+                    valido = false;
+                    errorProvider1.SetError(comboServicio, "Debe seleccionar un Servicio");
+                }
+            }
+         
             if (!checkBoxEmpresa.Checked)
             {
                 if (comboCliente.SelectedIndex == 0)
@@ -161,11 +217,6 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     valido = false;
                     errorProvider1.SetError(comboEmpresa, "Debe seleccionar una Empresa");
                 }
-            }
-            if (comboServicio.SelectedIndex == 0)
-            {
-                valido = false;
-                errorProvider1.SetError(comboServicio, "Debe seleccionar un Movimiento");
             }
             if (comboVehiculo.SelectedIndex == 0)
             {
@@ -223,24 +274,6 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             }
         }
 
-        private void btnAgregarMovimiento_Click(object sender, EventArgs e)
-        {
-            frmServicios frm = new frmServicios();
-            DialogResult dr = frm.ShowDialog(this);
-            if (dr == DialogResult.Cancel)
-            {
-                ComboHelper.CargarComboServicios(ref comboServicio);
-                return;
-            }
-        }
-
-        private void comboMovimiento_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboServicio.SelectedIndex != 0)
-            {
-                txtDebe.Text = (_servicioServicioTipoGato.GetServicioTipoDePagoPorId((int)comboServicio.SelectedValue).Precio).ToString();
-            }
-        }
         private void toolStripButtonNegrita_Click(object sender, EventArgs e)
         {
             var currentFont = rtxtDescripcion.SelectionFont ?? rtxtDescripcion.Font;
@@ -317,6 +350,114 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 }
             }
 
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmServiciosTiposDePago frm = new frmServiciosTiposDePago();
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                MostrarDatosEnGrilla();
+                return;
+            }
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            toolStripTextBox1.SelectAll();
+        }
+
+        private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            var texto = toolStripTextBox1.Text;
+            BuscarServicio(lista, texto);
+        }
+
+        private void BuscarServicio(List<ServicioTipoDePagoDto> lista, string texto)
+        {
+            var listaFiltrada = lista;
+            if (texto.Length != 0)
+            {
+                Func<ServicioTipoDePagoDto, bool> condicion = c => c.servicio.Contains(texto);
+                listaFiltrada = lista.Where(condicion).ToList();
+            }
+            MostrarDatosEnGrilla<ServicioTipoDePagoDto>(dgvDatos, listaFiltrada);
+
+        }
+
+        private void MostrarDatosEnGrilla<T>(DataGridView dgv, List<ServicioTipoDePagoDto> lista)
+        {
+            GridHelpers.LimpiarGrilla(dgv);
+            foreach (var obj in lista)
+            {
+                DataGridViewRow r = GridHelpers.ConstruirFila(dgv);
+                GridHelpers.SetearFila(r, obj);
+                if (dgv.Columns.Count == 4)
+                {
+                    r.Cells[3].Value = "Agregar";
+                }
+                GridHelpers.AgregarFila(dgv, r);
+                if (_listaParaAgregarLosServicios.Any(s => s.IdServicioTipoDePago == obj.IdServicioTipoDePago))
+                {
+                    GridHelpers.QuitarFila(dgvDatos, r);
+                }
+            }
+        }
+
+        private decimal total = 0;
+
+        private void dgvDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                var r = dgvDatos.SelectedRows[0];
+                ServicioTipoDePagoDto ServicioSeleccionado = (ServicioTipoDePagoDto)r.Tag;
+                DialogResult dr=MessageBox.Show($"Esta seguro que quiere agregar el servicio {ServicioSeleccionado.servicio}, del tipo {ServicioSeleccionado.Tipo} con el precio ${ServicioSeleccionado.Precio}?", "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (dr==DialogResult.Yes)
+                {  
+                    ServicioTipoDePago servicioTipoDePago = _servicioServicioTipoGato?.GetServicioTipoDePagoPorId(ServicioSeleccionado.IdServicioTipoDePago);
+                    servicioTipoDePago.servicio= _servicioDeServicios.GetServiciosPorId(servicioTipoDePago.IdServicio);
+                    _listaParaAgregarLosServicios?.Add(servicioTipoDePago);
+                    dgvDatos.Rows.Remove(r);
+                    total+=servicioTipoDePago.Precio;
+                    txtDebe.Text =total.ToString();
+                }
+                return;
+            }
+        }
+
+        internal List<ServicioTipoDePago> GetListaDeServicios()
+        {
+            return _listaParaAgregarLosServicios;
+        }
+
+        private void btnAgregarServicio_Click(object sender, EventArgs e)
+        {
+            frmServiciosTiposDePago frm = new frmServiciosTiposDePago();
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                ComboHelper.CargarComboServiciosTipoDePago(ref comboServicio);
+                return;
+            }
+        }
+
+        private void comboServicio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboServicio.SelectedIndex != 0)
+            {
+                txtDebe.Text = _servicioServicioTipoGato.GetServicioTipoDePagoPorId((int)comboServicio.SelectedValue).Precio.ToString();
+            }
+            else
+            {
+                txtDebe.Text = "0";
+            }
+        }
+
+        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
         }
     }

@@ -62,13 +62,13 @@ namespace MiniTaller.Repositorios.Repositorios
             return cantidad > 0;
         }
 
-        public bool Existe(VehiculosServicios vehiculosServicios)
+        public bool Existe(VehiculosServicios vehiculosServicios, List<ServicioTipoDePago> lista)
         {
             var cantidad = 0;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
                 string selectQuery;
-                if (vehiculosServicios.IdVehiculoServicio == 0)
+                if (lista.Count>1 || vehiculosServicios.IdVehiculoServicio == 0)
                 {
                     selectQuery = @"SELECT COUNT(*) FROM VehiculosServicios 
                             WHERE IdVehiculo=@IdVehiculo AND IdServicioTipoDePago=@IdServicioTipoDePago AND IdCliente=@IdCliente AND Fecha=@Fecha";

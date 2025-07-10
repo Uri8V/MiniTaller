@@ -16,8 +16,10 @@ namespace MiniTaller.Servicios.Interfaces
         bool EstaRelacionado(ServicioTipoDePago servicioTipoDePago);
         bool Existe(ServicioTipoDePago servicioTipoDePago);
         int GetCantidad(int? IdTipoPago, int? IdServicio);
-        List<ServicioTipoDePagoDto> GetVehiculoServicioPorPagina(int registrosPorPagina, int paginaActual, int? IdTipoPago, int? IdServicio);
+        List<ServicioTipoDePagoDto> GetServiciosTiposDePagoPorPagina(int registrosPorPagina, int paginaActual, int? IdTipoPago, int? IdServicio);
         ServicioTipoDePago GetServicioTipoDePagoPorId(int IdServicioTipoDePago);
         List<ServicioTipoDePagoComboDto> GetServiciosTiposDePagoCombo();
+        List<ServicioTipoDePagoDto> GetServiciosTiposDePagoPorPagina();
+
     }
 }

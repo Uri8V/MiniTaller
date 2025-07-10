@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dateTimePickerFecha = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -37,10 +39,7 @@
             this.txtDebe = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnAgregarMovimiento = new System.Windows.Forms.Button();
             this.btnAgregarVehiculo = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboServicio = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboEmpresa = new System.Windows.Forms.ComboBox();
@@ -66,9 +65,28 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonItems = new System.Windows.Forms.ToolStripButton();
             this.rtxtDescripcion = new System.Windows.Forms.RichTextBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.colServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnAgregarServicio = new System.Windows.Forms.Button();
+            this.lblServicio = new System.Windows.Forms.Label();
+            this.comboServicio = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -79,7 +97,7 @@
             // 
             this.dateTimePickerFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.dateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFecha.Location = new System.Drawing.Point(1149, 232);
+            this.dateTimePickerFecha.Location = new System.Drawing.Point(434, 446);
             this.dateTimePickerFecha.MinDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerFecha.Name = "dateTimePickerFecha";
             this.dateTimePickerFecha.Size = new System.Drawing.Size(140, 35);
@@ -90,7 +108,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label8.Location = new System.Drawing.Point(1057, 237);
+            this.label8.Location = new System.Drawing.Point(342, 451);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(86, 29);
             this.label8.TabIndex = 64;
@@ -99,7 +117,7 @@
             // txtHaber
             // 
             this.txtHaber.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtHaber.Location = new System.Drawing.Point(1112, 334);
+            this.txtHaber.Location = new System.Drawing.Point(1030, 449);
             this.txtHaber.Name = "txtHaber";
             this.txtHaber.Size = new System.Drawing.Size(223, 35);
             this.txtHaber.TabIndex = 8;
@@ -108,7 +126,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label7.Location = new System.Drawing.Point(1021, 337);
+            this.label7.Location = new System.Drawing.Point(939, 452);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(85, 29);
             this.label7.TabIndex = 62;
@@ -118,7 +136,7 @@
             // 
             this.txtDebe.Enabled = false;
             this.txtDebe.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtDebe.Location = new System.Drawing.Point(1112, 282);
+            this.txtDebe.Location = new System.Drawing.Point(1030, 397);
             this.txtDebe.Name = "txtDebe";
             this.txtDebe.Size = new System.Drawing.Size(223, 35);
             this.txtDebe.TabIndex = 7;
@@ -138,25 +156,11 @@
             this.label6.AutoSize = true;
             this.label6.Enabled = false;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label6.Location = new System.Drawing.Point(1028, 285);
+            this.label6.Location = new System.Drawing.Point(946, 400);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 29);
             this.label6.TabIndex = 60;
             this.label6.Text = "Debe:";
-            // 
-            // btnAgregarMovimiento
-            // 
-            this.btnAgregarMovimiento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(191)))), ((int)(((byte)(96)))));
-            this.btnAgregarMovimiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarMovimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnAgregarMovimiento.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarMovimiento.Location = new System.Drawing.Point(928, 289);
-            this.btnAgregarMovimiento.Name = "btnAgregarMovimiento";
-            this.btnAgregarMovimiento.Size = new System.Drawing.Size(76, 54);
-            this.btnAgregarMovimiento.TabIndex = 6;
-            this.btnAgregarMovimiento.Tag = "Agregar Servicio";
-            this.btnAgregarMovimiento.UseVisualStyleBackColor = false;
-            this.btnAgregarMovimiento.Click += new System.EventHandler(this.btnAgregarMovimiento_Click);
             // 
             // btnAgregarVehiculo
             // 
@@ -164,36 +168,13 @@
             this.btnAgregarVehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarVehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.btnAgregarVehiculo.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarVehiculo.Location = new System.Drawing.Point(944, 229);
+            this.btnAgregarVehiculo.Location = new System.Drawing.Point(809, 232);
             this.btnAgregarVehiculo.Name = "btnAgregarVehiculo";
             this.btnAgregarVehiculo.Size = new System.Drawing.Size(76, 54);
             this.btnAgregarVehiculo.TabIndex = 3;
-            this.btnAgregarVehiculo.Tag = "Agregar Vehiculo";
+            this.btnAgregarVehiculo.Tag = "";
             this.btnAgregarVehiculo.UseVisualStyleBackColor = false;
             this.btnAgregarVehiculo.Click += new System.EventHandler(this.btnAgregarVehiculo_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label4.Location = new System.Drawing.Point(14, 302);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(240, 29);
-            this.label4.TabIndex = 55;
-            this.label4.Text = "Seleccionar Servicio:";
-            // 
-            // comboServicio
-            // 
-            this.comboServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(191)))), ((int)(((byte)(172)))));
-            this.comboServicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.comboServicio.FormattingEnabled = true;
-            this.comboServicio.Location = new System.Drawing.Point(262, 299);
-            this.comboServicio.MaxDropDownItems = 50;
-            this.comboServicio.Name = "comboServicio";
-            this.comboServicio.Size = new System.Drawing.Size(637, 37);
-            this.comboServicio.TabIndex = 5;
-            this.comboServicio.SelectedIndexChanged += new System.EventHandler(this.comboMovimiento_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -209,7 +190,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label1.Location = new System.Drawing.Point(14, 435);
+            this.label1.Location = new System.Drawing.Point(10, 379);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(250, 29);
             this.label1.TabIndex = 50;
@@ -221,10 +202,10 @@
             this.comboEmpresa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboEmpresa.FormattingEnabled = true;
-            this.comboEmpresa.Location = new System.Drawing.Point(270, 432);
+            this.comboEmpresa.Location = new System.Drawing.Point(266, 376);
             this.comboEmpresa.MaxDropDownItems = 50;
             this.comboEmpresa.Name = "comboEmpresa";
-            this.comboEmpresa.Size = new System.Drawing.Size(650, 37);
+            this.comboEmpresa.Size = new System.Drawing.Size(514, 37);
             this.comboEmpresa.TabIndex = 11;
             // 
             // btnAgregarCliente
@@ -233,11 +214,11 @@
             this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.btnAgregarCliente.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarCliente.Location = new System.Drawing.Point(1112, 395);
+            this.btnAgregarCliente.Location = new System.Drawing.Point(809, 310);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
             this.btnAgregarCliente.Size = new System.Drawing.Size(76, 54);
             this.btnAgregarCliente.TabIndex = 12;
-            this.btnAgregarCliente.Tag = "Agregar Cliente";
+            this.btnAgregarCliente.Tag = "";
             this.btnAgregarCliente.UseVisualStyleBackColor = false;
             this.btnAgregarCliente.Click += new System.EventHandler(this.btnAgregarCliente_Click);
             // 
@@ -245,7 +226,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label2.Location = new System.Drawing.Point(14, 369);
+            this.label2.Location = new System.Drawing.Point(10, 313);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(229, 29);
             this.label2.TabIndex = 47;
@@ -257,10 +238,10 @@
             this.comboCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboCliente.FormattingEnabled = true;
-            this.comboCliente.Location = new System.Drawing.Point(249, 366);
+            this.comboCliente.Location = new System.Drawing.Point(245, 310);
             this.comboCliente.MaxDropDownItems = 50;
             this.comboCliente.Name = "comboCliente";
-            this.comboCliente.Size = new System.Drawing.Size(671, 37);
+            this.comboCliente.Size = new System.Drawing.Size(535, 37);
             this.comboCliente.TabIndex = 9;
             // 
             // btnConfirmar
@@ -268,7 +249,7 @@
             this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnConfirmar.Location = new System.Drawing.Point(570, 520);
+            this.btnConfirmar.Location = new System.Drawing.Point(419, 520);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(169, 64);
             this.btnConfirmar.TabIndex = 13;
@@ -281,7 +262,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(59)))), ((int)(((byte)(57)))));
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCancelar.Location = new System.Drawing.Point(892, 520);
+            this.btnCancelar.Location = new System.Drawing.Point(741, 520);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 64);
             this.btnCancelar.TabIndex = 14;
@@ -311,14 +292,14 @@
             this.comboVehiculo.Location = new System.Drawing.Point(266, 242);
             this.comboVehiculo.MaxDropDownItems = 50;
             this.comboVehiculo.Name = "comboVehiculo";
-            this.comboVehiculo.Size = new System.Drawing.Size(654, 37);
+            this.comboVehiculo.Size = new System.Drawing.Size(514, 37);
             this.comboVehiculo.TabIndex = 2;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.checkBoxEmpresa);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.panel1.Location = new System.Drawing.Point(945, 386);
+            this.panel1.Location = new System.Drawing.Point(786, 379);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(147, 54);
             this.panel1.TabIndex = 10;
@@ -451,9 +432,167 @@
             this.rtxtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.rtxtDescripcion.Location = new System.Drawing.Point(199, 53);
             this.rtxtDescripcion.Name = "rtxtDescripcion";
-            this.rtxtDescripcion.Size = new System.Drawing.Size(886, 156);
+            this.rtxtDescripcion.Size = new System.Drawing.Size(657, 156);
             this.rtxtDescripcion.TabIndex = 1;
             this.rtxtDescripcion.Text = "";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Location = new System.Drawing.Point(897, 42);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.toolStrip2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dgvDatos);
+            this.splitContainer1.Size = new System.Drawing.Size(447, 331);
+            this.splitContainer1.SplitterDistance = 43;
+            this.splitContainer1.TabIndex = 65;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripSeparator6,
+            this.toolStripTextBox1});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(447, 37);
+            this.toolStrip2.TabIndex = 0;
+            this.toolStrip2.Text = "toolStrip2";
+            this.toolStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip2_ItemClicked);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(178, 34);
+            this.toolStripButton1.Text = "Agregar Servicio";
+            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 37);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 37);
+            this.toolStripTextBox1.Tag = "Filtro por Servicio";
+            this.toolStripTextBox1.Text = "Buscador por Servicio";
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
+            this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
+            // 
+            // dgvDatos
+            // 
+            this.dgvDatos.AllowUserToAddRows = false;
+            this.dgvDatos.AllowUserToDeleteRows = false;
+            this.dgvDatos.AllowUserToResizeRows = false;
+            this.dgvDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colServicio,
+            this.colGrupo,
+            this.colPrecio,
+            this.colSeleccionar});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDatos.Location = new System.Drawing.Point(0, 0);
+            this.dgvDatos.Name = "dgvDatos";
+            this.dgvDatos.RowHeadersVisible = false;
+            this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDatos.Size = new System.Drawing.Size(447, 284);
+            this.dgvDatos.TabIndex = 0;
+            this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
+            // 
+            // colServicio
+            // 
+            this.colServicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colServicio.HeaderText = "Servicios";
+            this.colServicio.Name = "colServicio";
+            // 
+            // colGrupo
+            // 
+            this.colGrupo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colGrupo.HeaderText = "Grupo";
+            this.colGrupo.Name = "colGrupo";
+            // 
+            // colPrecio
+            // 
+            this.colPrecio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPrecio.HeaderText = "Precio";
+            this.colPrecio.Name = "colPrecio";
+            // 
+            // colSeleccionar
+            // 
+            this.colSeleccionar.HeaderText = "Seleccione";
+            this.colSeleccionar.Name = "colSeleccionar";
+            this.colSeleccionar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colSeleccionar.Text = "Agregar";
+            // 
+            // btnAgregarServicio
+            // 
+            this.btnAgregarServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(191)))), ((int)(((byte)(96)))));
+            this.btnAgregarServicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.btnAgregarServicio.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
+            this.btnAgregarServicio.Location = new System.Drawing.Point(1204, 233);
+            this.btnAgregarServicio.Name = "btnAgregarServicio";
+            this.btnAgregarServicio.Size = new System.Drawing.Size(76, 54);
+            this.btnAgregarServicio.TabIndex = 67;
+            this.btnAgregarServicio.Tag = "";
+            this.btnAgregarServicio.UseVisualStyleBackColor = false;
+            this.btnAgregarServicio.Click += new System.EventHandler(this.btnAgregarServicio_Click);
+            // 
+            // lblServicio
+            // 
+            this.lblServicio.AutoSize = true;
+            this.lblServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.lblServicio.Location = new System.Drawing.Point(958, 244);
+            this.lblServicio.Name = "lblServicio";
+            this.lblServicio.Size = new System.Drawing.Size(240, 29);
+            this.lblServicio.TabIndex = 68;
+            this.lblServicio.Text = "Seleccionar Servicio:";
+            // 
+            // comboServicio
+            // 
+            this.comboServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(191)))), ((int)(((byte)(172)))));
+            this.comboServicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboServicio.DropDownWidth = 200;
+            this.comboServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.comboServicio.FormattingEnabled = true;
+            this.comboServicio.IntegralHeight = false;
+            this.comboServicio.Location = new System.Drawing.Point(951, 293);
+            this.comboServicio.MaxDropDownItems = 50;
+            this.comboServicio.Name = "comboServicio";
+            this.comboServicio.Size = new System.Drawing.Size(393, 37);
+            this.comboServicio.TabIndex = 66;
+            this.comboServicio.Visible = false;
+            this.comboServicio.SelectedIndexChanged += new System.EventHandler(this.comboServicio_SelectedIndexChanged);
             // 
             // frmVehiculosServiciosAE
             // 
@@ -462,6 +601,10 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(41)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(1366, 596);
             this.ControlBox = false;
+            this.Controls.Add(this.btnAgregarServicio);
+            this.Controls.Add(this.lblServicio);
+            this.Controls.Add(this.comboServicio);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.rtxtDescripcion);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dateTimePickerFecha);
@@ -471,10 +614,7 @@
             this.Controls.Add(this.txtDebe);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.btnAgregarMovimiento);
             this.Controls.Add(this.btnAgregarVehiculo);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboServicio);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboEmpresa);
@@ -495,6 +635,14 @@
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -510,10 +658,7 @@
         private System.Windows.Forms.TextBox txtDebe;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnAgregarMovimiento;
         private System.Windows.Forms.Button btnAgregarVehiculo;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboServicio;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboEmpresa;
@@ -539,5 +684,18 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton toolStripButtonItems;
         private System.Windows.Forms.RichTextBox rtxtDescripcion;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataGridView dgvDatos;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colServicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGrupo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
+        private System.Windows.Forms.DataGridViewButtonColumn colSeleccionar;
+        private System.Windows.Forms.Button btnAgregarServicio;
+        private System.Windows.Forms.Label lblServicio;
+        private System.Windows.Forms.ComboBox comboServicio;
     }
 }
