@@ -20,6 +20,6 @@ namespace MiniTaller.Comun.Interfaces
         List<VehiculosServiciosDto> GetVehiculoServicioPorPagina(int registrosPorPagina, int paginaActual, int? IdVehiculo, int? IdMovimiento, int? IdCliente, DateTime? FechaServicios, bool? Yapago);
         VehiculosServicios GetVehiculoServicioPorId(int IdVehiculoServicio);
         List<VehiculosServiciosDto> GetVehiculoServicioPorCliente(string CUITDocumento);
-        List<VehiculoServicioComboDto> GetServiciosCombo();
+        VehiculoServicioComboDto GetServiciosCombo(int IdVehiculoServicio);
     }
 }

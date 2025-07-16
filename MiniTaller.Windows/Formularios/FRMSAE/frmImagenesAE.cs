@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,19 +26,22 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            ComboHelper.CargarComboServiciosVehiculos(ref comboBoxVehiculoServicio);
-            ComboHelper.CargarComboObservaciones(ref comboBoxObservacion);
             if (obser !=null)
             {
-                checkBox1.Checked = true;
-                comboBoxVehiculoServicio.Enabled = false;
+                ComboHelper.CargarComboObservaciones(ref comboBoxObservacion, obser.IdObservacion);
+                comboBoxVehiculoServicio.Visible = false;
+                label2.Visible = true;
+                label1.Visible = false;
+                comboBoxObservacion.Visible = true;
                 comboBoxObservacion.SelectedValue = obser.IdObservacion;
             }
             if (VehiculoSer !=null)
             {
-                checkBox1.Checked = false;
-                comboBoxVehiculoServicio.Enabled = true;
-                comboBoxObservacion.Enabled = false;
+                ComboHelper.CargarComboServiciosVehiculos(ref comboBoxVehiculoServicio, VehiculoSer.IdVehiculoServicio);
+                comboBoxVehiculoServicio.Visible = true;
+                label2.Visible = false;
+                comboBoxObservacion.Visible = false;
+                label1.Visible = true;
                 comboBoxVehiculoServicio.SelectedValue = VehiculoSer.IdVehiculoServicio;
             }
             if (imagen!=null)
@@ -45,14 +49,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 pictureBox1.Image = ByteArrayToIMage(imagen);
             }
         }
-        private static Image ByteArrayToIMage(Imagenes item)
-        {
-            // Convertir bytes a imagen
-            using (MemoryStream ms = new MemoryStream(item.imageURL))
-            {
-                return System.Drawing.Image.FromStream(ms);
-            }
-        }
+   
         VehiculosServicios VehiculoSer;
         Observaciones obser;
         Imagenes imagen;
@@ -68,7 +65,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 {
                     imagen = new Imagenes();
                 }
-                if ((int)comboBoxObservacion.SelectedIndex!=0)
+                if (obser!=null)
                 {
                     imagen.IdObservacion = (int)comboBoxObservacion.SelectedValue;
                 }
@@ -76,38 +73,51 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 {
                     imagen.IdVehiculoServicio = (int)comboBoxVehiculoServicio.SelectedValue;
                 }
-                imagen.imageURL = ConvertirImagen();
+                imagen.imageURL = ConvertirYReducirImagen(pictureBox1);
                 DialogResult = DialogResult.OK;
             }
         }
-
-        private byte[] ConvertirImagen()
+        private static Image ByteArrayToIMage(Imagenes item)
         {
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            return ms.GetBuffer();
+            // Convertir bytes a imagen
+            using (MemoryStream ms = new MemoryStream(item.imageURL))
+            {
+                return System.Drawing.Image.FromStream(ms);
+            }
         }
+        public static byte[] ConvertirYReducirImagen(PictureBox pb, int anchoDeseado = 800, int altoDeseado = 600)
+        {
+            using (var imgOriginal = pb.Image)
+            {
+                var imgReducida = new Bitmap(anchoDeseado, altoDeseado);
+                using (var g = Graphics.FromImage(imgReducida))
+                {
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(imgOriginal, 0, 0, anchoDeseado, altoDeseado);
+                }
 
+                using (var ms = new MemoryStream())
+                {
+                    imgReducida.Save(ms, ImageFormat.Jpeg); // usa JPG para menor peso
+                    return ms.ToArray();
+                }
+            }
+        }
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog of = new OpenFileDialog();
+            DialogResult dr = of.ShowDialog(this);
+            if (dr == DialogResult.OK)
+            {
+                if (pictureBox1.Image != null)
+                    pictureBox1.Image.Dispose();
+                pictureBox1.Image = Image.FromFile(of.FileName);
+            }
+        }
         private bool ValidarDatos()
         {
             errorProvider1.Clear();
             bool valido = true;
-            if (checkBox1.Checked)
-            {
-                if (comboBoxObservacion.SelectedIndex == 0)
-                {
-                    valido = false;
-                    errorProvider1.SetError(comboBoxObservacion, "Debe seleccionar una Observación");
-                } 
-            }
-            else
-            {
-                if (comboBoxVehiculoServicio.SelectedIndex==0)
-                {
-                    valido = false;
-                    errorProvider1.SetError(comboBoxVehiculoServicio, "Debe seleccionar un Servicio");
-                }
-            }
             if (pictureBox1.Image==null)
             {
                 valido = false;
@@ -115,32 +125,6 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             }
             return valido;
 
-        }
-
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-            OpenFileDialog of = new OpenFileDialog();
-            DialogResult dr = of.ShowDialog(this);
-            if (dr == DialogResult.OK)
-            {
-                pictureBox1.Image = Image.FromFile(of.FileName);
-            }
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked)
-            {
-                comboBoxVehiculoServicio.Enabled = false;
-                comboBoxVehiculoServicio.SelectedIndex = 0;
-                comboBoxObservacion.Enabled = true;
-            }
-            else
-            {
-                comboBoxObservacion.Enabled = false;
-                comboBoxObservacion.SelectedIndex = 0;
-                comboBoxVehiculoServicio.Enabled = true;
-            }
         }
 
         internal Imagenes GetImagen()

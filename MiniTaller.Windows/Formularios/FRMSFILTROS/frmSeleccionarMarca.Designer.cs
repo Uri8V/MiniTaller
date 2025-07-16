@@ -56,7 +56,7 @@
             this.comboBoxMarca.FormattingEnabled = true;
             this.comboBoxMarca.IntegralHeight = false;
             this.comboBoxMarca.Location = new System.Drawing.Point(182, 22);
-            this.comboBoxMarca.MaxDropDownItems = 50;
+            this.comboBoxMarca.MaxDropDownItems = 15;
             this.comboBoxMarca.Name = "comboBoxMarca";
             this.comboBoxMarca.Size = new System.Drawing.Size(219, 32);
             this.comboBoxMarca.TabIndex = 0;

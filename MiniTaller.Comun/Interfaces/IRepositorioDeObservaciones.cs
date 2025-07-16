@@ -19,7 +19,6 @@ namespace MiniTaller.Comun.Interfaces
         int GetCantidad(int? IdVehiculo, int? IdCliente, DateTime? Fecha);
         List<ObservacionDto> GetVehiculoObservacionPorPagina(int registrosPorPagina, int paginaActual, int? IdVehiculo, int? IdCliente, DateTime? Fecha);
         Observaciones GetVehiculoObservacionPorId(int IdObservacion);
-        List<ObservacionDto> GetVehiculoObservacionPorClienteYVehiculo(int idCLiente, int idVehiculo);
-        List<ObservacionesComboDto> GetObservacionesCombo();
+        ObservacionesComboDto GetObservacionCombo(int IdObservacion);
     }
 }

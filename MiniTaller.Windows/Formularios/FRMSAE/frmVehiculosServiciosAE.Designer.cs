@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dateTimePickerFecha = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -78,6 +80,12 @@
             this.btnAgregarServicio = new System.Windows.Forms.Button();
             this.lblServicio = new System.Windows.Forms.Label();
             this.comboServicio = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dgvDatosServiciosSeleccionados = new System.Windows.Forms.DataGridView();
+            this.colServicios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTipoGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrecios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBorrar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -87,6 +95,7 @@
             this.splitContainer1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatosServiciosSeleccionados)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -97,7 +106,7 @@
             // 
             this.dateTimePickerFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.dateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFecha.Location = new System.Drawing.Point(434, 446);
+            this.dateTimePickerFecha.Location = new System.Drawing.Point(152, 446);
             this.dateTimePickerFecha.MinDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerFecha.Name = "dateTimePickerFecha";
             this.dateTimePickerFecha.Size = new System.Drawing.Size(140, 35);
@@ -108,7 +117,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label8.Location = new System.Drawing.Point(342, 451);
+            this.label8.Location = new System.Drawing.Point(60, 451);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(86, 29);
             this.label8.TabIndex = 64;
@@ -117,7 +126,7 @@
             // txtHaber
             // 
             this.txtHaber.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtHaber.Location = new System.Drawing.Point(1030, 449);
+            this.txtHaber.Location = new System.Drawing.Point(597, 535);
             this.txtHaber.Name = "txtHaber";
             this.txtHaber.Size = new System.Drawing.Size(223, 35);
             this.txtHaber.TabIndex = 8;
@@ -126,17 +135,17 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label7.Location = new System.Drawing.Point(939, 452);
+            this.label7.Location = new System.Drawing.Point(513, 541);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 29);
+            this.label7.Size = new System.Drawing.Size(76, 29);
             this.label7.TabIndex = 62;
-            this.label7.Text = "Haber:";
+            this.label7.Text = "Pago:";
             // 
             // txtDebe
             // 
             this.txtDebe.Enabled = false;
             this.txtDebe.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtDebe.Location = new System.Drawing.Point(1030, 397);
+            this.txtDebe.Location = new System.Drawing.Point(597, 468);
             this.txtDebe.Name = "txtDebe";
             this.txtDebe.Size = new System.Drawing.Size(223, 35);
             this.txtDebe.TabIndex = 7;
@@ -156,7 +165,7 @@
             this.label6.AutoSize = true;
             this.label6.Enabled = false;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label6.Location = new System.Drawing.Point(946, 400);
+            this.label6.Location = new System.Drawing.Point(513, 471);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 29);
             this.label6.TabIndex = 60;
@@ -203,7 +212,7 @@
             this.comboEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboEmpresa.FormattingEnabled = true;
             this.comboEmpresa.Location = new System.Drawing.Point(266, 376);
-            this.comboEmpresa.MaxDropDownItems = 50;
+            this.comboEmpresa.MaxDropDownItems = 25;
             this.comboEmpresa.Name = "comboEmpresa";
             this.comboEmpresa.Size = new System.Drawing.Size(514, 37);
             this.comboEmpresa.TabIndex = 11;
@@ -239,7 +248,7 @@
             this.comboCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboCliente.FormattingEnabled = true;
             this.comboCliente.Location = new System.Drawing.Point(245, 310);
-            this.comboCliente.MaxDropDownItems = 50;
+            this.comboCliente.MaxDropDownItems = 25;
             this.comboCliente.Name = "comboCliente";
             this.comboCliente.Size = new System.Drawing.Size(535, 37);
             this.comboCliente.TabIndex = 9;
@@ -249,7 +258,7 @@
             this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnConfirmar.Location = new System.Drawing.Point(419, 520);
+            this.btnConfirmar.Location = new System.Drawing.Point(23, 520);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(169, 64);
             this.btnConfirmar.TabIndex = 13;
@@ -262,7 +271,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(59)))), ((int)(((byte)(57)))));
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCancelar.Location = new System.Drawing.Point(741, 520);
+            this.btnCancelar.Location = new System.Drawing.Point(266, 520);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 64);
             this.btnCancelar.TabIndex = 14;
@@ -273,7 +282,7 @@
             // checkBoxEmpresa
             // 
             this.checkBoxEmpresa.AutoSize = true;
-            this.checkBoxEmpresa.Location = new System.Drawing.Point(10, 9);
+            this.checkBoxEmpresa.Location = new System.Drawing.Point(0, 2);
             this.checkBoxEmpresa.Name = "checkBoxEmpresa";
             this.checkBoxEmpresa.Size = new System.Drawing.Size(129, 33);
             this.checkBoxEmpresa.TabIndex = 0;
@@ -290,7 +299,7 @@
             this.comboVehiculo.FormattingEnabled = true;
             this.comboVehiculo.IntegralHeight = false;
             this.comboVehiculo.Location = new System.Drawing.Point(266, 242);
-            this.comboVehiculo.MaxDropDownItems = 50;
+            this.comboVehiculo.MaxDropDownItems = 20;
             this.comboVehiculo.Name = "comboVehiculo";
             this.comboVehiculo.Size = new System.Drawing.Size(514, 37);
             this.comboVehiculo.TabIndex = 2;
@@ -301,7 +310,7 @@
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.panel1.Location = new System.Drawing.Point(786, 379);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(147, 54);
+            this.panel1.Size = new System.Drawing.Size(132, 38);
             this.panel1.TabIndex = 10;
             // 
             // toolStrip1
@@ -498,28 +507,28 @@
             this.dgvDatos.AllowUserToDeleteRows = false;
             this.dgvDatos.AllowUserToResizeRows = false;
             this.dgvDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colServicio,
             this.colGrupo,
             this.colPrecio,
             this.colSeleccionar});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle24;
             this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDatos.Location = new System.Drawing.Point(0, 0);
             this.dgvDatos.Name = "dgvDatos";
@@ -594,6 +603,81 @@
             this.comboServicio.Visible = false;
             this.comboServicio.SelectedIndexChanged += new System.EventHandler(this.comboServicio_SelectedIndexChanged);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label4.Location = new System.Drawing.Point(987, 388);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(278, 29);
+            this.label4.TabIndex = 69;
+            this.label4.Text = "Servicios Seleccionados";
+            // 
+            // dgvDatosServiciosSeleccionados
+            // 
+            this.dgvDatosServiciosSeleccionados.AllowUserToAddRows = false;
+            this.dgvDatosServiciosSeleccionados.AllowUserToDeleteRows = false;
+            this.dgvDatosServiciosSeleccionados.AllowUserToResizeRows = false;
+            this.dgvDatosServiciosSeleccionados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosServiciosSeleccionados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            this.dgvDatosServiciosSeleccionados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatosServiciosSeleccionados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colServicios,
+            this.colTipoGrupo,
+            this.colPrecios,
+            this.colBorrar});
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosServiciosSeleccionados.DefaultCellStyle = dataGridViewCellStyle22;
+            this.dgvDatosServiciosSeleccionados.Location = new System.Drawing.Point(897, 423);
+            this.dgvDatosServiciosSeleccionados.Name = "dgvDatosServiciosSeleccionados";
+            this.dgvDatosServiciosSeleccionados.ReadOnly = true;
+            this.dgvDatosServiciosSeleccionados.RowHeadersVisible = false;
+            this.dgvDatosServiciosSeleccionados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDatosServiciosSeleccionados.Size = new System.Drawing.Size(447, 171);
+            this.dgvDatosServiciosSeleccionados.TabIndex = 70;
+            this.dgvDatosServiciosSeleccionados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosServiciosSeleccionados_CellContentClick);
+            // 
+            // colServicios
+            // 
+            this.colServicios.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colServicios.HeaderText = "Servicios";
+            this.colServicios.Name = "colServicios";
+            this.colServicios.ReadOnly = true;
+            // 
+            // colTipoGrupo
+            // 
+            this.colTipoGrupo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colTipoGrupo.HeaderText = "Grupo";
+            this.colTipoGrupo.Name = "colTipoGrupo";
+            this.colTipoGrupo.ReadOnly = true;
+            // 
+            // colPrecios
+            // 
+            this.colPrecios.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPrecios.HeaderText = "Precio";
+            this.colPrecios.Name = "colPrecios";
+            this.colPrecios.ReadOnly = true;
+            // 
+            // colBorrar
+            // 
+            this.colBorrar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colBorrar.HeaderText = "Borrar";
+            this.colBorrar.Name = "colBorrar";
+            this.colBorrar.ReadOnly = true;
+            // 
             // frmVehiculosServiciosAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -601,6 +685,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(41)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(1366, 596);
             this.ControlBox = false;
+            this.Controls.Add(this.dgvDatosServiciosSeleccionados);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnAgregarServicio);
             this.Controls.Add(this.lblServicio);
             this.Controls.Add(this.comboServicio);
@@ -643,6 +729,7 @@
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatosServiciosSeleccionados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -697,5 +784,11 @@
         private System.Windows.Forms.Button btnAgregarServicio;
         private System.Windows.Forms.Label lblServicio;
         private System.Windows.Forms.ComboBox comboServicio;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dgvDatosServiciosSeleccionados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colServicios;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTipoGrupo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecios;
+        private System.Windows.Forms.DataGridViewButtonColumn colBorrar;
     }
 }

@@ -49,7 +49,7 @@
             this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.btnAgregarCliente.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarCliente.Location = new System.Drawing.Point(614, 23);
+            this.btnAgregarCliente.Location = new System.Drawing.Point(693, 21);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
             this.btnAgregarCliente.Size = new System.Drawing.Size(62, 51);
             this.btnAgregarCliente.TabIndex = 4;
@@ -77,7 +77,7 @@
             this.comboCliente.Location = new System.Drawing.Point(226, 31);
             this.comboCliente.MaxDropDownItems = 50;
             this.comboCliente.Name = "comboCliente";
-            this.comboCliente.Size = new System.Drawing.Size(365, 32);
+            this.comboCliente.Size = new System.Drawing.Size(456, 32);
             this.comboCliente.TabIndex = 0;
             // 
             // btnConfirmar
@@ -114,7 +114,7 @@
             // 
             this.panel1.Controls.Add(this.checkBoxEmpresa);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.panel1.Location = new System.Drawing.Point(614, 104);
+            this.panel1.Location = new System.Drawing.Point(693, 102);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(108, 45);
             this.panel1.TabIndex = 3;
@@ -150,7 +150,7 @@
             this.comboEmpresa.Location = new System.Drawing.Point(246, 90);
             this.comboEmpresa.MaxDropDownItems = 50;
             this.comboEmpresa.Name = "comboEmpresa";
-            this.comboEmpresa.Size = new System.Drawing.Size(350, 32);
+            this.comboEmpresa.Size = new System.Drawing.Size(441, 32);
             this.comboEmpresa.TabIndex = 2;
             // 
             // frmSeleccionarCliente
@@ -158,7 +158,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(72)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(734, 232);
+            this.ClientSize = new System.Drawing.Size(810, 232);
             this.ControlBox = false;
             this.Controls.Add(this.btnAgregarCliente);
             this.Controls.Add(this.label2);

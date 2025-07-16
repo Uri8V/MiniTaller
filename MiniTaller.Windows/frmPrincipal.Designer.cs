@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.btnTiposDetelefonos = new System.Windows.Forms.Button();
             this.btnTiposClientes = new System.Windows.Forms.Button();
             this.btnTipoDePago = new System.Windows.Forms.Button();
@@ -260,8 +261,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(72)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(782, 416);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(796, 453);
             this.Controls.Add(this.btnPrecioConPrecio);
             this.Controls.Add(this.btnObservaciones);
             this.Controls.Add(this.btnTiposDetelefonos);
@@ -277,10 +277,11 @@
             this.Controls.Add(this.btnMarcas);
             this.Controls.Add(this.btnSalir);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(802, 459);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmPrincipal";
+            this.Text = "ValentCort - Gestión de Autos";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 

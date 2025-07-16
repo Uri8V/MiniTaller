@@ -45,7 +45,7 @@
             this.btnAgregarModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.btnAgregarModelo.ForeColor = System.Drawing.Color.Black;
             this.btnAgregarModelo.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarModelo.Location = new System.Drawing.Point(487, 26);
+            this.btnAgregarModelo.Location = new System.Drawing.Point(592, 26);
             this.btnAgregarModelo.Name = "btnAgregarModelo";
             this.btnAgregarModelo.Size = new System.Drawing.Size(62, 51);
             this.btnAgregarModelo.TabIndex = 1;
@@ -72,7 +72,7 @@
             this.comboBoxModelo.Location = new System.Drawing.Point(190, 36);
             this.comboBoxModelo.MaxDropDownItems = 50;
             this.comboBoxModelo.Name = "comboBoxModelo";
-            this.comboBoxModelo.Size = new System.Drawing.Size(291, 32);
+            this.comboBoxModelo.Size = new System.Drawing.Size(396, 32);
             this.comboBoxModelo.TabIndex = 0;
             // 
             // btnConfirmar
@@ -112,7 +112,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(72)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(561, 160);
+            this.ClientSize = new System.Drawing.Size(666, 160);
             this.ControlBox = false;
             this.Controls.Add(this.btnAgregarModelo);
             this.Controls.Add(this.label1);
@@ -121,8 +121,8 @@
             this.Controls.Add(this.btnCancelar);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(561, 160);
-            this.MinimumSize = new System.Drawing.Size(561, 160);
+            this.MaximumSize = new System.Drawing.Size(666, 160);
+            this.MinimumSize = new System.Drawing.Size(666, 160);
             this.Name = "frmSeleccionarModelo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSeleccionarModelo";

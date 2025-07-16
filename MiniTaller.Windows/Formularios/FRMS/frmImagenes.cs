@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -76,10 +78,18 @@ namespace MiniTaller.Windows.Formularios.FRMS
             lista = _servicio.GetImagenesPorPagina(registrosPorPagina, paginaActual, IdObservacion, IdVehiculoServicio);
             MostrarDatosEnGrilla();
         }
-
+        public void LimpiarGrillaConImagenes(DataGridView dgv)
+        {
+            foreach (DataGridViewRow fila in dgv.Rows)
+            {
+                var img = fila.Cells["Imagen"].Value as Image;
+                img?.Dispose();
+            }
+            dgv.Rows.Clear();
+        }
         private void MostrarDatosEnGrilla()
         {
-            GridHelpers.LimpiarGrilla(dataGridView1);
+            LimpiarGrillaConImagenes(dataGridView1);
             GridHelpers.ConstruirColumnaImage(dataGridView1);
             foreach (var item in lista)
             {
@@ -109,7 +119,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             }
             paginaActual++;
             MostrarPaginado();
-
         }
         private void btnAnterior_Click(object sender, EventArgs e)
         {
@@ -140,9 +149,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 return;
             }
             var imagen = frm.GetImagen();
-            //preguntar si existe
             if (!_servicio.Existe(imagen))
             {
+                byte[] imagenReducida = RedimensionarDesdeByteArray(imagen.imageURL);
+                imagen.imageURL = imagenReducida;
                 _servicio.Guardar(imagen);
                 MessageBox.Show("Imagen agregada", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 registros = _servicio.GetCantidad(null, null);
@@ -165,7 +175,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
             ImagenesDto imagenABorrar = (ImagenesDto)r.Tag;
             DialogResult dr = MessageBox.Show($"¿Desea eliminar la Imagen del Cliente {imagenABorrar.Info} con el vehiculo {imagenABorrar.Patente}?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No) { return; }
-            //Falta metodo de objeto relacionado
             GridHelpers.QuitarFila(dataGridView1, r);
             _servicio.Borrar(imagenABorrar.IdImage);
             RecargarGrilla();
@@ -205,6 +214,8 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 {
                     if (imagenes != null)
                     {
+                        byte[] imagenReducida = RedimensionarDesdeByteArray(imagenes.imageURL);
+                        imagenes.imageURL = imagenReducida;
                         //Crear el dto
                         ImagenDto.IdImage = imagenes.IdImage;
                         ImagenDto.imageURL = imagenes.imageURL;
@@ -216,7 +227,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     }
                     else
                     {
-                        //Recupero la copia del dto
                         GridHelpers.SetearFila(r, CopiaImagen);
                     }
                 }
@@ -235,6 +245,25 @@ namespace MiniTaller.Windows.Formularios.FRMS
         private void toolStripButtonActualizar_Click(object sender, EventArgs e)
         {
             RecargarGrilla();
+        }
+        public static byte[] RedimensionarDesdeByteArray(byte[] bytesOriginal, int anchoDeseado = 800, int altoDeseado = 600)
+        {
+            using (var ms = new MemoryStream(bytesOriginal))
+            using (var imgOriginal = System.Drawing.Image.FromStream(ms))
+            {
+                var imagenRedimensionada = new Bitmap(anchoDeseado, altoDeseado);
+                using (var g = Graphics.FromImage(imagenRedimensionada))
+                {
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(imgOriginal, 0, 0, anchoDeseado, altoDeseado);
+                }
+
+                using (var msRedimensionada = new MemoryStream())
+                {
+                    imagenRedimensionada.Save(msRedimensionada, ImageFormat.Jpeg);
+                    return msRedimensionada.ToArray();
+                }
+            }
         }
     }
 }

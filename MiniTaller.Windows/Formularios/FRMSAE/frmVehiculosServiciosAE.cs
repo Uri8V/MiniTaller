@@ -27,12 +27,12 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             _servicioVehiculo = new ServicioDeVehiculos();
             _servicioServicioTipoGato= new ServicioDeServiciosTiposDePago();
             _listaParaAgregarLosServicios = new List<ServicioTipoDePago>();
-            MostrarDatosEnGrilla();
             rtxtDescripcion.KeyDown += rtxtDescripcion_KeyDown;
             this.WindowState = FormWindowState.Maximized;
         }
         private List<ServicioTipoDePagoDto> lista;
         private List<ServicioTipoDePago> _listaParaAgregarLosServicios;
+        private List<ServicioTipoDePagoDto> _listaParaMostrarServiciosAgregados= new List<ServicioTipoDePagoDto>();
 
         private void MostrarDatosEnGrilla()
         {
@@ -60,15 +60,10 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            dateTimePickerFecha.Value = DateTime.Now.Date;
             ComboHelper.CargarComboClientesEmpresas(ref comboEmpresa);
             ComboHelper.CargarComboClientesPersonas(ref comboCliente);
             ComboHelper.CargarComboVehiculos(ref comboVehiculo);
-            splitContainer1.Visible = true;
-            lblServicio.Visible = false;
-            comboServicio.Visible = false;
-            btnAgregarServicio.Visible = false;
-            rtxtDescripcion.Size = new Size(657, 156);
+         
             if (servicios != null)
             {
                 ComboHelper.CargarComboServiciosTipoDePago(ref comboServicio);
@@ -77,6 +72,8 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 comboServicio.Visible = true;
                 btnAgregarServicio.Visible = true;
                 rtxtDescripcion.Size = new Size(1145, 156);
+                label4.Visible = false;
+                dgvDatosServiciosSeleccionados.Visible = false;
                 if (_servicioCliente.GetClientePorId(servicios.IdCliente).CUIT != "")
                 {
                     checkBoxEmpresa.Checked = true;
@@ -99,6 +96,18 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 rtxtDescripcion.Rtf = servicios.Descripcion;
                 txtHaber.Text = servicios.Haber.ToString();
                 dateTimePickerFecha.Value = servicios.Fecha.Date;
+            }
+            else
+            {
+                MostrarDatosEnGrilla();
+                splitContainer1.Visible = true;
+                lblServicio.Visible = false;
+                comboServicio.Visible = false;
+                btnAgregarServicio.Visible = false;
+                label4.Visible = true;
+                dgvDatosServiciosSeleccionados.Visible = true;
+                rtxtDescripcion.Size = new Size(657, 156);
+                dateTimePickerFecha.Value = DateTime.Now.Date;
             }
         }
         internal VehiculosServicios GetServicio()
@@ -420,11 +429,25 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     ServicioTipoDePago servicioTipoDePago = _servicioServicioTipoGato?.GetServicioTipoDePagoPorId(ServicioSeleccionado.IdServicioTipoDePago);
                     servicioTipoDePago.servicio= _servicioDeServicios.GetServiciosPorId(servicioTipoDePago.IdServicio);
                     _listaParaAgregarLosServicios?.Add(servicioTipoDePago);
+                    _listaParaMostrarServiciosAgregados.Add(ServicioSeleccionado);
                     dgvDatos.Rows.Remove(r);
                     total+=servicioTipoDePago.Precio;
                     txtDebe.Text =total.ToString();
+                    MostrarServiciosSeleccionados();
                 }
                 return;
+            }
+        }
+
+        private void MostrarServiciosSeleccionados()
+        {
+            GridHelpers.LimpiarGrilla(dgvDatosServiciosSeleccionados);
+            foreach (var item in _listaParaMostrarServiciosAgregados)
+            {
+                DataGridViewRow r = GridHelpers.ConstruirFila(dgvDatosServiciosSeleccionados);
+                GridHelpers.SetearFila(r, item);
+                r.Cells[3].Value = "Borrar";
+                GridHelpers.AgregarFila(dgvDatosServiciosSeleccionados, r);
             }
         }
 
@@ -459,6 +482,29 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
         private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void dgvDatosServiciosSeleccionados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                var r = dgvDatosServiciosSeleccionados.SelectedRows[0];
+                ServicioTipoDePagoDto ServicioSeleccionado = (ServicioTipoDePagoDto)r.Tag;
+                DialogResult dr = MessageBox.Show($"Esta seguro que quiere Borrar el servicio {ServicioSeleccionado.servicio}, del tipo {ServicioSeleccionado.Tipo} con el precio ${ServicioSeleccionado.Precio}?", "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (dr == DialogResult.Yes)
+                {
+                    ServicioTipoDePago servicioTipoDePago = _servicioServicioTipoGato?.GetServicioTipoDePagoPorId(ServicioSeleccionado.IdServicioTipoDePago);
+                    servicioTipoDePago.servicio = _servicioDeServicios.GetServiciosPorId(servicioTipoDePago.IdServicio);
+                    if (_listaParaAgregarLosServicios.Exists(x => x.IdServicioTipoDePago == servicioTipoDePago.IdServicioTipoDePago))
+                        _listaParaAgregarLosServicios.RemoveAll(x => x.IdServicioTipoDePago == servicioTipoDePago.IdServicioTipoDePago);
+                    _listaParaMostrarServiciosAgregados.Remove(ServicioSeleccionado);
+                    dgvDatosServiciosSeleccionados.Rows.Remove(r);
+                    total -= servicioTipoDePago.Precio;
+                    txtDebe.Text = total.ToString();
+                    MostrarDatosEnGrilla();
+                }
+                return;
+            }
         }
     }
 }

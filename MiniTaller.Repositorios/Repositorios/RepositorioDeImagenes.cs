@@ -101,7 +101,6 @@ namespace MiniTaller.Repositorios.Repositorios
                 selectQuery.AppendLine("i.imageURL,");
                 selectQuery.AppendLine("CONCAT(UPPER(COALESCE(c.Nombre, c2.Nombre)), ' ',");
                 selectQuery.AppendLine("UPPER(COALESCE(c.Apellido, c2.Apellido)), ' (',");
-                selectQuery.AppendLine("COALESCE(c.Documento, c2.Documento), ', ',");
                 selectQuery.AppendLine("COALESCE(c.Documento, c2.Documento), ')') AS Info");
                 selectQuery.AppendLine("FROM Imagenes i");
                 selectQuery.AppendLine("LEFT JOIN Observaciones o ON o.IdObservacion = i.IdObservacion");

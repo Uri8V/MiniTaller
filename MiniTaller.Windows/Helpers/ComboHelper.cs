@@ -175,17 +175,14 @@ namespace MiniTaller.Windows.Helpers
             combo.DisplayMember = "Servicio";
             combo.ValueMember = "IdServicio";
             combo.SelectedIndex = 0;
+            ActivarDibujoPersonalizado<Servicioss>(combo, v => v.Servicio);
         }
-        internal static void CargarComboServiciosVehiculos(ref ComboBox combo)
+        internal static void CargarComboServiciosVehiculos(ref ComboBox combo, int IdIdVehiculoServicio)
         {
             IServicioDeVehiculosServicios serviciosVehiculos = new ServicioDeVehiculosServicios();
-            var lista = serviciosVehiculos.GetServiciosCombo();
-            var defaultservicio = new VehiculoServicioComboDto()
-            {
-                IdVehiculoServicio = 0,
-                Info = "Seleccione el Servicio"
-            };
-            lista.Insert(0, defaultservicio);
+            List<VehiculoServicioComboDto> lista = new List<VehiculoServicioComboDto>();
+            var vehiculoServicio = serviciosVehiculos.GetServiciosCombo(IdIdVehiculoServicio);
+            lista.Insert(0, vehiculoServicio);
             combo.DataSource = lista;
             combo.DisplayMember = "Info";
             combo.ValueMember = "IdVehiculoServicio";
@@ -194,21 +191,16 @@ namespace MiniTaller.Windows.Helpers
 
         }
 
-        internal static void CargarComboObservaciones(ref ComboBox combo)
+        internal static void CargarComboObservaciones(ref ComboBox combo, int IdObservacion)
         {
             IServicioDeObservaciones observaciones = new ServicioDeObservaciones();
-            var lista = observaciones.GetObservacionesCombos();
-            var defaultservicio = new ObservacionesComboDto()
-            {
-                IdObservacion = 0,
-                Info = "Seleccione la Observacion"
-            };
-            lista.Insert(0, defaultservicio);
+            List<ObservacionesComboDto> lista = new List<ObservacionesComboDto>();
+            var obsrvacion = observaciones.GetObservacionCombo(IdObservacion);  
+            lista.Insert(0, obsrvacion);
             combo.DataSource = lista;
             combo.DisplayMember = "Info";
             combo.ValueMember = "IdObservacion";
             combo.SelectedIndex = 0;
-            ActivarDibujoPersonalizado<ObservacionesComboDto>(combo, v => v.Info);
         }
         public static void ActivarDibujoPersonalizado<T>(ComboBox comboBox, Func<T, string> propiedadVisible)
         {

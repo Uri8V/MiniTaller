@@ -70,11 +70,11 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public List<VehiculoServicioComboDto> GetServiciosCombo()
+        public VehiculoServicioComboDto GetServiciosCombo(int IdVehiculoServicio)
         {
             try
             {
-                return _repo.GetServiciosCombo();
+                return _repo.GetServiciosCombo(IdVehiculoServicio);
             }
             catch (Exception ex)
             {

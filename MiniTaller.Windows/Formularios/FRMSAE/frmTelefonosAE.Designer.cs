@@ -51,7 +51,7 @@
             this.checkBoxEmpresa.AutoSize = true;
             this.checkBoxEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.checkBoxEmpresa.ForeColor = System.Drawing.Color.White;
-            this.checkBoxEmpresa.Location = new System.Drawing.Point(620, 171);
+            this.checkBoxEmpresa.Location = new System.Drawing.Point(895, 179);
             this.checkBoxEmpresa.Name = "checkBoxEmpresa";
             this.checkBoxEmpresa.Size = new System.Drawing.Size(175, 33);
             this.checkBoxEmpresa.TabIndex = 4;
@@ -76,10 +76,11 @@
             this.comboEmpresa.DropDownWidth = 500;
             this.comboEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboEmpresa.FormattingEnabled = true;
-            this.comboEmpresa.Location = new System.Drawing.Point(137, 200);
-            this.comboEmpresa.MaxDropDownItems = 50;
+            this.comboEmpresa.IntegralHeight = false;
+            this.comboEmpresa.Location = new System.Drawing.Point(137, 197);
+            this.comboEmpresa.MaxDropDownItems = 20;
             this.comboEmpresa.Name = "comboEmpresa";
-            this.comboEmpresa.Size = new System.Drawing.Size(471, 37);
+            this.comboEmpresa.Size = new System.Drawing.Size(726, 37);
             this.comboEmpresa.TabIndex = 5;
             // 
             // btnAgregarCliente
@@ -87,7 +88,7 @@
             this.btnAgregarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(191)))), ((int)(((byte)(96)))));
             this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarCliente.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarCliente.Location = new System.Drawing.Point(801, 161);
+            this.btnAgregarCliente.Location = new System.Drawing.Point(1076, 169);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
             this.btnAgregarCliente.Size = new System.Drawing.Size(76, 58);
             this.btnAgregarCliente.TabIndex = 6;
@@ -101,10 +102,11 @@
             this.comboClientes.DropDownWidth = 500;
             this.comboClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboClientes.FormattingEnabled = true;
+            this.comboClientes.IntegralHeight = false;
             this.comboClientes.Location = new System.Drawing.Point(128, 141);
-            this.comboClientes.MaxDropDownItems = 50;
+            this.comboClientes.MaxDropDownItems = 20;
             this.comboClientes.Name = "comboClientes";
-            this.comboClientes.Size = new System.Drawing.Size(480, 37);
+            this.comboClientes.Size = new System.Drawing.Size(735, 37);
             this.comboClientes.TabIndex = 3;
             // 
             // label2
@@ -153,7 +155,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(59)))), ((int)(((byte)(57)))));
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCancelar.Location = new System.Drawing.Point(513, 269);
+            this.btnCancelar.Location = new System.Drawing.Point(678, 270);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 64);
             this.btnCancelar.TabIndex = 8;
@@ -166,7 +168,7 @@
             this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnConfirmar.Location = new System.Drawing.Point(145, 269);
+            this.btnConfirmar.Location = new System.Drawing.Point(310, 270);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(169, 64);
             this.btnConfirmar.TabIndex = 7;
@@ -207,7 +209,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(41)))), ((int)(((byte)(43)))));
-            this.ClientSize = new System.Drawing.Size(889, 360);
+            this.ClientSize = new System.Drawing.Size(1169, 360);
             this.ControlBox = false;
             this.Controls.Add(this.btnAgregarTipoDeTelefono);
             this.Controls.Add(this.comboBoxTipoDeTelefono);

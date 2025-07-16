@@ -132,25 +132,21 @@ namespace MiniTaller.Repositorios.Repositorios
 
         }
 
-        public List<VehiculoServicioComboDto> GetServiciosCombo()
+        public VehiculoServicioComboDto GetServiciosCombo(int IdVehiculoServicio)
         {
-            List<VehiculoServicioComboDto> lista = new List<VehiculoServicioComboDto>();
+            VehiculoServicioComboDto vehiculoServicio = null;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"  WITH cte AS (
-    SELECT 
-        vs.IdVehiculoServicio, 
-        CONCAT(v.Patente, ' | ', UPPER(c.Apellido), ', ', UPPER(c.Nombre), ' (', c.Documento, c.CUIT, ')') AS Info,
-        ROW_NUMBER() OVER (PARTITION BY v.Patente, c.Apellido, c.Nombre, c.Documento, c.CUIT ORDER BY vs.IdVehiculoServicio ASC) AS rn
-    FROM [MiniTaller].[dbo].[VehiculosServicios] vs
-    INNER JOIN Vehiculos v ON vs.IdVehiculo = v.IdVehiculo
-    INNER JOIN Clientes c ON c.IdCliente = vs.IdCliente
-)
-SELECT IdVehiculoServicio, Info FROM cte WHERE rn = 1;
-";
-                lista = conn.Query<VehiculoServicioComboDto>(selectQuery).ToList();
+                var selectQuery = @"SELECT vs.IdVehiculoServicio,
+                CONCAT(vs.Fecha,' | ',v.Patente,' | ',UPPER(c.Apellido),', ', UPPER(c.Nombre), ' (', c.Documento, c.CUIT, ')') AS Info
+                FROM VehiculosServicios vs
+                INNER JOIN Vehiculos v ON vs.IdVehiculo = v.IdVehiculo
+                INNER JOIN Clientes c ON c.IdCliente = vs.IdCliente
+                WHERE vs.IdVehiculoServicio=@IdVehiculoServicio";
+                vehiculoServicio = conn.QuerySingleOrDefault<VehiculoServicioComboDto>(selectQuery,
+                    new { IdVehiculoServicio = IdVehiculoServicio });
             }
-            return lista;
+            return vehiculoServicio;
         }
 
         public List<VehiculosServiciosDto> GetVehiculoServicioPorCliente(string CUITDocumento)

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MiniTaller.Repositorios.Repositorios
 {
-    public class RepositorioDeObservaciones:IRepositorioDeObservaciones
+    public class RepositorioDeObservaciones : IRepositorioDeObservaciones
     {
         private readonly string cadenaDeConexion;
         public RepositorioDeObservaciones()
@@ -121,24 +121,21 @@ namespace MiniTaller.Repositorios.Repositorios
             return cantidad;
         }
 
-        public List<ObservacionesComboDto> GetObservacionesCombo()
+        public ObservacionesComboDto GetObservacionCombo(int IdObservacion)
         {
-            List<ObservacionesComboDto> lista = new List<ObservacionesComboDto>();
-            using (var conn= new SqlConnection(cadenaDeConexion))
+            ObservacionesComboDto Observacion = null;
+            using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                var selectQuery = @"  WITH cte AS (
-    SELECT 
-        o.IdObservacion, 
-        CONCAT(v.Patente, ' | ', UPPER(c.Apellido), ', ', UPPER(c.Nombre), ' (', c.Documento, c.CUIT, ')') AS Info,
-        ROW_NUMBER() OVER (PARTITION BY v.Patente, c.Apellido, c.Nombre, c.Documento, c.CUIT ORDER BY o.IdObservacion ASC) AS rn
-    FROM Observaciones o
-    INNER JOIN Vehiculos v ON o.IdVehiculo = v.IdVehiculo
-    INNER JOIN Clientes c ON c.IdCliente = o.IdCliente
-)
-SELECT IdObservacion, Info FROM cte WHERE rn = 1;";
-                lista = conn.Query<ObservacionesComboDto>(selectQuery).ToList();
+                var selectQuery = @"SELECT o.IdObservacion,
+                CONCAT(o.Fecha,' | ',v.Patente,' | ',UPPER(c.Apellido),', ', UPPER(c.Nombre), ' (', c.Documento, c.CUIT, ')') AS Info
+                FROM Observaciones o
+                INNER JOIN Vehiculos v ON o.IdVehiculo = v.IdVehiculo
+                INNER JOIN Clientes c ON c.IdCliente = o.IdCliente
+                WHERE o.IdObservacion=@IdObservacion";
+                Observacion=conn.QuerySingleOrDefault<ObservacionesComboDto>(selectQuery,
+                    new { IdObservacion = IdObservacion });
             }
-            return lista;
+            return Observacion;
         }
 
         public List<ObservacionDto> GetVehiculoObservacionPorClienteYVehiculo(int IdCliente, int IdVehiculo)

@@ -43,10 +43,13 @@
             // comboMarca
             // 
             this.comboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboMarca.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboMarca.FormattingEnabled = true;
+            this.comboMarca.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboMarca.IntegralHeight = false;
             this.comboMarca.Location = new System.Drawing.Point(255, 125);
-            this.comboMarca.MaxDropDownItems = 20;
+            this.comboMarca.MaxDropDownItems = 15;
             this.comboMarca.Name = "comboMarca";
             this.comboMarca.Size = new System.Drawing.Size(326, 37);
             this.comboMarca.TabIndex = 1;

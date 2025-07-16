@@ -48,7 +48,7 @@
             this.btnAgregarServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(191)))), ((int)(((byte)(96)))));
             this.btnAgregarServicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarServicio.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarServicio.Location = new System.Drawing.Point(669, 102);
+            this.btnAgregarServicio.Location = new System.Drawing.Point(896, 12);
             this.btnAgregarServicio.Name = "btnAgregarServicio";
             this.btnAgregarServicio.Size = new System.Drawing.Size(76, 58);
             this.btnAgregarServicio.TabIndex = 3;
@@ -61,7 +61,7 @@
             this.btnAgregarTipoDePago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(191)))), ((int)(((byte)(96)))));
             this.btnAgregarTipoDePago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarTipoDePago.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarTipoDePago.Location = new System.Drawing.Point(707, 21);
+            this.btnAgregarTipoDePago.Location = new System.Drawing.Point(830, 87);
             this.btnAgregarTipoDePago.Name = "btnAgregarTipoDePago";
             this.btnAgregarTipoDePago.Size = new System.Drawing.Size(76, 58);
             this.btnAgregarTipoDePago.TabIndex = 1;
@@ -71,13 +71,17 @@
             // 
             // comboServicio
             // 
+            this.comboServicio.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.comboServicio.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.comboServicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboServicio.FormattingEnabled = true;
-            this.comboServicio.Location = new System.Drawing.Point(278, 110);
-            this.comboServicio.MaxDropDownItems = 50;
+            this.errorProvider1.SetIconAlignment(this.comboServicio, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.comboServicio.IntegralHeight = false;
+            this.comboServicio.Location = new System.Drawing.Point(278, 20);
+            this.comboServicio.MaxDropDownItems = 20;
             this.comboServicio.Name = "comboServicio";
-            this.comboServicio.Size = new System.Drawing.Size(345, 37);
+            this.comboServicio.Size = new System.Drawing.Size(602, 37);
             this.comboServicio.TabIndex = 2;
             // 
             // comboTipoDePago
@@ -85,17 +89,18 @@
             this.comboTipoDePago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTipoDePago.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboTipoDePago.FormattingEnabled = true;
-            this.comboTipoDePago.Location = new System.Drawing.Point(336, 29);
+            this.comboTipoDePago.IntegralHeight = false;
+            this.comboTipoDePago.Location = new System.Drawing.Point(338, 95);
             this.comboTipoDePago.Name = "comboTipoDePago";
-            this.comboTipoDePago.Size = new System.Drawing.Size(344, 37);
+            this.comboTipoDePago.Size = new System.Drawing.Size(475, 37);
             this.comboTipoDePago.TabIndex = 0;
             // 
             // txtPrecio
             // 
             this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtPrecio.Location = new System.Drawing.Point(229, 170);
+            this.txtPrecio.Location = new System.Drawing.Point(221, 167);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(255, 35);
+            this.txtPrecio.Size = new System.Drawing.Size(379, 35);
             this.txtPrecio.TabIndex = 4;
             // 
             // label4
@@ -103,7 +108,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(13, 113);
+            this.label4.Location = new System.Drawing.Point(13, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(259, 29);
             this.label4.TabIndex = 34;
@@ -114,7 +119,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(11, 32);
+            this.label2.Location = new System.Drawing.Point(13, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(319, 29);
             this.label2.TabIndex = 35;
@@ -125,7 +130,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(21, 170);
+            this.label1.Location = new System.Drawing.Point(13, 170);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(202, 29);
             this.label1.TabIndex = 36;
@@ -166,7 +171,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(41)))), ((int)(((byte)(43)))));
-            this.ClientSize = new System.Drawing.Size(795, 315);
+            this.ClientSize = new System.Drawing.Size(984, 315);
             this.ControlBox = false;
             this.Controls.Add(this.btnAgregarServicio);
             this.Controls.Add(this.btnAgregarTipoDePago);
@@ -193,7 +198,6 @@
         #endregion
         private System.Windows.Forms.Button btnAgregarServicio;
         private System.Windows.Forms.Button btnAgregarTipoDePago;
-        private System.Windows.Forms.ComboBox comboServicio;
         private System.Windows.Forms.ComboBox comboTipoDePago;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label label4;
@@ -202,5 +206,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ComboBox comboServicio;
     }
 }

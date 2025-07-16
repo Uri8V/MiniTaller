@@ -41,7 +41,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         int paginaActual = 1;
         int registros = 0;
         int paginas = 0;
-        int registrosPorPagina = 100;
+        int registrosPorPagina = 50;
 
 
         private void toolStripButtonActualizar_Click(object sender, EventArgs e)

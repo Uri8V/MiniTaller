@@ -44,7 +44,7 @@
             this.btnAgregarTipoPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarTipoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.btnAgregarTipoPago.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarTipoPago.Location = new System.Drawing.Point(660, 13);
+            this.btnAgregarTipoPago.Location = new System.Drawing.Point(670, 13);
             this.btnAgregarTipoPago.Name = "btnAgregarTipoPago";
             this.btnAgregarTipoPago.Size = new System.Drawing.Size(62, 51);
             this.btnAgregarTipoPago.TabIndex = 1;
@@ -56,11 +56,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(18, 26);
+            this.label1.Location = new System.Drawing.Point(2, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(271, 24);
+            this.label1.Size = new System.Drawing.Size(306, 24);
             this.label1.TabIndex = 14;
-            this.label1.Text = "Seleccionar el Forma de Pago:";
+            this.label1.Text = "Seleccionar la categoría del Precio:";
             // 
             // comboBoxTipoPago
             // 
@@ -70,7 +70,7 @@
             this.comboBoxTipoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.comboBoxTipoPago.FormattingEnabled = true;
             this.comboBoxTipoPago.IntegralHeight = false;
-            this.comboBoxTipoPago.Location = new System.Drawing.Point(295, 23);
+            this.comboBoxTipoPago.Location = new System.Drawing.Point(314, 23);
             this.comboBoxTipoPago.MaxDropDownItems = 20;
             this.comboBoxTipoPago.Name = "comboBoxTipoPago";
             this.comboBoxTipoPago.Size = new System.Drawing.Size(338, 32);

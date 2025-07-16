@@ -56,7 +56,7 @@
             this.btnAgregarTipoVehiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(191)))), ((int)(((byte)(96)))));
             this.btnAgregarTipoVehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarTipoVehiculo.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarTipoVehiculo.Location = new System.Drawing.Point(793, 254);
+            this.btnAgregarTipoVehiculo.Location = new System.Drawing.Point(861, 254);
             this.btnAgregarTipoVehiculo.Name = "btnAgregarTipoVehiculo";
             this.btnAgregarTipoVehiculo.Size = new System.Drawing.Size(76, 58);
             this.btnAgregarTipoVehiculo.TabIndex = 8;
@@ -69,7 +69,7 @@
             this.btnAgregarModelo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(191)))), ((int)(((byte)(96)))));
             this.btnAgregarModelo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarModelo.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarModelo.Location = new System.Drawing.Point(639, 163);
+            this.btnAgregarModelo.Location = new System.Drawing.Point(861, 163);
             this.btnAgregarModelo.Name = "btnAgregarModelo";
             this.btnAgregarModelo.Size = new System.Drawing.Size(76, 58);
             this.btnAgregarModelo.TabIndex = 6;
@@ -82,10 +82,10 @@
             this.comboTipoVehiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTipoVehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboTipoVehiculo.FormattingEnabled = true;
+            this.comboTipoVehiculo.IntegralHeight = false;
             this.comboTipoVehiculo.Location = new System.Drawing.Point(365, 262);
-            this.comboTipoVehiculo.MaxDropDownItems = 50;
             this.comboTipoVehiculo.Name = "comboTipoVehiculo";
-            this.comboTipoVehiculo.Size = new System.Drawing.Size(404, 37);
+            this.comboTipoVehiculo.Size = new System.Drawing.Size(490, 37);
             this.comboTipoVehiculo.TabIndex = 7;
             // 
             // comboModelo
@@ -93,10 +93,11 @@
             this.comboModelo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboModelo.FormattingEnabled = true;
+            this.comboModelo.IntegralHeight = false;
             this.comboModelo.Location = new System.Drawing.Point(268, 171);
-            this.comboModelo.MaxDropDownItems = 50;
+            this.comboModelo.MaxDropDownItems = 25;
             this.comboModelo.Name = "comboModelo";
-            this.comboModelo.Size = new System.Drawing.Size(339, 37);
+            this.comboModelo.Size = new System.Drawing.Size(587, 37);
             this.comboModelo.TabIndex = 5;
             // 
             // txtPatente

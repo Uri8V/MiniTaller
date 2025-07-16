@@ -95,7 +95,6 @@
             this.comboTipoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboTipoCliente.FormattingEnabled = true;
             this.comboTipoCliente.Location = new System.Drawing.Point(574, 34);
-            this.comboTipoCliente.MaxDropDownItems = 20;
             this.comboTipoCliente.Name = "comboTipoCliente";
             this.comboTipoCliente.Size = new System.Drawing.Size(354, 37);
             this.comboTipoCliente.TabIndex = 3;

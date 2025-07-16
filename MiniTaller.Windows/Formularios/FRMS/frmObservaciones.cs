@@ -139,7 +139,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 return;
             }
             var observaciones = frm.GetServicio();
-            //preguntar si existe
             if (!_servicio.Existe(observaciones))
             {
                 _servicio.Guardar(observaciones);

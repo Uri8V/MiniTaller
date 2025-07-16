@@ -1,30 +1,23 @@
-﻿using MiniTaller.Entidades.Dtos;
-using MiniTaller.Entidades.Entidades;
+﻿using iTextSharp.tool.xml.html;
 using MiniTaller.Entidades;
+using MiniTaller.Entidades.Dtos;
+using MiniTaller.Entidades.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using iTextSharp.tool.xml.html;
 
 namespace MiniTaller.Windows.Helpers
 {
     //💡 Importante: EnableHeadersVisualStyles = false es clave, porque si está en true, Windows ignora tus estilos y usa los predeterminados del sistema operativo.
     public class GridHelpers
     {
-        public static void ByteArrayToIMage(ImagenesDto item, DataGridViewRow row)
-        {
-            // Convertir bytes a imagen
-            using (MemoryStream ms = new MemoryStream(item.imageURL))
-            {
-                row.Cells["Imagen"].Value = System.Drawing.Image.FromStream(ms);
-            }
-            row.Tag = item;
-        }
         public static void LimpiarGrilla(DataGridView dgv)
         {
             dgv.Rows.Clear();
@@ -112,14 +105,14 @@ namespace MiniTaller.Windows.Helpers
                         r.Cells[3].Style.BackColor = Color.Black;
                     }
                     r.Cells[4].Value = servicios.Haber;
-                    r.Cells[5].Value = ATextoPlano(servicios.Descripcion);//Esto es para que el richtextbox no se vea en la grilla, solo se usa para convertir el RTF a texto plano
+                    r.Cells[5].Value = ReduccionDeTexto(ATextoPlano(servicios.Descripcion));//Esto es para que el richtextbox no se vea en la grilla, solo se usa para convertir el RTF a texto plano
                     r.Cells[6].Value = servicios.Fecha.ToShortDateString();
                     r.Cells[7].Value = servicios.Kilometros;
                     break;
                 case ObservacionDto observacionDto:
                     r.Cells[0].Value = observacionDto.Vehiculo;
                     r.Cells[1].Value = observacionDto.Cliente;
-                    r.Cells[2].Value = ATextoPlano(observacionDto.Observacion);//Esto es para que el richtextbox no se vea en la grilla, solo se usa para convertir el RTF a texto plano
+                    r.Cells[2].Value = ReduccionDeTexto(ATextoPlano(observacionDto.Observacion));//Esto es para que el richtextbox no se vea en la grilla, solo se usa para convertir el RTF a texto plano
                     r.Cells[3].Value = observacionDto.Fecha.ToShortDateString();
                     break;
             }
@@ -172,7 +165,7 @@ namespace MiniTaller.Windows.Helpers
                     HeaderText = "Imagen",
                     ImageLayout = DataGridViewImageCellLayout.Zoom,
                     AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-
+                    
                 };
                 dataGridView1.Columns.Add(imgColumn); 
             }
@@ -183,6 +176,19 @@ namespace MiniTaller.Windows.Helpers
             int rowIndex = dataGridView1.Rows.Add();
             DataGridViewRow row = dataGridView1.Rows[rowIndex];
             return row;
+        }
+        public static void ByteArrayToIMage(ImagenesDto item, DataGridViewRow row)
+        {
+            // Convertir bytes a imagen
+            using (MemoryStream ms = new MemoryStream(item.imageURL))
+            {
+                row.Cells["Imagen"].Value = System.Drawing.Image.FromStream(ms);
+            }
+            row.Tag = item;
+        }
+        public static string ReduccionDeTexto(string descripcion)
+        {
+            return descripcion.Length >= 120 ? $"{descripcion.Substring(0, 116)}..." : descripcion;
         }
     }
 }

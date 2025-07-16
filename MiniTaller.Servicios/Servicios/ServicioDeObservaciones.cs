@@ -68,27 +68,15 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public List<ObservacionesComboDto> GetObservacionesCombos()
+        public ObservacionesComboDto GetObservacionCombo(int IdObservacion)
         {
             try
             {
-                return _repositorioDeObservaciones.GetObservacionesCombo();
+                return _repositorioDeObservaciones.GetObservacionCombo(IdObservacion);
             }
             catch (Exception ex)
             {
-                throw new Exception("Oh no algo no salio bien en el método GetObservacionesCombos", ex);
-            }
-        }
-
-        public List<ObservacionDto> GetVehiculoObservacionPorClienteYVehiculo(int idCLiente, int idVehiculo)
-        {
-            try
-            {
-                return _repositorioDeObservaciones.GetVehiculoObservacionPorClienteYVehiculo(idCLiente,idVehiculo);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Oh no algo no salio bien en el método GetVehiculoObservacionPorClienteYVehiculo", ex);
+                throw new Exception("Oh no algo no salio bien en el método GetObservacionCombo", ex);
             }
         }
 
