@@ -63,7 +63,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             ComboHelper.CargarComboClientesEmpresas(ref comboEmpresa);
             ComboHelper.CargarComboClientesPersonas(ref comboCliente);
             ComboHelper.CargarComboVehiculos(ref comboVehiculo);
-         
+
             if (servicios != null)
             {
                 ComboHelper.CargarComboServiciosTipoDePago(ref comboServicio);
@@ -96,6 +96,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 rtxtDescripcion.Rtf = servicios.Descripcion;
                 txtHaber.Text = servicios.Haber.ToString();
                 dateTimePickerFecha.Value = servicios.Fecha.Date;
+                txtKilometraje.Text = servicios.Kilometros;
             }
             else
             {
@@ -179,11 +180,10 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
 
                 servicios.Vehiculo = _servicioVehiculo.GetVehiculosPorId((int)comboVehiculo.SelectedValue);
                 servicios.IdVehiculo = (int)comboVehiculo.SelectedValue;
-
                 servicios.Debe = Decimal.Parse(txtDebe.Text);
                 servicios.Haber = Decimal.Parse(txtHaber.Text);
                 servicios.Descripcion = rtxtDescripcion.Rtf;
-
+                servicios.Kilometros = txtKilometraje.Text;
                 servicios.Fecha = dateTimePickerFecha.Value;
 
                 DialogResult = DialogResult.OK;
@@ -210,7 +210,21 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     errorProvider1.SetError(comboServicio, "Debe seleccionar un Servicio");
                 }
             }
-         
+            if (string.IsNullOrEmpty(txtKilometraje.Text))
+            {
+                valido = false;
+                errorProvider1.SetError(txtKilometraje, "Debe ingresar un Kilometraje");
+            }
+            else if (!int.TryParse(txtKilometraje.Text, out int kilometraje))
+            {
+                valido = false;
+                errorProvider1.SetError(txtKilometraje, "El Kilometraje debe ser un número entero");
+            }
+            else if (kilometraje < 0)
+            {
+                valido = false;
+                errorProvider1.SetError(txtKilometraje, "El Kilometraje no puede ser negativo");
+            }
             if (!checkBoxEmpresa.Checked)
             {
                 if (comboCliente.SelectedIndex == 0)

@@ -15,5 +15,6 @@ namespace MiniTaller.Entidades.Entidades
         public int IdVehiculo { get; set; }
         public Vehiculos Vehiculo { get; set; }
         public DateTime Fecha { get; set; }
+        public string Kilometros { get; set; }
     }
 }

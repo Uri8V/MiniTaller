@@ -25,8 +25,8 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"INSERT INTO VehiculosServicios (IdVehiculo,IdServicioTipoDePago, IdCliente, Descripcion, Debe, Haber, Fecha) 
-                                    Values (@IdVehiculo,@IdServicioTipoDePago, @IdCliente, @Descripcion, @Debe, @Haber, @Fecha); SELECT SCOPE_IDENTITY();";
+                string selectQuery = @"INSERT INTO VehiculosServicios (IdVehiculo,IdServicioTipoDePago, IdCliente, Descripcion, Debe, Haber, Fecha, Kilometros) 
+                                    Values (@IdVehiculo,@IdServicioTipoDePago, @IdCliente, @Descripcion, @Debe, @Haber, @Fecha,@Kilometros); SELECT SCOPE_IDENTITY();";
                 int id = conn.ExecuteScalar<int>(selectQuery, vehiculosServicios);
                 vehiculosServicios.IdVehiculoServicio = id;
             }
@@ -45,7 +45,7 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string updateQuery = @"UPDATE VehiculosServicios SET IdVehiculo=@IdVehiculo,IdServicioTipoDePago=@IdServicioTipoDePago, IdCliente=@IdCliente, Descripcion=@Descripcion, Debe=@Debe, Haber=@Haber, Fecha=@Fecha
+                string updateQuery = @"UPDATE VehiculosServicios SET IdVehiculo=@IdVehiculo,IdServicioTipoDePago=@IdServicioTipoDePago, IdCliente=@IdCliente, Descripcion=@Descripcion, Debe=@Debe, Haber=@Haber, Fecha=@Fecha, Kilometros=@Kilometros
                 WHERE IdVehiculoServicio=@IdVehiculoServicio";
                 conn.Execute(updateQuery, vehiculosServicios);
             }
@@ -154,13 +154,13 @@ namespace MiniTaller.Repositorios.Repositorios
             List<VehiculosServiciosDto> lista = new List<VehiculosServiciosDto>();
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT vs.IdVehiculoServicio, v.Patente, s.Servicio, st.Precio as DebeServicio, c.Apellido, c.Nombre,c.Documento,c.CUIT,vs.Descripcion,vs.Debe,vs.Haber,vs.Fecha
-                    FROM VehiculosServicios vs
-                    INNER JOIN Vehiculos v ON v.IdVehiculo=vs.IdVehiculo
-                    INNER JOIN ServiciosTiposDePago st ON vs.IdServicioTipoDePago=st.IdServicioTipoDePago
-                    INNER JOIN Servicios s ON s.IdServicio=st.IdServicio
-                    INNER JOIN Clientes c ON vs.IdCliente=c.IdCliente
-                    WHERE c.Documento=@CUITDocumento OR c.CUIT=@CUITDocumento";
+                string selectQuery = @"SELECT vs.IdVehiculoServicio, v.Patente, s.Servicio, st.Precio as DebeServicio, c.Apellido, c.Nombre,c.Documento,c.CUIT,vs.Descripcion,vs.Debe,vs.Haber,vs.Fecha, vs.Kilometros
+                FROM VehiculosServicios vs
+                INNER JOIN Vehiculos v ON v.IdVehiculo=vs.IdVehiculo
+                INNER JOIN ServiciosTiposDePago st ON vs.IdServicioTipoDePago=st.IdServicioTipoDePago
+                INNER JOIN Servicios s ON s.IdServicio=st.IdServicio
+                INNER JOIN Clientes c ON vs.IdCliente=c.IdCliente
+                WHERE c.Documento=@CUITDocumento OR c.CUIT=@CUITDocumento";
                 var parametros = new { CUITDocumento };
                 lista = conn.Query<VehiculosServiciosDto>(selectQuery, parametros).ToList();
             }
@@ -172,7 +172,7 @@ namespace MiniTaller.Repositorios.Repositorios
             VehiculosServicios vehiculosServicios = null;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT vs.IdVehiculoServicio,vs.IdVehiculo,vs.IdServicioTipoDePago,vs.IdCliente,vs.Descripcion, vs.Debe, vs.Haber, vs.Fecha
+                string selectQuery = @"SELECT vs.IdVehiculoServicio,vs.IdVehiculo,vs.IdServicioTipoDePago,vs.IdCliente,vs.Descripcion, vs.Debe, vs.Haber, vs.Fecha, vs.Kilometros
                     FROM VehiculosServicios vs WHERE vs.IdVehiculoServicio=@IdVehiculoServicios";
                 vehiculosServicios = conn.QuerySingleOrDefault<VehiculosServicios>(selectQuery,
                     new { IdVehiculoServicios = IdVehiculoServicio });
@@ -187,7 +187,7 @@ namespace MiniTaller.Repositorios.Repositorios
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
                 StringBuilder selectQuery = new StringBuilder();
-                selectQuery.AppendLine("SELECT vs.IdVehiculoServicio, v.Patente, v.Kilometros, s.Servicio, st.Precio as DebeServicio, c.Apellido, c.Nombre,c.Documento,c.CUIT,vs.Descripcion,vs.Debe,vs.Haber,vs.Fecha");
+                selectQuery.AppendLine("SELECT vs.IdVehiculoServicio, v.Patente, vs.Kilometros, s.Servicio, st.Precio as DebeServicio, c.Apellido, c.Nombre,c.Documento,c.CUIT,vs.Descripcion,vs.Debe,vs.Haber,vs.Fecha");
                 selectQuery.AppendLine("FROM VehiculosServicios vs");
                 selectQuery.AppendLine("INNER JOIN Vehiculos v ON v.IdVehiculo=vs.IdVehiculo");
                 selectQuery.AppendLine("INNER JOIN ServiciosTiposDePago st ON st.IdServicioTipoDePago=vs.IdServicioTipoDePago");

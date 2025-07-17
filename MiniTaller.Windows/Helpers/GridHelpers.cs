@@ -67,10 +67,9 @@ namespace MiniTaller.Windows.Helpers
                     r.Cells[0].Value = vehiculo.Patente;
                     r.Cells[1].Value = vehiculo.Tipo;
                     r.Cells[2].Value = vehiculo.Modelo;
-                    r.Cells[3].Value = vehiculo.Kilometros;
-                    r.Cells[4].Value = vehiculo.ECU==""?"ECU aùn no encontrada":vehiculo.ECU;
-                    r.Cells[5].Value = vehiculo.VIN;
-                    r.Cells[6].Value = vehiculo.PINCode==""?"PIN CODE aùn no encontrada": vehiculo.PINCode;
+                    r.Cells[3].Value = vehiculo.ECU==""?"ECU aùn no encontrada":vehiculo.ECU;
+                    r.Cells[4].Value = vehiculo.VIN;
+                    r.Cells[5].Value = vehiculo.PINCode==""?"PIN CODE aùn no encontrada": vehiculo.PINCode;
                     break;
                 case TelefonosDto telefono:
 
@@ -114,6 +113,7 @@ namespace MiniTaller.Windows.Helpers
                     r.Cells[1].Value = observacionDto.Cliente;
                     r.Cells[2].Value = ReduccionDeTexto(ATextoPlano(observacionDto.Observacion));//Esto es para que el richtextbox no se vea en la grilla, solo se usa para convertir el RTF a texto plano
                     r.Cells[3].Value = observacionDto.Fecha.ToShortDateString();
+                    r.Cells[4].Value = observacionDto.Kilometros;
                     break;
             }
             r.Tag = obj;
@@ -145,7 +145,7 @@ namespace MiniTaller.Windows.Helpers
                 GridHelpers.SetearFila(r, obj);
                 if (dgv.Columns.Count==5)
                 {
-                    r.Cells[4].Value = "Ver Imagenes";
+                    r.Cells[5].Value = "Ver Imagenes";
                 }
                 if (dgv.Columns.Count==9)
                 {

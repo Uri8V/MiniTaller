@@ -14,6 +14,7 @@ namespace MiniTaller.Entidades.Dtos
         public string Cliente { get; set; }
         public string Vehiculo { get; set; }
         public DateTime Fecha { get; set; }
+        public string Kilometros { get; set; }
         public object Clone()
         {
             return this.MemberwiseClone();

@@ -25,8 +25,8 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"INSERT INTO Observaciones (Observacion,IdVehiculo, IdCliente, Fecha) 
-                                    Values (@Observacion,@IdVehiculo, @IdCliente,@Fecha); SELECT SCOPE_IDENTITY();";
+                string selectQuery = @"INSERT INTO Observaciones (Observacion,IdVehiculo, IdCliente, Fecha, Kilometros) 
+                                    Values (@Observacion,@IdVehiculo, @IdCliente,@Fecha, @Kilometros); SELECT SCOPE_IDENTITY();";
                 int id = conn.ExecuteScalar<int>(selectQuery, Observacion);
                 Observacion.IdObservacion = id;
             }
@@ -45,7 +45,7 @@ namespace MiniTaller.Repositorios.Repositorios
         {
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string updateQuery = @"UPDATE Observaciones SET IdVehiculo=@IdVehiculo,Observacion=@Observacion, IdCliente=@IdCliente, Fecha=@Fecha
+                string updateQuery = @"UPDATE Observaciones SET IdVehiculo=@IdVehiculo,Observacion=@Observacion, IdCliente=@IdCliente, Fecha=@Fecha, Kilometros=@Kilometros
                 WHERE IdObservacion=@IdObservacion";
                 conn.Execute(updateQuery, Observacion);
             }
@@ -137,29 +137,12 @@ namespace MiniTaller.Repositorios.Repositorios
             }
             return Observacion;
         }
-
-        public List<ObservacionDto> GetVehiculoObservacionPorClienteYVehiculo(int IdCliente, int IdVehiculo)
-        {
-            List<ObservacionDto> lista = new List<ObservacionDto>();
-            using (var conn = new SqlConnection(cadenaDeConexion))
-            {
-                string selectQuery = @"SELECT o.IdObservaciones, o.Observacion, CONCAT(v.Patente) AS Vehiculo, CONCAT(c.Apellido,', ', c.Nombre,' | 'c.Documento,c.CUIT) AS Cliente,o.Fecha
-                    FROM Observaciones o
-                    INNER JOIN Vehiculos v ON v.IdVehiculo=o.IdVehiculo
-                    INNER JOIN Clientes c ON o.IdCliente=c.IdCliente
-                    WHERE c.IdCliente=@IdCliente OR v.IdVehiculo=@IdVehiculo";
-                var parametros = new { IdCliente, IdVehiculo };
-                lista = conn.Query<ObservacionDto>(selectQuery, parametros).ToList();
-            }
-            return lista;
-        }
-
         public Observaciones GetVehiculoObservacionPorId(int IdObservacion)
         {
             Observaciones Observaciones = null;
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
-                string selectQuery = @"SELECT O.IdObservacion,o.IdVehiculo, o.Observacion,o.IdCliente,o.Fecha
+                string selectQuery = @"SELECT O.IdObservacion,o.IdVehiculo, o.Observacion,o.IdCliente,o.Fecha, o.Kilometros
                     FROM Observaciones o WHERE o.IdObservacion=@IdObservacion";
                 Observaciones = conn.QuerySingleOrDefault<Observaciones>(selectQuery,
                     new { IdObservacion = IdObservacion });
@@ -173,8 +156,7 @@ namespace MiniTaller.Repositorios.Repositorios
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
                 StringBuilder selectQuery = new StringBuilder();
-                selectQuery.AppendLine("SELECT o.IdObservacion, o.Observacion,CONCAT(v.Patente,' | ',m.Modelo,' | ',tv.Tipo,' | ',v.Kilometros) AS Vehiculo, CONCAT(c.Apellido,', ', c.Nombre,' | ',c.Documento,c.CUIT) AS Cliente,o.Fecha");
-
+                selectQuery.AppendLine("SELECT o.IdObservacion, o.Observacion,CONCAT(v.Patente,' | ',m.Modelo,' | ',tv.Tipo) AS Vehiculo, CONCAT(c.Apellido,', ', c.Nombre,' | ',c.Documento,c.CUIT) AS Cliente,o.Fecha, o.Kilometros");
                 selectQuery.AppendLine("FROM Observaciones o");
                 selectQuery.AppendLine("INNER JOIN Vehiculos v ON v.IdVehiculo=o.IdVehiculo");
                 selectQuery.AppendLine("INNER JOIN Clientes c ON c.IdCliente=o.IdCliente");
@@ -192,10 +174,8 @@ namespace MiniTaller.Repositorios.Repositorios
                 var parametros = new { IdVehiculo, IdCliente, Fecha, registrosSaltados = registrosPorPagina * (paginaActual - 1), registrosPorPagina };
 
                 lista = conn.Query<ObservacionDto>(selectQuery.ToString(), parametros).ToList();
-
             }
             return lista;
-
         }
     }
 }

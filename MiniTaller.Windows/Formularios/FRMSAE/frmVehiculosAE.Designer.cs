@@ -40,8 +40,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtKilometros = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtECU = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtVIN = new System.Windows.Forms.TextBox();
@@ -124,7 +122,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(8, 174);
+            this.label2.Location = new System.Drawing.Point(4, 174);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(254, 29);
             this.label2.TabIndex = 15;
@@ -171,31 +169,12 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // txtKilometros
-            // 
-            this.txtKilometros.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtKilometros.Location = new System.Drawing.Point(756, 11);
-            this.txtKilometros.Name = "txtKilometros";
-            this.txtKilometros.Size = new System.Drawing.Size(181, 35);
-            this.txtKilometros.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(501, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(249, 29);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Ingrese el Kilometraje";
-            // 
             // txtECU
             // 
             this.txtECU.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.txtECU.Location = new System.Drawing.Point(191, 59);
             this.txtECU.Name = "txtECU";
-            this.txtECU.Size = new System.Drawing.Size(321, 35);
+            this.txtECU.Size = new System.Drawing.Size(550, 35);
             this.txtECU.TabIndex = 2;
             // 
             // label5
@@ -212,9 +191,9 @@
             // txtVIN
             // 
             this.txtVIN.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtVIN.Location = new System.Drawing.Point(184, 106);
+            this.txtVIN.Location = new System.Drawing.Point(180, 115);
             this.txtVIN.Name = "txtVIN";
-            this.txtVIN.Size = new System.Drawing.Size(328, 35);
+            this.txtVIN.Size = new System.Drawing.Size(561, 35);
             this.txtVIN.TabIndex = 3;
             // 
             // label6
@@ -222,7 +201,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(8, 109);
+            this.label6.Location = new System.Drawing.Point(4, 118);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(170, 29);
             this.label6.TabIndex = 28;
@@ -231,9 +210,9 @@
             // txtPINCODE
             // 
             this.txtPINCODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtPINCODE.Location = new System.Drawing.Point(758, 84);
+            this.txtPINCODE.Location = new System.Drawing.Point(747, 11);
             this.txtPINCODE.Name = "txtPINCODE";
-            this.txtPINCODE.Size = new System.Drawing.Size(179, 35);
+            this.txtPINCODE.Size = new System.Drawing.Size(190, 35);
             this.txtPINCODE.TabIndex = 4;
             // 
             // label7
@@ -241,7 +220,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(515, 87);
+            this.label7.Location = new System.Drawing.Point(504, 14);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(237, 29);
             this.label7.TabIndex = 30;
@@ -260,8 +239,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtECU);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtKilometros);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAgregarTipoVehiculo);
             this.Controls.Add(this.btnAgregarModelo);
             this.Controls.Add(this.comboTipoVehiculo);
@@ -296,8 +273,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.TextBox txtKilometros;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPINCODE;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtVIN;

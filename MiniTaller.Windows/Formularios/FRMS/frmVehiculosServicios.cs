@@ -215,6 +215,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                     vehiculosServiciosDto.Debe = servicios.Debe;
                     vehiculosServiciosDto.Haber = servicios.Haber;
                     vehiculosServiciosDto.Fecha = servicios.Fecha;
+                    vehiculosServiciosDto.Kilometros = servicios.Kilometros;
                     GridHelpers.SetearFila(r, vehiculosServiciosDto);
                     var lista = frm.GetListaDeServicios();
                     _servicio.Guardar(servicios,lista);

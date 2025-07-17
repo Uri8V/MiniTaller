@@ -46,11 +46,6 @@
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.colVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colObservacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colImagenes = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnUltimo = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnAnterior = new System.Windows.Forms.Button();
@@ -61,6 +56,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblRegistros = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.colVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colObservacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKilometros = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colImagenes = new System.Windows.Forms.DataGridViewButtonColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -266,6 +267,7 @@
             this.colCliente,
             this.colObservacion,
             this.colFecha,
+            this.colKilometros,
             this.colImagenes});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
@@ -289,44 +291,6 @@
             this.dgvDatos.Size = new System.Drawing.Size(941, 399);
             this.dgvDatos.TabIndex = 1;
             this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
-            // 
-            // colVehiculo
-            // 
-            this.colVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colVehiculo.HeaderText = "Vehiculo";
-            this.colVehiculo.MaxInputLength = 100;
-            this.colVehiculo.Name = "colVehiculo";
-            this.colVehiculo.ReadOnly = true;
-            // 
-            // colCliente
-            // 
-            this.colCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCliente.HeaderText = "Cliente";
-            this.colCliente.MaxInputLength = 100;
-            this.colCliente.Name = "colCliente";
-            this.colCliente.ReadOnly = true;
-            // 
-            // colObservacion
-            // 
-            this.colObservacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colObservacion.HeaderText = "Observación";
-            this.colObservacion.Name = "colObservacion";
-            this.colObservacion.ReadOnly = true;
-            // 
-            // colFecha
-            // 
-            this.colFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colFecha.HeaderText = "Fecha";
-            this.colFecha.MaxInputLength = 100;
-            this.colFecha.Name = "colFecha";
-            this.colFecha.ReadOnly = true;
-            // 
-            // colImagenes
-            // 
-            this.colImagenes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colImagenes.HeaderText = "";
-            this.colImagenes.Name = "colImagenes";
-            this.colImagenes.ReadOnly = true;
             // 
             // btnUltimo
             // 
@@ -446,6 +410,51 @@
             this.label3.TabIndex = 75;
             this.label3.Text = "Cantidad de Registros:";
             // 
+            // colVehiculo
+            // 
+            this.colVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colVehiculo.HeaderText = "Vehiculo";
+            this.colVehiculo.MaxInputLength = 100;
+            this.colVehiculo.Name = "colVehiculo";
+            this.colVehiculo.ReadOnly = true;
+            // 
+            // colCliente
+            // 
+            this.colCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colCliente.HeaderText = "Cliente";
+            this.colCliente.MaxInputLength = 100;
+            this.colCliente.Name = "colCliente";
+            this.colCliente.ReadOnly = true;
+            // 
+            // colObservacion
+            // 
+            this.colObservacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colObservacion.HeaderText = "Observación";
+            this.colObservacion.Name = "colObservacion";
+            this.colObservacion.ReadOnly = true;
+            // 
+            // colFecha
+            // 
+            this.colFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colFecha.HeaderText = "Fecha";
+            this.colFecha.MaxInputLength = 100;
+            this.colFecha.Name = "colFecha";
+            this.colFecha.ReadOnly = true;
+            // 
+            // colKilometros
+            // 
+            this.colKilometros.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colKilometros.HeaderText = "Kilometros";
+            this.colKilometros.Name = "colKilometros";
+            this.colKilometros.ReadOnly = true;
+            // 
+            // colImagenes
+            // 
+            this.colImagenes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colImagenes.HeaderText = "";
+            this.colImagenes.Name = "colImagenes";
+            this.colImagenes.ReadOnly = true;
+            // 
             // frmObservaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -499,11 +508,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblRegistros;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn colVehiculo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn colObservacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colKilometros;
         private System.Windows.Forms.DataGridViewButtonColumn colImagenes;
-        private System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem;
     }
 }

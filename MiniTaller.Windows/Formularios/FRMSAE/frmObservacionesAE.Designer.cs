@@ -59,6 +59,8 @@
             this.toolStripButtonColores = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonItems = new System.Windows.Forms.ToolStripButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtKilometraje = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -68,7 +70,7 @@
             // 
             this.dateTimePickerFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.dateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFecha.Location = new System.Drawing.Point(1192, 361);
+            this.dateTimePickerFecha.Location = new System.Drawing.Point(1199, 338);
             this.dateTimePickerFecha.MinDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerFecha.Name = "dateTimePickerFecha";
             this.dateTimePickerFecha.Size = new System.Drawing.Size(142, 35);
@@ -80,7 +82,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(1100, 367);
+            this.label8.Location = new System.Drawing.Point(1107, 344);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(86, 29);
             this.label8.TabIndex = 86;
@@ -103,7 +105,7 @@
             this.btnAgregarVehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarVehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.btnAgregarVehiculo.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarVehiculo.Location = new System.Drawing.Point(1011, 354);
+            this.btnAgregarVehiculo.Location = new System.Drawing.Point(1009, 330);
             this.btnAgregarVehiculo.Name = "btnAgregarVehiculo";
             this.btnAgregarVehiculo.Size = new System.Drawing.Size(76, 54);
             this.btnAgregarVehiculo.TabIndex = 7;
@@ -128,7 +130,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(14, 367);
+            this.label3.Location = new System.Drawing.Point(12, 343);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(246, 29);
             this.label3.TabIndex = 75;
@@ -139,7 +141,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(14, 284);
+            this.label1.Location = new System.Drawing.Point(12, 284);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(250, 29);
             this.label1.TabIndex = 72;
@@ -164,7 +166,7 @@
             this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.btnAgregarCliente.Image = global::MiniTaller.Windows.Properties.Resources.add_50px;
-            this.btnAgregarCliente.Location = new System.Drawing.Point(1105, 255);
+            this.btnAgregarCliente.Location = new System.Drawing.Point(1053, 244);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
             this.btnAgregarCliente.Size = new System.Drawing.Size(76, 58);
             this.btnAgregarCliente.TabIndex = 5;
@@ -177,7 +179,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(14, 232);
+            this.label2.Location = new System.Drawing.Point(12, 232);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(229, 29);
             this.label2.TabIndex = 69;
@@ -232,7 +234,7 @@
             this.comboVehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.comboVehiculo.FormattingEnabled = true;
             this.comboVehiculo.IntegralHeight = false;
-            this.comboVehiculo.Location = new System.Drawing.Point(266, 364);
+            this.comboVehiculo.Location = new System.Drawing.Point(264, 340);
             this.comboVehiculo.MaxDropDownItems = 50;
             this.comboVehiculo.Name = "comboVehiculo";
             this.comboVehiculo.Size = new System.Drawing.Size(710, 37);
@@ -242,7 +244,7 @@
             // 
             this.panel1.Controls.Add(this.checkBoxEmpresa);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.panel1.Location = new System.Drawing.Point(951, 280);
+            this.panel1.Location = new System.Drawing.Point(911, 273);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(136, 45);
             this.panel1.TabIndex = 3;
@@ -384,6 +386,25 @@
             this.toolStripButtonItems.Text = "Items";
             this.toolStripButtonItems.Click += new System.EventHandler(this.toolStripButtonItems_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(14, 401);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(255, 29);
+            this.label4.TabIndex = 87;
+            this.label4.Text = "Ingrese el Kilometraje:";
+            // 
+            // txtKilometraje
+            // 
+            this.txtKilometraje.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.txtKilometraje.Location = new System.Drawing.Point(275, 398);
+            this.txtKilometraje.Name = "txtKilometraje";
+            this.txtKilometraje.Size = new System.Drawing.Size(317, 35);
+            this.txtKilometraje.TabIndex = 88;
+            // 
             // frmObservacionesAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,6 +412,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(41)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(1366, 543);
             this.ControlBox = false;
+            this.Controls.Add(this.txtKilometraje);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.rtxtObservaciones);
             this.Controls.Add(this.dateTimePickerFecha);
@@ -455,5 +478,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonColores;
         private System.Windows.Forms.ToolStripButton toolStripButtonItems;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtKilometraje;
     }
 }

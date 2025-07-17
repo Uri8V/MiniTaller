@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dateTimePickerFecha = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -86,6 +86,8 @@
             this.colTipoGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPrecios = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBorrar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtKilometraje = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -106,7 +108,7 @@
             // 
             this.dateTimePickerFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.dateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFecha.Location = new System.Drawing.Point(152, 446);
+            this.dateTimePickerFecha.Location = new System.Drawing.Point(106, 438);
             this.dateTimePickerFecha.MinDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerFecha.Name = "dateTimePickerFecha";
             this.dateTimePickerFecha.Size = new System.Drawing.Size(140, 35);
@@ -117,7 +119,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label8.Location = new System.Drawing.Point(60, 451);
+            this.label8.Location = new System.Drawing.Point(14, 443);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(86, 29);
             this.label8.TabIndex = 64;
@@ -126,7 +128,8 @@
             // txtHaber
             // 
             this.txtHaber.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtHaber.Location = new System.Drawing.Point(597, 535);
+            this.txtHaber.Location = new System.Drawing.Point(643, 549);
+            this.txtHaber.MaxLength = 50;
             this.txtHaber.Name = "txtHaber";
             this.txtHaber.Size = new System.Drawing.Size(223, 35);
             this.txtHaber.TabIndex = 8;
@@ -135,7 +138,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label7.Location = new System.Drawing.Point(513, 541);
+            this.label7.Location = new System.Drawing.Point(561, 552);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(76, 29);
             this.label7.TabIndex = 62;
@@ -145,7 +148,8 @@
             // 
             this.txtDebe.Enabled = false;
             this.txtDebe.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtDebe.Location = new System.Drawing.Point(597, 468);
+            this.txtDebe.Location = new System.Drawing.Point(643, 496);
+            this.txtDebe.MaxLength = 50;
             this.txtDebe.Name = "txtDebe";
             this.txtDebe.Size = new System.Drawing.Size(223, 35);
             this.txtDebe.TabIndex = 7;
@@ -165,7 +169,7 @@
             this.label6.AutoSize = true;
             this.label6.Enabled = false;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label6.Location = new System.Drawing.Point(513, 471);
+            this.label6.Location = new System.Drawing.Point(559, 499);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 29);
             this.label6.TabIndex = 60;
@@ -507,28 +511,28 @@
             this.dgvDatos.AllowUserToDeleteRows = false;
             this.dgvDatos.AllowUserToResizeRows = false;
             this.dgvDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colServicio,
             this.colGrupo,
             this.colPrecio,
             this.colSeleccionar});
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDatos.Location = new System.Drawing.Point(0, 0);
             this.dgvDatos.Name = "dgvDatos";
@@ -619,28 +623,28 @@
             this.dgvDatosServiciosSeleccionados.AllowUserToDeleteRows = false;
             this.dgvDatosServiciosSeleccionados.AllowUserToResizeRows = false;
             this.dgvDatosServiciosSeleccionados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosServiciosSeleccionados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosServiciosSeleccionados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatosServiciosSeleccionados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosServiciosSeleccionados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colServicios,
             this.colTipoGrupo,
             this.colPrecios,
             this.colBorrar});
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosServiciosSeleccionados.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosServiciosSeleccionados.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDatosServiciosSeleccionados.Location = new System.Drawing.Point(897, 423);
             this.dgvDatosServiciosSeleccionados.Name = "dgvDatosServiciosSeleccionados";
             this.dgvDatosServiciosSeleccionados.ReadOnly = true;
@@ -678,6 +682,25 @@
             this.colBorrar.Name = "colBorrar";
             this.colBorrar.ReadOnly = true;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label9.Location = new System.Drawing.Point(255, 440);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(229, 29);
+            this.label9.TabIndex = 71;
+            this.label9.Text = "Ingrese Kilometraje:";
+            // 
+            // txtKilometraje
+            // 
+            this.txtKilometraje.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.txtKilometraje.Location = new System.Drawing.Point(490, 437);
+            this.txtKilometraje.MaxLength = 30;
+            this.txtKilometraje.Name = "txtKilometraje";
+            this.txtKilometraje.Size = new System.Drawing.Size(272, 35);
+            this.txtKilometraje.TabIndex = 72;
+            // 
             // frmVehiculosServiciosAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -685,6 +708,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(41)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(1366, 596);
             this.ControlBox = false;
+            this.Controls.Add(this.txtKilometraje);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.dgvDatosServiciosSeleccionados);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnAgregarServicio);
@@ -790,5 +815,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipoGrupo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrecios;
         private System.Windows.Forms.DataGridViewButtonColumn colBorrar;
+        private System.Windows.Forms.TextBox txtKilometraje;
+        private System.Windows.Forms.Label label9;
     }
 }

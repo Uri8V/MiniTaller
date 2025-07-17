@@ -28,18 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.colPatente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTipoDeVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colKilometros = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEcu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPINCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnUltimo = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnAnterior = new System.Windows.Forms.Button();
@@ -62,6 +55,12 @@
             this.toolStripButtonActualizar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.colPatente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTipoDeVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEcu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPINCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -105,31 +104,30 @@
             this.dgvDatos.AllowUserToDeleteRows = false;
             this.dgvDatos.AllowUserToResizeRows = false;
             this.dgvDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPatente,
             this.colTipoDeVehiculo,
             this.colModelo,
-            this.colKilometros,
             this.colEcu,
             this.colVIN,
             this.colPINCode});
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDatos.EnableHeadersVisualStyles = false;
             this.dgvDatos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
@@ -138,60 +136,11 @@
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
             this.dgvDatos.RowHeadersVisible = false;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatos.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(865, 309);
             this.dgvDatos.TabIndex = 2;
-            // 
-            // colPatente
-            // 
-            this.colPatente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPatente.HeaderText = "Patente";
-            this.colPatente.Name = "colPatente";
-            this.colPatente.ReadOnly = true;
-            // 
-            // colTipoDeVehiculo
-            // 
-            this.colTipoDeVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colTipoDeVehiculo.HeaderText = "Tipo de Vehiculo";
-            this.colTipoDeVehiculo.Name = "colTipoDeVehiculo";
-            this.colTipoDeVehiculo.ReadOnly = true;
-            // 
-            // colModelo
-            // 
-            this.colModelo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colModelo.HeaderText = "Modelo";
-            this.colModelo.Name = "colModelo";
-            this.colModelo.ReadOnly = true;
-            // 
-            // colKilometros
-            // 
-            this.colKilometros.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colKilometros.HeaderText = "Kilometros";
-            this.colKilometros.Name = "colKilometros";
-            this.colKilometros.ReadOnly = true;
-            // 
-            // colEcu
-            // 
-            this.colEcu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colEcu.HeaderText = "ECU";
-            this.colEcu.Name = "colEcu";
-            this.colEcu.ReadOnly = true;
-            // 
-            // colVIN
-            // 
-            this.colVIN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colVIN.HeaderText = "VIN";
-            this.colVIN.Name = "colVIN";
-            this.colVIN.ReadOnly = true;
-            // 
-            // colPINCode
-            // 
-            this.colPINCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPINCode.HeaderText = "PIN Code";
-            this.colPINCode.Name = "colPINCode";
-            this.colPINCode.ReadOnly = true;
             // 
             // btnUltimo
             // 
@@ -443,6 +392,48 @@
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
             // 
+            // colPatente
+            // 
+            this.colPatente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPatente.HeaderText = "Patente";
+            this.colPatente.Name = "colPatente";
+            this.colPatente.ReadOnly = true;
+            // 
+            // colTipoDeVehiculo
+            // 
+            this.colTipoDeVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colTipoDeVehiculo.HeaderText = "Tipo de Vehiculo";
+            this.colTipoDeVehiculo.Name = "colTipoDeVehiculo";
+            this.colTipoDeVehiculo.ReadOnly = true;
+            // 
+            // colModelo
+            // 
+            this.colModelo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colModelo.HeaderText = "Modelo";
+            this.colModelo.Name = "colModelo";
+            this.colModelo.ReadOnly = true;
+            // 
+            // colEcu
+            // 
+            this.colEcu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colEcu.HeaderText = "ECU";
+            this.colEcu.Name = "colEcu";
+            this.colEcu.ReadOnly = true;
+            // 
+            // colVIN
+            // 
+            this.colVIN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colVIN.HeaderText = "VIN";
+            this.colVIN.Name = "colVIN";
+            this.colVIN.ReadOnly = true;
+            // 
+            // colPINCode
+            // 
+            this.colPINCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPINCode.HeaderText = "PIN Code";
+            this.colPINCode.Name = "colPINCode";
+            this.colPINCode.ReadOnly = true;
+            // 
             // frmVehiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -494,14 +485,13 @@
         private System.Windows.Forms.ToolStripMenuItem modeloToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tipoDeVehiculoToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonActualizar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPatente;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipoDeVehiculo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colModelo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colKilometros;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEcu;
         private System.Windows.Forms.DataGridViewTextBoxColumn colVIN;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPINCode;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
     }
 }

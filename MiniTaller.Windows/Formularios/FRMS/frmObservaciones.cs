@@ -80,7 +80,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             {
                 DataGridViewRow r = GridHelpers.ConstruirFila(dgvDatos);
                 GridHelpers.SetearFila(r, item);
-                r.Cells[4].Value = "Ver Imagenes";
+                r.Cells[5].Value = "Ver Imagenes";
                 GridHelpers.AgregarFila(dgvDatos, r);
             }
             lblRegistros.Text = registros.ToString();
@@ -210,6 +210,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                         observacionDto.Cliente = string.Concat(c.Apellido,", ",c.Nombre,'|',c.Documento,c.CUIT);
                         observacionDto.Vehiculo = string.Concat(v.Patente," | ", m.Modelo," | ",ma.Marca);
                         observacionDto.Fecha = observaciones.Fecha;
+                        observacionDto.Kilometros=observaciones.Kilometros;
                         GridHelpers.SetearFila(r, observacionDto);
                         _servicio.Guardar(observaciones);
                         RecargarGrilla();

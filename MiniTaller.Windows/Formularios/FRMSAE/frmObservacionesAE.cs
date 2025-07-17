@@ -59,6 +59,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 comboVehiculo.SelectedValue = observaciones.IdVehiculo;
                 rtxtObservaciones.Rtf = observaciones.Observacion;
                 dateTimePickerFecha.Value = observaciones.Fecha.Date;
+                txtKilometraje.Text=observaciones.Kilometros;
             }
         }
         internal Observaciones GetServicio()
@@ -124,7 +125,7 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 observaciones.IdVehiculo = (int)comboVehiculo.SelectedValue;
 
                 observaciones.Observacion = rtxtObservaciones.Rtf;
-
+                observaciones.Kilometros=txtKilometraje.Text;
                 observaciones.Fecha = dateTimePickerFecha.Value;
 
                 DialogResult = DialogResult.OK;
@@ -150,6 +151,21 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                     valido = false;
                     errorProvider1.SetError(comboEmpresa, "Debe seleccionar una Empresa");
                 }
+            }
+            if (string.IsNullOrEmpty(txtKilometraje.Text))
+            {
+                valido = false;
+                errorProvider1.SetError(txtKilometraje, "Debe ingresar un Kilometraje");
+            }
+            else if (!int.TryParse(txtKilometraje.Text, out int kilometraje))
+            {
+                valido = false;
+                errorProvider1.SetError(txtKilometraje, "El Kilometraje debe ser un número entero");
+            }
+            else if (kilometraje < 0)
+            {
+                valido = false;
+                errorProvider1.SetError(txtKilometraje, "El Kilometraje no puede ser negativo");
             }
             if (comboVehiculo.SelectedIndex == 0)
             {
