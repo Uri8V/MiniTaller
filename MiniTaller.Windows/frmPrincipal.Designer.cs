@@ -42,7 +42,7 @@
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnObservaciones = new System.Windows.Forms.Button();
-            this.btnPrecioConPrecio = new System.Windows.Forms.Button();
+            this.btnPrecioConGrupoDePrecio = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTiposDetelefonos
@@ -81,9 +81,9 @@
             this.btnTipoDePago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTipoDePago.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnTipoDePago.Image = global::MiniTaller.Windows.Properties.Resources.way_of_pay_50px;
-            this.btnTipoDePago.Location = new System.Drawing.Point(12, 12);
+            this.btnTipoDePago.Location = new System.Drawing.Point(12, 221);
             this.btnTipoDePago.Name = "btnTipoDePago";
-            this.btnTipoDePago.Size = new System.Drawing.Size(137, 100);
+            this.btnTipoDePago.Size = new System.Drawing.Size(137, 124);
             this.btnTipoDePago.TabIndex = 0;
             this.btnTipoDePago.Text = "Tipo De Pago";
             this.btnTipoDePago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -128,7 +128,7 @@
             this.btnVehiculos.Image = global::MiniTaller.Windows.Properties.Resources.car_50px;
             this.btnVehiculos.Location = new System.Drawing.Point(155, 118);
             this.btnVehiculos.Name = "btnVehiculos";
-            this.btnVehiculos.Size = new System.Drawing.Size(141, 77);
+            this.btnVehiculos.Size = new System.Drawing.Size(141, 97);
             this.btnVehiculos.TabIndex = 4;
             this.btnVehiculos.Text = "Vehiculos";
             this.btnVehiculos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -141,9 +141,9 @@
             this.btnVehiculosServicios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehiculosServicios.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnVehiculosServicios.Image = global::MiniTaller.Windows.Properties.Resources.tick_box_50px;
-            this.btnVehiculosServicios.Location = new System.Drawing.Point(155, 201);
+            this.btnVehiculosServicios.Location = new System.Drawing.Point(155, 221);
             this.btnVehiculosServicios.Name = "btnVehiculosServicios";
-            this.btnVehiculosServicios.Size = new System.Drawing.Size(141, 99);
+            this.btnVehiculosServicios.Size = new System.Drawing.Size(141, 124);
             this.btnVehiculosServicios.TabIndex = 7;
             this.btnVehiculosServicios.Text = "Servicios a Vehiculos";
             this.btnVehiculosServicios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -156,9 +156,9 @@
             this.btnMovimientos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMovimientos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnMovimientos.Image = global::MiniTaller.Windows.Properties.Resources.services_50px;
-            this.btnMovimientos.Location = new System.Drawing.Point(12, 118);
+            this.btnMovimientos.Location = new System.Drawing.Point(12, 12);
             this.btnMovimientos.Name = "btnMovimientos";
-            this.btnMovimientos.Size = new System.Drawing.Size(137, 77);
+            this.btnMovimientos.Size = new System.Drawing.Size(137, 100);
             this.btnMovimientos.TabIndex = 3;
             this.btnMovimientos.Text = "Servicios";
             this.btnMovimientos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -201,9 +201,9 @@
             this.btnMarcas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMarcas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnMarcas.Image = global::MiniTaller.Windows.Properties.Resources.chevrolet_50px;
-            this.btnMarcas.Location = new System.Drawing.Point(302, 118);
+            this.btnMarcas.Location = new System.Drawing.Point(12, 118);
             this.btnMarcas.Name = "btnMarcas";
-            this.btnMarcas.Size = new System.Drawing.Size(166, 77);
+            this.btnMarcas.Size = new System.Drawing.Size(137, 97);
             this.btnMarcas.TabIndex = 5;
             this.btnMarcas.Text = "Marcas";
             this.btnMarcas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -232,7 +232,7 @@
             this.btnObservaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnObservaciones.Image = global::MiniTaller.Windows.Properties.Resources.search_50px;
-            this.btnObservaciones.Location = new System.Drawing.Point(302, 201);
+            this.btnObservaciones.Location = new System.Drawing.Point(302, 116);
             this.btnObservaciones.Name = "btnObservaciones";
             this.btnObservaciones.Size = new System.Drawing.Size(166, 99);
             this.btnObservaciones.TabIndex = 8;
@@ -241,20 +241,20 @@
             this.btnObservaciones.UseVisualStyleBackColor = false;
             this.btnObservaciones.Click += new System.EventHandler(this.btnObservaciones_Click);
             // 
-            // btnPrecioConPrecio
+            // btnPrecioConGrupoDePrecio
             // 
-            this.btnPrecioConPrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
-            this.btnPrecioConPrecio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrecioConPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.btnPrecioConPrecio.Image = global::MiniTaller.Windows.Properties.Resources.service_50px;
-            this.btnPrecioConPrecio.Location = new System.Drawing.Point(12, 201);
-            this.btnPrecioConPrecio.Name = "btnPrecioConPrecio";
-            this.btnPrecioConPrecio.Size = new System.Drawing.Size(137, 99);
-            this.btnPrecioConPrecio.TabIndex = 6;
-            this.btnPrecioConPrecio.Text = "Servicios con Precio";
-            this.btnPrecioConPrecio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPrecioConPrecio.UseVisualStyleBackColor = false;
-            this.btnPrecioConPrecio.Click += new System.EventHandler(this.btnPrecioConPrecio_Click);
+            this.btnPrecioConGrupoDePrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.btnPrecioConGrupoDePrecio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrecioConGrupoDePrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnPrecioConGrupoDePrecio.Image = global::MiniTaller.Windows.Properties.Resources.service_50px;
+            this.btnPrecioConGrupoDePrecio.Location = new System.Drawing.Point(302, 221);
+            this.btnPrecioConGrupoDePrecio.Name = "btnPrecioConGrupoDePrecio";
+            this.btnPrecioConGrupoDePrecio.Size = new System.Drawing.Size(166, 124);
+            this.btnPrecioConGrupoDePrecio.TabIndex = 6;
+            this.btnPrecioConGrupoDePrecio.Text = "Servicios con Grupo de Precio";
+            this.btnPrecioConGrupoDePrecio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPrecioConGrupoDePrecio.UseVisualStyleBackColor = false;
+            this.btnPrecioConGrupoDePrecio.Click += new System.EventHandler(this.btnPrecioConPrecio_Click);
             // 
             // frmPrincipal
             // 
@@ -262,7 +262,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(72)))), ((int)(((byte)(59)))));
             this.ClientSize = new System.Drawing.Size(796, 453);
-            this.Controls.Add(this.btnPrecioConPrecio);
+            this.Controls.Add(this.btnPrecioConGrupoDePrecio);
             this.Controls.Add(this.btnObservaciones);
             this.Controls.Add(this.btnTiposDetelefonos);
             this.Controls.Add(this.btnTiposClientes);
@@ -282,7 +282,6 @@
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ValentCort - Gestión de Autos";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
@@ -302,7 +301,7 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnTiposDetelefonos;
         private System.Windows.Forms.Button btnObservaciones;
-        private System.Windows.Forms.Button btnPrecioConPrecio;
+        private System.Windows.Forms.Button btnPrecioConGrupoDePrecio;
     }
 }
 

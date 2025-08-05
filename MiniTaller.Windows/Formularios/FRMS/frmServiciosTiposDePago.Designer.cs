@@ -35,7 +35,6 @@
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.colServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFormaDePago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnUltimo = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnAnterior = new System.Windows.Forms.Button();
@@ -112,8 +111,7 @@
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colServicio,
-            this.colFormaDePago,
-            this.colPrecio});
+            this.colFormaDePago});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
@@ -149,13 +147,6 @@
             this.colFormaDePago.HeaderText = "Forma de Pago";
             this.colFormaDePago.Name = "colFormaDePago";
             this.colFormaDePago.ReadOnly = true;
-            // 
-            // colPrecio
-            // 
-            this.colPrecio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPrecio.HeaderText = "Precio";
-            this.colPrecio.Name = "colPrecio";
-            this.colPrecio.ReadOnly = true;
             // 
             // btnUltimo
             // 
@@ -378,7 +369,7 @@
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(300, 87);
             this.toolStripTextBox1.Text = "Buscador por Servicio";
-            this.toolStripTextBox1.ToolTipText = "Buscador por Nombre, Apellido, Documento y CUIT";
+            this.toolStripTextBox1.ToolTipText = "Buscador por Servicio";
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
             // 
@@ -456,6 +447,5 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colServicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFormaDePago;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
     }
 }

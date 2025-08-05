@@ -33,10 +33,8 @@
             this.btnAgregarTipoDePago = new System.Windows.Forms.Button();
             this.comboServicio = new System.Windows.Forms.ComboBox();
             this.comboTipoDePago = new System.Windows.Forms.ComboBox();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -95,14 +93,6 @@
             this.comboTipoDePago.Size = new System.Drawing.Size(475, 37);
             this.comboTipoDePago.TabIndex = 0;
             // 
-            // txtPrecio
-            // 
-            this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.txtPrecio.Location = new System.Drawing.Point(221, 167);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(379, 35);
-            this.txtPrecio.TabIndex = 4;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -125,23 +115,12 @@
             this.label2.TabIndex = 35;
             this.label2.Text = "Seleccione el Tipo de Pago:";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(13, 170);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(202, 29);
-            this.label1.TabIndex = 36;
-            this.label1.Text = "Ingrese el Precio:";
-            // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(59)))), ((int)(((byte)(57)))));
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCancelar.Location = new System.Drawing.Point(454, 239);
+            this.btnCancelar.Location = new System.Drawing.Point(562, 167);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 64);
             this.btnCancelar.TabIndex = 6;
@@ -154,7 +133,7 @@
             this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnConfirmar.Location = new System.Drawing.Point(205, 239);
+            this.btnConfirmar.Location = new System.Drawing.Point(313, 167);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(169, 64);
             this.btnConfirmar.TabIndex = 5;
@@ -171,20 +150,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(41)))), ((int)(((byte)(43)))));
-            this.ClientSize = new System.Drawing.Size(984, 315);
+            this.ClientSize = new System.Drawing.Size(984, 243);
             this.ControlBox = false;
             this.Controls.Add(this.btnAgregarServicio);
             this.Controls.Add(this.btnAgregarTipoDePago);
             this.Controls.Add(this.comboServicio);
             this.Controls.Add(this.comboTipoDePago);
-            this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MinimumSize = new System.Drawing.Size(795, 315);
+            this.MinimumSize = new System.Drawing.Size(1004, 286);
             this.Name = "frmServiciosTiposDePagoAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmServiciosTiposDeGastosAE";
@@ -199,10 +176,8 @@
         private System.Windows.Forms.Button btnAgregarServicio;
         private System.Windows.Forms.Button btnAgregarTipoDePago;
         private System.Windows.Forms.ComboBox comboTipoDePago;
-        private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.ErrorProvider errorProvider1;

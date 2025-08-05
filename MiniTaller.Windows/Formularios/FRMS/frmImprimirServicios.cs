@@ -16,14 +16,18 @@ namespace MiniTaller.Windows.Formularios.FRMS
 {
     public partial class frmImprimirServicios : Form
     {
-        public frmImprimirServicios(VehiculosServiciosDto vehiculosServiciosDto)
+        public frmImprimirServicios(VehiculosServiciosDto vehiculosServiciosDto = null, ObservacionDto observacionDto = null)
         {
             InitializeComponent();
             _servicios = new ServicioDeVehiculosServicios();
+            _servicioObservacion = new ServicioDeObservaciones();
             vehiculosServiciosDTO = vehiculosServiciosDto;
+            observacionDTO = observacionDto;
             this.WindowState = FormWindowState.Maximized;
         }
+        private ObservacionDto observacionDTO;
         private VehiculosServiciosDto vehiculosServiciosDTO;
+        private IServicioDeObservaciones _servicioObservacion;
         private List<VehiculosServiciosDto> lista;
         private IServicioDeVehiculosServicios _servicios;
 
@@ -39,16 +43,89 @@ namespace MiniTaller.Windows.Formularios.FRMS
 
         private void RecarGrilla()
         {
-            if (vehiculosServiciosDTO.CUIT != "")
+            if (vehiculosServiciosDTO == null)
             {
-                lista = _servicios.GetVehiculoServicioPorCliente(vehiculosServiciosDTO.CUIT).Where(p=>p.Patente==vehiculosServiciosDTO.Patente && p.Debe!=p.Haber).ToList();
-
+                EliminarColumnas();
+                txtCliente.Text = $"{observacionDTO.Cliente.ToUpper()}";
+                GridHelpers.LimpiarGrilla(dgvDatos);
+                ConstruirColumnas();
+                ConstruirFila();
+                SetearFila(observacionDTO);
+                txtDocCUIT.Visible = false;
+                label2.Visible = false;
+                txtTotal.Visible = false;
+                label4.Visible = false;
+                txtCliente.Size = new Size(500, txtCliente.Height);
             }
             else
             {
-                lista = _servicios.GetVehiculoServicioPorCliente(vehiculosServiciosDTO.Documento).Where(p => p.Patente == vehiculosServiciosDTO.Patente && p.Debe != p.Haber).ToList();
+                if (vehiculosServiciosDTO.CUIT != "")
+                {
+                    lista = _servicios.GetVehiculoServicioPorCliente(vehiculosServiciosDTO.CUIT).Where(p => p.Patente == vehiculosServiciosDTO.Patente && p.Debe != p.Haber).ToList();
+
+                }
+                else
+                {
+                    lista = _servicios.GetVehiculoServicioPorCliente(vehiculosServiciosDTO.Documento).Where(p => p.Patente == vehiculosServiciosDTO.Patente && p.Debe != p.Haber).ToList();
+                }
+                MostraDatosEnGrilla();
             }
-            MostraDatosEnGrilla();
+        }
+
+        private void SetearFila(ObservacionDto observacionDTO)
+        {
+           DataGridViewRow r = ConstruirFila();
+            r.Cells[0].Value = observacionDTO.Vehiculo;
+            r.Cells[1].Value = GridHelpers.ATextoPlano(observacionDTO.Observacion);
+            r.Cells[2].Value = observacionDTO.Fecha.ToShortDateString();
+            r.Cells[3].Value = observacionDTO.Kilometros;
+            AgregarFila(r);
+        }
+
+        private void ConstruirColumnas()
+        {
+            dgvDatos.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "colVehiculo",
+                HeaderText = "Vehiculo",
+                Width = 100,
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+            dgvDatos.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "colObservacion",
+                HeaderText = "Observacion",
+                Width = 100,
+                ReadOnly = true,
+                AutoSizeMode= DataGridViewAutoSizeColumnMode.Fill
+            });
+            dgvDatos.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "colFecha",
+                HeaderText = "Fecha",
+                Width = 100,
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+            dgvDatos.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "colKilometros",
+                HeaderText = "Kilometros",
+                Width = 100,
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+        }
+
+        private void EliminarColumnas()
+        {
+            dgvDatos.Columns.Remove(dgvDatos.Columns[5]);
+            dgvDatos.Columns.Remove(dgvDatos.Columns[4]);
+            dgvDatos.Columns.Remove(dgvDatos.Columns[3]);
+            dgvDatos.Columns.Remove(dgvDatos.Columns[2]);
+            dgvDatos.Columns.Remove(dgvDatos.Columns[1]);
+            dgvDatos.Columns.Remove(dgvDatos.Columns[0]);
         }
 
         private void MostraDatosEnGrilla()
@@ -67,7 +144,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 CrearFila(r, item);
                 AgregarFila(r);
                 haber += item.Haber;
-                total += item.DebeServicio;
+                total += item.Debe;
             }
             txtTotal.Text = (total - haber).ToString();
         }
@@ -79,17 +156,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
 
         private void CrearFila(DataGridViewRow r, VehiculosServiciosDto item)
         {
-            if (item.Fecha == new DateTime(2023, 01, 01))
-            {
-                r.Cells[0].Value = "Aún no se realizo el servicio";
-            }
-            else
-            {
-                r.Cells[0].Value = item.Fecha.ToShortDateString();
-            }
+            r.Cells[0].Value = item.Fecha.ToShortDateString();
             r.Cells[1].Value = item.Patente;
             r.Cells[2].Value = item.Servicio;
-            r.Cells[3].Value =  GridHelpers.ATextoPlano(item.Descripcion);
+            r.Cells[3].Value = GridHelpers.ATextoPlano(item.Descripcion);
             r.Cells[4].Value = item.Haber.ToString();
             r.Cells[5].Value = (item.Debe - item.Haber).ToString();
         }
@@ -103,7 +173,14 @@ namespace MiniTaller.Windows.Formularios.FRMS
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            ImprimirHelper.ImprimirFactura(lista);
+            if (observacionDTO == null)
+            {
+              ImprimirHelper.ImprimirFactura(lista);
+            }
+            else
+            {
+              ImprimirHelper.ImprimirObservacion(observacionDTO);
+            }
         }
 
     }

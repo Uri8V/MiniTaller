@@ -27,6 +27,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             _serviciosVehiculos = new ServicioDeVehiculos();
             _servicioServicio = new ServiciosDeServicios();
             _servicioDeServiciosTiposDePago = new ServicioDeServiciosTiposDePago();
+            _servicioDetallesVehiculosServicios = new ServicioDeDetallesVehiculosServicios();
             this.WindowState = FormWindowState.Maximized;
         }
 
@@ -43,6 +44,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
         }
         string texto = "";
         private List<VehiculosServiciosDto> lista;
+        private IServicioDeDetallesVehiculosServicios _servicioDetallesVehiculosServicios;
         private IServicioDeVehiculosServicios _servicio;
         private IServicioDeVehiculos _serviciosVehiculos;
         private IServicioDeClientes _serviciosClientes;
@@ -52,12 +54,15 @@ namespace MiniTaller.Windows.Formularios.FRMS
         int registros = 0;
         int paginas = 0;
         int registrosPorPagina = 50;
-
+        List<ServicioTipoDePago> listaServicioTipoDePago = new List<ServicioTipoDePago>();
+        List<decimal> listaDePrecios = new List<decimal>();
+        VehiculosServicios servicio;
         int? IdVehiculo = null;
         int? IDMovimiento = null;
         int? IdCliente = null;
         DateTime? fecha = null;
         bool? Yapago = null;
+        DateTime fechaPago;
         private void toolStripButtonActualizar_Click(object sender, EventArgs e)
         {
             IdVehiculo = null;
@@ -144,9 +149,10 @@ namespace MiniTaller.Windows.Formularios.FRMS
             {
                 return;
             }
-            var VehiculoServicio = frm.GetServicio();
-            var ListaServicios = frm.GetListaDeServicios();
-            _servicio.Guardar(VehiculoServicio, ListaServicios);
+            servicio = frm.GetServicio();
+            listaServicioTipoDePago = frm.GetListaDeServicios();
+            listaDePrecios = frm.GetListaDePrecios();
+            _servicio.Guardar(servicio, listaServicioTipoDePago, listaDePrecios,null);
             registros = _servicio.GetCantidad(IdVehiculo, IDMovimiento, IdCliente, fecha, Yapago);
             paginas = formHelper.CalcularPaginas(registros, registrosPorPagina);
             MostrarPaginado();
@@ -160,19 +166,63 @@ namespace MiniTaller.Windows.Formularios.FRMS
             var r = dgvDatos.SelectedRows[0];
             VehiculosServiciosDto ServicioABorrar = (VehiculosServiciosDto)r.Tag;
             var servicio = _servicio.GetVehiculoServicioPorId(ServicioABorrar.IdVehiculoServicio);
-            DialogResult dr = MessageBox.Show($"¿Desea eliminar el Servicio {ServicioABorrar.Servicio} del Cliente {ServicioABorrar.Apellido.ToUpper()}, {ServicioABorrar.Nombre} ({ServicioABorrar.Documento} {ServicioABorrar.CUIT}) con el vehiculo de la patente ({ServicioABorrar.Patente}) el cual debe (${ServicioABorrar.DebeServicio})?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (dr == DialogResult.No) { return; }
-            if (!_servicio.EstaRelacionado(servicio))
+            DialogResult drtodo = MessageBox.Show($"¿DESEA ELIMINAR TODOS LOS REGISTROS DE ESTE VEHICULO ({ServicioABorrar.Patente}) EN ESTA FECHA {ServicioABorrar.Fecha.ToShortDateString()} DE ESTE CLIENTE {ServicioABorrar.Nombre}, {ServicioABorrar.Apellido} - {ServicioABorrar.CUIT}{ServicioABorrar.Documento}?", "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (drtodo == DialogResult.Yes)
             {
-                GridHelpers.QuitarFila(dgvDatos, r);
-                _servicio.Borrar(ServicioABorrar.IdVehiculoServicio);
-                RecargarGrilla();
+                if (!_servicio.ExistenImagenesParaVehiculoServicio(servicio.IdVehiculoServicio))
+                {
+                    _servicioDetallesVehiculosServicios.BorrarTodosLosDetallesPorIdVehiculoFechaYIdCliente(servicio.IdVehiculo, servicio.Fecha, servicio.IdCliente);
+                    _servicio.Borrar(ServicioABorrar.IdVehiculoServicio);
+                    RecargarGrilla();
+                }
+                else
+                {
+                    MessageBox.Show("Este servicio tiene imágenes asociadas. No se puede eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                MessageBox.Show("El servicio del vehiculo esta relacionada", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                DialogResult dr = MessageBox.Show($"¿Desea eliminar el Servicio {ServicioABorrar.Servicio} del Cliente {ServicioABorrar.Apellido.ToUpper()}, {ServicioABorrar.Nombre} ({ServicioABorrar.Documento} {ServicioABorrar.CUIT}) con el vehiculo de la patente ({ServicioABorrar.Patente}) el cual debe (${ServicioABorrar.Debe})?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (dr == DialogResult.No) { return; }
+                bool quedanDetalles = _servicioDetallesVehiculosServicios.ExistenDetallesParaVehiculoServicio(servicio.IdVehiculo, servicio.Fecha, servicio.IdCliente);//Verifico si hay más detalles para que no me aparezca el mensaje de esta realacionado
+                if (quedanDetalles)
+                {
+                    bool tieneImagenes = _servicio.ExistenImagenesParaVehiculoServicio(servicio.IdVehiculoServicio);
+
+                    if (!tieneImagenes)
+                    {
+                        EliminarDetalle(r, ServicioABorrar, servicio);
+                        RecargarGrilla();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Este servicio tiene imágenes asociadas. No se puede eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    EliminarDetalle(r, ServicioABorrar, servicio); //Borro el detalle del vehiculo servicio y luego verifico que no queden relaciones, ya que puede haber una imagen
+                    if (!_servicio.EstaRelacionado(servicio))
+                    {
+                        _servicio.Borrar(ServicioABorrar.IdVehiculoServicio);
+                        RecargarGrilla();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El vehiculo esta relacionado con Imagenes o con Servicios ", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
             }
         }
+
+        private void EliminarDetalle(DataGridViewRow r, VehiculosServiciosDto ServicioABorrar, VehiculosServicios servicio)
+        {
+            var detalles = _servicioDetallesVehiculosServicios.GetDetallesVehiculosServiciosPorIdVehiculoNombreServicioFechaYIdCliente(servicio.IdVehiculo, servicio.Fecha, servicio.IdCliente, ServicioABorrar.Servicio);
+            _servicioDetallesVehiculosServicios.Borrar(detalles[0].Id);
+            GridHelpers.QuitarFila(dgvDatos, r);
+        }
+
         private void toolStripButtonEditar_Click(object sender, EventArgs e)
         {
             if (dgvDatos.SelectedRows.Count == 0)
@@ -182,56 +232,55 @@ namespace MiniTaller.Windows.Formularios.FRMS
             var r = dgvDatos.SelectedRows[0];
             VehiculosServiciosDto vehiculosServiciosDto = (VehiculosServiciosDto)r.Tag;
             VehiculosServiciosDto CopiaServicio = (VehiculosServiciosDto)vehiculosServiciosDto.Clone();
-
-            VehiculosServicios servicios = _servicio.GetVehiculoServicioPorId(vehiculosServiciosDto.IdVehiculoServicio);
-            try
+            servicio= _servicio.GetVehiculoServicioPorId(vehiculosServiciosDto.IdVehiculoServicio);
+          
+            DialogResult dr = MessageBox.Show($"¿Desea editar el Servicio {vehiculosServiciosDto.Servicio} del Cliente {vehiculosServiciosDto.Apellido.ToUpper()}, {vehiculosServiciosDto.Nombre} ({vehiculosServiciosDto.Documento} {vehiculosServiciosDto.CUIT}) con el vehiculo de la patente ({vehiculosServiciosDto.Patente}) el cual debe (${vehiculosServiciosDto.Debe})?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (dr == DialogResult.Yes)
             {
-                frmVehiculosServiciosAE frm = new frmVehiculosServiciosAE() { Text = "Editar Servicio" };
-                frm.SetServicio(servicios);
-                DialogResult dr = frm.ShowDialog(this);
-                if (dr == DialogResult.Cancel)
+                listaServicioTipoDePago = _servicioDetallesVehiculosServicios.GetServiciosTipoDePagoPorIdVehiculoNombreServicioFechaYIdCliente(servicio.IdVehiculo, servicio.Fecha, servicio.IdCliente, vehiculosServiciosDto.Servicio);
+                listaDePrecios = _servicioDetallesVehiculosServicios.GetPreciosPorIdVehiculoNombreServicioFechaYIdCliente(servicio.IdVehiculo, servicio.Fecha, servicio.IdCliente, vehiculosServiciosDto.Servicio);
+                fechaPago = _servicioDetallesVehiculosServicios.GetDetallesVehiculosServiciosPorIdVehiculoNombreServicioFechaYIdCliente(servicio.IdVehiculo,servicio.Fecha,servicio.IdCliente,vehiculosServiciosDto.Servicio)[0].FechaPago;
+                try
+                {
+                    frmVehiculosServiciosAE frm = new frmVehiculosServiciosAE() { Text = "Editar Servicio" };
+                    frm.SetServicio(servicio);
+                    frm.SetServicios(listaServicioTipoDePago);
+                    frm.SetPrecios(listaDePrecios);
+                    frm.SetFechaPago(fechaPago);
+                    DialogResult drt = frm.ShowDialog(this);
+                    if (drt == DialogResult.Cancel)
+                    {
+                        GridHelpers.SetearFila(r, CopiaServicio);
+                        return;
+                    }
+                    var vehiculosServicios = frm.GetServicio();
+                    fechaPago= frm.GetFechaPago();
+                    if (vehiculosServicios != null)
+                    {
+                        listaServicioTipoDePago = frm.GetListaDeServicios();
+                        listaDePrecios = frm.GetListaDePrecios();
+                        _servicio.Guardar(vehiculosServicios, listaServicioTipoDePago, listaDePrecios, fechaPago);
+                        RecargarGrilla();
+                    }
+                    else
+                    {
+                        //Recupero la copia del dto
+                        GridHelpers.SetearFila(r, servicio);
+                    }
+                }
+                catch (Exception ex)
                 {
                     GridHelpers.SetearFila(r, CopiaServicio);
-
-                    return;
+                    MessageBox.Show(ex.Message, "UPS, ALGO SALIO MAL CON LA EDICIÓN", MessageBoxButtons.OK);
                 }
-                servicios = frm.GetServicio();
-
-                if (servicios != null)
-                {
-                    ServicioTipoDePago st = _servicioDeServiciosTiposDePago.GetServicioTipoDePagoPorId(servicios.IdServicioTipoDePago);
-                    Servicioss s = _servicioServicio.GetServiciosPorId(st.IdServicio);
-                    Clientes c = _serviciosClientes.GetClientePorId(servicios.IdCliente);
-                    //Crear el dto
-                    vehiculosServiciosDto.IdVehiculoServicio = servicios.IdVehiculoServicio;
-                    vehiculosServiciosDto.Patente = _serviciosVehiculos.GetVehiculosPorId(servicios.IdVehiculo).Patente;
-                    vehiculosServiciosDto.Servicio = s.Servicio;
-                    vehiculosServiciosDto.DebeServicio = st.Precio;
-                    vehiculosServiciosDto.Apellido = c.Apellido;
-                    vehiculosServiciosDto.Nombre = c.Nombre;
-                    vehiculosServiciosDto.CUIT = c.CUIT;
-                    vehiculosServiciosDto.Documento = c.Documento;
-                    vehiculosServiciosDto.Descripcion = servicios.Descripcion;
-                    vehiculosServiciosDto.Debe = servicios.Debe;
-                    vehiculosServiciosDto.Haber = servicios.Haber;
-                    vehiculosServiciosDto.Fecha = servicios.Fecha;
-                    vehiculosServiciosDto.Kilometros = servicios.Kilometros;
-                    GridHelpers.SetearFila(r, vehiculosServiciosDto);
-                    var lista = frm.GetListaDeServicios();
-                    _servicio.Guardar(servicios,lista);
-                    RecargarGrilla();
-                }
-                else
-                {
-                    //Recupero la copia del dto
-                    GridHelpers.SetearFila(r, servicios);
-                }
-            }
-            catch (Exception ex)
+             }
+            else
             {
-                GridHelpers.SetearFila(r, CopiaServicio);
-                MessageBox.Show(ex.Message, "UPS, ALGO SALIO MAL CON LA EDICIÓN", MessageBoxButtons.OK);
+                listaServicioTipoDePago = _servicioDetallesVehiculosServicios.GetServiciosTipoDePagoPorIdVehiculoNombreServicioFechaYIdCliente(servicio.IdVehiculo, servicio.Fecha, servicio.IdCliente);
+                listaDePrecios= _servicioDetallesVehiculosServicios.GetPreciosPorIdVehiculoNombreServicioFechaYIdCliente(servicio.IdVehiculo, servicio.Fecha, servicio.IdCliente);
+
             }
+       
         }
         private void DesabilitarBotones()
         {
@@ -365,7 +414,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             frmSeleccionarCliente frm = new frmSeleccionarCliente();
             DialogResult dr = frm.ShowDialog(this);
             if (dr == DialogResult.Cancel)
-            {
+            { 
                 return;
             }
             var clienteSeleccionado = frm.GetCliente();

@@ -72,7 +72,7 @@ namespace MiniTaller.Windows.Helpers
             var path = Environment.CurrentDirectory + @"\Servicios";
             var archivo = $"{DateTime.Today.Year}{DateTime.Today.Month}{DateTime.Today.Day}-{nombreCompleto}.pdf";
             var rutaCompleto = Path.Combine(path, archivo);
-            string PdfFile= Properties.Resources.NuevaFactura.ToString();
+            string PdfFile = Properties.Resources.NuevaFactura.ToString();
             PdfFile = PdfFile.Replace("@Nro", contador.ToString().PadLeft(8, '0'));
             PdfFile = PdfFile.Replace("@FECHA", DateTime.Now.ToShortDateString());
             string lineas = string.Empty;
@@ -83,6 +83,7 @@ namespace MiniTaller.Windows.Helpers
                     llenardatos = false;
                     PdfFile = PdfFile.Replace("@CLIENTE", $"{datosCliente.Apellido.ToUpper()}, {datosCliente.Nombre}");
                     PdfFile = PdfFile.Replace("@DOCUMENTO", $"{datosCliente.Documento}{datosCliente.CUIT}");
+                    PdfFile = PdfFile.Replace("@PATENTE", $"{datosCliente.Patente}");
                 }
                 lineas += "<tr>";
                 if (datosCliente.Fecha != new DateTime(2023, 01, 01))
@@ -94,7 +95,6 @@ namespace MiniTaller.Windows.Helpers
                 {
                     lineas += "<td>" + "Aún no se realizó el servicio" + "</td>";
                 }
-                lineas += "<td>" + datosCliente.Patente + "</td>";
                 lineas += "<td>" + datosCliente.Servicio + "</td>";
                 lineas += "<td>" + GridHelpers.ATextoPlano(datosCliente.Descripcion) + "</td>";
                 lineas += "<td>" + datosCliente.Haber.ToString() + "</td>";
@@ -108,6 +108,49 @@ namespace MiniTaller.Windows.Helpers
             GuardarPdfImagen(rutaCompleto, PdfFile);
 
         }
-
+        private static void CrearCarpetaObservaciones()
+        {
+            var path = Environment.CurrentDirectory;
+            var carpeta = "Observaciones";
+            var rutaCompleto = Path.Combine(path, carpeta);
+            if (!Directory.Exists(rutaCompleto))
+            {
+                Directory.CreateDirectory(rutaCompleto);
+            }
+        }
+        internal static void ImprimirObservacion(ObservacionDto observacionDTO)
+        {
+            CrearCarpetaObservaciones();
+            string nombreCompleto = LimpiarNombreArchivo(observacionDTO.Cliente);
+            var path = Environment.CurrentDirectory + @"\Observaciones";
+            var archivo = $"({DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day})-{nombreCompleto}.pdf";
+            var rutaCompleto = Path.Combine(path, archivo);
+            string PdfFile = Properties.Resources.NuevaObservacion.ToString();
+            PdfFile = PdfFile.Replace("@FECHA", DateTime.Now.ToShortDateString());
+            string lineas = string.Empty;
+            PdfFile = PdfFile.Replace("@CLIENTE", $"{observacionDTO.Cliente}");
+            lineas += "<tr>";
+            if (observacionDTO.Fecha != new DateTime(2023, 01, 01))
+            {
+                lineas += "<td>" + observacionDTO.Fecha.ToShortDateString() + "</td>";
+            }
+            else
+            {
+                lineas += "<td>" + "Aún no se realizó el servicio" + "</td>";
+            }
+            lineas += "<td>" + observacionDTO.Vehiculo + "</td>";
+            lineas += "<td>" + GridHelpers.ATextoPlano(observacionDTO.Observacion) + "</td>";
+            lineas += "</tr>";
+            PdfFile = PdfFile.Replace("@FILAS", lineas);
+            GuardarPdfImagen(rutaCompleto, PdfFile);
+        }
+        private static string LimpiarNombreArchivo(string nombreOriginal)
+        {
+            foreach (char c in Path.GetInvalidFileNameChars())
+            {
+                nombreOriginal = nombreOriginal.Replace(c, '_');
+            }
+            return nombreOriginal;
+        }
     }
 }

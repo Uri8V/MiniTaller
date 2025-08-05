@@ -13,6 +13,5 @@ namespace MiniTaller.Entidades.Entidades
         public Servicioss servicio { get; set; }
         public int IdTipoPago { get; set; }
         public TiposDePagos Tipo { get; set; }
-        public decimal Precio { get; set; }
     }
 }

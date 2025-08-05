@@ -12,7 +12,6 @@ namespace MiniTaller.Entidades.Dtos
         public int IdVehiculoServicio { get; set; }
         public string Patente { get; set; }
         public string Servicio { get; set; }
-        public decimal DebeServicio { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Documento { get; set; }
@@ -26,6 +25,6 @@ namespace MiniTaller.Entidades.Dtos
         {
             return this.MemberwiseClone();
         }
-
+        public DateTime FechaPago { get; set; }
     }
 }

@@ -27,7 +27,6 @@ namespace MiniTaller.Windows.Helpers
             DataGridViewRow r = new DataGridViewRow();
             r.CreateCells(dgv);
             return r;
-
         }
         public static void SetearFila(DataGridViewRow r, object obj)
         {
@@ -88,12 +87,11 @@ namespace MiniTaller.Windows.Helpers
                 case ServicioTipoDePagoDto service:
                     r.Cells[0].Value = service.servicio;
                     r.Cells[1].Value = service.Tipo;
-                    r.Cells[2].Value = service.Precio;
                     break;
                 case VehiculosServiciosDto servicios:
                     r.Cells[0].Value = servicios.Patente;
                     r.Cells[1].Value = $"{servicios.Apellido.ToUpper()}, {servicios.Nombre} ({servicios.Documento} {servicios.CUIT})";
-                    r.Cells[2].Value = $"{servicios.Servicio}, Precio:{servicios.DebeServicio}";
+                    r.Cells[2].Value = $"{servicios.Servicio}, Precio:{servicios.Debe}";
                     r.Cells[3].Value = (servicios.Debe - servicios.Haber).ToString();
                     if (servicios.Debe - servicios.Haber <= 0)
                     {
@@ -107,6 +105,7 @@ namespace MiniTaller.Windows.Helpers
                     r.Cells[5].Value = ReduccionDeTexto(ATextoPlano(servicios.Descripcion));//Esto es para que el richtextbox no se vea en la grilla, solo se usa para convertir el RTF a texto plano
                     r.Cells[6].Value = servicios.Fecha.ToShortDateString();
                     r.Cells[7].Value = servicios.Kilometros;
+                    r.Cells[9].Value = servicios.FechaPago.ToShortDateString();
                     break;
                 case ObservacionDto observacionDto:
                     r.Cells[0].Value = observacionDto.Vehiculo;
@@ -143,7 +142,7 @@ namespace MiniTaller.Windows.Helpers
             {
                 DataGridViewRow r = GridHelpers.ConstruirFila(dgv);
                 GridHelpers.SetearFila(r, obj);
-                if (dgv.Columns.Count==5)
+                if (obj is ObservacionDto)
                 {
                     r.Cells[5].Value = "Ver Imagenes";
                 }

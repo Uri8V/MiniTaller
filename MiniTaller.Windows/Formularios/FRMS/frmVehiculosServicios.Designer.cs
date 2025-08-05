@@ -81,6 +81,7 @@
             this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colKilometros = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colImagenes = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colFechaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -228,7 +229,8 @@
             this.colDescripcion,
             this.colFecha,
             this.colKilometros,
-            this.colImagenes});
+            this.colImagenes,
+            this.colFechaPago});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
@@ -658,6 +660,13 @@
             this.colImagenes.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colImagenes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // colFechaPago
+            // 
+            this.colFechaPago.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colFechaPago.HeaderText = "Fecha de Pago";
+            this.colFechaPago.Name = "colFechaPago";
+            this.colFechaPago.ReadOnly = true;
+            // 
             // frmVehiculosServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -737,5 +746,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn colKilometros;
         private System.Windows.Forms.DataGridViewButtonColumn colImagenes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFechaPago;
     }
 }

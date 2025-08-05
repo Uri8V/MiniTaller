@@ -12,7 +12,6 @@ namespace MiniTaller.Entidades.Dtos
         public int IdServicioTipoDePago { get; set; }
         public string servicio { get; set; }
         public string Tipo { get; set; }
-        public decimal Precio { get; set; }
         public object Clone()
         {
             return this.MemberwiseClone();

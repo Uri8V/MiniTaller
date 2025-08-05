@@ -337,5 +337,27 @@ namespace MiniTaller.Windows.Formularios.FRMS
             MostrarPaginado();
             DesabilitarBotones();
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            //Para agregar un documento html que luego va a ser convertido a PDF, debo descargar los paquetes itextSharp y itextSharo.xmlworker
+            //Luego debo ir a las propiedades de la capa windows, apretar en Propiedades, recuros, agragamos un recuso ya existente
+            if (dgvDatos.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            var r = dgvDatos.SelectedRows[0];
+            ObservacionDto observacionesDto = (ObservacionDto)r.Tag;
+            try
+            {
+                frmImprimirServicios frm = new frmImprimirServicios(null,observacionesDto);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr == DialogResult.Cancel) { return; }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "UPS, ALGO SALIO MAL CON LA IMPRESIÓN", MessageBoxButtons.OK);
+            }
+        }
     }
 }

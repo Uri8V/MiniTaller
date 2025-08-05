@@ -157,7 +157,7 @@ namespace MiniTaller.Windows.Formularios.FRMS
             var r = dgvDatos.SelectedRows[0];
             ServicioTipoDePagoDto ServicioABorrar = (ServicioTipoDePagoDto)r.Tag;
             var servicio = _servicio.GetServicioTipoDePagoPorId(ServicioABorrar.IdServicioTipoDePago);
-            DialogResult dr = MessageBox.Show($"¿Desea eliminar el Servicio {ServicioABorrar.servicio} con el precio (${ServicioABorrar.Precio})?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            DialogResult dr = MessageBox.Show($"¿Desea eliminar el Servicio {ServicioABorrar.servicio}?", "Confirmar Selección", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No) { return; }
             if (!_servicio.EstaRelacionado(servicio))
             {
@@ -197,14 +197,6 @@ namespace MiniTaller.Windows.Formularios.FRMS
                 {
                     if (servicios != null)
                     {
-                        Servicioss s = _servicioServicio.GetServiciosPorId(servicios.IdServicio);
-                        TiposDePagos t = _servicioDeTipoPago.GetTipoDePagoPorId(servicios.IdTipoPago);
-                        //Crear el dto
-                        serviciosTipoPagoDto.IdServicioTipoDePago = servicios.IdServicioTipoDePago;
-                        serviciosTipoPagoDto.servicio = _servicioServicio.GetServiciosPorId(servicios.IdServicio).Servicio;
-                        serviciosTipoPagoDto.Tipo = _servicioDeTipoPago.GetTipoDePagoPorId(servicios.IdTipoPago).Tipo;
-                        serviciosTipoPagoDto.Precio = servicios.Precio;
-                        GridHelpers.SetearFila(r, serviciosTipoPagoDto);
                         _servicio.Guardar(servicios);
                         RecargarGrilla();
                     }

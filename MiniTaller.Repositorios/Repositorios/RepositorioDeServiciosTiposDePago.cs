@@ -26,8 +26,8 @@ namespace MiniTaller.Repositorios.Repositorios
             {
                 using (var conn = new SqlConnection(cadenaDeConexion))
                 {
-                    string selectQuery = @"INSERT INTO ServiciosTiposDePago (IdTipoPago,IdServicio, Precio) 
-                                    Values (@IdTipoPago,@IdServicio, @Precio); SELECT SCOPE_IDENTITY();";
+                    string selectQuery = @"INSERT INTO ServiciosTiposDePago (IdTipoPago,IdServicio) 
+                                    Values (@IdTipoPago,@IdServicio); SELECT SCOPE_IDENTITY();";
                     int id = conn.ExecuteScalar<int>(selectQuery, servicioTipoDePago);
                     servicioTipoDePago.IdServicioTipoDePago = id;
                 }
@@ -60,7 +60,7 @@ namespace MiniTaller.Repositorios.Repositorios
             {
                 using (var conn = new SqlConnection(cadenaDeConexion))
                 {
-                    string updateQuery = @"UPDATE ServiciosTiposDePago SET IdTipoPago=@IdTipoPago,IdServicio=@IdServicio,Precio=@Precio
+                    string updateQuery = @"UPDATE ServiciosTiposDePago SET IdTipoPago=@IdTipoPago,IdServicio=@IdServicio
                 WHERE IdServicioTipoDePago=@IdServicioTipoDePago";
                     conn.Execute(updateQuery, servicioTipoDePago);
                 }
@@ -165,7 +165,7 @@ namespace MiniTaller.Repositorios.Repositorios
                 List<ServicioTipoDePagoComboDto> lista= new List<ServicioTipoDePagoComboDto>();
                 using (var conn = new SqlConnection(cadenaDeConexion))
                 {
-                    string selectQuery = @"SELECT st.IdServicioTipoDePago,CONCAT('Servicio: ',s.Servicio,' | Forma de Pago: ', tp.Tipo,' | Precio: ',st.Precio) AS Info 
+                    string selectQuery = @"SELECT st.IdServicioTipoDePago,CONCAT('Servicio: ',s.Servicio,' | ', tp.Tipo) AS Info 
                                        FROM ServiciosTiposDePago st
                                        INNER JOIN TiposDePagos tp ON st.IdTipoPago=tp.IdTipoPago
                                        INNER JOIN Servicios s ON s.IdServicio=st.IdServicio
@@ -188,7 +188,7 @@ namespace MiniTaller.Repositorios.Repositorios
                 ServicioTipoDePago servicioTipoDePago = null;
                 using (var conn = new SqlConnection(cadenaDeConexion))
                 {
-                    string selectQuery = @"SELECT st.IdServicioTipoDePago,st.IdServicio,st.IdTipoPago,st.Precio
+                    string selectQuery = @"SELECT st.IdServicioTipoDePago,st.IdServicio,st.IdTipoPago
                     FROM ServiciosTiposDePago st 
                     WHERE st.IdServicioTipoDePago=@IdServicioTipoDePago";
                     servicioTipoDePago = conn.QuerySingleOrDefault<ServicioTipoDePago>(selectQuery,
@@ -210,7 +210,7 @@ namespace MiniTaller.Repositorios.Repositorios
                 using (var conn = new SqlConnection(cadenaDeConexion))
                 {
                     StringBuilder selectQuery = new StringBuilder();
-                    selectQuery.AppendLine("SELECT st.IdServicioTipoDePago,s.Servicio,tp.Tipo,st.Precio");
+                    selectQuery.AppendLine("SELECT st.IdServicioTipoDePago,s.Servicio,tp.Tipo");
                     selectQuery.AppendLine("FROM ServiciosTiposDePago st");
                     selectQuery.AppendLine("INNER JOIN TiposDePagos tp ON tp.IdTipoPago=st.IdTipoPago");
                     selectQuery.AppendLine("INNER JOIN Servicios s ON s.IdServicio=st.IdServicio");
@@ -243,7 +243,7 @@ namespace MiniTaller.Repositorios.Repositorios
             using (var conn = new SqlConnection(cadenaDeConexion))
             {
                 StringBuilder selectQuery = new StringBuilder();
-                selectQuery.AppendLine("SELECT st.IdServicioTipoDePago,s.Servicio,tp.Tipo,st.Precio");
+                selectQuery.AppendLine("SELECT st.IdServicioTipoDePago,s.Servicio,tp.Tipo");
                 selectQuery.AppendLine("FROM ServiciosTiposDePago st");
                 selectQuery.AppendLine("INNER JOIN TiposDePagos tp ON tp.IdTipoPago=st.IdTipoPago");
                 selectQuery.AppendLine("INNER JOIN Servicios s ON s.IdServicio=st.IdServicio");

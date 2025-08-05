@@ -56,8 +56,10 @@
     <Compile Include="Interfaces\IServicioDeTipoVehiculo.cs" />
     <Compile Include="Interfaces\IServicioDeVehiculos.cs" />
     <Compile Include="Interfaces\IServicioDeVehiculosServicios.cs" />
+    <Compile Include="Interfaces\IServicioDeDetallesVehiculosServicios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\ServicioDeClientes.cs" />
+    <Compile Include="Servicios\ServicioDeDetallesVehiculosServicios.cs" />
     <Compile Include="Servicios\ServicioDeImagenes.cs" />
     <Compile Include="Servicios\ServicioDeMarcas.cs" />
     <Compile Include="Servicios\ServicioDeModelos.cs" />

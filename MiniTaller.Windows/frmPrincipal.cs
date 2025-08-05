@@ -18,12 +18,6 @@ namespace MiniTaller.Windows
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();

@@ -114,6 +114,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formularios\FRMSAE\frmAgregarPrecio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FRMSAE\frmAgregarPrecio.Designer.cs">
+      <DependentUpon>frmAgregarPrecio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FRMSAE\frmClientesAE.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -361,6 +367,9 @@
     <Compile Include="Helpers\ValidadorPatente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\FRMSAE\frmAgregarPrecio.resx">
+      <DependentUpon>frmAgregarPrecio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FRMSAE\frmClientesAE.resx">
       <DependentUpon>frmClientesAE.cs</DependentUpon>
     </EmbeddedResource>
@@ -641,6 +650,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icono.ico" />
+    <None Include="Resources\NuevaObservacion.html" />
     <Content Include="Toto.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

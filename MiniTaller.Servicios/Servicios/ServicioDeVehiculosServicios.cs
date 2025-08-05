@@ -17,9 +17,15 @@ namespace MiniTaller.Servicios.Servicios
     public class ServicioDeVehiculosServicios : IServicioDeVehiculosServicios
     {
         private readonly IRepositorioDeVehiculosServicios _repo;
+        private IServicioDeServicios _servicioDeServicios;
+        private IServicioDeVehiculos _servicioDeVehiculos;
+        private IServicioDeDetallesVehiculosServicios detallesVehiculosServicios;
         public ServicioDeVehiculosServicios()
         {
             _repo = new RepositorioDeVehiculosServicios();
+            _servicioDeServicios= new ServiciosDeServicios();
+            _servicioDeVehiculos = new ServicioDeVehiculos();
+            detallesVehiculosServicios = new ServicioDeDetallesVehiculosServicios();
         }
 
         public void Borrar(int IdVehiculoServicio)
@@ -46,11 +52,11 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public bool Existe(VehiculosServicios vehiculosServicios, List<ServicioTipoDePago> lista)
+        public bool Existe(VehiculosServicios vehiculosServicios)
         {
             try
             {
-                return _repo.Existe(vehiculosServicios, lista);
+                return _repo.Existe(vehiculosServicios);
             }
             catch (Exception ex)
             {
@@ -90,7 +96,7 @@ namespace MiniTaller.Servicios.Servicios
             }
             catch (Exception ex)
             {
-                throw new Exception("Oh no algo no salio bien en el método GetehiculoServicioPorCliente", ex);
+                throw new Exception("Oh no algo no salio bien en el método GetVehiculoServicioPorCliente", ex);
             }
         }
 
@@ -118,56 +124,122 @@ namespace MiniTaller.Servicios.Servicios
             }
         }
 
-        public void Guardar(VehiculosServicios vehiculosServicios, List<ServicioTipoDePago> lista)
+        public void Guardar(VehiculosServicios vehiculosServicios, List<ServicioTipoDePago> listaDeServicios, List<decimal> listaDePrecios, DateTime? dateTime)
         {
+            List<DetallesVehiculosServicios> detalles= new List<DetallesVehiculosServicios>();
             try
             {
                 var haber = vehiculosServicios.Haber;
-                foreach (var item in lista)
+                if (vehiculosServicios.IdVehiculoServicio==0)
                 {
-                    vehiculosServicios.IdServicioTipoDePago = item.IdServicioTipoDePago;
-                    vehiculosServicios.Debe = item.Precio;
-                    if (!Existe(vehiculosServicios, lista))
+                    if (!Existe(vehiculosServicios))
                     {
-                        if (lista.Count > 1 || vehiculosServicios.IdVehiculoServicio == 0)
+                        _repo.Agregar(vehiculosServicios);
+                        MessageBox.Show($"Se ha agregado satisfactoriamente", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        for (var i = 0; i < listaDeServicios.Count(); i++)
                         {
-
-                            if (haber != 0)
+                            var detalle = new DetallesVehiculosServicios
                             {
-
-                                if (vehiculosServicios.Debe < haber)
-                                {
-                                    haber -= item.Precio;
-                                    vehiculosServicios.Haber = vehiculosServicios.Debe;
-                                }
-                                else
-                                {
-                                    vehiculosServicios.Haber = haber;
-                                    haber = 0;
-                                }
-                            }
-                            else
-                            {
-                                vehiculosServicios.Haber = 0;
-                            }
-                            _repo.Agregar(vehiculosServicios);
-                            MessageBox.Show($"Se ha agregado el servicio {item.servicio.Servicio}.", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            _repo.Editar(vehiculosServicios);
-                            MessageBox.Show("Se ha editado el servicio.", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                IdVehiculoServicio = vehiculosServicios.IdVehiculoServicio,
+                                IdServicioTipoDePago = listaDeServicios[i].IdServicioTipoDePago,
+                                Debe = listaDePrecios[i],
+                                Pago = 0,
+                                FechaPago = vehiculosServicios.Fecha
+                            };
+                            haber = ControlDePago(detalle, listaDePrecios, haber, i);
+                            detallesVehiculosServicios.Guardar(detalle);
                         }
                     }
                     else
                     {
-                        MessageBox.Show($"Ya se realizó este servicio: {item.servicio.Servicio} al vehiculo el día de hoy.", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Ya se realizó este registro", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    for (var i = 0; i < listaDeServicios.Count(); i++)
+                    {
+                        detalles = detallesVehiculosServicios.GetDetallesVehiculosServiciosPorIdVehiculoNombreServicioFechaYIdCliente(vehiculosServicios.IdVehiculo, vehiculosServicios.Fecha, vehiculosServicios.IdCliente, _servicioDeServicios.GetServiciosPorId(listaDeServicios[i].IdServicio).Servicio);
+                        detalles[0].Debe = listaDePrecios[i];
+                        detalles[0].IdVehiculoServicio = vehiculosServicios.IdVehiculoServicio;
+                        detalles[0].IdServicioTipoDePago = listaDeServicios[i].IdServicioTipoDePago;
+                        detalles[0].FechaPago = dateTime.Value.Date;
+                        haber = ControlDePago(detalles[0], listaDePrecios, haber, i);
+                        detallesVehiculosServicios.Guardar(detalles[0]);
+                    }
+                    if (!_repo.Existe(vehiculosServicios))
+                    {
+                        _repo.Editar(vehiculosServicios);
+                        _repo.ActualizarHaberTotal(vehiculosServicios.IdVehiculoServicio);
+                        MessageBox.Show($"Se ha edito satisfactoriamente", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Ya se realizó este registro", "INFORMACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception("Oh no algo no salio bien en el método Guardar", ex);
+            }
+        }
+
+        private static decimal ControlDePago(DetallesVehiculosServicios detalle, List<decimal> listaDePrecios, decimal haber, int i)
+        {
+            if (haber != 0)
+            {
+                if (detalle.Debe < haber)
+                {
+                    haber -= listaDePrecios[i];
+                    detalle.Pago = detalle.Debe;
+                }
+                else
+                {
+                    detalle.Pago = haber;
+                    haber = 0;
+                }
+            }
+            else
+            {
+                detalle.Pago = 0;
+            }
+            return haber;
+        }
+
+        public List<VehiculosServicios> GetVehiculosServiciosPorIdClienteIdVehiculoYFecha(int IdVehiculo, int IdCliente, DateTime Fecha)
+        {
+            try
+            {
+                return _repo.GetVehiculosServiciosPorIdClienteIdVehiculoYFecha(IdVehiculo, IdCliente, Fecha);
+            }
+            catch (Exception ex)
+            {
+              throw new Exception("Oh no algo no salio bien en el método GetVehiculosServiciosPorIdClienteIdVehiculoYFecha", ex);
+            }
+        }
+
+        public bool ExistenImagenesParaVehiculoServicio(int idVehiculoServicio)
+        {
+            try
+            {
+                return _repo.ExistenImagenesParaVehiculoServicio(idVehiculoServicio);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Oh no algo no salio bien en el método ExistenImagenesParaVehiculoServicio", ex);
+            }
+        }
+
+        public void ActualizarHaberTotal(int idVehiculoServicio)
+        {
+            try
+            {
+                _repo.ActualizarHaberTotal(idVehiculoServicio);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Oh no algo no salio bien en el método ActualizarHaberTotal", ex);
             }
         }
     }

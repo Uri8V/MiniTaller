@@ -47,7 +47,6 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             ComboHelper.CargarComboTipoDePago(ref comboTipoDePago);
             if (servicio != null)
             {
-                txtPrecio.Text = servicio.Precio.ToString();
                 comboServicio.SelectedValue = servicio.IdServicio;
                 comboTipoDePago.SelectedValue = servicio.IdTipoPago;
             }
@@ -83,7 +82,6 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
                 {
                     servicio = new ServicioTipoDePago();
                 }
-                servicio.Precio = Decimal.Parse(txtPrecio.Text);
                 servicio.servicio = _servicioDeServicio.GetServiciosPorId((int)comboServicio.SelectedValue);
                 servicio.IdServicio = (int)comboServicio.SelectedValue;
 
@@ -106,16 +104,6 @@ namespace MiniTaller.Windows.Formularios.FRMSAE
             if (comboTipoDePago.SelectedIndex == 0)
             {
                 errorProvider1.SetError(comboTipoDePago, "Debe seleccionar un tipo de Pago");
-                valid = false;
-            }
-            if (!Decimal.TryParse(txtPrecio.Text, out decimal precio))
-            {
-                errorProvider1.SetError(txtPrecio, "Debe ingresar un Precio válido");
-                valid = false;
-            }
-            else if (precio <= 0)
-            {
-                errorProvider1.SetError(txtPrecio, "El Precio debe ser mayor a cero");
                 valid = false;
             }
             return valid;

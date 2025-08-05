@@ -21,6 +21,5 @@ namespace MiniTaller.Comun.Interfaces
         ServicioTipoDePago GetServicioTipoDePagoPorId(int IdServicioTipoDePago);
         List<ServicioTipoDePagoComboDto> GetServiciosTiposDePagoCombo();
         List<ServicioTipoDePagoDto> GetServiciosTiposDePagoPorPagina();
-
     }
 }

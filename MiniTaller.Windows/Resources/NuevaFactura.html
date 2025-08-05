@@ -43,16 +43,19 @@ margin: 30mm 45mm 30mm 45mm;
                     <tr>
                         <td>Cliente:</td>
                         <td style="border-bottom:1px dashed black">@CLIENTE</td>
+			<td width="30%"></td>
+			 <td style="width:auto;">Documento:</td>
+                        <td style="width:auto;border-bottom:1px dashed black">@DOCUMENTO</td>
                     </tr>
 
                 </table>
-                <table style="width:100%;">
+                <table>
                     <tr>
-                        <td style="width:auto;">Documento:</td>
-                        <td style="width:auto;border-bottom:1px dashed black">@DOCUMENTO</td>
-                        <td width="30%"></td>
                         <td style="width:auto;">Fecha:</td>
                         <td style="width:auto;border-bottom:1px dashed black;">@FECHA</td>
+			<td width="30%"></td>
+			 <td style="width:auto;">Patente:</td>
+                        <td style="width:auto;border-bottom:1px dashed black;">@PATENTE</td>
                     </tr>
                 </table>
             </td>
@@ -65,21 +68,21 @@ margin: 30mm 45mm 30mm 45mm;
                 <table class="border" style="width: 100%;height: auto; border:1px !important;">
                     <thead>
                         <tr style="background-color:#D8D8D8;">
-                            <th>Fecha del Servicio</th>
-                            <th>Patente</th>
+                            <th style="width:10%">Fecha</th>
                             <th>Servicio</th>
                             <th>Descripción</th>
-                            <th>Haber</th>
-                            <th>Debe</th>
+                            <th style="width:10%">Pago</th>
+                            <th style="width:10%">Debe</th>
                         </tr>
                     </thead>
-                    <tbody style="font-size:12px; text-align: right;">
+                    <tbody style="font-size:12px; text-align: left;">
                         @FILAS
                         <tr style="width:auto;">
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
+			    <td></td>
+		       	    <td></td>
                         </tr>
                     </tbody>
                 </table>

@@ -52,6 +52,7 @@
     <Compile Include="ComboDto\VehiculosComboDto.cs" />
     <Compile Include="ComboDto\VehiculoServicioComboDto.cs" />
     <Compile Include="Dtos\ClientesDto.cs" />
+    <Compile Include="Dtos\DetallesVehiculosServiciosDto.cs" />
     <Compile Include="Dtos\ImagenesDto.cs" />
     <Compile Include="Dtos\ModelosDto.cs" />
     <Compile Include="Dtos\ObservacionDto.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Dtos\VehiculosDto.cs" />
     <Compile Include="Dtos\VehiculosServiciosDto.cs" />
     <Compile Include="Entidades\Clientes.cs" />
+    <Compile Include="Entidades\DetallesVehiculosServicios.cs" />
     <Compile Include="Entidades\Imagenes.cs" />
     <Compile Include="Entidades\Marcas.cs" />
     <Compile Include="Entidades\Modelos.cs" />

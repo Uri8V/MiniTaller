@@ -172,7 +172,7 @@
             this.dgvDatos.ReadOnly = true;
             this.dgvDatos.RowHeadersVisible = false;
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDatos.Size = new System.Drawing.Size(862, 368);
+            this.dgvDatos.Size = new System.Drawing.Size(1117, 368);
             this.dgvDatos.TabIndex = 1;
             // 
             // colCliente
@@ -220,7 +220,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.lblRegistros);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
-            this.splitContainer1.Size = new System.Drawing.Size(862, 476);
+            this.splitContainer1.Size = new System.Drawing.Size(1117, 476);
             this.splitContainer1.SplitterDistance = 368;
             this.splitContainer1.TabIndex = 8;
             // 
@@ -287,7 +287,7 @@
             this.toolStripTextBox1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(862, 87);
+            this.toolStrip1.Size = new System.Drawing.Size(1117, 87);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -390,9 +390,10 @@
             // 
             this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 16F);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(550, 36);
-            this.toolStripTextBox1.Tag = "Buscador por Nombre, Apellido, CUIT o Documento";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(550, 87);
+            this.toolStripTextBox1.Tag = "";
             this.toolStripTextBox1.Text = "Buscador por Nombre, Apellido, CUIT o Documento";
+            this.toolStripTextBox1.ToolTipText = "Buscador por Nombre, Apellido, CUIT o Documento";
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
             // 
@@ -400,12 +401,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 563);
+            this.ClientSize = new System.Drawing.Size(1117, 563);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MinimumSize = new System.Drawing.Size(862, 563);
+            this.MinimumSize = new System.Drawing.Size(1137, 606);
             this.Name = "frmTelefonos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTelefonos";
